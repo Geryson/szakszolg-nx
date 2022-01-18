@@ -1,7 +1,7 @@
 {
   "npmScope": "szakszolg-nx",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "cli": {
     "defaultCollection": "@nrwl/angular",
@@ -16,9 +16,15 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "NzcyMTg3YWYtZjJiNC00YTk0LWI3NjctZDY4MjIwZDZkOGRkfHJlYWQtd3JpdGU="
       }
     }
   },
