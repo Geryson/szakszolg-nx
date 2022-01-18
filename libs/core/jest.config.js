@@ -1,5 +1,5 @@
 module.exports = {
-    displayName: 'api',
+    displayName: 'core',
     preset: '../../jest.preset.js',
     globals: {
         'ts-jest': {
@@ -8,8 +8,8 @@ module.exports = {
     },
     testEnvironment: 'node',
     transform: {
-        '^.+\\.[tj]s$': 'ts-jest',
+        '^.+\\.[tj]sx?$': 'ts-jest',
     },
-    moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/apps/api',
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+    coverageDirectory: '../../coverage/libs/core',
 }
