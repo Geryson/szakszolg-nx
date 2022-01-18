@@ -5,8 +5,8 @@
     "scripts": {
         "ng": "nx",
         "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
-        "start": "nx serve",
-        "build": "nx build",
+        "start": "node dist/apps/api/main.js",
+        "build": "nx build api --prod",
         "test": "nx test"
     },
     "private": true,
@@ -22,8 +22,12 @@
         "@nestjs/common": "^8.0.0",
         "@nestjs/config": "^1.1.6",
         "@nestjs/core": "^8.0.0",
+        "@nestjs/graphql": "^9.1.2",
         "@nestjs/platform-express": "^8.0.0",
         "@nrwl/angular": "13.4.5",
+        "apollo-server-express": "^3.6.1",
+        "graphql": "^16.2.0",
+        "graphql-tools": "^8.2.0",
         "joi": "^17.5.0",
         "reflect-metadata": "^0.1.13",
         "rxjs": "~7.4.0",
