@@ -84,10 +84,7 @@
             "polyfills": "apps/szakszolg/src/polyfills.ts",
             "tsConfig": "apps/szakszolg/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/szakszolg/src/favicon.ico",
-              "apps/szakszolg/src/assets"
-            ],
+            "assets": ["apps/szakszolg/src/favicon.ico", "apps/szakszolg/src/assets"],
             "styles": ["apps/szakszolg/src/styles.scss"],
             "scripts": []
           },
@@ -148,10 +145,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/szakszolg/src/**/*.ts",
-              "apps/szakszolg/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/szakszolg/src/**/*.ts", "apps/szakszolg/src/**/*.html"]
           }
         },
         "test": {
