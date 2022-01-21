@@ -1,10 +1,12 @@
 const http = require('http')
+const https = require('https')
 const fs = require('fs')
 require('dotenv').config()
 
 const download = function (url, dest, callback) {
     const file = fs.createWriteStream(dest)
-    const request = http
+    const driver = url.startsWith('https') ? https : http
+    const request = driver
         .get(url, function (response) {
             response.pipe(file)
             file.on('finish', function () {
