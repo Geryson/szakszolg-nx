@@ -4,7 +4,7 @@
     "license": "MIT",
     "scripts": {
         "ng": "nx",
-        "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
+        "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main && node tools/scripts/download-cert.js",
         "start": "node dist/apps/api/main.js",
         "build": "nx build api --prod",
         "test": "nx test"
@@ -31,6 +31,7 @@
         "apollo-server-express": "^3.6.1",
         "bcryptjs": "^2.4.3",
         "class-validator": "^0.13.2",
+        "dotenv": "^14.2.0",
         "graphql": "^15.0.0",
         "graphql-tools": "^8.2.0",
         "joi": "^17.5.0",
