@@ -62,10 +62,9 @@ if (!process.env.CERT_DOWNLOAD) {
 // Download the cert
 download(process.env.CERT_DOWNLOAD, process.env.DATABASE_CERT, function (err) {
     if (err) {
-        console.error('Error downloading the certificate')
+        console.error('Error downloading the certificate. Please download manually.')
         console.error(err)
-        console.log(`Env was: ${JSON.stringify(process.env)}`)
-        process.exit(1)
+        process.exit(0)
     }
     console.log('Certificate downloaded')
     process.exit(0)
