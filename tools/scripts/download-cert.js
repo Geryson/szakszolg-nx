@@ -1,9 +1,16 @@
 const http = require('http')
 const https = require('https')
 const fs = require('fs')
+const path = require('path')
 require('dotenv').config()
 
 const download = function (url, dest, callback) {
+    // Using relative path
+    if (dest.startsWith('./')) {
+        dest = dest.substring(2)
+        dest = path.join(__dirname, '..', '..', dest)
+    }
+
     const file = fs.createWriteStream(dest)
     const driver = url.startsWith('https') ? https : http
     const request = driver
@@ -50,6 +57,7 @@ if (!process.env.CERT_DOWNLOAD) {
 // Download the cert
 download(process.env.CERT_DOWNLOAD, process.env.DATABASE_CERT, function (err) {
     if (err) {
+        console.error('Error downloading the certificate')
         console.error(err)
         process.exit(1)
     }
