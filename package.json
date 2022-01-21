@@ -6,8 +6,13 @@
         "ng": "nx",
         "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main && node tools/scripts/download-cert.js",
         "start": "node dist/apps/api/main.js",
-        "build": "nx build api --prod",
+        "build": "nx build api --optimization=false",
         "test": "nx test"
+    },
+    "engines": {
+        "node": "16.x",
+        "npm": "please-use-yarn",
+        "yarn": ">= 1.19.1"
     },
     "private": true,
     "dependencies": {
