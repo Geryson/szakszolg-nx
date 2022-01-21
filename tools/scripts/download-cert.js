@@ -5,6 +5,11 @@ const path = require('path')
 require('dotenv').config()
 
 const download = function (url, dest, callback) {
+    if (!url) {
+        callback(new Error('No URL provided.'))
+        return
+    }
+
     // Using relative path
     if (dest.startsWith('./')) {
         dest = dest.substring(2)
@@ -59,6 +64,7 @@ download(process.env.CERT_DOWNLOAD, process.env.DATABASE_CERT, function (err) {
     if (err) {
         console.error('Error downloading the certificate')
         console.error(err)
+        console.log(`Env was: ${JSON.stringify(process.env)}`)
         process.exit(1)
     }
     console.log('Certificate downloaded')
