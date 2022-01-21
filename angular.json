@@ -4,6 +4,10 @@
         "api": {
             "root": "apps/api",
             "sourceRoot": "apps/api/src",
+            "collection": "@nestjs/schematics",
+            "compilerOptions": {
+                "plugins": ["@nestjs/graphql"]
+            },
             "projectType": "application",
             "architect": {
                 "build": {
@@ -63,29 +67,6 @@
                     "outputs": ["{options.outputFile}"],
                     "options": {
                         "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
-                    }
-                }
-            },
-            "tags": []
-        },
-        "core": {
-            "root": "libs/core",
-            "sourceRoot": "libs/core/src",
-            "projectType": "library",
-            "architect": {
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "outputs": ["{options.outputFile}"],
-                    "options": {
-                        "lintFilePatterns": ["libs/core/**/*.ts"]
-                    }
-                },
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/core"],
-                    "options": {
-                        "jestConfig": "libs/core/jest.config.js",
-                        "passWithNoTests": true
                     }
                 }
             },

@@ -8,7 +8,7 @@ async function bootstrap() {
     const config = app.get(ConfigService)
     const globalPrefix = 'api'
     app.setGlobalPrefix(globalPrefix)
-    const port = config.get('port') || 3000
+    const port = config.get('api_port') || 3000
     app.enableCors()
     await app.listen(port)
     Logger.log(`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`)

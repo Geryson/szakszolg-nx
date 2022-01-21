@@ -4,6 +4,8 @@ import { configuration } from './config/configuration'
 import { validationSchema } from './config/validation'
 import { GraphQLModule } from '@nestjs/graphql'
 import { CoreResolver } from './core.resolver'
+import { MongooseModule } from '@nestjs/mongoose'
+import { mongooseConfig } from './config/mongo-config.factory'
 
 @Module({
     imports: [
@@ -15,6 +17,11 @@ import { CoreResolver } from './core.resolver'
         GraphQLModule.forRoot({
             autoSchemaFile: true,
             playground: true,
+        }),
+        MongooseModule.forRootAsync({
+            imports: mongooseConfig.imports,
+            useFactory: mongooseConfig.mongooseConfigFactory,
+            inject: mongooseConfig.providers,
         }),
     ],
     controllers: [],
