@@ -11,7 +11,6 @@
     },
     "engines": {
         "node": "16.x",
-        "npm": "please-use-yarn",
         "yarn": ">= 1.19.1"
     },
     "private": true,
