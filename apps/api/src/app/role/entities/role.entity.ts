@@ -1,31 +1,28 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { Document, Schema as MongooseSchema } from 'mongoose'
-import { IUser } from '@szakszolg-nx/api-interfaces'
+import { IRole } from '@szakszolg-nx/api-interfaces'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Schema as MongooseSchema, Document } from 'mongoose'
 
-export type UserDocument = User & Document
+export type RoleDocument = IRole & Document
 
 @ObjectType()
 @Schema()
-export class User implements IUser {
+export class Role implements IRole {
     @Field(() => String)
     @Prop({ type: MongooseSchema.Types.ObjectId })
     _id: any
 
     @Field()
     @Prop()
-    username: string
-
-    @Field({ nullable: true })
-    @Prop()
-    om?: string
-
-    @Prop()
-    password?: string
+    description: string
 
     @Field()
     @Prop()
-    email: string
+    name: string
+
+    @Field(() => [String])
+    @Prop({ type: [String] })
+    permissions: string[]
 
     @Field()
     @Prop()
@@ -40,4 +37,4 @@ export class User implements IUser {
     deletedAt?: Date
 }
 
-export const UserSchema = SchemaFactory.createForClass(User)
+export const RoleSchema = SchemaFactory.createForClass(Role)

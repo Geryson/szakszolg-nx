@@ -8,6 +8,7 @@ import { UpdateUserInput } from './dto/inputs/update-user.input'
 import { DeleteUserInput } from './dto/inputs/delete-user.input'
 import { UseGuards } from '@nestjs/common'
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard'
+import { IUser } from '@szakszolg-nx/api-interfaces'
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -15,29 +16,29 @@ export class UsersResolver {
 
     @Query(() => User, { nullable: true })
     @UseGuards(GqlAuthGuard)
-    async user(@Args() data: GetUserArgs): Promise<User> {
+    user(@Args() data: GetUserArgs): Promise<IUser> {
         return this.usersService.findOne(data)
     }
 
     @Query(() => [User], { nullable: 'items' })
     @UseGuards(GqlAuthGuard)
-    users(@Args({ nullable: true }) data: GetUsersArgs | null): Promise<User[]> {
+    users(@Args({ nullable: true }) data: GetUsersArgs | null): Promise<IUser[]> {
         return this.usersService.findAll(data)
     }
 
     @Mutation(() => User)
-    createUser(@Args('createUserData') data: CreateUserInput): Promise<User> {
+    createUser(@Args('createUserData') data: CreateUserInput): Promise<IUser> {
         return this.usersService.create(data)
     }
 
     @Mutation(() => User)
-    updateUser(@Args('updateUserData') data: UpdateUserInput): Promise<User> {
+    updateUser(@Args('updateUserData') data: UpdateUserInput): Promise<IUser> {
         return this.usersService.update(data)
     }
 
     @Mutation(() => User)
     @UseGuards(GqlAuthGuard)
-    deleteUser(@Args('deleteUserData') data: DeleteUserInput): Promise<User> {
+    deleteUser(@Args('deleteUserData') data: DeleteUserInput): Promise<IUser> {
         return this.usersService.delete(data)
     }
 }

@@ -3,6 +3,8 @@ import { IUser } from '@szakszolg-nx/api-interfaces'
 import { UsersService } from '../users/users.service'
 import { JwtService } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const bcrypt = require('bcryptjs')
 
 @Injectable()
 export class AuthService {
@@ -15,7 +17,7 @@ export class AuthService {
 
     async validate(email: string, password: string): Promise<IUser | null> {
         const user = await this.userService.findOne({ email })
-        return user ? (user.password !== password ? null : user) : null
+        return user && (await bcrypt.compare(password, user.password)) ? user : null
     }
 
     async login(user: IUser) {
@@ -23,7 +25,7 @@ export class AuthService {
         return {
             access_token: this.jwtService.sign(payload, {
                 secret: this.configService.get('JWT_SECRET'),
-                expiresIn: this.configService.get('JWT_EXPIRES'),
+                expiresIn: this.configService.get('JWT_EXPIRES') || '7d',
             }),
         }
     }

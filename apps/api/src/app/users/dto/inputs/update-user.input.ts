@@ -1,12 +1,10 @@
-import { InputType, Field } from '@nestjs/graphql'
+import { Field, InputType } from '@nestjs/graphql'
 import { IsEmail, IsNotEmpty } from 'class-validator'
+import { IdInput } from '../../../../shared/gql-inputs/id.input'
+import { IUpdatedAt } from '@szakszolg-nx/api-interfaces'
 
 @InputType()
-export class UpdateUserInput {
-    @Field()
-    @IsNotEmpty()
-    id: string
-
+export class UpdateUserInput extends IdInput implements IUpdatedAt {
     @Field({ nullable: true })
     @IsEmail()
     email?: string
@@ -26,4 +24,6 @@ export class UpdateUserInput {
 
     @Field({ nullable: true })
     om?: string
+
+    updatedAt?: Date
 }

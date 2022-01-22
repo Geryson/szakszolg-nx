@@ -16,20 +16,20 @@ export class UserRepository {
 
     public async findAll(data: GetUsersArgs | null): Promise<IUser[]> {
         return data && Object.keys(data).length > 0
-            ? Promise.all(data.ids.map((id) => this.findOne({ id: id })))
+            ? Promise.all(data.ids.map((id) => this.findOne({ id })))
             : this.userModel.find()
     }
 
     public async findOne(data: GetUserArgs): Promise<IUser> {
-        if (data.id) return this.userModel.findById({ _id: data.id })
+        if (data.id) return this.userModel.findById(data.id)
 
-        if (data.email) return this.userModel.findById({ email: data.email })
+        if (data.email) return this.userModel.findOne({ email: data.email })
 
         throw new Error('Please provide either an id or an email address')
     }
 
-    public async create(user: CreateUserInput): Promise<IUser> {
-        return new this.userModel({ ...user, _id: new Types.ObjectId() }).save()
+    public async create(data: CreateUserInput): Promise<IUser> {
+        return new this.userModel({ ...data, _id: new Types.ObjectId() }).save()
     }
 
     public async update(data: UpdateUserInput): Promise<IUser> {
@@ -42,17 +42,13 @@ export class UserRepository {
             throw new Error('New passwords do not match')
         const id = data.id
         delete data.id
+        ;(data as any).updatedAt = new Date()
 
         this.userModel.findByIdAndUpdate(id, data, { new: false })
-        user.updatedAt = new Date()
-
         return user
     }
 
     public async delete(data: DeleteUserInput): Promise<IUser> {
-        const user = this.findOne(data)
-        if (!user) throw new Error('User not found')
-        this.userModel.findByIdAndDelete(data.id)
-        return user
+        return this.userModel.findByIdAndUpdate(data.id, { deletedAt: new Date() })
     }
 }

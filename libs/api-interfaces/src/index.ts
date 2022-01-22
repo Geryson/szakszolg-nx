@@ -1,3 +1,6 @@
 export * from './lib/api-interfaces'
 export * from './lib/api-resource.interface'
 export * from './lib/user.interface'
+export * from './lib/role.interface'
+export * from './lib/permissions.const'
+export * from './lib/timestamps.interface'

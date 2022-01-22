@@ -1,8 +1,9 @@
-import { InputType, Field } from '@nestjs/graphql'
+import { Field, InputType } from '@nestjs/graphql'
 import { IsEmail, IsNotEmpty } from 'class-validator'
+import { GqlInput } from '../../../../shared/gql-inputs/gql-input.abstract'
 
 @InputType()
-export class CreateUserInput {
+export class CreateUserInput extends GqlInput {
     @Field()
     @IsNotEmpty()
     @IsEmail()
