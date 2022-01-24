@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, flatten, Injectable } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import { GqlExecutionContext } from '@nestjs/graphql'
-import { IRole, IUser, permission } from '@szakszolg-nx/api-interfaces'
+import { IUser } from '@szakszolg-nx/api-interfaces'
 
 @Injectable()
 export class PermissionGuard implements CanActivate {
@@ -22,8 +22,6 @@ export class PermissionGuard implements CanActivate {
         const userPermissions = flatten(user.roles.map((role) => role.permissions ?? [])).map((permission: string) =>
             permission.replace(/^\*::/g, `${requiredAbilities[0]}::`).replace(/::\*$/g, `::${requiredResource[0]}`),
         )
-        console.log(`${user.username} has permissions: ${userPermissions.join(', ')}`)
-        console.log(`required: ${required}`)
 
         return userPermissions.includes(required)
     }
