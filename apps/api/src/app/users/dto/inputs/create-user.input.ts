@@ -19,4 +19,7 @@ export class CreateUserInput extends GqlInput {
 
     @Field()
     om?: string
+
+    @Field(() => [String], { nullable: 'itemsAndList' })
+    roles?: string[]
 }

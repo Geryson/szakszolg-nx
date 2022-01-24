@@ -4,26 +4,32 @@ import { UpdateUserInput } from '../dto/inputs/update-user.input'
 import { DeleteUserInput } from '../dto/inputs/delete-user.input'
 import { GetUserArgs } from '../dto/args/get-user.args'
 import { GetUsersArgs } from '../dto/args/get-users.args'
-import { Injectable } from '@nestjs/common'
+import { BadRequestException, Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
-import { IUser } from '@szakszolg-nx/api-interfaces'
+import { IRole, IUser } from '@szakszolg-nx/api-interfaces'
 import { Types } from 'mongoose'
+import { Role, RoleDocument } from '../../role/entities/role.entity'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const bcrypt = require('bcryptjs')
 
 @Injectable()
 export class UserRepository {
-    constructor(@InjectModel(User.name) private readonly userModel: Model<UserDocument>) {}
+    constructor(
+        @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
+        @InjectModel(Role.name) private readonly roleModel: Model<RoleDocument>,
+    ) {}
 
-    public async findAll(data: GetUsersArgs | null): Promise<IUser[]> {
+    public async findAll(data: GetUsersArgs | null): Promise<IUser[] & { roles?: IRole[] }> {
         return data && Object.keys(data).length > 0
             ? Promise.all(data.ids.map((id) => this.findOne({ id })))
             : this.userModel.find()
     }
 
     public async findOne(data: GetUserArgs): Promise<IUser> {
-        if (data.id) return this.userModel.findById(data.id)
+        if (data.id) return this.userModel.findById(data.id).populate('roles')
 
-        if (data.email) return this.userModel.findOne({ email: data.email })
+        if (data.email) return this.userModel.findOne({ email: data.email }).populate('roles')
 
         throw new Error('Please provide either an id or an email address')
     }
@@ -33,18 +39,21 @@ export class UserRepository {
     }
 
     public async update(data: UpdateUserInput): Promise<IUser> {
-        const user = await this.findOne({ id: data.id })
+        const user = await this.userModel.findById(data.id)
 
         if (!user) throw new Error('User not found')
-        if (user.password !== data.password) throw new Error('Password does not match')
+        if (!(await bcrypt.compare(data.password, user.password)))
+            throw new BadRequestException('Current password is incorrect')
 
         if (data.newPassword && data.newPassword !== data.newPasswordConfirm)
             throw new Error('New passwords do not match')
-        const id = data.id
+        // const id = data.id
         delete data.id
         ;(data as any).updatedAt = new Date()
 
-        this.userModel.findByIdAndUpdate(id, data, { new: false })
+        user.roles = data?.roles?.map((roleId) => new Types.ObjectId(roleId))
+
+        user.save()
         return user
     }
 

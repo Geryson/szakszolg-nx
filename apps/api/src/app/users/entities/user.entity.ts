@@ -1,7 +1,9 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { Document, Schema as MongooseSchema } from 'mongoose'
-import { IUser } from '@szakszolg-nx/api-interfaces'
+import { Document, Schema as MongooseSchema, Types } from 'mongoose'
+import { IRole, IUser } from '@szakszolg-nx/api-interfaces'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Role } from '../../role/entities/role.entity'
+import { SchemaTypes } from 'mongoose'
 
 export type UserDocument = User & Document
 
@@ -26,6 +28,10 @@ export class User implements IUser {
     @Field()
     @Prop()
     email: string
+
+    @Field(() => [Role], { nullable: 'itemsAndList' })
+    @Prop({ type: [SchemaTypes.ObjectId], ref: Role.name })
+    roles: Types.ObjectId[] | IRole[]
 
     @Field()
     @Prop()

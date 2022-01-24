@@ -6,6 +6,9 @@ import { IUpdatedAt } from '@szakszolg-nx/api-interfaces'
 @InputType()
 export class UpdateUserInput extends IdInput implements IUpdatedAt {
     @Field({ nullable: true })
+    id: string
+
+    @Field({ nullable: true })
     @IsEmail()
     email?: string
 
@@ -24,6 +27,9 @@ export class UpdateUserInput extends IdInput implements IUpdatedAt {
 
     @Field({ nullable: true })
     om?: string
+
+    @Field(() => [String], { nullable: 'itemsAndList' })
+    roles?: string[]
 
     updatedAt?: Date
 }
