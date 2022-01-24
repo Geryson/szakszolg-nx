@@ -1,0 +1,5 @@
+{
+    "extends": "./apps/szakszolg/tsconfig.json",
+    "include": ["apps/szakszolg/src/**/*.ts"],
+    "exclude": ["apps/szakszolg/src/test.ts", "apps/szakszolg/src/**/*.spec.ts"]
+}
