@@ -10,6 +10,7 @@
         "docs:clean": "yarn run docs:clean-api && yarn run docs:clean-szakszolg",
         "docs:generate": "yarn run docs:clean && npx compodoc -p tsconfig.api-doc.json -d docs/api/ && npx compodoc -p tsconfig.szakszolg-doc.json -d docs/szakszolg/",
         "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main && node tools/scripts/download-cert.js",
+        "res": "npx ts-node tools/scripts/resource-generator.ts",
         "start": "node dist/apps/api/main.js",
         "build": "nx build api --optimization=false",
         "test": "nx test"
