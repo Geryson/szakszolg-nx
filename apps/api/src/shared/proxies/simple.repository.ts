@@ -14,7 +14,7 @@ export class SimpleRepository<
     TUpdateInput extends IdInput,
     TDeleteInput extends IdInput,
 > {
-    constructor(private readonly model: Model<TDocument>) {}
+    constructor(protected readonly model: Model<TDocument>) {}
 
     public async findAll(data: TFindManyArgs | null): Promise<TInterface[]> {
         return data && Object.keys(data).length > 0

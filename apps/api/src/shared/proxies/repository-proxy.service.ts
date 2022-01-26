@@ -20,7 +20,7 @@ export class RepositoryProxyService<
     TUpdateInput extends IdInput,
     TDeleteInput extends IdInput,
 > {
-    constructor(private readonly repository: TRepository) {}
+    constructor(protected readonly repository: TRepository) {}
 
     create(data: TCreateInput) {
         return this.repository.create(data)
