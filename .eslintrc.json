@@ -6,6 +6,14 @@
         {
             "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
             "rules": {
+                "@typescript-eslint/no-unused-vars": [
+                    "error",
+                    {
+                        "argsIgnorePattern": "^__",
+                        "varsIgnorePattern": "^__",
+                        "ignoreRestSiblings": true
+                    }
+                ],
                 "@nrwl/nx/enforce-module-boundaries": [
                     "error",
                     {
