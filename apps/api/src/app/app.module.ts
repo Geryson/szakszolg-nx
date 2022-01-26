@@ -7,9 +7,10 @@ import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { RoleModule } from './role/role.module'
 import { MirrorWordModule } from './mirror-word/mirror-word.module'
+import { HangmanWordModule } from './hangman-word/hangman-word.module'
 
 @Module({
-    imports: [CoreModule, UsersModule, AuthModule, RoleModule, MirrorWordModule],
+    imports: [CoreModule, UsersModule, AuthModule, RoleModule, MirrorWordModule, HangmanWordModule],
     controllers: [AppController],
     providers: [AppService],
 })
