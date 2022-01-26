@@ -20,8 +20,8 @@ export class __PascalCase__Repository extends SimpleRepository<
     Update__PascalCase__Input,
     Delete__PascalCase__Input
 > {
-    constructor(@InjectModel(__PascalCase__.name) __camelCase__Model: Model<__PascalCase__Document>) {
-        super(__camelCase__Model)
+    constructor(@InjectModel(__PascalCase__.name) resourceModel: Model<__PascalCase__Document>) {
+        super(resourceModel)
     }
 
     // TODO: Check if anything needs to be overridden

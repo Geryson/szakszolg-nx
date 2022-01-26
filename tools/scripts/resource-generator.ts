@@ -78,7 +78,7 @@ export interface I${resourceName.pascalCase} extends IApiResource {
 const indexFile = path.join(interfaceIndex, 'index.ts')
 console.log(`Updating ${indexFile}`)
 if (!dryRun) {
-    fs.appendFileSync(indexFile, `export * from './lib/${resourceName.kebabCase}.interface.ts'\n`)
+    fs.appendFileSync(indexFile, `export * from './lib/${resourceName.kebabCase}.interface'\n`)
 }
 
 if (dryRun) {
