@@ -15,40 +15,40 @@ import { PermissionGuard } from '../auth/guards/permission-guard.service'
 @Resolver(() => __PascalCase__)
 @Resource('__kebab-case__s')
 export class __PascalCase__Resolver {
-    constructor(private readonly __camelCase__Service: __PascalCase__Service) {}
+    constructor(private readonly service: __PascalCase__Service) {}
 
     @Query(() => __PascalCase__, { nullable: true })
     @UseGuards(GqlAuthGuard, PermissionGuard)
     @Permission('read')
     __kebab-case__(@Args({ nullable: true }) data: Get__PascalCase__Args): Promise<I__PascalCase__> {
-        return this.__camelCase__Service.findOne(data)
+        return this.service.findOne(data)
     }
 
     @Query(() => [__PascalCase__], { nullable: 'items' })
     @Permission('browse')
     @UseGuards(GqlAuthGuard, PermissionGuard)
     __kebab-case__s(@Args({ nullable: true }) data: Get__PascalCase__sArgs | null): Promise<I__PascalCase__[]> {
-        return this.__camelCase__Service.findAll(data)
+        return this.service.findAll(data)
     }
 
     @Mutation(() => __PascalCase__)
     @UseGuards(GqlAuthGuard, PermissionGuard)
     @Permission('create')
     create__PascalCase__(@Args('create__PascalCase__Data') data: Create__PascalCase__Input): Promise<I__PascalCase__> {
-        return this.__camelCase__Service.create(data)
+        return this.service.create(data)
     }
 
     @Mutation(() => __PascalCase__)
     @UseGuards(GqlAuthGuard, PermissionGuard)
     @Permission('update')
     update__PascalCase__(@Args('update__PascalCase__Data') data: Update__PascalCase__Input): Promise<I__PascalCase__> {
-        return this.__camelCase__Service.update(data)
+        return this.service.update(data)
     }
 
     @Mutation(() => __PascalCase__)
     @UseGuards(GqlAuthGuard, PermissionGuard)
     @Permission('delete')
     delete__PascalCase__(@Args('delete__PascalCase__Data') data: Delete__PascalCase__Input): Promise<I__PascalCase__> {
-        return this.__camelCase__Service.delete(data)
+        return this.service.delete(data)
     }
 }
