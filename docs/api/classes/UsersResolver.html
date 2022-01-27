@@ -121,7 +121,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">apps/api/src/app/users/users.resolver.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">apps/api/src/app/users/users.resolver.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -186,14 +186,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Mutation(undefined)<br /></code>
+                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;create&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:37</a></div>
                 </td>
             </tr>
 
@@ -262,14 +262,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard)<br /></code>
+                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;delete&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:51</a></div>
                 </td>
             </tr>
 
@@ -338,14 +338,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Mutation(undefined)<br /></code>
+                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;update&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:44</a></div>
                 </td>
             </tr>
 
@@ -414,14 +414,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Query(undefined, {nullable: true})<br />@UseGuards(GqlAuthGuard)<br /></code>
+                    <code>@Query(undefined, {nullable: true})<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;read&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:23</a></div>
                 </td>
             </tr>
 
@@ -490,14 +490,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Query(undefined, {nullable: &#x27;items&#x27;})<br />@UseGuards(GqlAuthGuard)<br /></code>
+                    <code>@Query(undefined, {nullable: &#x27;items&#x27;})<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;browse&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:30</a></div>
                 </td>
             </tr>
 
@@ -566,35 +566,45 @@ import { DeleteUserInput } from &#x27;./dto/inputs/delete-user.input&#x27;
 import { UseGuards } from &#x27;@nestjs/common&#x27;
 import { GqlAuthGuard } from &#x27;../auth/guards/gql-auth.guard&#x27;
 import { IUser } from &#x27;@szakszolg-nx/api-interfaces&#x27;
+import { Permission, Resource } from &#x27;../auth/decorators/permission.decorator&#x27;
+import { PermissionGuard } from &#x27;../auth/guards/permission-guard.service&#x27;
 
 @Resolver(() &#x3D;&gt; User)
+@Resource(&#x27;users&#x27;)
 export class UsersResolver {
     constructor(private readonly usersService: UsersService) {}
 
     @Query(() &#x3D;&gt; User, { nullable: true })
-    @UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission(&#x27;read&#x27;)
     user(@Args() data: GetUserArgs): Promise&lt;IUser&gt; {
         return this.usersService.findOne(data)
     }
 
     @Query(() &#x3D;&gt; [User], { nullable: &#x27;items&#x27; })
-    @UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission(&#x27;browse&#x27;)
     users(@Args({ nullable: true }) data: GetUsersArgs | null): Promise&lt;IUser[]&gt; {
         return this.usersService.findAll(data)
     }
 
     @Mutation(() &#x3D;&gt; User)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission(&#x27;create&#x27;)
     createUser(@Args(&#x27;createUserData&#x27;) data: CreateUserInput): Promise&lt;IUser&gt; {
         return this.usersService.create(data)
     }
 
     @Mutation(() &#x3D;&gt; User)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission(&#x27;update&#x27;)
     updateUser(@Args(&#x27;updateUserData&#x27;) data: UpdateUserInput): Promise&lt;IUser&gt; {
         return this.usersService.update(data)
     }
 
     @Mutation(() &#x3D;&gt; User)
-    @UseGuards(GqlAuthGuard)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission(&#x27;delete&#x27;)
     deleteUser(@Args(&#x27;deleteUserData&#x27;) data: DeleteUserInput): Promise&lt;IUser&gt; {
         return this.usersService.delete(data)
     }

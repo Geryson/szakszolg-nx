@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >SimpleRepository</li>
+  <li >HangmanWordRepository</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,11 +58,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>apps/api/src/shared/proxies/simple.repository.ts</code>
+            <code>apps/api/src/app/hangman-word/entities/hangman-word.repository.ts</code>
         </p>
 
 
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+            </p>
 
 
             <section>
@@ -79,6 +85,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
@@ -87,16 +103,6 @@
                                     <span class="modifier">Public</span>
                                     <span class="modifier">Async</span>
                                 <a href="#delete" >delete</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#findAll" >findAll</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#findOne" >findOne</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -121,12 +127,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(model: Model<TDocument>)</code>
+<code>constructor(hangmanWordModel: <a href="../classes/HangmanWord.html" target="_self">Model&lt;HangmanWordDocument&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">apps/api/src/app/hangman-word/entities/hangman-word.repository.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -144,10 +150,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>model</td>
+                                                        <td>hangmanWordModel</td>
                                                   
                                                         <td>
-                                                                    <code>Model&lt;TDocument&gt;</code>
+                                                                        <code><a href="../classes/HangmanWord.html" target="_self" >Model&lt;HangmanWordDocument&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -173,6 +179,162 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(data: GetHangmanWordsArgs | null)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:27</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                            <code>GetHangmanWordsArgs | null</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/HangmanWord.html" target="_self" >Promise&lt;IHangmanWord[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                        <span class="modifier"></span>
+                        <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(data: <a href="../classes/GetHangmanWordArgs.html" target="_self">GetHangmanWordArgs</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:37</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                                <code><a href="../classes/GetHangmanWordArgs.html" target="_self" >GetHangmanWordArgs</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/HangmanWord.html" target="_self" >Promise&lt;IHangmanWord&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="create"></a>
                     <span class="name">
                         <span class="modifier">Public</span>
@@ -192,8 +354,14 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:30</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:30</a></code>
+</div>
                 </td>
             </tr>
 
@@ -264,8 +432,14 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:48</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:48</a></code>
+</div>
                 </td>
             </tr>
 
@@ -317,150 +491,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
-                    <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
-                        <span ><b>findAll</b></span>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(data: TFindManyArgs | null)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:19</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                            <code>TFindManyArgs | null</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface[]&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findOne"></a>
-                    <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
-                        <span ><b>findOne</b></span>
-                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(data: TFindOneArgs)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:25</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                            <code>TFindOneArgs</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="update"></a>
                     <span class="name">
                         <span class="modifier">Public</span>
@@ -480,8 +510,14 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:40</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:40</a></code>
+</div>
                 </td>
             </tr>
 
@@ -531,55 +567,52 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;
-import { Document, Model, Types } from &#x27;mongoose&#x27;
-import { IdArg, IdArrayArg } from &#x27;../gql-args/id.args&#x27;
-import { IdInput } from &#x27;../gql-inputs/id.input&#x27;
-import { IApiResource, IUpdatedAt } from &#x27;@szakszolg-nx/api-interfaces&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;
+import { InjectModel } from &#x27;@nestjs/mongoose&#x27;
+import { HangmanWord, HangmanWordDocument } from &#x27;./hangman-word.entity&#x27;
+import { Model } from &#x27;mongoose&#x27;
+import { UpdateHangmanWordInput } from &#x27;../dto/inputs/update-hangman-word.input&#x27;
+import { CreateHangmanWordInput } from &#x27;../dto/inputs/create-hangman-word.input&#x27;
+import { GetHangmanWordsArgs } from &#x27;../dto/args/get-hangman-words.args&#x27;
+import { GetHangmanWordArgs } from &#x27;../dto/args/get-hangman-word.args&#x27;
+import { IHangmanWord } from &#x27;@szakszolg-nx/api-interfaces&#x27;
+import { DeleteHangmanWordInput } from &#x27;../dto/inputs/delete-hangman-word.input&#x27;
+import { SimpleRepository } from &#x27;../../../shared/proxies/simple.repository&#x27;
 
 @Injectable()
-export class SimpleRepository&lt;
-    TDocument extends Document,
-    TInterface extends IApiResource,
-    TFindOneArgs extends IdArg,
-    TFindManyArgs extends IdArrayArg,
-    TCreateInput,
-    TUpdateInput extends IdInput,
-    TDeleteInput extends IdInput,
+export class HangmanWordRepository extends SimpleRepository&lt;
+    HangmanWordDocument,
+    IHangmanWord,
+    GetHangmanWordArgs,
+    GetHangmanWordsArgs,
+    CreateHangmanWordInput,
+    UpdateHangmanWordInput,
+    DeleteHangmanWordInput
 &gt; {
-    constructor(protected readonly model: Model&lt;TDocument&gt;) {}
-
-    public async findAll(data: TFindManyArgs | null): Promise&lt;TInterface[]&gt; {
-        return data &amp;&amp; Object.keys(data).length &gt; 0
-            ? Promise.all(data.ids.map((id) &#x3D;&gt; this.findOne({ id } as TFindOneArgs)))
-            : (this.model.find({ deletedAt: { $eq: null } }) as any)
+    constructor(@InjectModel(HangmanWord.name) hangmanWordModel: Model&lt;HangmanWordDocument&gt;) {
+        super(hangmanWordModel)
     }
 
-    public async findOne(data: TFindOneArgs): Promise&lt;TInterface&gt; {
-        const res &#x3D; this.model.findById(data.id) as any
-        return res?.deletedAt ? Promise.reject(new NotFoundException()) : res
+    override async findAll(data: GetHangmanWordsArgs | null): Promise&lt;IHangmanWord[]&gt; {
+        if (!data?.category &amp;&amp; !data?.ids) return super.findAll(data)
+        let res: any[]
+        const param &#x3D; {}
+        if (data.category) param[&#x27;category&#x27;] &#x3D; { $regex: data.category, $options: &#x27;i&#x27; }
+        res &#x3D; await this.model.find(param)
+        if (data.ids?.length &gt; 0) res &#x3D; res.filter((x) &#x3D;&gt; data.ids.includes(x._id.toString()))
+        return res
     }
 
-    public async create(data: TCreateInput): Promise&lt;TInterface&gt; {
-        return (await new this.model({
-            ...data,
-            _id: new Types.ObjectId(),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            deletedAt: null,
-        }).save()) as any
-    }
+    override async findOne(data: GetHangmanWordArgs): Promise&lt;IHangmanWord&gt; {
+        if (data?.category) {
+            // Note: If we want more than a few hundred words per category, we should use findOne().skip()
+            const res &#x3D; await this.model.find({ category: { $regex: data.category, $options: &#x27;i&#x27; } })
+            return res[Math.floor(Math.random() * res.length)]
+        }
 
-    public async update(data: TUpdateInput &amp; IUpdatedAt): Promise&lt;TInterface&gt; {
-        const id &#x3D; data.id
-        delete data.id
-        if ((data as any).deletedAt) return Promise.reject(new BadRequestException(&#x27;Cannot update deleted resource&#x27;))
-        data.updatedAt &#x3D; new Date()
-        return this.model.findByIdAndUpdate(id, data, { new: false }) as any
-    }
-
-    public async delete(data: TDeleteInput): Promise&lt;TInterface&gt; {
-        return this.model.findByIdAndUpdate(data.id, { deletedAt: Date.now() }) as any
+        const count &#x3D; await this.model.estimatedDocumentCount()
+        const random &#x3D; Math.floor(Math.random() * count)
+        return this.model.findOne().skip(random).limit(1)
     }
 }
 </code></pre>
@@ -624,7 +657,7 @@ export class SimpleRepository&lt;
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'SimpleRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'HangmanWordRepository.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

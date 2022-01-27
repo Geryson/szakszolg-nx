@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content class">
                    <div class="content-data">
 
 
@@ -38,9 +38,13 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >SimpleRepository</li>
+  <li>Classes</li>
+  <li >HangmanWordResolver</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,8 +62,9 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>apps/api/src/shared/proxies/simple.repository.ts</code>
+            <code>apps/api/src/app/hangman-word/hangman-word.resolver.ts</code>
         </p>
+
 
 
 
@@ -79,29 +84,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#create" >create</a>
+                                <a href="#createHangmanWord" >createHangmanWord</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#delete" >delete</a>
+                                <a href="#deleteHangmanWord" >deleteHangmanWord</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#findAll" >findAll</a>
+                                <a href="#hangmanWord" >hangmanWord</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#findOne" >findOne</a>
+                                <a href="#hangmanWords" >hangmanWords</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#update" >update</a>
+                                <a href="#updateHangmanWord" >updateHangmanWord</a>
                             </li>
                         </ul>
                     </td>
@@ -121,12 +116,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(model: Model<TDocument>)</code>
+<code>constructor(service: <a href="../injectables/HangmanWordService.html" target="_self">HangmanWordService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -144,10 +139,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>model</td>
+                                                        <td>service</td>
                                                   
                                                         <td>
-                                                                    <code>Model&lt;TDocument&gt;</code>
+                                                                        <code><a href="../injectables/HangmanWordService.html" target="_self" >HangmanWordService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -164,6 +159,7 @@
         </table>
 </section>
 
+
             <section>
     
     <h3 id="methods">
@@ -173,27 +169,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="create"></a>
+                    <a name="createHangmanWord"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
-                        <span ><b>create</b></span>
-                        <a href="#create"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>createHangmanWord</b></span>
+                        <a href="#createHangmanWord"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(data: TCreateInput)</code>
+<code>createHangmanWord(data: <a href="../classes/CreateHangmanWordInput.html" target="_self">CreateHangmanWordInput</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;create&#x27;)<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:35</a></div>
                 </td>
             </tr>
 
@@ -216,7 +216,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                            <code>TCreateInput</code>
+                                                <code><a href="../classes/CreateHangmanWordInput.html" target="_self" >CreateHangmanWordInput</a></code>
                                     </td>
 
                                     <td>
@@ -231,7 +231,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
+                        <b>Returns : </b>        <code><a href="../classes/HangmanWord.html" target="_self" >Promise&lt;IHangmanWord&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -245,27 +245,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="delete"></a>
+                    <a name="deleteHangmanWord"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
-                        <span ><b>delete</b></span>
-                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>deleteHangmanWord</b></span>
+                        <a href="#deleteHangmanWord"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>delete(data: TDeleteInput)</code>
+<code>deleteHangmanWord(data: <a href="../classes/DeleteHangmanWordInput.html" target="_self">DeleteHangmanWordInput</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;delete&#x27;)<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:49</a></div>
                 </td>
             </tr>
 
@@ -288,7 +292,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                            <code>TDeleteInput</code>
+                                                <code><a href="../classes/DeleteHangmanWordInput.html" target="_self" >DeleteHangmanWordInput</a></code>
                                     </td>
 
                                     <td>
@@ -303,7 +307,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
+                        <b>Returns : </b>        <code><a href="../classes/HangmanWord.html" target="_self" >Promise&lt;IHangmanWord&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -317,27 +321,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="hangmanWord"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
-                        <span ><b>findAll</b></span>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>hangmanWord</b></span>
+                        <a href="#hangmanWord"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(data: TFindManyArgs | null)</code>
+<code>hangmanWord(data: <a href="../classes/GetHangmanWordArgs.html" target="_self">GetHangmanWordArgs</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Query(undefined, {nullable: true, description: &#x27;Get a hangman word randomly&#x27;})<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:19</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:21</a></div>
                 </td>
             </tr>
 
@@ -360,7 +368,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                            <code>TFindManyArgs | null</code>
+                                                <code><a href="../classes/GetHangmanWordArgs.html" target="_self" >GetHangmanWordArgs</a></code>
                                     </td>
 
                                     <td>
@@ -375,7 +383,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface[]&gt;</code>
+                        <b>Returns : </b>        <code><a href="../classes/HangmanWord.html" target="_self" >Promise&lt;IHangmanWord&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -389,27 +397,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findOne"></a>
+                    <a name="hangmanWords"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
-                        <span ><b>findOne</b></span>
-                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>hangmanWords</b></span>
+                        <a href="#hangmanWords"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(data: TFindOneArgs)</code>
+<code>hangmanWords(data: GetHangmanWordsArgs | null)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Query(undefined, {nullable: &#x27;items&#x27;})<br />@Permission(&#x27;browse&#x27;)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:28</a></div>
                 </td>
             </tr>
 
@@ -432,7 +444,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                            <code>TFindOneArgs</code>
+                                            <code>GetHangmanWordsArgs | null</code>
                                     </td>
 
                                     <td>
@@ -447,7 +459,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
+                        <b>Returns : </b>        <code><a href="../classes/HangmanWord.html" target="_self" >Promise&lt;IHangmanWord[]&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -461,27 +473,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="update"></a>
+                    <a name="updateHangmanWord"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
-                        <span ><b>update</b></span>
-                        <a href="#update"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>updateHangmanWord</b></span>
+                        <a href="#updateHangmanWord"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(data)</code>
+<code>updateHangmanWord(data: <a href="../classes/UpdateHangmanWordInput.html" target="_self">UpdateHangmanWordInput</a>)</code>
                 </td>
             </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;update&#x27;)<br /></code>
+                </td>
+            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:42</a></div>
                 </td>
             </tr>
 
@@ -496,12 +512,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
+                                    <td>
+                                                <code><a href="../classes/UpdateHangmanWordInput.html" target="_self" >UpdateHangmanWordInput</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -515,7 +535,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
+                        <b>Returns : </b>        <code><a href="../classes/HangmanWord.html" target="_self" >Promise&lt;IHangmanWord&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -527,69 +547,69 @@
     </table>
 </section>
 
+
+
+
+
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;
-import { Document, Model, Types } from &#x27;mongoose&#x27;
-import { IdArg, IdArrayArg } from &#x27;../gql-args/id.args&#x27;
-import { IdInput } from &#x27;../gql-inputs/id.input&#x27;
-import { IApiResource, IUpdatedAt } from &#x27;@szakszolg-nx/api-interfaces&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Resolver, Query, Mutation, Args } from &#x27;@nestjs/graphql&#x27;
+import { HangmanWordService } from &#x27;./hangman-word.service&#x27;
+import { HangmanWord } from &#x27;./entities/hangman-word.entity&#x27;
+import { UseGuards } from &#x27;@nestjs/common&#x27;
+import { GqlAuthGuard } from &#x27;../auth/guards/gql-auth.guard&#x27;
+import { GetHangmanWordArgs } from &#x27;./dto/args/get-hangman-word.args&#x27;
+import { IHangmanWord } from &#x27;@szakszolg-nx/api-interfaces&#x27;
+import { GetHangmanWordsArgs } from &#x27;./dto/args/get-hangman-words.args&#x27;
+import { CreateHangmanWordInput } from &#x27;./dto/inputs/create-hangman-word.input&#x27;
+import { UpdateHangmanWordInput } from &#x27;./dto/inputs/update-hangman-word.input&#x27;
+import { DeleteHangmanWordInput } from &#x27;./dto/inputs/delete-hangman-word.input&#x27;
+import { Permission, Resource } from &#x27;../auth/decorators/permission.decorator&#x27;
+import { PermissionGuard } from &#x27;../auth/guards/permission-guard.service&#x27;
 
-@Injectable()
-export class SimpleRepository&lt;
-    TDocument extends Document,
-    TInterface extends IApiResource,
-    TFindOneArgs extends IdArg,
-    TFindManyArgs extends IdArrayArg,
-    TCreateInput,
-    TUpdateInput extends IdInput,
-    TDeleteInput extends IdInput,
-&gt; {
-    constructor(protected readonly model: Model&lt;TDocument&gt;) {}
+@Resolver(() &#x3D;&gt; HangmanWord)
+@Resource(&#x27;hangman-words&#x27;)
+export class HangmanWordResolver {
+    constructor(private readonly service: HangmanWordService) {}
 
-    public async findAll(data: TFindManyArgs | null): Promise&lt;TInterface[]&gt; {
-        return data &amp;&amp; Object.keys(data).length &gt; 0
-            ? Promise.all(data.ids.map((id) &#x3D;&gt; this.findOne({ id } as TFindOneArgs)))
-            : (this.model.find({ deletedAt: { $eq: null } }) as any)
+    @Query(() &#x3D;&gt; HangmanWord, { nullable: true, description: &#x27;Get a hangman word randomly&#x27; })
+    hangmanWord(@Args({ nullable: true }) data: GetHangmanWordArgs): Promise&lt;IHangmanWord&gt; {
+        return this.service.findOne(data)
     }
 
-    public async findOne(data: TFindOneArgs): Promise&lt;TInterface&gt; {
-        const res &#x3D; this.model.findById(data.id) as any
-        return res?.deletedAt ? Promise.reject(new NotFoundException()) : res
+    @Query(() &#x3D;&gt; [HangmanWord], { nullable: &#x27;items&#x27; })
+    @Permission(&#x27;browse&#x27;)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    hangmanWords(@Args({ nullable: true }) data: GetHangmanWordsArgs | null): Promise&lt;IHangmanWord[]&gt; {
+        return this.service.findAll(data)
     }
 
-    public async create(data: TCreateInput): Promise&lt;TInterface&gt; {
-        return (await new this.model({
-            ...data,
-            _id: new Types.ObjectId(),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            deletedAt: null,
-        }).save()) as any
+    @Mutation(() &#x3D;&gt; HangmanWord)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission(&#x27;create&#x27;)
+    createHangmanWord(@Args(&#x27;createHangmanWordData&#x27;) data: CreateHangmanWordInput): Promise&lt;IHangmanWord&gt; {
+        return this.service.create(data)
     }
 
-    public async update(data: TUpdateInput &amp; IUpdatedAt): Promise&lt;TInterface&gt; {
-        const id &#x3D; data.id
-        delete data.id
-        if ((data as any).deletedAt) return Promise.reject(new BadRequestException(&#x27;Cannot update deleted resource&#x27;))
-        data.updatedAt &#x3D; new Date()
-        return this.model.findByIdAndUpdate(id, data, { new: false }) as any
+    @Mutation(() &#x3D;&gt; HangmanWord)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission(&#x27;update&#x27;)
+    updateHangmanWord(@Args(&#x27;updateHangmanWordData&#x27;) data: UpdateHangmanWordInput): Promise&lt;IHangmanWord&gt; {
+        return this.service.update(data)
     }
 
-    public async delete(data: TDeleteInput): Promise&lt;TInterface&gt; {
-        return this.model.findByIdAndUpdate(data.id, { deletedAt: Date.now() }) as any
+    @Mutation(() &#x3D;&gt; HangmanWord)
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission(&#x27;delete&#x27;)
+    deleteHangmanWord(@Args(&#x27;deleteHangmanWordData&#x27;) data: DeleteHangmanWordInput): Promise&lt;IHangmanWord&gt; {
+        return this.service.delete(data)
     }
 }
 </code></pre>
     </div>
-
 </div>
-
-
-
-
 
 
 
@@ -623,8 +643,8 @@ export class SimpleRepository&lt;
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'SimpleRepository.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'HangmanWordResolver.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

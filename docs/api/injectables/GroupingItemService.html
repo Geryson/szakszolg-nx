@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >SimpleRepository</li>
+  <li >GroupingItemService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,11 +58,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>apps/api/src/shared/proxies/simple.repository.ts</code>
+            <code>apps/api/src/app/grouping-item/grouping-item.service.ts</code>
         </p>
 
 
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../injectables/RepositoryProxyService.html" target="_self" >RepositoryProxyService</a></code>
+            </p>
 
 
             <section>
@@ -79,28 +85,18 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#delete" >delete</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                    <span class="modifier">Async</span>
                                 <a href="#update" >update</a>
                             </li>
                         </ul>
@@ -121,12 +117,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(model: Model<TDocument>)</code>
+<code>constructor(repository: <a href="../injectables/GroupingItemRepository.html" target="_self">GroupingItemRepository</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">apps/api/src/app/grouping-item/grouping-item.service.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -144,10 +140,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>model</td>
+                                                        <td>repository</td>
                                                   
                                                         <td>
-                                                                    <code>Model&lt;TDocument&gt;</code>
+                                                                        <code><a href="../injectables/GroupingItemRepository.html" target="_self" >GroupingItemRepository</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -175,8 +171,6 @@
                 <td class="col-md-4">
                     <a name="create"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -184,16 +178,21 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(data: TCreateInput)</code>
+<code>create(data: TCreateInput)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:30</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/RepositoryProxyService.html" target="_self" >RepositoryProxyService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/RepositoryProxyService.html#source" target="_self" >RepositoryProxyService:25</a></code>
+</div>
                 </td>
             </tr>
 
@@ -231,7 +230,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -247,8 +246,6 @@
                 <td class="col-md-4">
                     <a name="delete"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
                         <span ><b>delete</b></span>
                         <a href="#delete"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -256,16 +253,21 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>delete(data: TDeleteInput)</code>
+<code>delete(data: TDeleteInput)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:48</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/RepositoryProxyService.html" target="_self" >RepositoryProxyService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/RepositoryProxyService.html#source" target="_self" >RepositoryProxyService:41</a></code>
+</div>
                 </td>
             </tr>
 
@@ -303,7 +305,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -319,8 +321,6 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -328,16 +328,21 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(data: TFindManyArgs | null)</code>
+<code>findAll(data: TFindManyArgs)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="19"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:19</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/RepositoryProxyService.html" target="_self" >RepositoryProxyService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/RepositoryProxyService.html#source" target="_self" >RepositoryProxyService:29</a></code>
+</div>
                 </td>
             </tr>
 
@@ -360,7 +365,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                            <code>TFindManyArgs | null</code>
+                                            <code>TFindManyArgs</code>
                                     </td>
 
                                     <td>
@@ -375,7 +380,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface[]&gt;</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -391,8 +396,6 @@
                 <td class="col-md-4">
                     <a name="findOne"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
                         <span ><b>findOne</b></span>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -400,16 +403,21 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(data: TFindOneArgs)</code>
+<code>findOne(data: TFindOneArgs)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:25</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/RepositoryProxyService.html" target="_self" >RepositoryProxyService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/RepositoryProxyService.html#source" target="_self" >RepositoryProxyService:33</a></code>
+</div>
                 </td>
             </tr>
 
@@ -447,7 +455,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -463,8 +471,6 @@
                 <td class="col-md-4">
                     <a name="update"></a>
                     <span class="name">
-                        <span class="modifier">Public</span>
-                        <span class="modifier">Async</span>
                         <span ><b>update</b></span>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -472,16 +478,21 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(data)</code>
+<code>update(data: TUpdateInput)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:40</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/RepositoryProxyService.html" target="_self" >RepositoryProxyService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/RepositoryProxyService.html#source" target="_self" >RepositoryProxyService:37</a></code>
+</div>
                 </td>
             </tr>
 
@@ -496,12 +507,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
+                                    <td>
+                                            <code>TUpdateInput</code>
+                                    </td>
 
                                     <td>
                                         No
@@ -515,7 +530,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -531,55 +546,26 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException, Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;
-import { Document, Model, Types } from &#x27;mongoose&#x27;
-import { IdArg, IdArrayArg } from &#x27;../gql-args/id.args&#x27;
-import { IdInput } from &#x27;../gql-inputs/id.input&#x27;
-import { IApiResource, IUpdatedAt } from &#x27;@szakszolg-nx/api-interfaces&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;
+import { CreateGroupingItemInput } from &#x27;./dto/inputs/create-grouping-item.input&#x27;
+import { UpdateGroupingItemInput } from &#x27;./dto/inputs/update-grouping-item.input&#x27;
+import { GroupingItemRepository } from &#x27;./entities/grouping-item.repository&#x27;
+import { GetGroupingItemsArgs } from &#x27;./dto/args/get-grouping-items.args&#x27;
+import { GetGroupingItemArgs } from &#x27;./dto/args/get-grouping-item.args&#x27;
+import { DeleteGroupingItemInput } from &#x27;./dto/inputs/delete-grouping-item.input&#x27;
+import { RepositoryProxyService } from &#x27;../../shared/proxies/repository-proxy.service&#x27;
 
 @Injectable()
-export class SimpleRepository&lt;
-    TDocument extends Document,
-    TInterface extends IApiResource,
-    TFindOneArgs extends IdArg,
-    TFindManyArgs extends IdArrayArg,
-    TCreateInput,
-    TUpdateInput extends IdInput,
-    TDeleteInput extends IdInput,
+export class GroupingItemService extends RepositoryProxyService&lt;
+    GroupingItemRepository,
+    GetGroupingItemArgs,
+    GetGroupingItemsArgs,
+    CreateGroupingItemInput,
+    UpdateGroupingItemInput,
+    DeleteGroupingItemInput
 &gt; {
-    constructor(protected readonly model: Model&lt;TDocument&gt;) {}
-
-    public async findAll(data: TFindManyArgs | null): Promise&lt;TInterface[]&gt; {
-        return data &amp;&amp; Object.keys(data).length &gt; 0
-            ? Promise.all(data.ids.map((id) &#x3D;&gt; this.findOne({ id } as TFindOneArgs)))
-            : (this.model.find({ deletedAt: { $eq: null } }) as any)
-    }
-
-    public async findOne(data: TFindOneArgs): Promise&lt;TInterface&gt; {
-        const res &#x3D; this.model.findById(data.id) as any
-        return res?.deletedAt ? Promise.reject(new NotFoundException()) : res
-    }
-
-    public async create(data: TCreateInput): Promise&lt;TInterface&gt; {
-        return (await new this.model({
-            ...data,
-            _id: new Types.ObjectId(),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            deletedAt: null,
-        }).save()) as any
-    }
-
-    public async update(data: TUpdateInput &amp; IUpdatedAt): Promise&lt;TInterface&gt; {
-        const id &#x3D; data.id
-        delete data.id
-        if ((data as any).deletedAt) return Promise.reject(new BadRequestException(&#x27;Cannot update deleted resource&#x27;))
-        data.updatedAt &#x3D; new Date()
-        return this.model.findByIdAndUpdate(id, data, { new: false }) as any
-    }
-
-    public async delete(data: TDeleteInput): Promise&lt;TInterface&gt; {
-        return this.model.findByIdAndUpdate(data.id, { deletedAt: Date.now() }) as any
+    constructor(repository: GroupingItemRepository) {
+        super(repository)
     }
 }
 </code></pre>
@@ -624,7 +610,7 @@ export class SimpleRepository&lt;
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'SimpleRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'GroupingItemService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
