@@ -8,6 +8,6 @@ export class GetQuizzesArgs extends IdArrayArg {
     @IsArray()
     ids?: string[]
 
-    @Field()
+    @Field({ nullable: true })
     category?: string
 }

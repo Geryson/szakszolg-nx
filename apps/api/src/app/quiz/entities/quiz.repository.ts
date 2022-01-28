@@ -29,4 +29,9 @@ export class QuizRepository extends SimpleRepository<
 
         return this.model.find({ categories: { $regex: data.category, $options: 'i' } }).exec()
     }
+
+    override async create(data: CreateQuizInput): Promise<IQuiz> {
+        data.questions = data.questions.map((question, index) => ({ _id: index, ...question }))
+        return super.create(data)
+    }
 }

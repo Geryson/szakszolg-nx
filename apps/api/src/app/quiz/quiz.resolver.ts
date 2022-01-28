@@ -13,7 +13,7 @@ import { Permission, Resource } from '../auth/decorators/permission.decorator'
 import { PermissionGuard } from '../auth/guards/permission-guard.service'
 
 @Resolver(() => Quiz)
-@Resource('quizs')
+@Resource('quizzes')
 export class QuizResolver {
     constructor(private readonly service: QuizService) {}
 
@@ -27,7 +27,7 @@ export class QuizResolver {
     @Query(() => [Quiz], { nullable: 'items' })
     @Permission('browse')
     @UseGuards(GqlAuthGuard, PermissionGuard)
-    quizs(@Args({ nullable: true }) data: GetQuizzesArgs | null): Promise<IQuiz[]> {
+    quizzes(@Args({ nullable: true }) data: GetQuizzesArgs | null): Promise<IQuiz[]> {
         return this.service.findAll(data)
     }
 
