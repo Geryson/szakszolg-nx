@@ -54,13 +54,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-AppModule-f3025982d2605a4dfd2c370d77978e20e6f411f3372092812eeb78b1bf15b75f0cc8009007c860dc908aaf6b143ee833aecb1807f0162cd7975c0da2fffc0bc5"' : 'data-target="#xs-controllers-links-module-AppModule-f3025982d2605a4dfd2c370d77978e20e6f411f3372092812eeb78b1bf15b75f0cc8009007c860dc908aaf6b143ee833aecb1807f0162cd7975c0da2fffc0bc5"' }>
+                                            'data-target="#controllers-links-module-AppModule-63c2aff124c15e598173fa6fdf2f266bbc8a6817f8c8a2fcf99459320120cb46aa1f7558c3c74873a523fcf24df167ac1225ab6a03d43b9bc5d693efdf1baf78"' : 'data-target="#xs-controllers-links-module-AppModule-63c2aff124c15e598173fa6fdf2f266bbc8a6817f8c8a2fcf99459320120cb46aa1f7558c3c74873a523fcf24df167ac1225ab6a03d43b9bc5d693efdf1baf78"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-f3025982d2605a4dfd2c370d77978e20e6f411f3372092812eeb78b1bf15b75f0cc8009007c860dc908aaf6b143ee833aecb1807f0162cd7975c0da2fffc0bc5"' :
-                                            'id="xs-controllers-links-module-AppModule-f3025982d2605a4dfd2c370d77978e20e6f411f3372092812eeb78b1bf15b75f0cc8009007c860dc908aaf6b143ee833aecb1807f0162cd7975c0da2fffc0bc5"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-AppModule-63c2aff124c15e598173fa6fdf2f266bbc8a6817f8c8a2fcf99459320120cb46aa1f7558c3c74873a523fcf24df167ac1225ab6a03d43b9bc5d693efdf1baf78"' :
+                                            'id="xs-controllers-links-module-AppModule-63c2aff124c15e598173fa6fdf2f266bbc8a6817f8c8a2fcf99459320120cb46aa1f7558c3c74873a523fcf24df167ac1225ab6a03d43b9bc5d693efdf1baf78"' }>
                                             <li class="link">
                                                 <a href="controllers/AppController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppController</a>
                                             </li>
@@ -68,13 +68,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-AppModule-f3025982d2605a4dfd2c370d77978e20e6f411f3372092812eeb78b1bf15b75f0cc8009007c860dc908aaf6b143ee833aecb1807f0162cd7975c0da2fffc0bc5"' : 'data-target="#xs-injectables-links-module-AppModule-f3025982d2605a4dfd2c370d77978e20e6f411f3372092812eeb78b1bf15b75f0cc8009007c860dc908aaf6b143ee833aecb1807f0162cd7975c0da2fffc0bc5"' }>
+                                        'data-target="#injectables-links-module-AppModule-63c2aff124c15e598173fa6fdf2f266bbc8a6817f8c8a2fcf99459320120cb46aa1f7558c3c74873a523fcf24df167ac1225ab6a03d43b9bc5d693efdf1baf78"' : 'data-target="#xs-injectables-links-module-AppModule-63c2aff124c15e598173fa6fdf2f266bbc8a6817f8c8a2fcf99459320120cb46aa1f7558c3c74873a523fcf24df167ac1225ab6a03d43b9bc5d693efdf1baf78"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-f3025982d2605a4dfd2c370d77978e20e6f411f3372092812eeb78b1bf15b75f0cc8009007c860dc908aaf6b143ee833aecb1807f0162cd7975c0da2fffc0bc5"' :
-                                        'id="xs-injectables-links-module-AppModule-f3025982d2605a4dfd2c370d77978e20e6f411f3372092812eeb78b1bf15b75f0cc8009007c860dc908aaf6b143ee833aecb1807f0162cd7975c0da2fffc0bc5"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-63c2aff124c15e598173fa6fdf2f266bbc8a6817f8c8a2fcf99459320120cb46aa1f7558c3c74873a523fcf24df167ac1225ab6a03d43b9bc5d693efdf1baf78"' :
+                                        'id="xs-injectables-links-module-AppModule-63c2aff124c15e598173fa6fdf2f266bbc8a6817f8c8a2fcf99459320120cb46aa1f7558c3c74873a523fcf24df167ac1225ab6a03d43b9bc5d693efdf1baf78"' }>
                                         <li class="link">
                                             <a href="injectables/AppService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppService</a>
                                         </li>
@@ -182,6 +182,46 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </li>
                             <li class="link">
+                                <a href="modules/QuizModule.html" data-type="entity-link" >QuizModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-QuizModule-5ad23761057a6e0691cbfdd94a962ccdabdda80cd2c7447f3ed99cb98b63f67d7db2c7e3ce5b9d24481f773ef8f9b3af514475724a9537516227ec7c37874814"' : 'data-target="#xs-injectables-links-module-QuizModule-5ad23761057a6e0691cbfdd94a962ccdabdda80cd2c7447f3ed99cb98b63f67d7db2c7e3ce5b9d24481f773ef8f9b3af514475724a9537516227ec7c37874814"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-QuizModule-5ad23761057a6e0691cbfdd94a962ccdabdda80cd2c7447f3ed99cb98b63f67d7db2c7e3ce5b9d24481f773ef8f9b3af514475724a9537516227ec7c37874814"' :
+                                        'id="xs-injectables-links-module-QuizModule-5ad23761057a6e0691cbfdd94a962ccdabdda80cd2c7447f3ed99cb98b63f67d7db2c7e3ce5b9d24481f773ef8f9b3af514475724a9537516227ec7c37874814"' }>
+                                        <li class="link">
+                                            <a href="injectables/QuizRepository.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >QuizRepository</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/QuizService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >QuizService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/QuizQuestionModule.html" data-type="entity-link" >QuizQuestionModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-QuizQuestionModule-21555e641a5b3fe1857f909ab6635a5c33208117e50106b22a61f56f528e731e85711dd7713e09c40fca71060d81405d75c943014bb3fe81667e463bcfc4def5"' : 'data-target="#xs-injectables-links-module-QuizQuestionModule-21555e641a5b3fe1857f909ab6635a5c33208117e50106b22a61f56f528e731e85711dd7713e09c40fca71060d81405d75c943014bb3fe81667e463bcfc4def5"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-QuizQuestionModule-21555e641a5b3fe1857f909ab6635a5c33208117e50106b22a61f56f528e731e85711dd7713e09c40fca71060d81405d75c943014bb3fe81667e463bcfc4def5"' :
+                                        'id="xs-injectables-links-module-QuizQuestionModule-21555e641a5b3fe1857f909ab6635a5c33208117e50106b22a61f56f528e731e85711dd7713e09c40fca71060d81405d75c943014bb3fe81667e463bcfc4def5"' }>
+                                        <li class="link">
+                                            <a href="injectables/QuizQuestionRepository.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >QuizQuestionRepository</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/QuizQuestionService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >QuizQuestionService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
                                 <a href="modules/RoleModule.html" data-type="entity-link" >RoleModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -197,6 +237,26 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         </li>
                                         <li class="link">
                                             <a href="injectables/RoleService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RoleService</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/SchoolModule.html" data-type="entity-link" >SchoolModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-SchoolModule-b587b9b7a4e6ec89062317cfefde407cd6b878f137ce3d46bced384fcbe01710f527df27e80b5db580b1c6148f2763478b90be104f3059e30ac30280cb1b7d72"' : 'data-target="#xs-injectables-links-module-SchoolModule-b587b9b7a4e6ec89062317cfefde407cd6b878f137ce3d46bced384fcbe01710f527df27e80b5db580b1c6148f2763478b90be104f3059e30ac30280cb1b7d72"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-SchoolModule-b587b9b7a4e6ec89062317cfefde407cd6b878f137ce3d46bced384fcbe01710f527df27e80b5db580b1c6148f2763478b90be104f3059e30ac30280cb1b7d72"' :
+                                        'id="xs-injectables-links-module-SchoolModule-b587b9b7a4e6ec89062317cfefde407cd6b878f137ce3d46bced384fcbe01710f527df27e80b5db580b1c6148f2763478b90be104f3059e30ac30280cb1b7d72"' }>
+                                        <li class="link">
+                                            <a href="injectables/SchoolRepository.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SchoolRepository</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/SchoolService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SchoolService</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -260,7 +320,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CreateMirrorWordInput.html" data-type="entity-link" >CreateMirrorWordInput</a>
                             </li>
                             <li class="link">
+                                <a href="classes/CreateQuizInput.html" data-type="entity-link" >CreateQuizInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateQuizQuestionInput.html" data-type="entity-link" >CreateQuizQuestionInput</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/CreateRoleInput.html" data-type="entity-link" >CreateRoleInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/CreateSchoolInput.html" data-type="entity-link" >CreateSchoolInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/CreateUserInput.html" data-type="entity-link" >CreateUserInput</a>
@@ -275,7 +344,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/DeleteMirrorWordInput.html" data-type="entity-link" >DeleteMirrorWordInput</a>
                             </li>
                             <li class="link">
+                                <a href="classes/DeleteQuizInput.html" data-type="entity-link" >DeleteQuizInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeleteQuizQuestionInput.html" data-type="entity-link" >DeleteQuizQuestionInput</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/DeleteRoleInput.html" data-type="entity-link" >DeleteRoleInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/DeleteSchoolInput.html" data-type="entity-link" >DeleteSchoolInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/DeleteUserInput.html" data-type="entity-link" >DeleteUserInput</a>
@@ -299,10 +377,28 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/GetMirrorWordsArgs.html" data-type="entity-link" >GetMirrorWordsArgs</a>
                             </li>
                             <li class="link">
+                                <a href="classes/GetQuizArgs.html" data-type="entity-link" >GetQuizArgs</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetQuizQuestionArgs.html" data-type="entity-link" >GetQuizQuestionArgs</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetQuizQuestionsArgs.html" data-type="entity-link" >GetQuizQuestionsArgs</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetQuizzesArgs.html" data-type="entity-link" >GetQuizzesArgs</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/GetRoleArgs.html" data-type="entity-link" >GetRoleArgs</a>
                             </li>
                             <li class="link">
                                 <a href="classes/GetRolesArgs.html" data-type="entity-link" >GetRolesArgs</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetSchoolArgs.html" data-type="entity-link" >GetSchoolArgs</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/GetSchoolsArgs.html" data-type="entity-link" >GetSchoolsArgs</a>
                             </li>
                             <li class="link">
                                 <a href="classes/GetUserArgs.html" data-type="entity-link" >GetUserArgs</a>
@@ -353,10 +449,28 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/MirrorWordResolver.html" data-type="entity-link" >MirrorWordResolver</a>
                             </li>
                             <li class="link">
+                                <a href="classes/Quiz.html" data-type="entity-link" >Quiz</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/QuizQuestion.html" data-type="entity-link" >QuizQuestion</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/QuizQuestionResolver.html" data-type="entity-link" >QuizQuestionResolver</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/QuizResolver.html" data-type="entity-link" >QuizResolver</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Role.html" data-type="entity-link" >Role</a>
                             </li>
                             <li class="link">
                                 <a href="classes/RoleResolver.html" data-type="entity-link" >RoleResolver</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/School.html" data-type="entity-link" >School</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SchoolResolver.html" data-type="entity-link" >SchoolResolver</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateGroupingItemInput.html" data-type="entity-link" >UpdateGroupingItemInput</a>
@@ -368,7 +482,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/UpdateMirrorWordInput.html" data-type="entity-link" >UpdateMirrorWordInput</a>
                             </li>
                             <li class="link">
+                                <a href="classes/UpdateQuizInput.html" data-type="entity-link" >UpdateQuizInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateQuizQuestionInput.html" data-type="entity-link" >UpdateQuizQuestionInput</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/UpdateRoleInput.html" data-type="entity-link" >UpdateRoleInput</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/UpdateSchoolInput.html" data-type="entity-link" >UpdateSchoolInput</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateUserInput.html" data-type="entity-link" >UpdateUserInput</a>
@@ -420,6 +543,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/MirrorWordService.html" data-type="entity-link" >MirrorWordService</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/QuizQuestionRepository.html" data-type="entity-link" >QuizQuestionRepository</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/QuizQuestionService.html" data-type="entity-link" >QuizQuestionService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/QuizRepository.html" data-type="entity-link" >QuizRepository</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/QuizService.html" data-type="entity-link" >QuizService</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/RepositoryProxyService.html" data-type="entity-link" >RepositoryProxyService</a>
                                 </li>
                                 <li class="link">
@@ -427,6 +562,12 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                                 <li class="link">
                                     <a href="injectables/RoleService.html" data-type="entity-link" >RoleService</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/SchoolRepository.html" data-type="entity-link" >SchoolRepository</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/SchoolService.html" data-type="entity-link" >SchoolService</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/SimpleRepository.html" data-type="entity-link" >SimpleRepository</a>
