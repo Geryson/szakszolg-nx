@@ -11,6 +11,7 @@ import { HangmanWordModule } from './hangman-word/hangman-word.module'
 import { GroupingItemModule } from './grouping-item/grouping-item.module'
 import { SchoolModule } from './school/school.module'
 import { QuizModule } from './quiz/quiz.module'
+import { QuizAnswerModule } from './quiz-answer/quiz-answer.module'
 
 @Module({
     imports: [
@@ -23,6 +24,7 @@ import { QuizModule } from './quiz/quiz.module'
         GroupingItemModule,
         SchoolModule,
         QuizModule,
+        QuizAnswerModule,
     ],
     controllers: [AppController],
     providers: [AppService],

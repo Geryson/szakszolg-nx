@@ -39,6 +39,9 @@
         "@nestjs/passport": "^8.1.0",
         "@nestjs/platform-express": "^8.0.0",
         "@nrwl/angular": "13.4.6",
+        "@nxtend/capacitor": "12.1.0",
+        "@nxtend/ionic-angular": "12.1.0",
+        "add": "2.0.6",
         "apollo-server-express": "^3.6.1",
         "bcryptjs": "^2.4.3",
         "class-validator": "^0.13.2",
@@ -56,6 +59,7 @@
         "rxjs": "~7.4.0",
         "tslib": "^2.0.0",
         "uuid": "^8.3.2",
+        "yarn": "1.22.17",
         "zone.js": "~0.11.4"
     },
     "devDependencies": {

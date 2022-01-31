@@ -24,7 +24,9 @@ export class SimpleRepository<
 
     public async findOne(data: TFindOneArgs): Promise<TInterface> {
         const res = this.model.findById(data.id) as any
-        return res?.deletedAt ? Promise.reject(new NotFoundException()) : res
+        return res?.deletedAt
+            ? Promise.reject(new NotFoundException(`Model with id ${data.id} not found or has been deleted`))
+            : res
     }
 
     public async create(data: TCreateInput): Promise<TInterface> {
