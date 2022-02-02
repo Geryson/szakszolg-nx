@@ -17,6 +17,7 @@ import { ConfirmationService, MessageService } from 'primeng/api'
 import { CommonModule, DatePipe } from '@angular/common'
 import { StorageService } from '../shared/services/storage.service'
 import { PageService } from '../shared/services/page.service'
+import { AlertService } from '../shared/services/alert.service'
 
 @NgModule({
     declarations: [AppComponent],
@@ -49,6 +50,7 @@ import { PageService } from '../shared/services/page.service'
         StorageService,
         PageService,
         MessageService,
+        AlertService,
         RedirectService,
         {
             provide: HTTP_INTERCEPTORS,

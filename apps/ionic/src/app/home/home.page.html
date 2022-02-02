@@ -1,27 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Blank </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <h1>Welcome to ionic!</h1>
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >UI Components</a
-      >
-    </p>
-  </div>
+<ion-content>
+    <div class="box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class='login-div'>
+        <div class="topContainer">
+            <div class="image">
+                <ion-img src="assets/images/logo.webp"></ion-img>
+            </div>
+            <ion-label class='input-label'>{{ 'HOME.OM' | translate }}</ion-label>
+            <div class="rounded">
+                <ion-input #OM (ionChange)='change($event)' (keydown)='numberOnly($event)'
+                           (keydown.enter)='saveEduId()' [(ngModel)]='eduId'
+                           inputmode='numeric' maxlength='{{eduIdMaxLength}}' minlength='{{eduIdMinLength}}' type='text'
+                ></ion-input>
+            </div>
+            <div class="btnSize">
+                <ion-button #loginBtn (click)='saveEduId()'
+                            [disabled]='eduIdMinLength > eduId.length || eduId.length > eduIdMinLength' class='loginBtn'
+                            shape='round' type='submit'>{{ 'BUTTONS.ENTER' | translate }}</ion-button>
+            </div>
+        </div>
+        <div>
+            <div class="bottomContainer">
+                <ion-button class="guestBtn" routerLink="/age" shape="round" type="submit">{{ 'BUTTONS.ENTER_GUEST' | translate }}</ion-button>
+                <ion-button (click)="toAdminPage()" class="adminBtn" shape="round" type="submit">{{ 'BUTTONS.ADMIN_PAGE' | translate }}</ion-button>
+            </div>
+        </div>
+    </div>
 </ion-content>

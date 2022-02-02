@@ -1,27 +1,229 @@
-#container {
-  text-align: center;
+@supports (-webkit-touch-callout: none) {
+    /* CSS specific to iOS devices */
+    @media only screen and (orientation:landscape) {
+        .login-div{
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+            justify-content: space-between;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            overflow-x: hidden;
+            overflow-y: scroll;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+
+            -webkit-overflow-scrolling: touch;
+            will-change: scroll-position;
+            contain: size style layout;
+        }
+
+        .input-label{
+            margin-left: 10%;
+        }
+
+        .btnSize{
+            width: 100%;
+        }
+
+        .loginBtn{
+            margin-left: 20%;
+            width: 60%;
+        }
+        .image{
+            display:flex;
+            justify-content: center;
+            align-content: center;
+            padding-top: 15px;
+        }
+        ion-img{
+            width: 18%;
+        }
+    }
+
+    @media only screen and (orientation:portrait) {
+        .login-div{
+            width: 100%;
+            top: 10%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            will-change: scroll-position;
+            contain: size style layout;
+
+        }
+        .input-label{
+            margin-left: 10%;
+        }
+        .btnSize{
+            width: 100%;
+        }
+        .loginBtn{
+            margin-left: 20%;
+            width: 60%;
+        }
+        .image{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10%;
+            @media screen and (orientation: portrait) {
+                padding-top: min(50px, env(safe-area-inset-top));
+            }
+        }
+        ion-img{
+            width: 50%;
+        }
+    }
+    .bottomContainer{
+        width: 100%;
+        align-items: flex-end;
+        justify-content: center;
+        flex-grow: 1;
+        display: flex;
+        display: grid;
+        grid-template-areas: 'leftArea rightArea';
+        grid-auto-columns: 50%;
+        padding-bottom: 35px;
+        /* z-index: 2!important;   */
+    }
+    .guestBtn{
+        margin: 0% !important;
+        grid-area: leftArea;
+        width: 100%;
+    }
+    .adminBtn{
+        float: right;
+        margin: 0% !important;
+        grid-area: rightArea;
+        width: 100%;
+    }
+
+    .scroll-content {
+        padding-bottom: 0 !important;
+    }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
 
-  color: #8c8c8c;
+@supports not (-webkit-touch-callout: none) {
+    /* CSS for other than iOS devices */
+    @media only screen and (orientation:landscape) {
+        .login-div{
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+            justify-content: space-between;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            overflow-x: hidden;
+            overflow-y: scroll;
 
-  margin: 0;
-}
 
-#container a {
-  text-decoration: none;
+            -webkit-overflow-scrolling: touch;
+            will-change: scroll-position;
+            contain: size style layout;
+        }
+
+        .input-label{
+            margin-left: 10%;
+        }
+
+        .btnSize{
+            width: 100%;
+        }
+
+        .loginBtn{
+            margin-left: 20%;
+            width: 60%;
+        }
+        .image{
+            display:flex;
+            justify-content: center;
+            align-content: center;
+            padding-top: 15px;
+        }
+        ion-img{
+            width: 20%;
+        }
+    }
+
+    @media only screen and (orientation:portrait) {
+        .login-div{
+            width: 100%;
+            top: 10%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            will-change: scroll-position;
+            contain: size style layout;
+
+        }
+        .input-label{
+            margin-left: 10%;
+        }
+        .btnSize{
+            width: 100%;
+        }
+        .loginBtn{
+            margin-left: 20%;
+            width: 60%;
+        }
+        .image{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10%;
+            padding-top: 15px;
+        }
+        ion-img{
+            width: 50%;
+        }
+    }
+    .bottomContainer{
+        width: 100%;
+        align-items: flex-end;
+        justify-content: center;
+        flex-grow: 1;
+        display: grid;
+        grid-template-areas: 'leftArea rightArea';
+        grid-auto-columns: 50%;
+        padding-bottom: 10px;
+    }
+    .guestBtn{
+        margin: 0 !important;
+        grid-area: leftArea;
+        width: 100%;
+    }
+    .adminBtn{
+        float: right;
+        margin: 0% !important;
+        grid-area: rightArea;
+        width: 100%;
+    }
+
+    .scroll-content {
+        padding-bottom: 0 !important;
+    }
 }
