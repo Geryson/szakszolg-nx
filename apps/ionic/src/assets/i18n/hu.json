@@ -21,7 +21,7 @@
         "SELECT_PUZZLE":"Puzzle kiválasztása",
         "QF":"Kérdőív",
         "SCHOOL_FINDER": "Iskolakereső",
-        "TYPED_FORM": "Kiértékelendő kérdőív",		
+        "TYPED_FORM": "Kiértékelendő kérdőív",
         "ROLE_RIGHTS": "Szerepkör-jogkör",
         "TRUE_FALSE_FORM": "Igaz-Hamis kérdőív",
         "SKILL_FORM": "Képesség eldöntő kérdőív",
@@ -188,7 +188,7 @@
     },
 
     "QUESTION_STRING":{
-        "Q_ONE":"Egyáltalán nem", 
+        "Q_ONE":"Egyáltalán nem",
         "Q_TWO":"Kis mértékben",
         "Q_THREE":"Közepes mértékben",
         "Q_FOUR":"Jelentős mértékben",
@@ -416,7 +416,7 @@
         "EVALUATION_CATEGORY_NAME":"Kategória neve",
         "ADD_NEW_QUESTION_PAIR": "Új kérdéspár hozzáadása"
     },
-    
+
     "ROLE_RIGHTS":{
         "ROLE":"Szerepkör",
         "ROLE_NAME":"Szerepkör neve",
@@ -433,7 +433,7 @@
     },
 
     "ADD_FORM_CATEGORY":{
-        
+
     },
 
     "ANSWER_CHOOSE":{
@@ -446,5 +446,101 @@
 
     "PUZZLE_SCALER": {
         "EDIT_ABORT": "Biztosan megszakítja a szerkesztést?"
+    },
+
+    "any": "Mind",
+    "days":  {
+        "monday": "hétfő",
+        "tuesday": "kedd",
+        "wednesday": "szerda",
+        "thursday": "csütörtök",
+        "friday": "péntek",
+        "saturday": "szombat",
+        "sunday": "vasárnap"
+    },
+
+    "primeng": {
+        "startsWith": "Eleje",
+        "contains": "Benne van",
+        "notContains": "Nincs benne",
+        "endsWith": "Vége",
+        "equals": "Pontosan",
+        "notEquals": "Nem egyenlő",
+        "noFilter": "Nincs szűrés",
+        "lt": "Kevesebb mint",
+        "lte": "Kevesebb vagy egyenlő",
+        "gt": "Több mint",
+        "gte": "Több vagy egyenlő",
+        "is": "Pontosan",
+        "isNot": "Pontosan nem",
+        "before": "Előtte",
+        "after": "Utána",
+        "clear": "Töröl",
+        "apply": "Alkalmaz",
+        "matchAll": "Mind",
+        "matchAny": "Bármely",
+        "addRule": "Szabály hozzáadása",
+        "removeRule": "Szabály törlése",
+        "accept": "Igen",
+        "reject": "Nem",
+        "choose": "Válassz",
+        "upload": "Feltöltés",
+        "cancel": "Mégse",
+        "dayNames": ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"],
+        "dayNamesShort": ["Va", "Hé", "Ke", "Sze", "Csüt", "Pé", "Szo"],
+        "dayNamesMin": ["V","H","K","Sze","Cs","P","Szo"],
+        "monthNames": ["Január","Február","Március","Április","Május","Június","Július","Augusztus","Szeptember","Október","November","December"],
+        "monthNamesShort": ["Jan", "Feb", "Már", "Ápr", "Máj", "Jún","Júl", "Aug", "Szept", "Okt", "Nov", "Dec"],
+        "today": "Ma",
+        "weekHeader": "Hét",
+        "weak": "Hét",
+        "medium": "Közepes",
+        "strong": "Erős",
+        "passwordPrompt": "Add meg a jelszavad",
+        "emptyMessage": "Nincs találat",
+        "emptyFilterMessage": "Nincs találat",
+        "dateIs": "Pontosan",
+        "dateIsNot": "Pont nem",
+        "dateBefore": "Előbb mint",
+        "dateAfter": "Későbbb mint"
+    },
+    "dates": {
+        "weekdays": {
+            "Monday": "Hétfő",
+            "Tuesday": "Kedd",
+            "Wednesday": "Szerda",
+            "Thursday": "Csütörtök",
+            "Friday": "Péntek",
+            "Saturday": "Szombat",
+            "Sunday": "Vasárnap"
+        },
+        "monthsLong": {
+            "January": "Január",
+            "February": "Február",
+            "March": "Március",
+            "April": "Április",
+            "May": "Május",
+            "June": "Június",
+            "July": "Július",
+            "August": "Augusztus",
+            "September": "Szeptember",
+            "October": "Október",
+            "November": "November",
+            "December": "December"
+        },
+        "monthsShort": {
+            "Jan": "Jan",
+            "Feb": "Feb",
+            "Mar": "Már",
+            "Apr": "Ápr",
+            "May": "Máj",
+            "Jun": "Jún",
+            "Jul": "Júl",
+            "Aug": "Aug",
+            "Sep": "Szept",
+            "Oct": "Okt",
+            "Nov": "Nov",
+            "Dec": "Dec"
+        }
     }
 }

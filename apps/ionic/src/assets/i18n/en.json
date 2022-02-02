@@ -27,7 +27,7 @@
         "ANSWER_CHOOSE":"Answer choose",
         "CATEGORY_EDITING":"Category editing"
     },
- 
+
     "BUTTONS":{
         "CREATE": "Create",
         "CHANGE": "Change",
@@ -80,7 +80,7 @@
         "OFFLINE":"Offline",
         "SHOW":"Show"
     },
- 
+
     "MESSAGE":{
         "NO_LOAD_EVALUATION_CATEGORIES": "Couldn't load the categories!",
         "DATA_MIN_LENGTH":"After deleting unnecessary characters, the length of some data is incorrect, minimum length: ",
@@ -188,15 +188,15 @@
     },
 
     "QUESTION_STRING":{
-        "Q_ONE":"Not at all", 
-        "Q_TWO":"Rather not", 
-        "Q_THREE":"Neutral", 
-        "Q_FOUR":"Rather yes", 
+        "Q_ONE":"Not at all",
+        "Q_TWO":"Rather not",
+        "Q_THREE":"Neutral",
+        "Q_FOUR":"Rather yes",
         "Q_FIVE":"Totally",
         "TRUE":"True",
         "FALSE":"False"
     },
- 
+
     "HEADER":{
         "CREATE": "Create",
         "CHANGE": "Change",
@@ -210,11 +210,11 @@
         "NOT_SUPPORTED_ACTION": "Not supported action",
         "CHOOSE_TYPE":"Choose a type"
     },
- 
+
     "HOME": {
         "OM": "Student identification number"
     },
- 
+
     "ADMIN_NAV": {
         "OWN_USER_MANAGEMENT":"Edit profile",
         "USERS_MANAGEMENT": "Manage users",
@@ -225,7 +225,7 @@
         "PUZZLE_PICTURE_MANAGEMENT": "Manage puzzles",
         "ROLE_RIGHTS": "Role-Right connections"
     },
- 
+
     "USER_SETTINGS":{
         "NAME": "Name:",
         "OM": "Student identification number:",
@@ -235,13 +235,13 @@
         "ROLE_NAME": "Role name",
         "IS_ACTIVE": "Is active"
     },
- 
+
     "USER_LIST":{
         "SEARCH_NAME_OR_USERNAME": "Search by name or e-mail address:",
         "USERNAME": "Username",
         "EMAIL": "e-mail"
     },
- 
+
     "ADD_FORM":{
         "DELETE_QUESTIONS": "Delete question",
         "ADD_QUESTIONS": "Add question:",
@@ -251,53 +251,53 @@
         "QUESTION": "Question...",
         "ANSWER": "Answer..."
     },
- 
+
     "ADD_FORM_DESCRIPTION":{
         "QUESTIONNAIRE_TITLE": "Title of the questionairre:",
         "QUESTIONNAIRE_QUESTION": "Question:",
         "QUESTIONNAIRE_DESCRIPTION": "Description of the questionairre:"
     },
- 
+
     "ADD_GALLOWS":{
         "ADD_WORDS_TO_GUESS": "Add word",
         "CATEGORIES": "Categories:",
         "OTHER": "Other",
         "NEW_CATEGORY": "New category"
     },
- 
+
     "ADD-MIRROR":{
         "MIRRORING_TEXT":"Mirror text:"
     },
- 
+
     "ADD_NEW_CATEGORY":{
         "NEW_CATEGORY":"New category",
         "ACTUAL_CATEGORY":"Current category"
     },
- 
+
     "ADD_PAIRS":{
         "TEXT":"Text",
         "NO_IMAGE_SELECTED":"(No image selected )",
         "SELECT_NEW_PICTURE":"Select a new image"
     },
- 
+
     "ADD_PUZZLE":{
         "SELECT_NEW_PICTURE":"Select new picture",
         "UPLOAD_SELECTED_IMAGE":"Selected pictures",
         "NO_IMAGE_SELECTED":"(No image selected!)",
         "NO_UPLOADED_IMAGE": "No image uploaded yet!"
     },
- 
+
     "ADMIN":{
         "EMAIL":"E-mail",
         "USERNAME":"Username",
         "PASSWORD":"Password"
     },
- 
+
     "AGE":{
         "HOW_OLD_ARE_YOU": "How old are you?",
         "AGE":"Age"
     },
- 
+
     "END_FORM":{
         "QUESTION_EVALUATION":"questionairre evaluation",
         "WRITE_QUESTION_FORM": "Fill the questionairre",
@@ -309,29 +309,29 @@
         "ANSWER_OPTION": "Answer option",
         "YES_PERCENTAGE": "Yes %"
     },
- 
+
     "FORM_DESCRIPTION":{
         "QF_TITLE": "Title of the questionairre:",
         "QF_DESCRIPTION": "Description of the questionairre:"
     },
- 
+
     "FORM_LIST":{
         "SEARCH_WITH_TITILE":"Search by title:",
         "QF_TITLE":"Title of the questionairre:",
         "GENERATE_CODE": "Generate token"
     },
- 
+
     "FORM_PROPERTIES":{
         "QF_TITLE":"Title of the questionairre:",
         "QF_DESCRIPTION":"Description of the questionairre:",
         "TITLE": "Title",
         "DESCRIPTION": "Description"
     },
- 
+
     "TOKEN":{
         "ADD_IDENTIFICATION":"Please add token:"
     },
- 
+
     "GALLOWS_LIST":{
         "SEARCH_ABOUT_TEXT":"Search by text:",
         "SEARCH_ABOUT_CATEGORY":"Search by category:",
@@ -341,46 +341,46 @@
         "GALLOW": "Gallows",
         "CATEGORY":"Category"
     },
- 
+
     "GET_FORM_TOKEN":{
         "TOKEN":"Token:",
         "TOKEN_END_TIME": "Token expiration date:"
     },
- 
+
     "JIGSAW":{
         "MOVEMENT":"Steps:"
     },
- 
+
     "LOGIN":{
         "OM":"Student identification number:",
         "QF_CODE": "Token for questionairre:"
     },
- 
+
     "MAP":{
         "NUMBER_OF_MATCHES":"Number of matches:"
     },
- 
+
     "MIRROR":{
         "TEXT_DOES_NOT_MATCH_REMAINING_TRIES":"The input text does not match the with the solution, retry count",
         "WRITTEN_TEXT_PLACE":"Place of written text"
     },
- 
+
     "MIRROR_LIST":{
         "SEARCH_ABAUT_TEXT":"Search by text:",
         "USERNAME":"Username",
         "MIRROR_TEXT":"Mirror text"
     },
- 
+
     "PAIRS_LIST":{
         "SEARCH_ABOUT_TEXT":"Search by text:",
         "FIRST":"First",
         "SECOUND":"Second"
     },
- 
+
     "RESULT":{
         "RESULT": "Result:"
     },
- 
+
     "SCHOOL_FINDER":{
         "INSTITUTE_NAME": "Institute",
         "COUNTY": "County",
@@ -416,7 +416,7 @@
         "EVALUATION_CATEGORY_NAME":"Category's name",
         "ADD_NEW_QUESTION_PAIR": "Add new question pair"
     },
-   
+
     "ROLE_RIGHTS":{
         "ROLE":"Role",
         "ROLE_NAME":"Role's name",
@@ -433,7 +433,7 @@
     },
 
     "ADD_FORM_CATEGORY":{
-        
+
     },
 
     "ANSWER_CHOOSE":{
@@ -446,5 +446,53 @@
 
     "PUZZLE_SCALER": {
         "EDIT_ABORT": "Are you sure you want to abort editing?"
+    },
+
+    "primeng": {
+        "startsWith": "Starts with",
+        "contains": "Contains",
+        "notContains": "Not contains",
+        "endsWith": "Ends with",
+        "equals": "Equals",
+        "notEquals": "Not equals",
+        "noFilter": "No Filter",
+        "lt": "Less than",
+        "lte": "Less than or equal to",
+        "gt": "Greater than",
+        "gte": "Greater than or equal to",
+        "is": "Is",
+        "isNot": "Is not",
+        "before": "Before",
+        "after": "After",
+        "dateIs": "Date is",
+        "dateIsNot": "Date is not",
+        "dateBefore": "Date is before",
+        "dateAfter": "Date is after",
+        "clear": "Clear",
+        "apply": "Apply",
+        "matchAll": "Match All",
+        "matchAny": "Match Any",
+        "addRule": "Add Rule",
+        "removeRule": "Remove Rule",
+        "accept": "Yes",
+        "reject": "No",
+        "choose": "Choose",
+        "upload": "Upload",
+        "cancel": "Cancel",
+        "dayNames": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "dayNamesShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        "dayNamesMin": ["Su","Mo","Tu","We","Th","Fr","Sa"],
+        "monthNames": ["January","February","March","April","May","June","July","August","September","October","November","December"],
+        "monthNamesShort": ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        "dateFormat": "mm/dd/yy",
+        "firstDayOfWeek": 0,
+        "today": "Today",
+        "weekHeader": "Wk",
+        "weak": "Weak",
+        "medium": "Medium",
+        "strong": "Strong",
+        "passwordPrompt": "Enter a password",
+        "emptyMessage": "No results found",
+        "emptyFilterMessage": "No results found"
     }
 }

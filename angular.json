@@ -6,24 +6,18 @@
             "sourceRoot": "apps/api/src",
             "collection": "@nestjs/schematics",
             "compilerOptions": {
-                "plugins": [
-                    "@nestjs/graphql"
-                ]
+                "plugins": ["@nestjs/graphql"]
             },
             "projectType": "application",
             "architect": {
                 "build": {
                     "builder": "@nrwl/node:build",
-                    "outputs": [
-                        "{options.outputPath}"
-                    ],
+                    "outputs": ["{options.outputPath}"],
                     "options": {
                         "outputPath": "dist/apps/api",
                         "main": "apps/api/src/main.ts",
                         "tsConfig": "apps/api/tsconfig.app.json",
-                        "assets": [
-                            "apps/api/src/assets"
-                        ]
+                        "assets": ["apps/api/src/assets"]
                     },
                     "configurations": {
                         "production": {
@@ -47,20 +41,14 @@
                 },
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
-                    "outputs": [
-                        "{options.outputFile}"
-                    ],
+                    "outputs": ["{options.outputFile}"],
                     "options": {
-                        "lintFilePatterns": [
-                            "apps/api/**/*.ts"
-                        ]
+                        "lintFilePatterns": ["apps/api/**/*.ts"]
                     }
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": [
-                        "coverage/apps/api"
-                    ],
+                    "outputs": ["coverage/apps/api"],
                     "options": {
                         "jestConfig": "apps/api/jest.config.js",
                         "passWithNoTests": true
@@ -76,13 +64,9 @@
             "architect": {
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
-                    "outputs": [
-                        "{options.outputFile}"
-                    ],
+                    "outputs": ["{options.outputFile}"],
                     "options": {
-                        "lintFilePatterns": [
-                            "libs/api-interfaces/**/*.ts"
-                        ]
+                        "lintFilePatterns": ["libs/api-interfaces/**/*.ts"]
                     }
                 }
             },
@@ -96,9 +80,7 @@
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
-                    "outputs": [
-                        "{options.outputPath}"
-                    ],
+                    "outputs": ["{options.outputPath}"],
                     "options": {
                         "outputPath": "dist/apps/ionic",
                         "index": "apps/ionic/src/index.html",
@@ -179,17 +161,12 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": [
-                            "apps/ionic/src/**/*.ts",
-                            "apps/ionic/src/**/*.html"
-                        ]
+                        "lintFilePatterns": ["apps/ionic/src/**/*.ts", "apps/ionic/src/**/*.html"]
                     }
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": [
-                        "coverage/apps/ionic"
-                    ],
+                    "outputs": ["coverage/apps/ionic"],
                     "options": {
                         "jestConfig": "apps/ionic/jest.config.js",
                         "passWithNoTests": true
@@ -287,6 +264,52 @@
                 }
             }
         },
+        "ng-interfaces": {
+            "projectType": "library",
+            "root": "libs/ng-interfaces",
+            "sourceRoot": "libs/ng-interfaces/src",
+            "prefix": "szakszolg-nx",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ng-interfaces"],
+                    "options": {
+                        "jestConfig": "libs/ng-interfaces/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ng-interfaces/src/**/*.ts", "libs/ng-interfaces/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
+        },
+        "shared-module": {
+            "projectType": "library",
+            "root": "libs/shared-module",
+            "sourceRoot": "libs/shared-module/src",
+            "prefix": "szakszolg-nx",
+            "architect": {
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/shared-module"],
+                    "options": {
+                        "jestConfig": "libs/shared-module/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "builder": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/shared-module/src/**/*.ts", "libs/shared-module/src/**/*.html"]
+                    }
+                }
+            },
+            "tags": []
+        },
         "szakszolg": {
             "projectType": "application",
             "root": "apps/szakszolg",
@@ -295,9 +318,7 @@
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
-                    "outputs": [
-                        "{options.outputPath}"
-                    ],
+                    "outputs": ["{options.outputPath}"],
                     "options": {
                         "outputPath": "dist/apps/szakszolg",
                         "index": "apps/szakszolg/src/index.html",
@@ -305,13 +326,8 @@
                         "polyfills": "apps/szakszolg/src/polyfills.ts",
                         "tsConfig": "apps/szakszolg/tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
-                        "assets": [
-                            "apps/szakszolg/src/favicon.ico",
-                            "apps/szakszolg/src/assets"
-                        ],
-                        "styles": [
-                            "apps/szakszolg/src/styles.scss"
-                        ],
+                        "assets": ["apps/szakszolg/src/favicon.ico", "apps/szakszolg/src/assets"],
+                        "styles": ["apps/szakszolg/src/styles.scss"],
                         "scripts": []
                     },
                     "configurations": {
@@ -371,17 +387,12 @@
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
                     "options": {
-                        "lintFilePatterns": [
-                            "apps/szakszolg/src/**/*.ts",
-                            "apps/szakszolg/src/**/*.html"
-                        ]
+                        "lintFilePatterns": ["apps/szakszolg/src/**/*.ts", "apps/szakszolg/src/**/*.html"]
                     }
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
-                    "outputs": [
-                        "coverage/apps/szakszolg"
-                    ],
+                    "outputs": ["coverage/apps/szakszolg"],
                     "options": {
                         "jestConfig": "apps/szakszolg/jest.config.js",
                         "passWithNoTests": true
@@ -409,20 +420,14 @@
                 },
                 "lint": {
                     "builder": "@nrwl/linter:eslint",
-                    "outputs": [
-                        "{options.outputFile}"
-                    ],
+                    "outputs": ["{options.outputFile}"],
                     "options": {
-                        "lintFilePatterns": [
-                            "apps/szakszolg-e2e/**/*.{js,ts}"
-                        ]
+                        "lintFilePatterns": ["apps/szakszolg-e2e/**/*.{js,ts}"]
                     }
                 }
             },
             "tags": [],
-            "implicitDependencies": [
-                "szakszolg"
-            ]
+            "implicitDependencies": ["szakszolg"]
         }
     }
 }

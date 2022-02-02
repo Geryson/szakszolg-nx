@@ -15,7 +15,9 @@
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
         "paths": {
-            "@szakszolg-nx/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+            "@szakszolg-nx/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+            "@szakszolg-nx/ng-interfaces": ["libs/ng-interfaces/src/index.ts"],
+            "@szakszolg-nx/shared-module": ["libs/shared-module/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
