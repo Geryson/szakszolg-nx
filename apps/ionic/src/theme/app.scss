@@ -1,0 +1,178 @@
+ion-button{
+    --border-radius: 6px;
+    --padding-top: 0;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    --padding-bottom: 0;
+    padding: 3px 15px;
+    font-family: 'Ubuntu', Tahoma, sans-serif;
+    font-size: calc(8px + .5vw);
+    font-weight: bold;
+    line-height: 20px;
+    color: var(--ion-color-secondary);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    @supports (-webkit-touch-callout: none) {
+        @media screen and (orientation: portrait) {
+            @supports(padding:max(0vh)) {
+                height: 40px;
+            }
+        }
+        @media screen and (orientation: landscape) {
+            @supports(padding:max(0vh)) {
+                height: 50px;
+            }
+        }
+    }
+}
+
+ion-buttons{
+    @supports (-webkit-touch-callout: none) {
+        @media screen and (orientation: portrait) {
+            padding-top: 0;
+            padding-bottom: 20px;
+        }
+    }
+    ion-button{
+        color: var(--ion-color-secondary-contrast);
+    }
+}
+
+ion-toolbar{
+    @supports (-webkit-touch-callout: none) {
+        @media screen and (orientation: portrait) {
+            @supports(padding:max(0vh)) {
+                padding-top: env(safe-area-inset-top);
+            }
+        }
+    }
+    ion-icon{
+        color: var(--ion-color-secondary-contrast);
+    }
+}
+
+body {
+    @supports (-webkit-touch-callout: none) {
+        @media screen and (orientation: portrait) {
+            @supports(padding:max(0vh)) {
+                padding-top: env(safe-area-inset-top);
+            }
+        }
+    }
+}
+
+ion-label{
+    font-family: 'Ubuntu', Tahoma, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ion-input{
+    --border-radius: 4px;
+    font-family: 'Ubuntu', Tahoma, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: var(--ion-color-secondary);
+}
+
+input{
+    background-color: var(--ion-color-secondary);
+}
+/** Sets the input style */
+.rounded{
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    margin: 1% 10% 1% 10%;
+    border-color: var(--ion-color-primary);
+    padding: 0 10px;
+}
+/** Yellow line above the status bar */
+#yellowLine{
+    background: #2ea3f2;
+    width:100%;
+    height: 5px;
+    padding:0;
+    margin:0;
+}
+circle{
+    fill:#2ea3f2;
+}
+path{
+    stroke: #2ea3f2;
+}
+
+.nav-button{
+    display: block !important;
+    opacity: 100% !important;
+    --background: none !important;
+    --color: var(--ion-color-secondary) !important;
+    --box-shadow:none;
+    font-size: large;
+    width:fit-content;
+}
+
+.nav-buttons-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-content
+{
+    padding-bottom: 0 !important;
+}
+
+ion-title {
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @media screen and (orientation: portrait) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+ion-alert {
+    z-index: 99999 !important;
+    --background: var(--ion-background-color) !important;
+}
+.searchTextInput {
+    @supports (-webkit-touch-callout: none) {
+        @media screen and (orientation: landscape) {
+            @supports(padding:max(0vh)) {
+                padding-right: env(safe-area-inset-right);
+                padding-left: env(safe-area-inset-left);
+            }
+        }
+    }
+}
+
+ion-footer{
+    background-color: var(--ion-background-color);
+}
+
+.jtk-connector { z-index:1000; }
+.jtk-endpoint { z-index:1001; }
+.jtk-overlay { z-index:1002; }
+
+.scroll-content
+{
+    padding-bottom: 0 !important;
+}
+
+.alert-radio-label.sc-ion-alert-md,
+.alert-radio-label.sc-ion-alert-ios {
+    white-space: normal;
+}
+.alert-tappable.alert-radio {
+    height: auto;
+    contain: content;
+}
