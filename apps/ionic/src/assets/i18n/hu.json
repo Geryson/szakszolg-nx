@@ -1,0 +1,450 @@
+{
+    "NAVIGATION":{
+        "USER_DATA": "Felhasználói adatok",
+        "MENU": "Menü",
+        "USERS": "Felhasználók",
+        "QUESTIONNAIRE": "Kérdőív",
+        "QUESTIONNAIRE_DESCRIPTION_COMPLETING": "Kérdőív leírás kitöltése",
+        "GALLOWS": "Akasztófa",
+        "MIRROR_TEXT": "Tükörszöveg",
+        "NEW_CATEGORY":"Új kategória",
+        "PAIRING": "Párosítás",
+        "PUZZLE":"Puzzle",
+        "LOGIN":"Bejelentkezés",
+        "AGE":"Kor",
+        "FORM_DESCRIPTION": "Kérdőív leírása",
+        "FORMS":"Kérdőívek",
+        "FORM_PROPERTIES": "Kérdőív adatok",
+        "TOKEN": "Token",
+        "LOGIN_WITH_IDENTIFIER": "Bejelentkezés azonosítóval",
+        "GUESTROOM": "Vendégszoba",
+        "SELECT_PUZZLE":"Puzzle kiválasztása",
+        "QF":"Kérdőív",
+        "SCHOOL_FINDER": "Iskolakereső",
+        "TYPED_FORM": "Kiértékelendő kérdőív",		
+        "ROLE_RIGHTS": "Szerepkör-jogkör",
+        "TRUE_FALSE_FORM": "Igaz-Hamis kérdőív",
+        "SKILL_FORM": "Képesség eldöntő kérdőív",
+        "ANSWER_CHOOSE":"Tevékenység választó",
+        "CATEGORY_EDITING":"Kategóriák szerkesztése"
+    },
+
+    "BUTTONS":{
+        "CREATE": "Létrehozás",
+        "CHANGE": "Változtatás",
+        "ADD_ROLE":"Szerepkör hozzáadása",
+        "ADD_RIGHT":"Jogkör hozzáadása",
+        "SAVE_CONNECTIONS":"Kapcsolatok mentése",
+        "FILTER":"Szűrés",
+        "SET_ROLES":"Szerepkörök beállítása",
+        "SAVE": "Mentés",
+        "ENTER": "Belépés",
+        "ENTER_GUEST": "Vendégszoba",
+        "ADMIN_PAGE": "Admin oldal",
+        "LOAD_MORE": "Több betöltése",
+        "ADD_USER": "Felhasználó hozzáadása",
+        "ADD_ANSWER": "Válasz hozzáadása",
+        "SEND": "Beküldés",
+        "SAVE_AND_GO_TO_QUESTION_EDITING": "Kérdések szerkesztése",
+        "EDIT_EVALUATIONCATEGORIES": "Kategóriák szerkesztése",
+        "SAVE_AND_BACK_TO_THE_LIST": "Mentés és vissza a listához",
+        "ADD": "Hozzáadás",
+        "UPLOAD": "Feltöltés",
+        "NEXT": "Tovább",
+        "BACK_HOME": "Vissza a főoldalra",
+        "NEXT_TO_WRITE_QF": "Tovább a kérdőív kitöltéséhez",
+        "ADD_QF": "Kérdőív hozzáadása",
+        "NEXT_TO_ADD_QF": "Tovább a kérdések hozzáadásához",
+        "REJECT": "Feladom",
+        "ADD_GALLOW": "Akasztófa hozzáadása",
+        "COPY_TOKEN": "Token másolása",
+        "START": "Indítás",
+        "RESTART": "Újrakezdés",
+        "GALLOW":"Akasztófa",
+        "SCHOOL_FINDER":"Iskola kereső",
+        "PAIRING": "Párosítás",
+        "PUZZLE":"Puzzle",
+        "MIRROR_TEXT":"Tükörszöveg",
+        "ADD_MIRROR_TEXT":"Tükörszöveg hozzáadása",
+        "ADD_PAIR":"Párosítás hozzáadása",
+        "PREVIOUS":"Előző",
+        "FOLLOWING": "Következő",
+        "END_RESULT": "Végeredmény",
+        "BACK_TO_MENU":"Visszalépés a menübe",
+        "CANCEL": "Mégsem",
+        "OK": "Kiválaszt",
+        "OKE": "Rendben",
+        "NO": "Nem",
+        "YES": "Igen",
+        "AGAIN": "Újra",
+        "ONLINE":"Online",
+        "OFFLINE":"Offline",
+        "SHOW":"Mutasd"
+    },
+
+    "MESSAGE":{
+        "NO_LOAD_EVALUATION_CATEGORIES": "A kategóriák betöltése nem sikerült!",
+        "DATA_MIN_LENGTH":"A felesleges karakterek törlése után valamelyik adat hossza nem megfelelő, minimum hossz: ",
+        "SAVE_SUCCESSFUL":"Sikeres mentés!",
+        "SAVE_FAILED":"A mentés nem sikerült.",
+        "CREATION_FAILED":"A létrehozás nem sikerült.",
+        "FILL_DATA":"Kérem megfelelően töltse ki az adatokat.",
+        "DELETE_DATA": "A kiválasztott adat VÉGLEGESEN törlésre kerül. Biztos folytatja?",
+        "DELETE_DATA_LOCAL": "A kiválasztott adat törlésre kerül. Biztos folytatja?",
+        "CANT_DELETE_TILL_IN_DATABASE":"Az adott elem nem törölhető, ameddig használatban van.",
+        "LOADING": "Betöltés alatt...",
+        "SEND_PAIRS":"Biztosan beküldi a párokat?",
+        "LOGIN_IS_LOADING": "A bejelentkezés épp folyamatban van, kérem várjon!",
+        "NOT_ALL_REQUIRED_FILLED": "A mentéshez töltsön ki minden kötelező mezőt megfelelően!",
+        "SAVE_IS_LOADING": "A mentés épp folyamatban van, kérem várjon!",
+        "NO_LOAD_GALLOW": "Nem sikerült betölteni az akasztófát!",
+        "NO_LOAD_CATEGORY": "Nem sikerült lekérni a kategóriákat!",
+        "DELETE_GALLOW": "Biztosan törölni szeretné az akasztófát?",
+        "DELETE_CATEGORY":"Biztosan szereté törölni a kiválasztott kategóriát?",
+        "DELETE_FAILED": "Nem sikerült törölni a kiválasztott elemet!",
+        "SAVE_FAILED_CATEGORY": "Nem sikerült menteni a kiválasztott kategóriát!",
+        "DELETE_FAILED_GALLOW_BECAUSE": "Nem sikerült törölni az akasztófát a következő okok miatt:",
+        "SURE_TO_BACK": "Biztosan visszalép? A változtatások nem kerülnek mentésre.",
+        "QF_CREATED": "Sikeresen mentette a kérdőívet!",
+        "NO_QF_CREATED": "Nem sikerült menteni a kérdőívet!",
+        "SAVE_FAILED_QF": "Nem sikerült menteni a kérdőíveket!",
+        "SUCCESS_SAVE_GALLOW": "Sikeresen mentette az akasztófát!",
+        "FAILED_SAVE_GALLOW": "Nem sikerült menteni az akasztófát!",
+        "NO_CREATE_GALLOW": "Nem sikerült létrehozni az akasztófát!",
+        "NO_LOAD_MIRROR": "Nem sikerült betölteni a tükörszöveget!",
+        "NO_LOAD_ROLE": "Nem sikerült betölteni a szerepköröket!",
+        "NO_LOAD_RIGHT": "Nem sikerült betölteni a jogokat!",
+        "DELETE_WILD_SPACE": "A mentendő szöveg rossz karaktereket, vagy szóköz(öke)t tartalmaz az elején és/vagy a végén. Ez(ek) el lesz(nek) távolítva.",
+        "TEXT_TOO_SHORT":"A felesleges szóközök és rossz karakterek eltávolítása után a szöveg túl rövid lett! Minimum hossz: ",
+        "AT_QUESTION": "Kérdésnél:",
+        "AT_ANSWER": "Válasznál:",
+        "SAVE_SUCCESS_MIRROR": "Sikeresen mentette a tükörszöveget!",
+        "SAVE_FAILED_MIRROR": "Nem sikerült menteni a tükörszöveget!",
+        "NO_LOAD_PAIRS": "Nem sikerült betölteni a párokat!",
+        "SUCCES_CREATE_PAIRS": "Sikeresen létrehozta a párt!",
+        "NO_CREATE_PAIRS": "Nem sikerült létrehozni új párosítást!",
+        "SUCCESS_SAVE_PAIRS": "Sikeresen mentette a párt!",
+        "FAILED_SAVE_PAIRS": "Nem sikerült menteni a párt!",
+        "IMG_LOAD": "Képek betöltése folyamatban...",
+        "SCHOOL_LOAD": "Az iskolák betöltése folyamatban...",
+        "ONLY_IMG": "Jelenleg csak JPEG és PNG formátumú képet lehet feltölteni!",
+        "DELETE_PUZZLE": "Biztosan törölni szeretné ezt a képet a feltöltött puzzle-listából?",
+        "UPLOAD":"Feltöltés folyamatban...",
+        "SUCCESS_UPLOAD": "Sikeres feltöltés!",
+        "LOGIN_UNSUCCESS": "Sikertelen bejelentkezés!",
+        "CANNOT_DOWNLOAD_USER_SETTINGS": "Nem sikerült lekérni a felhasználói jogokat!",
+        "AGE_ERROR": "A megadott kor az értelmezési tartományon kívül esik! <br/> (6-99)",
+        "QF_UNLOADED": "Nem sikerült lekérni a kérdőívet!",
+        "BACK": "Biztos visszalép?",
+        "SURE_DELETE_QF": "Biztosan törölni szeretné a kérdőívet?",
+        "NO_DOWNLOAD_TOKEN": "Nem sikerült lekérni az adott tokent!",
+        "ID_LENGTH_ERROR": "A megadott azonosító hossza nem megfelelő.",
+        "ABANDON": "Biztos feladja?",
+        "NO_CREATE_TOKEN": "A kérdőívhez nem sikerült tokent készíteni, kérem próbálja újra később!",
+        "TODO": "Ebben a verzióban ez a funkció még nem elérhető!",
+        "ERROR_OM": "A megadott oktatási azonosító érvénytelen!",
+        "DELETE_MIRROR": "Biztos törölni szeretné a tükörszöveget?",
+        "DELETE_PAIRS": "Biztos törölni szeretné a párokat?",
+        "NO_INTERNET": "Nincs internetkapcsolat!",
+        "LOGOUT": "Biztos kilépsz?",
+        "QUESTION_ANSWERED": " kérdést válaszoltál meg!",
+        "NO_SAVE_ANSWER": "Nem sikerült menteni a válaszokat! Kérem próbálja újra később!",
+        "NO_LOAD_SCHOOL": "Nem sikerült betöltni az iskolákat!",
+        "NO_LOAD_SCHOOL_TYPE": "Nem sikerült betölteni az iskola típusokat!",
+        "NO_LOAD_USER": "Nem sikerült lekérni a felhasználókat!",
+        "DELETE_USER": "Biztosan törölni szeretné a felhasználót?",
+        "NO_LOAD_USER_DATA": "Nem sikerült betölteni a felhasználó adatait!",
+        "PASS_REQ": "A változások érvényesítéséhez jelszóra van szükség.",
+        "PASS_NEED": "A jelszó kitöltése kötelező!",
+        "WRONG_PASS": "A beírt jelszó nem megfelelő!",
+        "PASS_FAIL": "A beírt jelszót nem sikerült ellenőrizni egy hiba miatt, kérem próbálja újra később!",
+        "PASS_NO_MATCH": "A beírt jelszó és jelszó újra értéke nem egyezik!",
+        "CREATE_USER_FAIL": "Nem sikerült létrehozni a felhasználót!",
+        "SAVE_USER_FAIL": "Nem sikerült menteni a felhasználó adatait!",
+		"ONLINE_OR_OFFLINE":"Kérem válassza ki, hogy a létrehozandó Token Online vagy Offline típusú legyen.",
+        "LOAD_NEXT_QUESTION": "A következő kérdést töltöm be",
+        "LOAD_PREVIOUS_QUSTION": "Az előző kérdést töltöm be",
+        "NO_QF_FOR_THIS_TOKEN": "Ehhez az azonosítóhoz nem tartozik kérdőív!",
+        "NO_TYPES": "Nincsenek megjelenítendő típusok!",
+		"LOADING_PAIRS": "Párok betöltése folyamatban...",
+        "LOADING_MIRROR": "Tükörszöveg betöltése folyamatban...",
+        "LOADING_GALLOWS": "Akasztófa betöltése folyamatban...",
+        "LOADING_USERS": "Felhasználói adatok betöltése folyamatban...",
+        "LOADING_FORMS": "Kérdőívek betöltése folyamatban...",
+        "LOADING_DATA": "Adatok betöltése folyamatban...",
+        "WHAT_TYPE_OF_QF": "Milyen kérdőívet szeretne létrehozni?",
+        "WHAT_TYPE_OF_EVALUATE_QF": "Milyen kiértékelendő kérdőívet szeretne létrehozni?",
+        "EVALUATE_QF":"Kiértékelendő kérdőív",
+        "ONE_TO_FIVE_EVALUATE_QF":"Egytől-ötig",
+        "TRUE_FALSE_EVALUATE_QF":"Igaz-Hamis",
+        "SKILL_EVALUATE_QF":"Képesség eldöntő",
+        "CUSTOM_QF":"Egyedi Kérdőív",
+        "PAIRS_INSTRUCTIONS": "Párosítsa egymáshoz a következő 3 pár megfelelő elemeit!",
+        "PLS_SELECT_AT_LEAST_2_ANSWERS": "Kérem válasszon ki legalább 2 lehetőséget!",
+        "FORM_CSV_EXPORT_CONFIRM": "Biztosan szeretné a kérdőív eredményeit elmenteni az eszköztárhelyre CSV-fájlként? A művelethez tárhely elérési engedélyre lesz szükség.",
+        "FORM_CSV_EXPORT_DONE": "A kérdőív eredményeinek CSV-fájlba mentése sikeresen megtörtént!",
+        "FORM_CSV_EXPORT_FAILED": "A fájl mentése nem sikerült!",
+        "FORM_CSV_EXPORT_UNAUTHORIZED": "A fájl mentéséhez eszköztárhely elérési engedélyre van szükség!"
+    },
+
+    "QUESTION_STRING":{
+        "Q_ONE":"Egyáltalán nem", 
+        "Q_TWO":"Kis mértékben",
+        "Q_THREE":"Közepes mértékben",
+        "Q_FOUR":"Jelentős mértékben",
+        "Q_FIVE":"Teljes mértékben",
+        "TRUE":"Igaz",
+        "FALSE":"Hamis"
+    },
+
+    "HEADER":{
+        "CREATE": "Létrehozás",
+        "CHANGE": "Változtatás",
+        "ROLES":"Szerepkörök",
+        "ERROR":"Hiba!",
+        "CONFIRM":"Megerősítés!",
+        "ALERT": "Figyelmeztetés!",
+        "HEUREKA": "Siker!",
+        "SEND_QF": "Biztosan beküldi a kérdőívet?",
+        "PASSWORD": "Jelszó",
+        "NOT_SUPPORTED_ACTION": "Nem támogatott művelet",
+        "CHOOSE_TYPE":"Válasszon típust"
+    },
+
+    "HOME": {
+        "OM": "Oktatási azonosító"
+    },
+
+    "ADMIN_NAV": {
+        "OWN_USER_MANAGEMENT":"Saját felhasználó kezelése",
+        "USERS_MANAGEMENT": "Felhasználók kezelése",
+        "FORM_MANAGEMENT": "Kérdőívek kezelése",
+        "MIRROR_MANAGEMENT": "Tükörszövegek kezelése",
+        "PAIRS_MANAGEMENT": "Párosítások kezelése",
+        "GALLOWS_MANAGENET": "Akasztófák kezelése",
+        "PUZZLE_PICTURE_MANAGEMENT": "Puzzle képek kezelése",
+        "ROLE_RIGHTS": "Szerepkör-jogkör kapcsolatok kezelése"
+    },
+
+    "USER_SETTINGS":{
+        "NAME": "Név:",
+        "OM": "Oktatási azonosító:",
+        "EMAIL": "E-mail:",
+        "PASSWORD": "Jelszó:",
+        "RE_PASSWORD": "Jelszó újra:",
+        "ROLE_NAME": "Szerepkör neve",
+        "IS_ACTIVE": "Aktív-e"
+    },
+
+    "USER_LIST":{
+        "SEARCH_NAME_OR_USERNAME": "Keresés név/e-mail cím alapján:",
+        "USERNAME": "Felhasználónév",
+        "EMAIL": "e-mail"
+    },
+
+    "ADD_FORM":{
+        "DELETE_QUESTIONS": "Kérdés törlése",
+        "ADD_QUESTIONS": "Kérdések hozzáadása:",
+        "UNIQUE_ANSWERS": "Egyedi válaszok",
+        "ONE_TO_FIVE": "Egytől ötig",
+        "WHAT_IS_TRUE": "Melyik igaz?",
+        "QUESTION": "kérdés...",
+        "ANSWER": "válasz..."
+    },
+
+    "ADD_FORM_DESCRIPTION":{
+        "QUESTIONNAIRE_TITLE": "Kérdőív címe:",
+        "QUESTIONNAIRE_QUESTION": "Kérdés:",
+        "QUESTIONNAIRE_DESCRIPTION": "Kérdőív leírása:"
+    },
+
+    "ADD_GALLOWS":{
+        "ADD_WORDS_TO_GUESS": "Kitalálandó szó hozzáadása",
+        "CATEGORIES": "Kategóriák:",
+        "OTHER": "Egyéb",
+        "NEW_CATEGORY": "Új kategória"
+    },
+
+    "ADD-MIRROR":{
+        "MIRRORING_TEXT":"A megfordítandó szöveg:"
+    },
+
+    "ADD_NEW_CATEGORY":{
+        "NEW_CATEGORY":"Új kategória",
+        "ACTUAL_CATEGORY":"Jelenlegi kategória"
+    },
+
+    "ADD_PAIRS":{
+        "TEXT":"Szöveg",
+        "NO_IMAGE_SELECTED":"(Nincs kiválasztott kép)",
+        "SELECT_NEW_PICTURE":"Új kép kiválasztása"
+    },
+
+    "ADD_PUZZLE":{
+        "SELECT_NEW_PICTURE":"Új kép kiválasztása",
+        "UPLOAD_SELECTED_IMAGE":"Feltöltésre kijelölt képek",
+        "NO_IMAGE_SELECTED":"(Nincs kiválasztott kép)",
+        "NO_UPLOADED_IMAGE": "Még nincs feltöltött kép!"
+    },
+
+    "ADMIN":{
+        "EMAIL":"E-mail",
+        "USERNAME":"Felhasználónév",
+        "PASSWORD":"Jelszó"
+    },
+
+    "AGE":{
+        "HOW_OLD_ARE_YOU": "Kérem írja be az életkorát!",
+        "AGE":"Kor"
+    },
+
+    "END_FORM":{
+        "QUESTION_EVALUATION":"Kérdőív kiértékelése",
+        "WRITE_QUESTION_FORM": "Kérdőív kitöltése",
+        "THANKS_FOR_WRITING": "Köszönjük a kitöltést",
+        "END_QF_THANKS": "A kérdőív befejeződött. Köszönjük a kitöltést!",
+        "AREA_OF_INTEREST":"Érdeklődési terület",
+        "YES": "Igen",
+        "NO": "Nem",
+        "ANSWER_OPTION": "Válaszlehetőség",
+        "YES_PERCENTAGE": "Igen %"
+    },
+
+    "FORM_DESCRIPTION":{
+        "QF_TITLE": "Kérdőív címe:",
+        "QF_DESCRIPTION": "Kérdőív leírása:"
+    },
+
+    "FORM_LIST":{
+        "SEARCH_WITH_TITILE":"Keresés cím alapján:",
+        "QF_TITLE":"Kérdőív címe",
+        "GENERATE_CODE": "Kódgenerálás"
+    },
+
+    "FORM_PROPERTIES":{
+        "QF_TITLE":"Kérdőív címe:",
+        "QF_DESCRIPTION":"Kérdőív leírása:",
+        "TITLE": "Cím",
+        "DESCRIPTION": "Leírás"
+    },
+
+    "TOKEN":{
+        "ADD_IDENTIFICATION":"Kérem adja meg az azonosítót:"
+    },
+
+    "GALLOWS_LIST":{
+        "SEARCH_ABOUT_TEXT":"Keresés szöveg alapján:",
+        "SEARCH_ABOUT_CATEGORY":"Keresés kategória alapján:",
+        "CATEGORIES": "Kategóriák",
+        "ALL": "Mind",
+        "CATEGORY_NAME": "Kategória neve",
+        "GALLOW": "Akasztófa",
+        "CATEGORY":"Kategória"
+    },
+
+    "GET_FORM_TOKEN":{
+        "TOKEN":"Token:",
+        "TOKEN_END_TIME": "Token lejárati ideje:"
+    },
+
+    "JIGSAW":{
+        "MOVEMENT":"Lépések:"
+    },
+
+    "LOGIN":{
+        "OM":"Oktatási azonosítója:",
+        "QF_CODE": "Kérdőív kódja:"
+    },
+
+    "MAP":{
+        "NUMBER_OF_MATCHES":"Találatok száma:"
+    },
+
+    "MIRROR":{
+        "TEXT_DOES_NOT_MATCH_REMAINING_TRIES":"A beírt szöveg nem egyezik a kért szöveggel. Újra próbálások száma",
+        "WRITTEN_TEXT_PLACE":"Beírt szöveg helye"
+    },
+
+    "MIRROR_LIST":{
+        "SEARCH_ABAUT_TEXT":"Keresés szöveg alapján:",
+        "USERNAME":"Felhasználónév",
+        "MIRROR_TEXT":"Tükörszöveg"
+    },
+
+    "PAIRS_LIST":{
+        "SEARCH_ABOUT_TEXT":"Keresés szöveg alapján:",
+        "FIRST":"Első",
+        "SECOUND":"Második"
+    },
+
+    "RESULT":{
+        "RESULT": "Eredmény:"
+    },
+
+    "SCHOOL_FINDER":{
+        "INSTITUTE_NAME": "Intézménynév",
+        "COUNTY": "Megye",
+        "ADDRESS": "Cím",
+        "OM":"OM",
+        "TYPES":"Típusok",
+        "CATEGORY":"Kategória",
+        "CHOOSE":"Kiválaszt",
+        "ALL":"Mind"
+    },
+
+    "ADD_TYPED_FORM":{
+        "ADD_NEW_QUESTION":"Új kérdés hozzáadása",
+        "SAVE_AND_BACK_TO_DESCRIPTION":"Mentés és vissza a leíráshoz",
+        "SAVE_AND_BACK_TO_LIST":"Mentés és vissza a listához",
+        "REVERSE": "Fordított",
+        "EVALUATION_CATEGORY_NAME":"Kategória neve"
+    },
+
+    "ADD_TRUE_FALSE_TYPED_FORM":{
+        "ACTIVITY_CHECK_AFTER_FILL":"Tevékenység választó kitöltés után",
+        "ADD_NEW_QUESTION":"Új kérdés hozzáadása",
+        "SAVE_AND_BACK_TO_DESCRIPTION":"Mentés és vissza a leíráshoz",
+        "SAVE_AND_BACK_TO_LIST":"Mentés és vissza a listához",
+        "EVALUATION_CATEGORY_NAME":"Kategória neve"
+    },
+
+    "ADD_SKILL_TYPED_FORM":{
+        "ADD_NEW_QUESTION":"Új kérdés hozzáadása",
+        "ADD_NEW_ANSWER":"Új válasz hozzáadása",
+        "SAVE_AND_BACK_TO_DESCRIPTION":"Mentés és vissza a leíráshoz",
+        "SAVE_AND_BACK_TO_LIST":"Mentés és vissza a listához",
+        "EVALUATION_CATEGORY_NAME":"Kategória neve",
+        "ADD_NEW_QUESTION_PAIR": "Új kérdéspár hozzáadása"
+    },
+    
+    "ROLE_RIGHTS":{
+        "ROLE":"Szerepkör",
+        "ROLE_NAME":"Szerepkör neve",
+        "ROLE_SHORTNAME":"Szerepkör rövid neve",
+        "RIGHT_NAME":"Jog neve",
+        "RIGHT_SHORTNAME":"Jog rövid neve",
+        "IS_SET":"Beállított-e",
+        "OPERATIONS": "Műveletek",
+        "SELECT_ROLE":"Szerepkör választása:"
+    },
+
+    "QUESTION":{
+        "TITLE":"Cím"
+    },
+
+    "ADD_FORM_CATEGORY":{
+        
+    },
+
+    "ANSWER_CHOOSE":{
+        "ALL_AGAIN":"Most nézd át újra az összes tevékenységet előlről!",
+        "MARK_MAX":"Jelöld be azt a (max.)",
+        "WILLINGLY_DO_ACTIVITIES":"tevékenységet, amelyet a legszívesebben végeznél!",
+        "ACTIVITY":"Tevékenység",
+        "INTERESTED_IN":"Érdekel-e"
+    },
+
+    "PUZZLE_SCALER": {
+        "EDIT_ABORT": "Biztosan megszakítja a szerkesztést?"
+    }
+}

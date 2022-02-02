@@ -1,0 +1,450 @@
+{
+    "NAVIGATION":{
+        "USER_DATA": "User details",
+        "MENU": "Menu",
+        "USERS": "Users",
+        "QUESTIONNAIRE": "Questionnaire",
+        "QUESTIONNAIRE_DESCRIPTION_COMPLETING": "Fill Questionnaire description",
+        "GALLOWS": "Gallows",
+        "MIRROR_TEXT": "Mirror text",
+        "NEW_CATEGORY":"New category",
+        "PAIRING": "Pairing",
+        "PUZZLE":"Puzzle",
+        "LOGIN":"Login",
+        "AGE":"Age",
+        "FORM_DESCRIPTION": "Questionnaire description",
+        "FORMS":"Questionnaires",
+        "FORM_PROPERTIES": "Questionnaire information",
+        "TOKEN": "Token",
+        "LOGIN_WITH_IDENTIFIER": "Login with identifier",
+        "GUESTROOM": "Guestroom",
+        "SELECT_PUZZLE":"Select Puzzle",
+        "QF":"Questionnaire",
+        "SCHOOL_FINDER": "School finder",
+        "ROLE_RIGHTS": "Role-Right",
+        "TRUE_FALSE_FORM": "True-False form",
+        "SKILL_FORM": "Skill form",
+        "ANSWER_CHOOSE":"Answer choose",
+        "CATEGORY_EDITING":"Category editing"
+    },
+ 
+    "BUTTONS":{
+        "CREATE": "Create",
+        "CHANGE": "Change",
+        "ADD_ROLE":"Add role",
+        "ADD_RIGHT":"Add right",
+        "SAVE_CONNECTIONS":"Save connections",
+        "FILTER":"Filter",
+        "SET_ROLES":"Set Roles",
+        "SAVE": "Save",
+        "ENTER": "Login",
+        "ENTER_GUEST": "Login as guest",
+        "ADMIN_PAGE": "Admin page",
+        "LOAD_MORE": "Load more",
+        "ADD_USER": "Add user",
+        "ADD_ANSWER": "Add answer",
+        "SEND": "Send",
+        "SAVE_AND_GO_TO_QUESTION_EDITING": "Save and go to question editing",
+        "EDIT_EVALUATIONCATEGORIES": "Save and go to Category editing",
+        "SAVE_AND_BACK_TO_THE_LIST": "Save and back to the list",
+        "ADD": "Add",
+        "UPLOAD": "Upload",
+        "NEXT": "Next",
+        "BACK_HOME": "Home",
+        "NEXT_TO_WRITE_QF": "Fill the questionnaire",
+        "ADD_QF": "Add questionnaire",
+        "NEXT_TO_ADD_QF": "Add questions",
+        "REJECT": "Give up",
+        "ADD_GALLOW": "Add gallows",
+        "COPY_TOKEN": "Copy token",
+        "START": "Start",
+        "RESTART": "Restart",
+        "GALLOW":"Gallows",
+        "SCHOOL_FINDER":"School finder",
+        "PAIRING": "Pairing",
+        "PUZZLE":"Puzzle",
+        "MIRROR_TEXT":"Mirror text",
+        "ADD_MIRROR_TEXT":"Add mirror text",
+        "ADD_PAIR":"Add pairing",
+        "PREVIOUS":"Previous",
+        "FOLLOWING": "Next",
+        "END_RESULT": "Result",
+        "BACK_TO_MENU":"Back to main menu",
+        "CANCEL": "Cancel",
+        "OK": "Choose",
+        "OKE": "Ok",
+        "NO": "No",
+        "YES": "Yes",
+        "AGAIN": "Again",
+        "ONLINE":"Online",
+        "OFFLINE":"Offline",
+        "SHOW":"Show"
+    },
+ 
+    "MESSAGE":{
+        "NO_LOAD_EVALUATION_CATEGORIES": "Couldn't load the categories!",
+        "DATA_MIN_LENGTH":"After deleting unnecessary characters, the length of some data is incorrect, minimum length: ",
+        "SAVE_SUCCESSFUL":"Save successful!",
+        "SAVE_FAILED":"Save failed.",
+        "CREATION_FAILED":"Creation failed.",
+        "FILL_DATA":"Please fill in the informations correctly.",
+        "DELETE_DATA": "The chosen data will be deleted PERMANENTLY. Are you sure to continue?",
+        "DELETE_DATA_LOCAL": "The chosen data will be deleted. Are you sure to continue?",
+        "CANT_DELETE_TILL_IN_DATABASE":"You can't delete the data till it has relation to another data in the database.",
+        "LOADING": "Loading...",
+        "SEND_PAIRS":"Are you sure you want to send in the pairs?",
+        "LOGIN_IS_LOADING": "Login in progress, please wait!",
+        "NOT_ALL_REQUIRED_FILLED": "Fill in all required fields to save!",
+        "SAVE_IS_LOADING": "Saving in progress, please wait!",
+        "NO_LOAD_GALLOW": "Failed to load gallows!",
+        "NO_LOAD_CATEGORY": "Failed to load catrgories!",
+        "DELETE_GALLOW": "Are you sure to delete gallows?",
+        "DELETE_CATEGORY":"Are you sure to delete this category?",
+        "DELETE_FAILED": "Failed to delete the selected element!",
+        "SAVE_FAILED_CATEGORY": "Failed to save the selected category!",
+        "DELETE_FAILED_GALLOW_BECAUSE": "Failed to delete the selected gallows because of the following: ",
+        "SURE_TO_BACK": "Are you sure to leave? Changes will be lost.",
+        "QF_CREATED": "Questionnaire successfully created!",
+        "NO_QF_CREATED": "Failed to create questionnaire!",
+        "SAVE_FAILED_QF": "Failed to save questionnaires!",
+        "SUCCESS_SAVE_GALLOW": "Gallows successfully created!",
+        "FAILED_SAVE_GALLOW": "Failed to save gallows!",
+        "NO_CREATE_GALLOW": "Failed to create gallows!",
+        "NO_LOAD_MIRROR": "Falied to load mirror text!",
+        "NO_LOAD_ROLE": "Falied to load the roles!",
+        "NO_LOAD_RIGHT": "Falied to load the rights!",
+        "DELETE_WILD_SPACE": "The text contains bad characters or spaces in the front or back. These will be removed.",
+        "TEXT_TOO_SHORT":"After deleting the extra spaces and bad characters the text is too short! Minimum lenght: ",
+        "AT_QUESTION": "Question:",
+        "AT_ANSWER": "Answer:",
+        "SAVE_SUCCESS_MIRROR": "Mirror text successfully saved!",
+        "SAVE_FAILED_MIRROR": "Failed to save mirror text!",
+        "NO_LOAD_PAIRS": "Failed to load pairs!",
+        "SUCCES_CREATE_PAIRS": "Pairs successfully created!",
+        "NO_CREATE_PAIRS": "Failed to create pairs!",
+        "SUCCESS_SAVE_PAIRS": "Pairs successfully saved!",
+        "FAILED_SAVE_PAIRS": "Failed to save pairs!",
+        "IMG_LOAD": "Loading images...",
+        "SCHOOL_LOAD": "Loading schools...",
+        "ONLY_IMG": "Currently only JPEG and PNG images can be uploaded!",
+        "DELETE_PUZZLE": "Are you sure you want to delete this image from the uploaded puzzle list?",
+        "UPLOAD":"Uploading...",
+        "SUCCESS_UPLOAD": "Upload successful!",
+        "LOGIN_UNSUCCESS": "Login failed!",
+        "CANNOT_DOWNLOAD_USER_SETTINGS": "Failed to get user rights!",
+        "AGE_ERROR": "The specified age is outside the interpretation range! <br/> (6-99)",
+        "QF_UNLOADED": "Failed to load questionairre!",
+        "BACK": "Are you sure you want to step back?",
+        "SURE_DELETE_QF": "Are you sure to delete the questionairre?",
+        "NO_DOWNLOAD_TOKEN": "Failed to load token!",
+        "ID_LENGTH_ERROR": "The id lenght is invalid!",
+        "ABANDON": "Are you sure to quit?",
+        "NO_CREATE_TOKEN": "Failed to create token for the questionnaire, please try again later!",
+        "TODO": "This feature is not yet available in this version!",
+        "ERROR_OM": "The education ID you entered is invalid!",
+        "DELETE_MIRROR": "Are you sure you want to delete the mirror text?",
+        "DELETE_PAIRS": "Are you sure you want to delete the pairs?",
+        "NO_INTERNET": "No network connection!",
+        "LOGOUT": "Are you sure you want to quit?",
+        "QUESTION_ANSWERED": " questions answered!",
+        "NO_SAVE_ANSWER": "Failed to save answers! Please try again later!",
+        "NO_LOAD_SCHOOL": "Failed to load schools!",
+        "NO_LOAD_SCHOOL_TYPE": "Failed to load school types!",
+        "NO_LOAD_USER": "Failed to retrieve users!",
+        "DELETE_USER": "Are you sure you want to delete this user?",
+        "NO_LOAD_USER_DATA": "Failed to load user data!",
+        "PASS_REQ": "You need a password to apply the changes.",
+        "PASS_NEED": "Password required!",
+        "WRONG_PASS": "The password you entered is incorrect",
+        "PASS_FAIL": "The password you entered could not be verified due to an error, please try again later!",
+        "PASS_NO_MATCH": "The passwords do not match!",
+        "CREATE_USER_FAIL": "Failed to create user!",
+        "SAVE_USER_FAIL": "Failed to save user data!",
+        "ONLINE_OR_OFFLINE":"Please select whether the Token to be created is Online or Offline type.",
+        "LOAD_NEXT_QUESTION": "I'm loading the following question",
+        "LOAD_PREVIOUS_QUSTION": "I'm loading the previous question",
+        "NO_QF_FOR_THIS_TOKEN": "There is no questionnaire for this ID!",
+        "SHOW":"Show",
+		"NO_TYPES": "There are no types to show!",
+		"LOADING_PAIRS": "Loading pairs...",
+        "LOADING_MIRROR": "Loading mirror text...",
+        "LOADING_GALLOWS": "Loading gallow...",
+        "LOADING_USERS": "Loading users...",
+        "LOADING_FORMS": "Loading forms...",
+        "LOADING_DATA": "Loading data...",
+        "WHAT_TYPE_OF_QF": "WHat type of questionaire do you want to create?",
+        "WHAT_TYPE_OF_EVALUATE_QF": "WHat type of evaluation questionaire do you want to create?",
+        "EVALUATE_QF":"Evaluate form",
+        "ONE_TO_FIVE_EVALUATE_QF":"One-Five",
+        "TRUE_FALSE_EVALUATE_QF":"True-False",
+        "SKILL_EVALUATE_QF":"Skill check",
+        "CUSTOM_QF":"Custom form",
+        "PAIRS_INSTRUCTIONS": "Match the correct pieces of the next 3 pairs to each other!",
+        "PLS_SELECT_AT_LEAST_2_ANSWERS": "Please select at least 2 options!",
+        "FORM_CSV_EXPORT_CONFIRM": "Are you sure you want to save results for this form to the device storage as a CSV file? Storage access permission is needed for this task.",
+        "FORM_CSV_EXPORT_DONE": "Successfully saved form results as a CSV file!",
+        "FORM_CSV_EXPORT_FAILED": "Saving file was unsuccessful!",
+        "FORM_CSV_EXPORT_UNAUTHORIZED": "Storage access permission is needed to save the file!"
+    },
+
+    "QUESTION_STRING":{
+        "Q_ONE":"Not at all", 
+        "Q_TWO":"Rather not", 
+        "Q_THREE":"Neutral", 
+        "Q_FOUR":"Rather yes", 
+        "Q_FIVE":"Totally",
+        "TRUE":"True",
+        "FALSE":"False"
+    },
+ 
+    "HEADER":{
+        "CREATE": "Create",
+        "CHANGE": "Change",
+        "ROLES":"Roles",
+        "ERROR":"Error!",
+        "CONFIRM":"Confirm!",
+        "ALERT": "Warning!",
+        "HEUREKA": "Success!",
+        "SEND_QF": "Are you sure you want to submit the questionnaire?",
+        "PASSWORD": "Password",
+        "NOT_SUPPORTED_ACTION": "Not supported action",
+        "CHOOSE_TYPE":"Choose a type"
+    },
+ 
+    "HOME": {
+        "OM": "Student identification number"
+    },
+ 
+    "ADMIN_NAV": {
+        "OWN_USER_MANAGEMENT":"Edit profile",
+        "USERS_MANAGEMENT": "Manage users",
+        "FORM_MANAGEMENT": "Manage forms",
+        "MIRROR_MANAGEMENT": "manage mirror texts",
+        "PAIRS_MANAGEMENT": "Manage pairs",
+        "GALLOWS_MANAGENET": "Manage gallows",
+        "PUZZLE_PICTURE_MANAGEMENT": "Manage puzzles",
+        "ROLE_RIGHTS": "Role-Right connections"
+    },
+ 
+    "USER_SETTINGS":{
+        "NAME": "Name:",
+        "OM": "Student identification number:",
+        "EMAIL": "E-mail:",
+        "PASSWORD": "Password:",
+        "RE_PASSWORD": "Confirm password:",
+        "ROLE_NAME": "Role name",
+        "IS_ACTIVE": "Is active"
+    },
+ 
+    "USER_LIST":{
+        "SEARCH_NAME_OR_USERNAME": "Search by name or e-mail address:",
+        "USERNAME": "Username",
+        "EMAIL": "e-mail"
+    },
+ 
+    "ADD_FORM":{
+        "DELETE_QUESTIONS": "Delete question",
+        "ADD_QUESTIONS": "Add question:",
+        "UNIQUE_ANSWERS": "Unique answer",
+        "ONE_TO_FIVE": "One to five",
+        "WHAT_IS_TRUE": "Which one is true?",
+        "QUESTION": "Question...",
+        "ANSWER": "Answer..."
+    },
+ 
+    "ADD_FORM_DESCRIPTION":{
+        "QUESTIONNAIRE_TITLE": "Title of the questionairre:",
+        "QUESTIONNAIRE_QUESTION": "Question:",
+        "QUESTIONNAIRE_DESCRIPTION": "Description of the questionairre:"
+    },
+ 
+    "ADD_GALLOWS":{
+        "ADD_WORDS_TO_GUESS": "Add word",
+        "CATEGORIES": "Categories:",
+        "OTHER": "Other",
+        "NEW_CATEGORY": "New category"
+    },
+ 
+    "ADD-MIRROR":{
+        "MIRRORING_TEXT":"Mirror text:"
+    },
+ 
+    "ADD_NEW_CATEGORY":{
+        "NEW_CATEGORY":"New category",
+        "ACTUAL_CATEGORY":"Current category"
+    },
+ 
+    "ADD_PAIRS":{
+        "TEXT":"Text",
+        "NO_IMAGE_SELECTED":"(No image selected )",
+        "SELECT_NEW_PICTURE":"Select a new image"
+    },
+ 
+    "ADD_PUZZLE":{
+        "SELECT_NEW_PICTURE":"Select new picture",
+        "UPLOAD_SELECTED_IMAGE":"Selected pictures",
+        "NO_IMAGE_SELECTED":"(No image selected!)",
+        "NO_UPLOADED_IMAGE": "No image uploaded yet!"
+    },
+ 
+    "ADMIN":{
+        "EMAIL":"E-mail",
+        "USERNAME":"Username",
+        "PASSWORD":"Password"
+    },
+ 
+    "AGE":{
+        "HOW_OLD_ARE_YOU": "How old are you?",
+        "AGE":"Age"
+    },
+ 
+    "END_FORM":{
+        "QUESTION_EVALUATION":"questionairre evaluation",
+        "WRITE_QUESTION_FORM": "Fill the questionairre",
+        "THANKS_FOR_WRITING": "Thank you for completing!",
+        "END_QF_THANKS": "The questionnaire is complete. Thank you for the help!",
+        "AREA_OF_INTEREST":"Area of interest",
+        "YES": "Yes",
+        "NO": "No",
+        "ANSWER_OPTION": "Answer option",
+        "YES_PERCENTAGE": "Yes %"
+    },
+ 
+    "FORM_DESCRIPTION":{
+        "QF_TITLE": "Title of the questionairre:",
+        "QF_DESCRIPTION": "Description of the questionairre:"
+    },
+ 
+    "FORM_LIST":{
+        "SEARCH_WITH_TITILE":"Search by title:",
+        "QF_TITLE":"Title of the questionairre:",
+        "GENERATE_CODE": "Generate token"
+    },
+ 
+    "FORM_PROPERTIES":{
+        "QF_TITLE":"Title of the questionairre:",
+        "QF_DESCRIPTION":"Description of the questionairre:",
+        "TITLE": "Title",
+        "DESCRIPTION": "Description"
+    },
+ 
+    "TOKEN":{
+        "ADD_IDENTIFICATION":"Please add token:"
+    },
+ 
+    "GALLOWS_LIST":{
+        "SEARCH_ABOUT_TEXT":"Search by text:",
+        "SEARCH_ABOUT_CATEGORY":"Search by category:",
+        "CATEGORIES": "Categories",
+        "ALL": "All",
+        "CATEGORY_NAME": "Category name",
+        "GALLOW": "Gallows",
+        "CATEGORY":"Category"
+    },
+ 
+    "GET_FORM_TOKEN":{
+        "TOKEN":"Token:",
+        "TOKEN_END_TIME": "Token expiration date:"
+    },
+ 
+    "JIGSAW":{
+        "MOVEMENT":"Steps:"
+    },
+ 
+    "LOGIN":{
+        "OM":"Student identification number:",
+        "QF_CODE": "Token for questionairre:"
+    },
+ 
+    "MAP":{
+        "NUMBER_OF_MATCHES":"Number of matches:"
+    },
+ 
+    "MIRROR":{
+        "TEXT_DOES_NOT_MATCH_REMAINING_TRIES":"The input text does not match the with the solution, retry count",
+        "WRITTEN_TEXT_PLACE":"Place of written text"
+    },
+ 
+    "MIRROR_LIST":{
+        "SEARCH_ABAUT_TEXT":"Search by text:",
+        "USERNAME":"Username",
+        "MIRROR_TEXT":"Mirror text"
+    },
+ 
+    "PAIRS_LIST":{
+        "SEARCH_ABOUT_TEXT":"Search by text:",
+        "FIRST":"First",
+        "SECOUND":"Second"
+    },
+ 
+    "RESULT":{
+        "RESULT": "Result:"
+    },
+ 
+    "SCHOOL_FINDER":{
+        "INSTITUTE_NAME": "Institute",
+        "COUNTY": "County",
+        "ADDRESS": "Address",
+        "OM":"OM id",
+        "TYPES":"Type",
+        "CATEGORY":"Category",
+        "CHOOSE":"Choose",
+        "ALL":"All"
+    },
+
+    "ADD_TYPED_FORM":{
+        "ADD_NEW_QUESTION":"Add new question",
+        "SAVE_AND_BACK_TO_DESCRIPTION":"Save and back to the description",
+        "SAVE_AND_BACK_TO_LIST":"Save and back to the list",
+        "REVERSE": "Reverse",
+        "EVALUATION_CATEGORY_NAME":"Category's name"
+    },
+
+    "ADD_TRUE_FALSE_TYPED_FORM":{
+        "ACTIVITY_CHECK_AFTER_FILL":"Activity check after fill",
+        "ADD_NEW_QUESTION":"Add new question",
+        "SAVE_AND_BACK_TO_DESCRIPTION":"Save and back to the description",
+        "SAVE_AND_BACK_TO_LIST":"Save and back to the list",
+        "EVALUATION_CATEGORY_NAME":"Category's name"
+    },
+
+    "ADD_SKILL_TYPED_FORM":{
+        "ADD_NEW_QUESTION":"Add new question",
+        "ADD_NEW_ANSWER":"Add new answer",
+        "SAVE_AND_BACK_TO_DESCRIPTION":"Save and back to the description",
+        "SAVE_AND_BACK_TO_LIST":"Save and back to the list",
+        "EVALUATION_CATEGORY_NAME":"Category's name",
+        "ADD_NEW_QUESTION_PAIR": "Add new question pair"
+    },
+   
+    "ROLE_RIGHTS":{
+        "ROLE":"Role",
+        "ROLE_NAME":"Role's name",
+        "ROLE_SHORTNAME":"Role's short name",
+        "RIGHT_NAME":"Right's name",
+        "RIGHT_SHORTNAME":"Right's short name",
+        "IS_SET":"Is set",
+        "OPERATIONS": "Operations",
+        "SELECT_ROLE":"Role selection:"
+    },
+
+    "QUESTION":{
+        "TITLE":"Title"
+    },
+
+    "ADD_FORM_CATEGORY":{
+        
+    },
+
+    "ANSWER_CHOOSE":{
+        "ALL_AGAIN":"Let's check all the activities all over again!",
+        "MARK_MAX":"Mark those (max.)",
+        "WILLINGLY_DO_ACTIVITIES":"activities you would willingly do!",
+        "ACTIVITY":"Activity",
+        "INTERESTED_IN":"Interested in"
+    },
+
+    "PUZZLE_SCALER": {
+        "EDIT_ABORT": "Are you sure you want to abort editing?"
+    }
+}
