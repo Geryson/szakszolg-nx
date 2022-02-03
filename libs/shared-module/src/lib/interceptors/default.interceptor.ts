@@ -1,14 +1,19 @@
-import { Injectable } from '@angular/core'
+import { Inject, Injectable } from '@angular/core'
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http'
 import { Router } from '@angular/router'
 import { from, lastValueFrom, Observable, of, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { RedirectService } from '../services/redirect.service'
-import { StorageService } from '../../../../../apps/ionic/src/shared/services/storage.service'
+import { IStorageService } from '@szakszolg-nx/ng-interfaces'
+import { STORAGE_SERVICE } from '../injector.tokens'
 
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor {
-    constructor(private router: Router, private storage: StorageService, private redirect: RedirectService) {}
+    constructor(
+        @Inject(STORAGE_SERVICE) private readonly storage: IStorageService,
+        private readonly router: Router,
+        private readonly redirect: RedirectService,
+    ) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return from(this.handle(next, req))

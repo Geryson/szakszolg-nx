@@ -18,9 +18,9 @@
             </div>
             <ion-label class='input-label'>{{ 'HOME.OM' | translate }}</ion-label>
             <div class="rounded">
-                <ion-input #OM (ionChange)='change($event)' (keydown)='numberOnly($event)'
-                           (keydown.enter)='saveEduId()' [(ngModel)]='eduId'
-                           inputmode='numeric' maxlength='{{eduIdMaxLength}}' minlength='{{eduIdMinLength}}' type='text'
+                <ion-input #OM (keydown.enter)='saveEduId()'
+                           [(ngModel)]='eduId' inputmode='numeric'
+                           maxlength='{{eduIdMaxLength}}' minlength='{{eduIdMinLength}}' nxNumberOnly='true' type='text'
                 ></ion-input>
             </div>
             <div class="btnSize">

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { InputEventWithTarget } from '@szakszolg-nx/ng-interfaces'
 import { AlertService } from '../../shared/services/alert.service'
 
 @Component({
@@ -14,22 +13,6 @@ export class HomePage {
     eduId = ''
 
     constructor(private readonly alert: AlertService) {}
-
-    change(event: InputEventWithTarget | any) {
-        event = event as InputEventWithTarget
-        if (!event || !event.target || !event.target.value || event.target.value == '') return
-
-        if (event.inputType === 'insertText') event.preventDefault()
-
-        if (!/[0-9]+/.test(event.target.value)) {
-            event.target.value = ''
-            return
-        }
-    }
-
-    numberOnly(event: KeyboardEvent | any) {
-        if (!/[0-9]/.test(event.key) && event.key !== 'Backspace') event.preventDefault()
-    }
 
     eduIdIsValid() {
         return (
