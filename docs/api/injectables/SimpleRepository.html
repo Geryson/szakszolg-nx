@@ -192,8 +192,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="32"
+                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:32</a></div>
                 </td>
             </tr>
 
@@ -264,8 +264,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:50</a></div>
                 </td>
             </tr>
 
@@ -480,8 +480,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">apps/api/src/shared/proxies/simple.repository.ts:42</a></div>
                 </td>
             </tr>
 
@@ -557,7 +557,9 @@ export class SimpleRepository&lt;
 
     public async findOne(data: TFindOneArgs): Promise&lt;TInterface&gt; {
         const res &#x3D; this.model.findById(data.id) as any
-        return res?.deletedAt ? Promise.reject(new NotFoundException()) : res
+        return res?.deletedAt
+            ? Promise.reject(new NotFoundException(&#x60;Model with id ${data.id} not found or has been deleted&#x60;))
+            : res
     }
 
     public async create(data: TCreateInput): Promise&lt;TInterface&gt; {

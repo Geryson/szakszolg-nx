@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li >QuizRepository</li>
+  <li >QuizAnswerRepository</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -58,7 +58,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>apps/api/src/app/quiz/entities/quiz.repository.ts</code>
+            <code>apps/api/src/app/quiz-answer/entities/quiz-answer.repository.ts</code>
         </p>
 
 
@@ -127,12 +127,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(resourceModel: <a href="../classes/Quiz.html" target="_self">Model&lt;QuizDocument&gt;</a>)</code>
+<code>constructor(resourceModel: <a href="../undefineds/QuizAnswerDocument.html" target="_self">Model&lt;QuizAnswerDocument&gt;</a>, quizService: <a href="../injectables/QuizService.html" target="_self">QuizService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">apps/api/src/app/quiz/entities/quiz.repository.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">apps/api/src/app/quiz-answer/entities/quiz-answer.repository.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -153,7 +153,19 @@
                                                         <td>resourceModel</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/Quiz.html" target="_self" >Model&lt;QuizDocument&gt;</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#QuizAnswerDocument" target="_self" >Model&lt;QuizAnswerDocument&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>quizService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/QuizService.html" target="_self" >QuizService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -191,7 +203,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(data: <a href="../classes/CreateQuizInput.html" target="_self">CreateQuizInput</a>)</code>
+                    <code>create(data: <a href="../classes/CreateQuizAnswerInput.html" target="_self">CreateQuizAnswerInput</a>)</code>
                 </td>
             </tr>
 
@@ -204,7 +216,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:33</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:39</a></code>
 </div>
                 </td>
             </tr>
@@ -228,7 +240,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                                <code><a href="../classes/CreateQuizInput.html" target="_self" >CreateQuizInput</a></code>
+                                                <code><a href="../classes/CreateQuizAnswerInput.html" target="_self" >CreateQuizAnswerInput</a></code>
                                     </td>
 
                                     <td>
@@ -243,7 +255,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Quiz.html" target="_self" >Promise&lt;IQuiz&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;IQuizAnswer&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -269,7 +281,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll(data: GetQuizzesArgs | null)</code>
+                    <code>findAll(data: GetQuizAnswersArgs | null)</code>
                 </td>
             </tr>
 
@@ -282,7 +294,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:27</a></code>
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:31</a></code>
 </div>
                 </td>
             </tr>
@@ -306,7 +318,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                            <code>GetQuizzesArgs | null</code>
+                                            <code>GetQuizAnswersArgs | null</code>
                                     </td>
 
                                     <td>
@@ -321,7 +333,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Quiz.html" target="_self" >Promise&lt;IQuiz[]&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;IQuizAnswer[]&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -567,40 +579,54 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;
-import { Quiz, QuizDocument } from &#x27;./quiz.entity&#x27;
+import { QuizAnswer, QuizAnswerDocument } from &#x27;./quiz-answer.entity&#x27;
 import { Model } from &#x27;mongoose&#x27;
-import { UpdateQuizInput } from &#x27;../dto/inputs/update-quiz.input&#x27;
-import { CreateQuizInput } from &#x27;../dto/inputs/create-quiz.input&#x27;
-import { GetQuizzesArgs } from &#x27;../dto/args/get-quizzes.args&#x27;
-import { GetQuizArgs } from &#x27;../dto/args/get-quiz.args&#x27;
-import { IQuiz } from &#x27;@szakszolg-nx/api-interfaces&#x27;
-import { DeleteQuizInput } from &#x27;../dto/inputs/delete-quiz.input&#x27;
+import { UpdateQuizAnswerInput } from &#x27;../dto/inputs/update-quiz-answer.input&#x27;
+import { CreateQuizAnswerInput } from &#x27;../dto/inputs/create-quiz-answer.input&#x27;
+import { GetQuizAnswersArgs } from &#x27;../dto/args/get-quiz-answers.args&#x27;
+import { GetQuizAnswerArgs } from &#x27;../dto/args/get-quiz-answer.args&#x27;
+import { IQuiz, IQuizAnswer, IQuizQuestion } from &#x27;@szakszolg-nx/api-interfaces&#x27;
+import { DeleteQuizAnswerInput } from &#x27;../dto/inputs/delete-quiz-answer.input&#x27;
 import { SimpleRepository } from &#x27;../../../shared/proxies/simple.repository&#x27;
+import { QuizService } from &#x27;../../quiz/quiz.service&#x27;
 
 @Injectable()
-export class QuizRepository extends SimpleRepository&lt;
-    QuizDocument,
-    IQuiz,
-    GetQuizArgs,
-    GetQuizzesArgs,
-    CreateQuizInput,
-    UpdateQuizInput,
-    DeleteQuizInput
+export class QuizAnswerRepository extends SimpleRepository&lt;
+    QuizAnswerDocument,
+    IQuizAnswer,
+    GetQuizAnswerArgs,
+    GetQuizAnswersArgs,
+    CreateQuizAnswerInput,
+    UpdateQuizAnswerInput,
+    DeleteQuizAnswerInput
 &gt; {
-    constructor(@InjectModel(Quiz.name) resourceModel: Model&lt;QuizDocument&gt;) {
+    constructor(
+        @InjectModel(QuizAnswer.name) resourceModel: Model&lt;QuizAnswerDocument&gt;,
+        private readonly quizService: QuizService,
+    ) {
         super(resourceModel)
     }
 
-    override async findAll(data: GetQuizzesArgs | null): Promise&lt;IQuiz[]&gt; {
-        if (!data.category) return super.findAll(data) // No filtering
+    override async findAll(data: GetQuizAnswersArgs | null): Promise&lt;IQuizAnswer[]&gt; {
+        if (data.ids?.length &gt; 0) {
+            return super.findAll(data)
+        }
 
-        return this.model.find({ categories: { $regex: data.category, $options: &#x27;i&#x27; } }).exec()
+        return this.model.find({ quizId: data.quizId })
     }
 
-    override async create(data: CreateQuizInput): Promise&lt;IQuiz&gt; {
-        data.questions &#x3D; data.questions.map((question, index) &#x3D;&gt; ({ _id: index, ...question }))
+    override async create(data: CreateQuizAnswerInput): Promise&lt;IQuizAnswer&gt; {
+        const originalQuiz: IQuiz &#x3D; await this.quizService.findOne({ id: data.quizId })
+        const originalQuestion &#x3D; originalQuiz.questions.find((q) &#x3D;&gt; q._id.toString() &#x3D;&#x3D;&#x3D; data.questionId)
+        if (!originalQuestion) {
+            throw new NotFoundException(&#x60;Question not found: ${data.quizId}/${data.questionId}&#x60;)
+        }
+
+        if (originalQuestion.type !&#x3D;&#x3D; &#x27;free-text&#x27;) {
+            data.isCorrect &#x3D; originalQuestion.answers.includes(data.answer)
+        }
         return super.create(data)
     }
 }
@@ -646,7 +672,7 @@ export class QuizRepository extends SimpleRepository&lt;
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'QuizRepository.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'QuizAnswerRepository.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

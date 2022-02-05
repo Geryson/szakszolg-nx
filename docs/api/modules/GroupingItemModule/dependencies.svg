@@ -14,13 +14,13 @@
 <title>cluster_GroupingItemModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 464,-230.8 464,-32.8 8,-32.8"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_GroupingItemModule_exports</title>
-<polygon fill="none" stroke="black" points="49,-170.8 49,-222.8 384,-222.8 384,-170.8 49,-170.8"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_GroupingItemModule_providers</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 456,-92.8 456,-40.8 16,-40.8"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_GroupingItemModule_exports</title>
+<polygon fill="none" stroke="black" points="49,-170.8 49,-222.8 384,-222.8 384,-170.8 49,-170.8"/>
 </g>
 <!-- GroupingItemRepository  -->
 <g id="node1" class="node">
