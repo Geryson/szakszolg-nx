@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { AlertService } from '../../shared/services/alert.service'
 import { RedirectService } from '@szakszolg-nx/shared-module'
-import { pages } from '../app-routing.module'
+import { pages } from '../../shared/utils/pages.const'
 
 @Component({
     selector: 'nx12-home',
@@ -34,6 +34,6 @@ export class HomePage implements OnInit {
     }
 
     toAdminPage() {
-        this.redirect.to(pages.login)
+        this.redirect.to(pages.admin.login)
     }
 }

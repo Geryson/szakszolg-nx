@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { IonInput, LoadingController } from '@ionic/angular'
+import { IonInput } from '@ionic/angular'
 import { BehaviorSubject } from 'rxjs'
-import { AuthService } from '../../shared/services/auth.service'
-import { AlertService } from '../../shared/services/alert.service'
-import { RedirectService } from '@szakszolg-nx/shared-module'
+import { RedirectService, Log } from '@szakszolg-nx/shared-module'
+import { AuthService } from '../../../shared/services/auth.service'
+import { AlertService } from '../../../shared/services/alert.service'
+import { pages } from '../../../shared/utils/pages.const'
 
 @Component({
     selector: 'nx12-login',
@@ -27,26 +28,28 @@ export class LoginPage implements OnInit {
     }
 
     ngOnInit() {
-        this.authService.check().then((isLoggedIn) => {
-            if (isLoggedIn) {
-                this.alert.loading('MESSAGE.LOGIN_WITH_SAVED_TOKEN').then((loading) => {
-                    this.redirect.to('/admin')
-                    loading.dismiss().then()
-                })
-            }
+        // Note: ngOnInit is synchronous
+        this.authService.check().then(async (isLoggedIn) => {
+            if (!isLoggedIn) return
+
+            const loading = await this.alert.loading('MESSAGE.LOGIN_WITH_SAVED_TOKEN')
+            this.redirect.to(pages.admin.dashboard)
+            loading.dismiss().then()
         })
     }
 
-    goto(element: IonInput) {
+    focus(element: IonInput) {
         element.setFocus().then()
     }
 
-    async login() {
+    async login(event: any) {
+        event.preventDefault()
         const loading = await this.alert.loading()
         try {
             await this.authService.login(this.email, this.password)
-        } catch (error: any) {
-            console.error(error)
+            this.redirect.to(pages.admin.dashboard)
+        } catch (err: any) {
+            Log.error('LoginPage::login->catch', err)
             await this.alert.show('LOGIN_UNSUCCESSFUL')
         } finally {
             await loading.dismiss().then()

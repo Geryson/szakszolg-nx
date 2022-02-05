@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 
 import { Storage } from '@ionic/storage-angular'
 import { IStorageService } from '@szakszolg-nx/ng-interfaces'
+import { Log } from '@szakszolg-nx/shared-module'
 
 @Injectable({
     providedIn: 'root',
@@ -22,7 +23,7 @@ export class StorageService implements IStorageService {
     async init() {
         // If using, define drivers here: await this.storage.defineDriver(/*...*/);
         const storage = await this.storage.create()
-        console.log('Storage created')
+        Log.debug('StorageService::init', 'Storage created')
         this._storage = storage
         this._ready = true
     }

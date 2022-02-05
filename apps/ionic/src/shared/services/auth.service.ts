@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http'
 import { api } from '../utils/uri.tools'
 import { StorageService } from './storage.service'
 import { JwtHelperService } from '@auth0/angular-jwt'
-import { STORAGE_KEY } from '@szakszolg-nx/shared-module'
+import { Log, STORAGE_KEY } from '@szakszolg-nx/shared-module'
 
 @Injectable({
     providedIn: 'root',
@@ -39,9 +39,9 @@ export class AuthService {
 
     login(email: string, password: string) {
         const url = api('api/auth/login')
-        console.log(url)
         return lastValueFrom(this.http.post<{ access_token: string }>(url, { email, password })).then(
             ({ access_token }) => {
+                Log.debug('AuthService::login->lastValueFrom', 'access_token', access_token)
                 this._token.next(access_token)
                 const decoded = this.jwtHelper.decodeToken<any>(access_token)
                 this._tokenObject.next(decoded)
