@@ -5,7 +5,7 @@
         "USERS": "Users",
         "QUESTIONNAIRE": "Questionnaire",
         "QUESTIONNAIRE_DESCRIPTION_COMPLETING": "Fill Questionnaire description",
-        "GALLOWS": "Gallows",
+        "HANGMANS": "Hangmans",
         "MIRROR_TEXT": "Mirror text",
         "NEW_CATEGORY":"New category",
         "PAIRING": "Pairing",
@@ -55,11 +55,11 @@
         "ADD_QF": "Add questionnaire",
         "NEXT_TO_ADD_QF": "Add questions",
         "REJECT": "Give up",
-        "ADD_GALLOW": "Add gallows",
+        "ADD_HANGMAN": "Add hangmans",
         "COPY_TOKEN": "Copy token",
         "START": "Start",
         "RESTART": "Restart",
-        "GALLOW":"Gallows",
+        "HANGMAN":"Hangmans",
         "SCHOOL_FINDER":"School finder",
         "PAIRING": "Pairing",
         "PUZZLE":"Puzzle",
@@ -94,22 +94,23 @@
         "LOADING": "Loading...",
         "SEND_PAIRS":"Are you sure you want to send in the pairs?",
         "LOGIN_IS_LOADING": "Login in progress, please wait!",
+        "LOGIN_WITH_SAVED_TOKEN": "Login with saved token, please wait!",
         "NOT_ALL_REQUIRED_FILLED": "Fill in all required fields to save!",
         "SAVE_IS_LOADING": "Saving in progress, please wait!",
-        "NO_LOAD_GALLOW": "Failed to load gallows!",
+        "NO_LOAD_HANGMAN": "Failed to load hangmans!",
         "NO_LOAD_CATEGORY": "Failed to load catrgories!",
-        "DELETE_GALLOW": "Are you sure to delete gallows?",
+        "DELETE_HANGMAN": "Are you sure to delete hangmans?",
         "DELETE_CATEGORY":"Are you sure to delete this category?",
         "DELETE_FAILED": "Failed to delete the selected element!",
         "SAVE_FAILED_CATEGORY": "Failed to save the selected category!",
-        "DELETE_FAILED_GALLOW_BECAUSE": "Failed to delete the selected gallows because of the following: ",
+        "DELETE_FAILED_HANGMAN_BECAUSE": "Failed to delete the selected hangmans because of the following: ",
         "SURE_TO_BACK": "Are you sure to leave? Changes will be lost.",
         "QF_CREATED": "Questionnaire successfully created!",
         "NO_QF_CREATED": "Failed to create questionnaire!",
         "SAVE_FAILED_QF": "Failed to save questionnaires!",
-        "SUCCESS_SAVE_GALLOW": "Gallows successfully created!",
-        "FAILED_SAVE_GALLOW": "Failed to save gallows!",
-        "NO_CREATE_GALLOW": "Failed to create gallows!",
+        "SUCCESS_SAVE_HANGMAN": "Hangmans successfully created!",
+        "FAILED_SAVE_HANGMAN": "Failed to save hangmans!",
+        "NO_CREATE_HANGMAN": "Failed to create hangmans!",
         "NO_LOAD_MIRROR": "Falied to load mirror text!",
         "NO_LOAD_ROLE": "Falied to load the roles!",
         "NO_LOAD_RIGHT": "Falied to load the rights!",
@@ -133,9 +134,9 @@
         "LOGIN_UNSUCCESS": "Login failed!",
         "CANNOT_DOWNLOAD_USER_SETTINGS": "Failed to get user rights!",
         "AGE_ERROR": "The specified age is outside the interpretation range! <br/> (6-99)",
-        "QF_UNLOADED": "Failed to load questionairre!",
+        "QF_UNLOADED": "Failed to load questionnaire!",
         "BACK": "Are you sure you want to step back?",
-        "SURE_DELETE_QF": "Are you sure to delete the questionairre?",
+        "SURE_DELETE_QF": "Are you sure to delete the questionnaire?",
         "NO_DOWNLOAD_TOKEN": "Failed to load token!",
         "ID_LENGTH_ERROR": "The id lenght is invalid!",
         "ABANDON": "Are you sure to quit?",
@@ -168,7 +169,7 @@
 		"NO_TYPES": "There are no types to show!",
 		"LOADING_PAIRS": "Loading pairs...",
         "LOADING_MIRROR": "Loading mirror text...",
-        "LOADING_GALLOWS": "Loading gallow...",
+        "LOADING_HANGMANS": "Loading hangman...",
         "LOADING_USERS": "Loading users...",
         "LOADING_FORMS": "Loading forms...",
         "LOADING_DATA": "Loading data...",
@@ -221,7 +222,7 @@
         "FORM_MANAGEMENT": "Manage forms",
         "MIRROR_MANAGEMENT": "manage mirror texts",
         "PAIRS_MANAGEMENT": "Manage pairs",
-        "GALLOWS_MANAGENET": "Manage gallows",
+        "HANGMANS_MANAGENET": "Manage hangmans",
         "PUZZLE_PICTURE_MANAGEMENT": "Manage puzzles",
         "ROLE_RIGHTS": "Role-Right connections"
     },
@@ -253,12 +254,12 @@
     },
 
     "ADD_FORM_DESCRIPTION":{
-        "QUESTIONNAIRE_TITLE": "Title of the questionairre:",
+        "QUESTIONNAIRE_TITLE": "Title of the questionnaire:",
         "QUESTIONNAIRE_QUESTION": "Question:",
-        "QUESTIONNAIRE_DESCRIPTION": "Description of the questionairre:"
+        "QUESTIONNAIRE_DESCRIPTION": "Description of the questionnaire:"
     },
 
-    "ADD_GALLOWS":{
+    "ADD_HANGMANS":{
         "ADD_WORDS_TO_GUESS": "Add word",
         "CATEGORIES": "Categories:",
         "OTHER": "Other",
@@ -299,8 +300,8 @@
     },
 
     "END_FORM":{
-        "QUESTION_EVALUATION":"questionairre evaluation",
-        "WRITE_QUESTION_FORM": "Fill the questionairre",
+        "QUESTION_EVALUATION":"questionnaire evaluation",
+        "WRITE_QUESTION_FORM": "Fill the questionnaire",
         "THANKS_FOR_WRITING": "Thank you for completing!",
         "END_QF_THANKS": "The questionnaire is complete. Thank you for the help!",
         "AREA_OF_INTEREST":"Area of interest",
@@ -311,19 +312,19 @@
     },
 
     "FORM_DESCRIPTION":{
-        "QF_TITLE": "Title of the questionairre:",
-        "QF_DESCRIPTION": "Description of the questionairre:"
+        "QF_TITLE": "Title of the questionnaire:",
+        "QF_DESCRIPTION": "Description of the questionnaire:"
     },
 
     "FORM_LIST":{
-        "SEARCH_WITH_TITILE":"Search by title:",
-        "QF_TITLE":"Title of the questionairre:",
+        "SEARCH_WITH_TITLE":"Search by title:",
+        "QF_TITLE":"Title of the questionnaire:",
         "GENERATE_CODE": "Generate token"
     },
 
     "FORM_PROPERTIES":{
-        "QF_TITLE":"Title of the questionairre:",
-        "QF_DESCRIPTION":"Description of the questionairre:",
+        "QF_TITLE":"Title of the questionnaire:",
+        "QF_DESCRIPTION":"Description of the questionnaire:",
         "TITLE": "Title",
         "DESCRIPTION": "Description"
     },
@@ -332,13 +333,13 @@
         "ADD_IDENTIFICATION":"Please add token:"
     },
 
-    "GALLOWS_LIST":{
+    "HANGMAN_LIST":{
         "SEARCH_ABOUT_TEXT":"Search by text:",
         "SEARCH_ABOUT_CATEGORY":"Search by category:",
         "CATEGORIES": "Categories",
         "ALL": "All",
         "CATEGORY_NAME": "Category name",
-        "GALLOW": "Gallows",
+        "HANGMAN": "Hangman words",
         "CATEGORY":"Category"
     },
 
@@ -353,7 +354,7 @@
 
     "LOGIN":{
         "OM":"Student identification number:",
-        "QF_CODE": "Token for questionairre:"
+        "QF_CODE": "Token for questionnaire:"
     },
 
     "MAP":{

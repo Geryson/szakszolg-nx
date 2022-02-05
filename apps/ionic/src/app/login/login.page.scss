@@ -1,0 +1,29 @@
+.rounded{
+    left: 0px;
+    right: 0px;
+    margin: 0px;
+}
+.btn-login{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .top{
+        @supports (-webkit-touch-callout: none) {
+            @media screen and (orientation: landscape) {
+                @supports(padding:max(0vh)) {
+                    padding-left: env(safe-area-inset-left, 1vh);
+                    padding-right: env(safe-area-inset-right, 1vh);
+                };
+            }
+        }
+    }
+}
+

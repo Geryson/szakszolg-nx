@@ -1,18 +1,22 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { AlertService } from '../../shared/services/alert.service'
+import { RedirectService } from '@szakszolg-nx/shared-module'
+import { pages } from '../app-routing.module'
 
 @Component({
     selector: 'nx12-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
     readonly eduIdMaxLength = 11
     readonly eduIdMinLength = this.eduIdMaxLength // This might change in the future
 
     eduId = ''
 
-    constructor(private readonly alert: AlertService) {}
+    constructor(private readonly alert: AlertService, private readonly redirect: RedirectService) {}
+
+    ngOnInit() {}
 
     eduIdIsValid() {
         return (
@@ -30,6 +34,6 @@ export class HomePage {
     }
 
     toAdminPage() {
-        // Navigate to admin page
+        this.redirect.to(pages.login)
     }
 }

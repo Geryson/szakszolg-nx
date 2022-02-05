@@ -9,13 +9,13 @@ import { TranslatePipe } from '@ngx-translate/core'
     providedIn: 'root',
 })
 export class StaticService {
+    static translatePipe: TranslatePipe
+
     constructor(translate: TranslatePipe) {
-        StaticService._translatePipe = translate
+        StaticService.translatePipe = translate
     }
 
-    private static _translatePipe: TranslatePipe
-
-    static get translatePipe(): TranslatePipe {
-        return StaticService._translatePipe
+    init() {
+        // do nothing
     }
 }

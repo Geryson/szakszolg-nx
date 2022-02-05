@@ -5,7 +5,7 @@
         "USERS": "Felhasználók",
         "QUESTIONNAIRE": "Kérdőív",
         "QUESTIONNAIRE_DESCRIPTION_COMPLETING": "Kérdőív leírás kitöltése",
-        "GALLOWS": "Akasztófa",
+        "HANGMAN_WORDS": "Akasztófa",
         "MIRROR_TEXT": "Tükörszöveg",
         "NEW_CATEGORY":"Új kategória",
         "PAIRING": "Párosítás",
@@ -46,7 +46,7 @@
         "ADD_ANSWER": "Válasz hozzáadása",
         "SEND": "Beküldés",
         "SAVE_AND_GO_TO_QUESTION_EDITING": "Kérdések szerkesztése",
-        "EDIT_EVALUATIONCATEGORIES": "Kategóriák szerkesztése",
+        "EDIT_EVALUATION_CATEGORIES": "Kategóriák szerkesztése",
         "SAVE_AND_BACK_TO_THE_LIST": "Mentés és vissza a listához",
         "ADD": "Hozzáadás",
         "UPLOAD": "Feltöltés",
@@ -56,11 +56,11 @@
         "ADD_QF": "Kérdőív hozzáadása",
         "NEXT_TO_ADD_QF": "Tovább a kérdések hozzáadásához",
         "REJECT": "Feladom",
-        "ADD_GALLOW": "Akasztófa hozzáadása",
+        "ADD_HANGMAN": "Akasztófa hozzáadása",
         "COPY_TOKEN": "Token másolása",
         "START": "Indítás",
         "RESTART": "Újrakezdés",
-        "GALLOW":"Akasztófa",
+        "HANGMAN":"Akasztófa",
         "SCHOOL_FINDER":"Iskola kereső",
         "PAIRING": "Párosítás",
         "PUZZLE":"Puzzle",
@@ -95,22 +95,23 @@
         "LOADING": "Betöltés alatt...",
         "SEND_PAIRS":"Biztosan beküldi a párokat?",
         "LOGIN_IS_LOADING": "A bejelentkezés épp folyamatban van, kérem várjon!",
+        "LOGIN_WITH_SAVED_TOKEN": "Bejelentkezés tárolt felhasználóval, kérem várjon!",
         "NOT_ALL_REQUIRED_FILLED": "A mentéshez töltsön ki minden kötelező mezőt megfelelően!",
         "SAVE_IS_LOADING": "A mentés épp folyamatban van, kérem várjon!",
-        "NO_LOAD_GALLOW": "Nem sikerült betölteni az akasztófát!",
+        "NO_LOAD_HANGMAN": "Nem sikerült betölteni az akasztófát!",
         "NO_LOAD_CATEGORY": "Nem sikerült lekérni a kategóriákat!",
-        "DELETE_GALLOW": "Biztosan törölni szeretné az akasztófát?",
+        "DELETE_HANGMAN": "Biztosan törölni szeretné az akasztófát?",
         "DELETE_CATEGORY":"Biztosan szereté törölni a kiválasztott kategóriát?",
         "DELETE_FAILED": "Nem sikerült törölni a kiválasztott elemet!",
         "SAVE_FAILED_CATEGORY": "Nem sikerült menteni a kiválasztott kategóriát!",
-        "DELETE_FAILED_GALLOW_BECAUSE": "Nem sikerült törölni az akasztófát a következő okok miatt:",
+        "DELETE_FAILED_HANGMAN_BECAUSE": "Nem sikerült törölni az akasztófát a következő okok miatt:",
         "SURE_TO_BACK": "Biztosan visszalép? A változtatások nem kerülnek mentésre.",
         "QF_CREATED": "Sikeresen mentette a kérdőívet!",
         "NO_QF_CREATED": "Nem sikerült menteni a kérdőívet!",
         "SAVE_FAILED_QF": "Nem sikerült menteni a kérdőíveket!",
-        "SUCCESS_SAVE_GALLOW": "Sikeresen mentette az akasztófát!",
-        "FAILED_SAVE_GALLOW": "Nem sikerült menteni az akasztófát!",
-        "NO_CREATE_GALLOW": "Nem sikerült létrehozni az akasztófát!",
+        "SUCCESS_SAVE_HANGMAN": "Sikeresen mentette az akasztófát!",
+        "FAILED_SAVE_HANGMAN": "Nem sikerült menteni az akasztófát!",
+        "NO_CREATE_HANGMAN": "Nem sikerült létrehozni az akasztófát!",
         "NO_LOAD_MIRROR": "Nem sikerült betölteni a tükörszöveget!",
         "NO_LOAD_ROLE": "Nem sikerült betölteni a szerepköröket!",
         "NO_LOAD_RIGHT": "Nem sikerült betölteni a jogokat!",
@@ -121,7 +122,7 @@
         "SAVE_SUCCESS_MIRROR": "Sikeresen mentette a tükörszöveget!",
         "SAVE_FAILED_MIRROR": "Nem sikerült menteni a tükörszöveget!",
         "NO_LOAD_PAIRS": "Nem sikerült betölteni a párokat!",
-        "SUCCES_CREATE_PAIRS": "Sikeresen létrehozta a párt!",
+        "SUCCESS_CREATE_PAIRS": "Sikeresen létrehozta a párt!",
         "NO_CREATE_PAIRS": "Nem sikerült létrehozni új párosítást!",
         "SUCCESS_SAVE_PAIRS": "Sikeresen mentette a párt!",
         "FAILED_SAVE_PAIRS": "Nem sikerült menteni a párt!",
@@ -131,7 +132,7 @@
         "DELETE_PUZZLE": "Biztosan törölni szeretné ezt a képet a feltöltött puzzle-listából?",
         "UPLOAD":"Feltöltés folyamatban...",
         "SUCCESS_UPLOAD": "Sikeres feltöltés!",
-        "LOGIN_UNSUCCESS": "Sikertelen bejelentkezés!",
+        "LOGIN_UNSUCCESSFUL": "Sikertelen bejelentkezés!",
         "CANNOT_DOWNLOAD_USER_SETTINGS": "Nem sikerült lekérni a felhasználói jogokat!",
         "AGE_ERROR": "A megadott kor az értelmezési tartományon kívül esik! <br/> (6-99)",
         "QF_UNLOADED": "Nem sikerült lekérni a kérdőívet!",
@@ -163,12 +164,12 @@
         "SAVE_USER_FAIL": "Nem sikerült menteni a felhasználó adatait!",
 		"ONLINE_OR_OFFLINE":"Kérem válassza ki, hogy a létrehozandó Token Online vagy Offline típusú legyen.",
         "LOAD_NEXT_QUESTION": "A következő kérdést töltöm be",
-        "LOAD_PREVIOUS_QUSTION": "Az előző kérdést töltöm be",
+        "LOAD_PREVIOUS_QUESTION": "Az előző kérdést töltöm be",
         "NO_QF_FOR_THIS_TOKEN": "Ehhez az azonosítóhoz nem tartozik kérdőív!",
         "NO_TYPES": "Nincsenek megjelenítendő típusok!",
 		"LOADING_PAIRS": "Párok betöltése folyamatban...",
         "LOADING_MIRROR": "Tükörszöveg betöltése folyamatban...",
-        "LOADING_GALLOWS": "Akasztófa betöltése folyamatban...",
+        "LOADING_HANGMAN_WORDS": "Akasztófa betöltése folyamatban...",
         "LOADING_USERS": "Felhasználói adatok betöltése folyamatban...",
         "LOADING_FORMS": "Kérdőívek betöltése folyamatban...",
         "LOADING_DATA": "Adatok betöltése folyamatban...",
@@ -204,7 +205,7 @@
         "ERROR":"Hiba!",
         "CONFIRM":"Megerősítés!",
         "ALERT": "Figyelmeztetés!",
-        "HEUREKA": "Siker!",
+        "EUREKA": "Siker!",
         "SEND_QF": "Biztosan beküldi a kérdőívet?",
         "PASSWORD": "Jelszó",
         "NOT_SUPPORTED_ACTION": "Nem támogatott művelet",
@@ -221,7 +222,7 @@
         "FORM_MANAGEMENT": "Kérdőívek kezelése",
         "MIRROR_MANAGEMENT": "Tükörszövegek kezelése",
         "PAIRS_MANAGEMENT": "Párosítások kezelése",
-        "GALLOWS_MANAGENET": "Akasztófák kezelése",
+        "HANGMAN_WORDS_MANAGEMENT": "Akasztófák kezelése",
         "PUZZLE_PICTURE_MANAGEMENT": "Puzzle képek kezelése",
         "ROLE_RIGHTS": "Szerepkör-jogkör kapcsolatok kezelése"
     },
@@ -258,7 +259,7 @@
         "QUESTIONNAIRE_DESCRIPTION": "Kérdőív leírása:"
     },
 
-    "ADD_GALLOWS":{
+    "ADD_HANGMAN_WORDS":{
         "ADD_WORDS_TO_GUESS": "Kitalálandó szó hozzáadása",
         "CATEGORIES": "Kategóriák:",
         "OTHER": "Egyéb",
@@ -316,7 +317,7 @@
     },
 
     "FORM_LIST":{
-        "SEARCH_WITH_TITILE":"Keresés cím alapján:",
+        "SEARCH_WITH_TITLE":"Keresés cím alapján:",
         "QF_TITLE":"Kérdőív címe",
         "GENERATE_CODE": "Kódgenerálás"
     },
@@ -332,13 +333,13 @@
         "ADD_IDENTIFICATION":"Kérem adja meg az azonosítót:"
     },
 
-    "GALLOWS_LIST":{
+    "HANGMAN_WORDS_LIST":{
         "SEARCH_ABOUT_TEXT":"Keresés szöveg alapján:",
         "SEARCH_ABOUT_CATEGORY":"Keresés kategória alapján:",
         "CATEGORIES": "Kategóriák",
         "ALL": "Mind",
         "CATEGORY_NAME": "Kategória neve",
-        "GALLOW": "Akasztófa",
+        "HANGMAN": "Akasztófa",
         "CATEGORY":"Kategória"
     },
 
@@ -374,7 +375,7 @@
     "PAIRS_LIST":{
         "SEARCH_ABOUT_TEXT":"Keresés szöveg alapján:",
         "FIRST":"Első",
-        "SECOUND":"Második"
+        "SECOND":"Második"
     },
 
     "RESULT":{
@@ -444,7 +445,7 @@
         "INTERESTED_IN":"Érdekel-e"
     },
 
-    "PUZZLE_SCALER": {
+    "PUZZLE_SCALE": {
         "EDIT_ABORT": "Biztosan megszakítja a szerkesztést?"
     },
 

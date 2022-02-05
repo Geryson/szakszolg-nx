@@ -1,15 +1,13 @@
-import { Router } from '@angular/router'
 import { Location } from '@angular/common'
+import { NavController } from '@ionic/angular'
 
 export interface IRedirectService {
     urls: string[]
-    router: Router
+    router: NavController
     location: Location
     readonly next: string
 
     push(url: string): void
-
-    login(): any
 
     to(url: string, extra: any, hardJump: boolean, callback: (success: boolean) => any): void
 

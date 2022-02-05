@@ -1,5 +1,7 @@
 export interface IPageRecord {
-    guards?: any[]
     title: string
-    url: string
+    icon: string
+    visible: boolean
+    order: number // Note: JS objects are hashmap-like, so order is not guaranteed
+    guards: any[]
 }

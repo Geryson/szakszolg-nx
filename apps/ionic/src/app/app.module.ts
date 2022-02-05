@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { Router, RouteReuseStrategy } from '@angular/router'
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
+import { IonicModule, IonicRouteStrategy, NavController } from '@ionic/angular'
 import { IonicStorageModule } from '@ionic/storage-angular'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
@@ -22,8 +22,19 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { CommonModule, DatePipe } from '@angular/common'
 import { StorageService } from '../shared/services/storage.service'
-import { PageService } from '../shared/services/page.service'
 import { AlertService } from '../shared/services/alert.service'
+import { AuthService } from '../shared/services/auth.service'
+import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt'
+import { StaticService } from '../shared/services/static.service'
+
+export function jwtOptionsFactory(authService: AuthService) {
+    return {
+        tokenGetter: () => {
+            return authService.token
+        },
+        allowedDomains: ['localhost:3000', 'localhost:4200'],
+    }
+}
 
 @NgModule({
     declarations: [AppComponent],
@@ -47,6 +58,13 @@ import { AlertService } from '../shared/services/alert.service'
             },
             defaultLanguage: 'hu',
         }),
+        JwtModule.forRoot({
+            jwtOptionsProvider: {
+                provide: JWT_OPTIONS,
+                useFactory: jwtOptionsFactory,
+                deps: [AuthService],
+            },
+        }),
         ToastModule,
         ConfirmDialogModule,
     ],
@@ -55,10 +73,11 @@ import { AlertService } from '../shared/services/alert.service'
         ConfirmationService,
         { provide: STORAGE_SERVICE, useClass: StorageService },
         StorageService,
-        PageService,
+        StaticService,
         MessageService,
         AlertService,
         RedirectService,
+        AuthService,
         {
             provide: HTTP_INTERCEPTORS,
             useFactory: (router: Router, storage: StorageService, redirect: RedirectService) =>
