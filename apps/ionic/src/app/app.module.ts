@@ -26,6 +26,10 @@ import { AlertService } from '../shared/services/alert.service'
 import { AuthService } from '../shared/services/auth.service'
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt'
 import { StaticService } from '../shared/services/static.service'
+import { APOLLO_OPTIONS } from 'apollo-angular'
+import { InMemoryCache } from '@apollo/client/core'
+import { HttpLink } from 'apollo-angular/http'
+import { api } from '../shared/utils/uri.tools'
 
 export function jwtOptionsFactory(authService: AuthService) {
     return {
@@ -72,6 +76,18 @@ export function jwtOptionsFactory(authService: AuthService) {
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         ConfirmationService,
         { provide: STORAGE_SERVICE, useClass: StorageService },
+        {
+            provide: APOLLO_OPTIONS,
+            useFactory: (httpLink: HttpLink) => {
+                return {
+                    cache: new InMemoryCache(),
+                    link: httpLink.create({
+                        uri: api('graphql'),
+                    }),
+                }
+            },
+            deps: [HttpLink],
+        },
         StorageService,
         StaticService,
         MessageService,
