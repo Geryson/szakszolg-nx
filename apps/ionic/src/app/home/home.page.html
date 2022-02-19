@@ -31,8 +31,8 @@
         </div>
         <div>
             <div class="bottomContainer">
-                <ion-button class="guestBtn" routerLink="/age" shape="round" type="submit">{{ 'BUTTONS.ENTER_GUEST' | translate }}</ion-button>
-                <ion-button (click)="toAdminPage()" class="adminBtn" shape="round" type="submit">{{ 'BUTTONS.ADMIN_PAGE' | translate }}</ion-button>
+                <ion-button class="guestBtn" routerLink="{{ link(pages.guest.guestRoom) }}" shape="round" type="submit">{{ 'BUTTONS.ENTER_GUEST' | translate }}</ion-button>
+                <ion-button class="adminBtn" routerLink="{{ link(pages.admin.login) }}" shape="round" type="submit">{{ 'BUTTONS.ADMIN_PAGE' | translate }}</ion-button>
             </div>
         </div>
     </div>

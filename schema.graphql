@@ -1,0 +1,314 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type GroupingItem {
+    _id: String!
+    correct: String!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    groups: [String!]!
+    item: String!
+    updatedAt: DateTime!
+}
+
+type HangmanWord {
+    _id: String!
+    category: String!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    updatedAt: DateTime!
+    word: String!
+}
+
+type MirrorWord {
+    _id: String!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    updatedAt: DateTime!
+    word: String!
+}
+
+type Mutation {
+    createGroupingItem(createGroupingItemData: CreateGroupingItemInput!): GroupingItem!
+    createHangmanWord(createHangmanWordData: CreateHangmanWordInput!): HangmanWord!
+    createMirrorWord(createMirrorWordData: CreateMirrorWordInput!): MirrorWord!
+    createQuiz(createQuizData: CreateQuizInput!): Quiz!
+    createQuizAnswer(createQuizAnswerData: CreateQuizAnswerInput!): QuizAnswer!
+    createRole(createRoleData: CreateRoleInput!): Role!
+    createSchool(createSchoolData: CreateSchoolInput!): School!
+    createUser(createUserData: CreateUserInput!): User!
+    deleteGroupingItem(deleteGroupingItemData: DeleteGroupingItemInput!): GroupingItem!
+    deleteHangmanWord(deleteHangmanWordData: DeleteHangmanWordInput!): HangmanWord!
+    deleteMirrorWord(deleteMirrorWordData: DeleteMirrorWordInput!): MirrorWord!
+    deleteQuiz(deleteQuizData: DeleteQuizInput!): Quiz!
+    deleteQuizAnswer(deleteQuizAnswerData: DeleteQuizAnswerInput!): QuizAnswer!
+    deleteRole(deleteRoleData: DeleteRoleInput!): Role!
+    deleteSchool(deleteSchoolData: DeleteSchoolInput!): School!
+    deleteUser(deleteUserData: DeleteUserInput!): User!
+    updateGroupingItem(updateGroupingItemData: UpdateGroupingItemInput!): GroupingItem!
+    updateHangmanWord(updateHangmanWordData: UpdateHangmanWordInput!): HangmanWord!
+    updateMirrorWord(updateMirrorWordData: UpdateMirrorWordInput!): MirrorWord!
+    updateQuiz(updateQuizData: UpdateQuizInput!): Quiz!
+    updateQuizAnswer(updateQuizAnswerData: UpdateQuizAnswerInput!): QuizAnswer!
+    updateRole(updateRoleData: UpdateRoleInput!): Role!
+    updateSchool(updateSchoolData: UpdateSchoolInput!): School!
+    updateUser(updateUserData: UpdateUserInput!): User!
+}
+
+type Query {
+    groupingItem(id: String): GroupingItem
+    groupingItems(ids: [String!]): [GroupingItem]!
+    "Get a hangman word randomly"
+    hangmanWord(category: String, id: String): HangmanWord
+    hangmanWords(category: String, ids: [String!]): [HangmanWord]!
+    mirrorWord(id: String): MirrorWord
+    mirrorWords(ids: [String!]): [MirrorWord]!
+    quiz(id: String!): Quiz
+    quizAnswer(id: String!): QuizAnswer
+    quizAnswers(ids: [String!], quizId: String): [QuizAnswer]!
+    quizzes(category: String, ids: [String!]): [Quiz]!
+    role(id: String!): Role
+    roles(ids: [String!]): [Role]!
+    school(id: String!): School
+    schools(address: String, county: String, ids: [String!], name: String, om: String, type: String): [School]!
+    uptime: Float!
+    user(email: String, id: String): User
+    users(ids: [String!]): [User]!
+}
+
+type Quiz {
+    _id: String!
+    categories: [String!]!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    description: String!
+    questions: [QuizQuestion!]!
+    title: String!
+    tokens: [String!]!
+    updatedAt: DateTime!
+}
+
+type QuizAnswer {
+    _id: String!
+    answer: String!
+    answeredAt: DateTime!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    isCorrect: Boolean
+    om: String!
+    questionId: Int!
+    quizId: String!
+    updatedAt: DateTime!
+}
+
+type QuizQuestion {
+    _id: String!
+    answers: [String]
+    correctAnswers: [String]
+    createdAt: DateTime!
+    deletedAt: DateTime
+    question: String!
+    type: String!
+    updatedAt: DateTime!
+}
+
+type Role {
+    _id: String!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    description: String!
+    name: String!
+    permissions: [String!]!
+    updatedAt: DateTime!
+}
+
+type School {
+    _id: String!
+    address: String!
+    county: String!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    name: String!
+    om: String!
+    types: [String!]!
+    updatedAt: DateTime!
+}
+
+type User {
+    _id: String!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    email: String!
+    om: String
+    roles: [Role]
+    updatedAt: DateTime!
+    username: String!
+}
+
+"A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format."
+scalar DateTime
+
+input CreateGroupingItemInput {
+    correct: String!
+    groups: [String!]!
+    item: String!
+}
+
+input CreateHangmanWordInput {
+    category: String!
+    word: String!
+}
+
+input CreateMirrorWordInput {
+    word: String!
+}
+
+input CreateQuizAnswerInput {
+    answer: String!
+    answeredAt: DateTime!
+    om: String!
+    questionId: Int!
+    quizId: String!
+}
+
+input CreateQuizInput {
+    categories: [String!]!
+    description: String!
+    questions: [CreateQuizQuestionInput!]!
+    title: String!
+}
+
+input CreateQuizQuestionInput {
+    answers: [String]
+    correctAnswers: [String]
+    question: String!
+    type: String!
+}
+
+input CreateRoleInput {
+    description: String!
+    name: String!
+    permissions: [String!]!
+}
+
+input CreateSchoolInput {
+    address: String!
+    county: String!
+    name: String!
+    om: String!
+    types: [String!]!
+}
+
+input CreateUserInput {
+    email: String!
+    om: String!
+    password: String!
+    roles: [String]
+    username: String!
+}
+
+input DeleteGroupingItemInput {
+    id: String!
+}
+
+input DeleteHangmanWordInput {
+    id: String!
+}
+
+input DeleteMirrorWordInput {
+    id: String!
+}
+
+input DeleteQuizAnswerInput {
+    id: String!
+}
+
+input DeleteQuizInput {
+    id: String!
+}
+
+input DeleteRoleInput {
+    id: String!
+}
+
+input DeleteSchoolInput {
+    id: String!
+}
+
+input DeleteUserInput {
+    id: String!
+}
+
+input UpdateGroupingItemInput {
+    correct: String
+    groups: [String]
+    id: String!
+    item: String
+}
+
+input UpdateHangmanWordInput {
+    category: String
+    id: String!
+    word: String
+}
+
+input UpdateMirrorWordInput {
+    id: String!
+    word: String!
+}
+
+input UpdateQuizAnswerInput {
+    answer: String
+    answeredAt: DateTime
+    id: String!
+    om: String
+    questionId: Int
+    quizId: String
+}
+
+input UpdateQuizInput {
+    categories: [String]
+    description: String
+    id: String!
+    questions: [UpdateQuizQuestionInput]
+    title: String
+}
+
+input UpdateQuizQuestionInput {
+    answers: [String]
+    correctAnswers: [String]
+    id: String!
+    question: String
+    type: String
+}
+
+input UpdateRoleInput {
+    description: String
+    id: String!
+    name: String
+    permissions: [String]
+}
+
+input UpdateSchoolInput {
+    address: String
+    county: String
+    id: String!
+    name: String
+    om: String
+    types: [String]
+}
+
+input UpdateUserInput {
+    email: String
+    id: String
+    newPassword: String
+    newPasswordConfirm: String
+    om: String
+    password: String!
+    roles: [String]
+    username: String
+}

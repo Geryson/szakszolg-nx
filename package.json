@@ -58,7 +58,7 @@
     "class-validator": "^0.13.2",
     "del-cli": "^4.0.1",
     "dotenv": "^16.0.0",
-    "graphql": "^16.3.0",
+    "graphql": "^15.3.0",
     "graphql-tools": "^8.2.0",
     "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",

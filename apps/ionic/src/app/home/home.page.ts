@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { AlertService } from '../../shared/services/alert.service'
 import { RedirectService } from '@szakszolg-nx/shared-module'
-import { pages } from '../../shared/utils/pages.const'
+import { link, pages } from '../../shared/utils/pages.const'
 
 @Component({
     selector: 'nx12-home',
@@ -13,6 +13,8 @@ export class HomePage implements OnInit {
     readonly eduIdMinLength = this.eduIdMaxLength // This might change in the future
 
     eduId = ''
+    pages = pages
+    link = link
 
     constructor(private readonly alert: AlertService, private readonly redirect: RedirectService) {}
 
@@ -31,9 +33,5 @@ export class HomePage implements OnInit {
         } else {
             this.alert.show('ERROR_OM', ['AGAIN']).then()
         }
-    }
-
-    toAdminPage() {
-        this.redirect.to(pages.admin.login)
     }
 }

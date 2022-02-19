@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
 import { IonInput } from '@ionic/angular'
 import { BehaviorSubject } from 'rxjs'
-import { RedirectService, Log } from '@szakszolg-nx/shared-module'
-import { AuthService } from '../../../shared/services/auth.service'
+import { RedirectService, Log, AUTH_SERVICE, AuthService } from '@szakszolg-nx/shared-module'
 import { AlertService } from '../../../shared/services/alert.service'
 import { pages } from '../../../shared/utils/pages.const'
 
@@ -18,7 +17,7 @@ export class LoginPage implements OnInit {
     private readonly _valid = new BehaviorSubject(false)
 
     constructor(
-        private readonly authService: AuthService,
+        @Inject(AUTH_SERVICE) private readonly authService: AuthService,
         private readonly redirect: RedirectService,
         private readonly alert: AlertService,
     ) {}

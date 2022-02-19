@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators'
 import { RedirectService } from '../services/redirect.service'
 import { IStorageService } from '@szakszolg-nx/ng-interfaces'
 import { STORAGE_SERVICE } from '../injector.tokens'
+import { STORAGE_KEY } from '../utils/constants'
 
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor {
@@ -37,7 +38,10 @@ export class DefaultInterceptor implements HttpInterceptor {
         let token: string | null = null
         if (!req.headers.get('X-AppMeta')?.split(',').includes('NO-AUTH')) {
             await this.storage.waitForStorage()
-            token = (await this.storage.get<string>('token')) ?? null
+            token = (await this.storage.get<string>(STORAGE_KEY.ACCESS_TOKEN)) ?? null
+        }
+        if (!token?.startsWith('Bearer ')) {
+            token = `Bearer ${token}`
         }
         const authReq = req.clone(token ? { headers: req.headers.set('Authorization', token) } : {})
 
