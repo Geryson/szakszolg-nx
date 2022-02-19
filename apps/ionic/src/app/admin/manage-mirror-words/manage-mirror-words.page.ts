@@ -5,8 +5,8 @@ import { BehaviorSubject, Subscription } from 'rxjs'
 import { NG_ICON } from '../../../shared/utils/prime-icons.class'
 import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
-import { Log, execute } from '@szakszolg-nx/shared-module'
-import { link, pages } from 'apps/ionic/src/shared/utils/pages.const'
+import { execute } from '@szakszolg-nx/shared-module'
+import { link, pages } from '../../../shared/utils/pages.const'
 
 @Component({
     selector: 'nx12-manage-mirror-words',

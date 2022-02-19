@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core'
-import { link, pages } from 'apps/ionic/src/shared/utils/pages.const'
+import { link, pages } from '../../../shared/utils/pages.const'
 import { AUTH_SERVICE, AuthService } from '@szakszolg-nx/shared-module'
 
 @Component({

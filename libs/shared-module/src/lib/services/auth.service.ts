@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core'
-import { BehaviorSubject, lastValueFrom } from 'rxjs'
+import { BehaviorSubject } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import {
@@ -10,11 +10,11 @@ import {
     execute,
     STORAGE_KEY,
     STORAGE_SERVICE,
+    PROFILE,
 } from '@szakszolg-nx/shared-module'
 import { IDecodedJwt, IStorageService } from '@szakszolg-nx/ng-interfaces'
-import { Apollo, gql } from 'apollo-angular'
+import { Apollo } from 'apollo-angular'
 import { IUser } from '@szakszolg-nx/api-interfaces'
-import { PROFILE } from '../../../../../apps/ionic/src/shared/graphql/profile.graphql'
 
 @Injectable({
     providedIn: 'root',
