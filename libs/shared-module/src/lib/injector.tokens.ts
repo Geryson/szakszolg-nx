@@ -5,3 +5,4 @@ export const STORAGE_SERVICE = new InjectionToken<IStorageService>('StorageServi
 export const ENVIRONMENT = new InjectionToken<object>('Environment')
 export const AUTH_SERVICE = new InjectionToken<object>('AuthService')
 export const REDIRECT_SERVICE = new InjectionToken<object>('RedirectService')
+export const APOLLO_CLIENT = new InjectionToken<object>('ApolloClient')

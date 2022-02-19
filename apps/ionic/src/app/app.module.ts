@@ -1,4 +1,4 @@
-import { inject, NgModule } from '@angular/core'
+import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { Router, RouteReuseStrategy } from '@angular/router'
 
@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core'
 import {
+    APOLLO_CLIENT,
     AUTH_SERVICE,
     AuthService,
     createTranslateLoader,
@@ -28,12 +29,13 @@ import { StorageService } from '../shared/services/storage.service'
 import { AlertService } from '../shared/services/alert.service'
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt'
 import { StaticService } from '../shared/services/static.service'
-import { APOLLO_OPTIONS } from 'apollo-angular'
+import { Apollo, APOLLO_OPTIONS } from 'apollo-angular'
 import { InMemoryCache } from '@apollo/client/core'
 import { HttpLink } from 'apollo-angular/http'
 import { api } from '@szakszolg-nx/shared-module'
 import { environment } from '../environments/environment'
 import { jwtOptionsFactory } from '../shared/utils/jwt-options'
+import { MirrorWordService } from '../shared/services/mirror-word.service'
 
 @NgModule({
     declarations: [AppComponent],
@@ -71,6 +73,7 @@ import { jwtOptionsFactory } from '../shared/utils/jwt-options'
         { provide: AUTH_SERVICE, useClass: AuthService },
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         { provide: ENVIRONMENT, useValue: environment },
+        { provide: APOLLO_CLIENT, useClass: Apollo },
         ConfirmationService,
         { provide: STORAGE_SERVICE, useClass: StorageService },
         {
@@ -88,6 +91,7 @@ import { jwtOptionsFactory } from '../shared/utils/jwt-options'
         StorageService,
         StaticService,
         MessageService,
+        MirrorWordService,
         AlertService,
         {
             provide: HTTP_INTERCEPTORS,

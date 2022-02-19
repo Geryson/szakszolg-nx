@@ -1,0 +1,57 @@
+<ion-header mode="ios" translucent="true">
+    <div id="yellowLine"></div>
+    <ion-toolbar color="secondary">
+        <ion-buttons class="nav-buttons-container" slot="start">
+            <ion-button [routerLink]="[ '/admin/dashboard' ]" class="nav-button" routerDirection="back" slot="start">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="nav-title" text-center>{{ 'ADMIN_NAV.MIRROR_MANAGEMENT' | translate }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <p-table #dt1 [value]='(filteredMirrorWords$ | async)!' responsiveLayout='scroll' styleClass='p-datatable-striped'>
+        <ng-template pTemplate='caption'>
+            <div class='flex'>
+                <span class='p-input-icon-left ml-auto'>
+                    <i class='pi pi-search'></i>
+                    <input #searchInput (input)='filter(searchInput)' pInputText
+                           placeholder="{{ 'MIRROR_LIST.SEARCH_BY_TEXT' | translate}}" type='text' />
+                </span>
+                <button (click)='clear(searchInput)' [disabled]='!searchInput.value' class='p-button-outlined'
+                        icon='pi pi-{{ NG_ICON.filterSlash }}' label="{{ 'MIRROR_LIST.CLEAR' | translate}}"
+                        pButton></button>
+                <button (click)='openAddDialogue()' class='p-button-outlined p-button-success'
+                        icon='pi pi-{{ NG_ICON.plusCircle }}' label='' pButton></button>
+            </div>
+        </ng-template>
+        <ng-template let-word pTemplate='body'>
+            <tr>
+                <td>{{word.word}}</td>
+                <td>
+                    <button (click)='openEditDialogue(word)' class='p-button-outlined p-button-success'
+                            icon='pi pi-{{ NG_ICON.pencil }}' label='' pButton></button>
+                    <button (click)='deleteWord(word)' class='p-button-outlined p-button-danger'
+                            icon='pi pi-{{ NG_ICON.trash }}' label='' pButton></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ion-content>
+
+<p-dialog [(visible)]='dialog' [draggable]='false' [modal]='true' [resizable]='false' [style]="{maxWidth: '600px'}"
+          header="{{ ('MIRROR_LIST.' + dialog?.toUpperCase()) | translate }}" position='bottom'>
+    <div class='p-grid'>
+        <div class='p-col-12'>
+            <input [(ngModel)]='wordUnderEdit' [placeholder]="'MIRROR_LIST.EXAMPLE' | translate" [required]='true' name='word'
+                   pInputText type='text'>
+        </div>
+    </div>
+    <ng-template pTemplate='footer'>
+        <p-button (click)='save()' [disabled]='!wordUnderEdit' icon='pi pi-check'
+                  label="{{ 'MIRROR_LIST.SAVE' | translate}}" styleClass='p-button p-button-success'></p-button>
+        <p-button (click)='closeDialogue()' icon='pi pi-{{NG_ICON.times}}' label="{{ 'primeng.cancel' | translate }}"
+                  styleClass='p-button p-button-danger'></p-button>
+    </ng-template>
+</p-dialog>

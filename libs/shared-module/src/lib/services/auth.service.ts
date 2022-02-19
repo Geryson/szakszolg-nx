@@ -2,20 +2,25 @@ import { Injectable, Injector } from '@angular/core'
 import { BehaviorSubject, lastValueFrom } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { JwtHelperService } from '@auth0/angular-jwt'
-import { api, ENVIRONMENT, Log, promiseFactory, STORAGE_KEY, STORAGE_SERVICE } from '@szakszolg-nx/shared-module'
+import {
+    api,
+    APOLLO_CLIENT,
+    ENVIRONMENT,
+    Log,
+    execute,
+    STORAGE_KEY,
+    STORAGE_SERVICE,
+} from '@szakszolg-nx/shared-module'
 import { IDecodedJwt, IStorageService } from '@szakszolg-nx/ng-interfaces'
 import { Apollo, gql } from 'apollo-angular'
 import { IUser } from '@szakszolg-nx/api-interfaces'
+import { PROFILE } from '../../../../../apps/ionic/src/shared/graphql/profile.graphql'
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(
-        private readonly http: HttpClient,
-        private readonly injector: Injector,
-        private readonly apollo: Apollo,
-    ) {}
+    constructor(private readonly http: HttpClient, private readonly injector: Injector) {}
 
     // region Properties
 
@@ -73,16 +78,14 @@ export class AuthService {
 
     login(email: string, password: string) {
         const url = api('api/auth/login', this.environment)
-        return promiseFactory(this.http.post<{ access_token: string }>(url, { email, password })).then(
-            ({ access_token }) => {
-                const decoded = this.decode(access_token)
-                this.saveToken(access_token, decoded).then(() => {
-                    this._token.next(access_token)
-                    this._tokenObject.next(decoded)
-                    this.loadProfile(decoded.email)
-                })
-            },
-        )
+        return execute(this.http.post<{ access_token: string }>(url, { email, password })).then(({ access_token }) => {
+            const decoded = this.decode(access_token)
+            this.saveToken(access_token, decoded).then(() => {
+                this._token.next(access_token)
+                this._tokenObject.next(decoded)
+                this.loadProfile(decoded.email)
+            })
+        })
     }
 
     logout() {
@@ -120,23 +123,10 @@ export class AuthService {
     }
 
     private loadProfile(email: string) {
-        this.apollo
+        this.injector
+            .get<Apollo>(APOLLO_CLIENT)
             .query<{ user: IUser }>({
-                query: gql`
-                    query getProfile($email: String!) {
-                        user(email: $email) {
-                            _id
-                            email
-                            username
-                            roles {
-                                _id
-                                name
-                                description
-                                permissions
-                            }
-                        }
-                    }
-                `,
+                query: PROFILE.READ,
                 variables: { email },
             })
             .subscribe((res) => {

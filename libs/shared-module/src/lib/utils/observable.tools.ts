@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
-export function promiseFactory<T>(observable: Observable<T>): Promise<T> {
+export function execute<T>(observable: Observable<T>): Promise<T> {
     return new Promise((resolve, reject) => {
         observable
             .pipe(

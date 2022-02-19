@@ -11,6 +11,11 @@ const routes: Routes = [
         path: lastPartOf(pages.admin.dashboard),
         loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DashboardPageModule),
     },
+    {
+        path: lastPartOf(pages.admin.mirrorWords),
+        loadChildren: () =>
+            import('./manage-mirror-words/manage-mirror-words.module').then((m) => m.ManageMirrorWordsPageModule),
+    },
 ]
 
 @NgModule({

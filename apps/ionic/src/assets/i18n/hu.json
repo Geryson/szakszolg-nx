@@ -367,9 +367,14 @@
     },
 
     "MIRROR_LIST":{
-        "SEARCH_ABAUT_TEXT":"Keresés szöveg alapján:",
+        "SEARCH_BY_TEXT":"Keresés szöveg alapján",
         "USERNAME":"Felhasználónév",
-        "MIRROR_TEXT":"Tükörszöveg"
+        "MIRROR_TEXT":"Tükörszöveg",
+        "CLEAR": "Mind",
+        "ADD": "Új szöveg felvétele",
+        "EDIT": "Meglévő szöveg szerkesztése",
+        "EXAMPLE": "Példa szöveg",
+        "SAVE": "Mentés"
     },
 
     "PAIRS_LIST":{
