@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { CoreResolver } from './core.resolver'
 import { MongooseModule } from '@nestjs/mongoose'
 import { mongooseConfig } from './config/mongo-config.factory'
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 
 @Module({
     imports: [
@@ -14,7 +15,8 @@ import { mongooseConfig } from './config/mongo-config.factory'
             load: [configuration],
             validationSchema,
         }),
-        GraphQLModule.forRoot({
+        GraphQLModule.forRoot<ApolloDriverConfig>({
+            driver: ApolloDriver,
             autoSchemaFile: true,
             playground: true,
         }),
