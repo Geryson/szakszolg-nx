@@ -16,6 +16,31 @@ const routes: Routes = [
         loadChildren: () =>
             import('./manage-mirror-words/manage-mirror-words.module').then((m) => m.ManageMirrorWordsPageModule),
     },
+    {
+        path: lastPartOf(pages.admin.profile),
+        loadChildren: () => import('./profile/profile.module').then((m) => m.ProfilePageModule),
+    },
+    {
+        path: lastPartOf(pages.admin.surveysManagement),
+        loadChildren: () => import('./manage-surveys/manage-surveys.module').then((m) => m.ManageSurveysPageModule),
+    },
+    {
+        path: lastPartOf(pages.admin.users),
+        loadChildren: () => import('./manage-users/manage-users.module').then((m) => m.ManageUsersPageModule),
+    },
+    {
+        path: lastPartOf(pages.admin.hangmanWords),
+        loadChildren: () =>
+            import('./manage-hangman-words/manage-hangman-words.module').then((m) => m.ManageHangmanWordsPageModule),
+    },
+    {
+        path: lastPartOf(pages.admin.puzzleImages),
+        loadChildren: () => import('./manage-puzzles/manage-puzzles.module').then((m) => m.ManagePuzzlesPageModule),
+    },
+    {
+        path: lastPartOf(pages.admin.groupingItems),
+        loadChildren: () => import('./manage-groups/manage-groups.module').then((m) => m.ManageGroupsPageModule),
+    },
 ]
 
 @NgModule({

@@ -20,9 +20,15 @@ export const pages = {
         ageGate: 'guest/age-gate',
         guestRoom: 'guest/guest-room',
         hangman: 'guest/hangman',
-        mirror: 'guest/mirror',
+        mirrorWords: 'guest/mirror',
+        groupingItems: 'guest/grouping-items',
         puzzle: 'guest/puzzle',
-        survey: 'guest/survey',
+        schoolFinder: 'guest/school-finder',
+    },
+    student: {
+        _path: 'student',
+        enterToken: 'student/enter-token',
+        fillSurvey: 'student/fill-survey',
     },
 }
 
