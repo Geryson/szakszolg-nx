@@ -80,6 +80,7 @@ import { GraphQLModule } from &#x27;@nestjs/graphql&#x27;
 import { CoreResolver } from &#x27;./core.resolver&#x27;
 import { MongooseModule } from &#x27;@nestjs/mongoose&#x27;
 import { mongooseConfig } from &#x27;./config/mongo-config.factory&#x27;
+import { ApolloDriver, ApolloDriverConfig } from &#x27;@nestjs/apollo&#x27;
 
 @Module({
     imports: [
@@ -88,7 +89,8 @@ import { mongooseConfig } from &#x27;./config/mongo-config.factory&#x27;
             load: [configuration],
             validationSchema,
         }),
-        GraphQLModule.forRoot({
+        GraphQLModule.forRoot&lt;ApolloDriverConfig&gt;({
+            driver: ApolloDriver,
             autoSchemaFile: true,
             playground: true,
         }),
