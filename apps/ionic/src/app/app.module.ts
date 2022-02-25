@@ -37,6 +37,7 @@ import { environment } from '../environments/environment'
 import { jwtOptionsFactory } from '../shared/utils/jwt-options'
 import { MirrorWordService } from '../shared/services/mirror-word.service'
 import { Drivers } from '@ionic/storage'
+import { NxSharedModule } from '../shared/nx-shared.module'
 
 @NgModule({
     declarations: [AppComponent],
@@ -50,6 +51,7 @@ import { Drivers } from '@ionic/storage'
         HttpClientModule,
         BrowserModule,
         BrowserAnimationsModule,
+        NxSharedModule,
         SharedModule,
         CommonModule,
         TranslateModule.forRoot({
