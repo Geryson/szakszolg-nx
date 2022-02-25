@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators'
  */
 export function task<T>(observable: Observable<T>): Promise<T> {
     return new Promise((resolve, reject) => {
-        observable
+        const obs = observable
             .pipe(
                 catchError((err, caught) => {
                     reject(err)
@@ -16,6 +16,6 @@ export function task<T>(observable: Observable<T>): Promise<T> {
                 }),
             )
             .subscribe((value) => resolve(value))
-            .unsubscribe()
+        return obs
     })
 }

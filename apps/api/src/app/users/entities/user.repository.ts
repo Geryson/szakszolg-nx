@@ -23,7 +23,7 @@ export class UserRepository {
     public async findAll(data: GetUsersArgs | null): Promise<IUser[] & { roles?: IRole[] }> {
         return data && Object.keys(data).length > 0
             ? Promise.all(data.ids.map((id) => this.findOne({ id })))
-            : this.userModel.find()
+            : this.userModel.find({ deletedAt: { $eq: null } }).populate('roles')
     }
 
     public async findOne(data: GetUserArgs): Promise<IUser> {
@@ -35,7 +35,12 @@ export class UserRepository {
     }
 
     public async create(data: CreateUserInput): Promise<IUser> {
-        return new this.userModel({ ...data, _id: new Types.ObjectId() }).save()
+        return new this.userModel({
+            ...data,
+            _id: new Types.ObjectId(),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+        }).save()
     }
 
     public async update(data: UpdateUserInput): Promise<IUser> {

@@ -36,6 +36,7 @@ import { api } from '@szakszolg-nx/shared-module'
 import { environment } from '../environments/environment'
 import { jwtOptionsFactory } from '../shared/utils/jwt-options'
 import { MirrorWordService } from '../shared/services/mirror-word.service'
+import { Drivers } from '@ionic/storage'
 
 @NgModule({
     declarations: [AppComponent],
@@ -43,7 +44,7 @@ import { MirrorWordService } from '../shared/services/mirror-word.service'
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
-        IonicStorageModule.forRoot(),
+        IonicStorageModule.forRoot({ name: '_szakszolg', driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage] }),
         AppRoutingModule,
         FormsModule,
         HttpClientModule,

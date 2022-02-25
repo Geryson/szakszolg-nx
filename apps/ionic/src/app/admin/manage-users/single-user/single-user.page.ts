@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Inject, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { IUser } from '@szakszolg-nx/api-interfaces'
 import { UserService } from '../../../../shared/services/user.service'
 import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
-import { Log, omit, task } from '@szakszolg-nx/shared-module'
+import { AUTH_SERVICE, AuthService, Log, omit, task } from '@szakszolg-nx/shared-module'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { ConfirmationService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
+import { link, pages } from '../../../../shared/utils/pages.const'
 
 @Component({
     selector: 'nx12-single-user',
@@ -16,6 +17,8 @@ import { TranslatePipe } from '@ngx-translate/core'
 })
 export class SingleUserPage implements OnInit {
     NG_ICON = NG_ICON
+    link = link
+    pages = pages
     user: Partial<IUser> | null | any = null
     originalUser: Partial<IUser> | null | any = null
     editing: Record<string, boolean> = {}
@@ -27,6 +30,7 @@ export class SingleUserPage implements OnInit {
     private loading = false
 
     constructor(
+        @Inject(AUTH_SERVICE) private readonly authService: AuthService,
         private readonly activatedRoute: ActivatedRoute,
         private readonly userService: UserService,
         private readonly confirmation: ConfirmationService,
@@ -87,6 +91,10 @@ export class SingleUserPage implements OnInit {
         this.passwordDialog = false
         this.dialogCallback?.()
         this.dialogCallback = null
+    }
+
+    onClickLogOut() {
+        this.authService.logout()
     }
 }
 
