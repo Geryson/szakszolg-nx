@@ -7,7 +7,7 @@ import {
     APOLLO_CLIENT,
     ENVIRONMENT,
     Log,
-    execute,
+    task,
     STORAGE_KEY,
     STORAGE_SERVICE,
     PROFILE,
@@ -26,8 +26,12 @@ export class AuthService {
 
     private _tokenObject = new BehaviorSubject<any | null>(null)
 
-    get tokenObject(): BehaviorSubject<any> {
-        return this._tokenObject
+    get tokenObject(): Partial<IUser> {
+        return this._tokenObject.value
+    }
+
+    get user(): Promise<Partial<IUser> | null> {
+        return this.storage.get<Partial<IUser>>(STORAGE_KEY.PROFILE)
     }
 
     private _token = new BehaviorSubject<string | null>(null)
@@ -78,7 +82,7 @@ export class AuthService {
 
     login(email: string, password: string) {
         const url = api('api/auth/login', this.environment)
-        return execute(this.http.post<{ access_token: string }>(url, { email, password })).then(({ access_token }) => {
+        return task(this.http.post<{ access_token: string }>(url, { email, password })).then(({ access_token }) => {
             const decoded = this.decode(access_token)
             this.saveToken(access_token, decoded).then(() => {
                 this._token.next(access_token)

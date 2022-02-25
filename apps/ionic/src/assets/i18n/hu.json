@@ -227,14 +227,24 @@
         "ROLE_RIGHTS": "Szerepkör-jogkör kapcsolatok kezelése"
     },
 
-    "USER_SETTINGS":{
-        "NAME": "Név:",
-        "OM": "Oktatási azonosító:",
-        "EMAIL": "E-mail:",
-        "PASSWORD": "Jelszó:",
-        "RE_PASSWORD": "Jelszó újra:",
-        "ROLE_NAME": "Szerepkör neve",
-        "IS_ACTIVE": "Aktív-e"
+    "USER_EDIT":{
+        "_id": "Azonosító",
+        "username": "Név",
+        "om": "Oktatási azonosító",
+        "email": "E-mail",
+        "password": "Jelenlegi jelszó",
+        "newPassword": "Új jelszó",
+        "newPasswordConfirm": "Új jelszó újra",
+        "roles": "Szerepkör",
+        "ERROR": {
+            "username" : "A felhasználónévnek legálább 3 karakter hosszúnak kell lennie",
+            "newPassword": "A jelszónak tartalmaznia kell egy kisbetűt, egy nagybetűt és egy számot, valamint legalább 8 karakter hosszúnak kell lennie.",
+            "newPasswordConfirm": "A két jelszó nem egyezik",
+            "om": "Érvénytelen oktatási azonosító"
+        },
+        "CANCEL": "Biztosan eldobja a változtatásokat?",
+        "PASSWORD_DIALOG_TITLE": "Jelszavas megerősítés",
+        "PASSWORD_DIALOG_CONTENT": "A változtatások mentéséhez adja meg a jelenlegi jelszavát"
     },
 
     "USER_LIST":{

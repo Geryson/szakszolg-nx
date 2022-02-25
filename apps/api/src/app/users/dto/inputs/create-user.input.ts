@@ -17,7 +17,7 @@ export class CreateUserInput extends GqlInput {
     @IsNotEmpty()
     password: string
 
-    @Field()
+    @Field({ nullable: true })
     om?: string
 
     @Field(() => [String], { nullable: 'itemsAndList' })
