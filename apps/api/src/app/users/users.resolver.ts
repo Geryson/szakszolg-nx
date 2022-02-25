@@ -33,14 +33,14 @@ export class UsersResolver {
 
     @Mutation(() => User)
     @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission('create')
+    @Permission('add')
     createUser(@Args('createUserData') data: CreateUserInput): Promise<IUser> {
         return this.usersService.create(data)
     }
 
     @Mutation(() => User)
     @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission('update')
+    @Permission('edit')
     updateUser(@Args('updateUserData') data: UpdateUserInput): Promise<IUser> {
         return this.usersService.update(data)
     }

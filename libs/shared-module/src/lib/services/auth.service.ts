@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core'
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject, firstValueFrom } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { JwtHelperService } from '@auth0/angular-jwt'
 import {
@@ -82,14 +82,17 @@ export class AuthService {
 
     login(email: string, password: string) {
         const url = api('api/auth/login', this.environment)
-        return task(this.http.post<{ access_token: string }>(url, { email, password })).then(({ access_token }) => {
-            const decoded = this.decode(access_token)
-            this.saveToken(access_token, decoded).then(() => {
-                this._token.next(access_token)
-                this._tokenObject.next(decoded)
-                this.loadProfile(decoded.email)
-            })
-        })
+        return firstValueFrom(this.http.post<{ access_token: string }>(url, { email, password })).then(
+            ({ access_token }) => {
+                const decoded = this.decode(access_token)
+                Log.debug('AuthService::login', 'decoded', decoded)
+                this.saveToken(access_token, decoded).then(() => {
+                    this._token.next(access_token)
+                    this._tokenObject.next(decoded)
+                    this.loadProfile(decoded.email)
+                })
+            },
+        )
     }
 
     logout() {
@@ -114,8 +117,12 @@ export class AuthService {
 
     private saveToken(access_token: string, decoded: IDecodedJwt) {
         return Promise.all([
-            this.storage.set(STORAGE_KEY.ACCESS_TOKEN, access_token).then(),
-            this.storage.set(STORAGE_KEY.TOKEN_OBJECT, decoded).then(),
+            this.storage
+                .set(STORAGE_KEY.ACCESS_TOKEN, access_token)
+                .then(() => Log.debug('AuthService::saveToken', 'access_token')),
+            this.storage
+                .set(STORAGE_KEY.TOKEN_OBJECT, decoded)
+                .then(() => Log.debug('AuthService::saveToken', 'token_object')),
         ])
     }
 

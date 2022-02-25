@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core'
 import { link, pages } from '../../../shared/utils/pages.const'
-import { AUTH_SERVICE, AuthService, Log } from '@szakszolg-nx/shared-module'
-import { ABILITIES, check, IRole, IUser, permission, RESOURCES } from '@szakszolg-nx/api-interfaces'
+import { AUTH_SERVICE, AuthService } from '@szakszolg-nx/shared-module'
+import { ABILITIES, check, IUser, RESOURCES } from '@szakszolg-nx/api-interfaces'
 
 @Component({
     selector: 'nx12-dashboard',
