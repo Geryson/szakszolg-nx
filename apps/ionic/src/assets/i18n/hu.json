@@ -247,10 +247,20 @@
         "PASSWORD_DIALOG_CONTENT": "A változtatások mentéséhez adja meg a jelenlegi jelszavát"
     },
 
-    "USER_LIST":{
-        "SEARCH_NAME_OR_USERNAME": "Keresés név/e-mail cím alapján:",
+    "MANAGE_USERS":{
+        "SEARCH_NAME_OR_USERNAME": "Felhasználónév / Email...",
+        "DELETE_USER_CONFIRM": "Biztosan törölni szeretné ezt a felhasználót?",
+        "USER_DELETED": "Felhasználó törölve",
+        "USER_DELETED_DETAIL": "Felhasználó sikeresen törölve",
         "USERNAME": "Felhasználónév",
-        "EMAIL": "e-mail"
+        "EMAIL": "e-mail",
+        "TABLE": {
+            "ID": "Azonosító",
+            "USERNAME": "Felhasználónév",
+            "EMAIL": "Email",
+            "ROLES": "Jogosultságok",
+            "ACTIONS": "Műveletek"
+        }
     },
 
     "ADD_FORM":{

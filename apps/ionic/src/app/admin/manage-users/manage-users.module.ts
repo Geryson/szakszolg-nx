@@ -9,9 +9,20 @@ import { ManageUsersPageRoutingModule } from './manage-users-routing.module'
 import { ManageUsersPage } from './manage-users.page'
 import { TranslateModule } from '@ngx-translate/core'
 import { TableModule } from 'primeng/table'
+import { InputTextModule } from 'primeng/inputtext'
+import { ButtonModule } from 'primeng/button'
 
 @NgModule({
-    imports: [CommonModule, FormsModule, IonicModule, ManageUsersPageRoutingModule, TranslateModule, TableModule],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ManageUsersPageRoutingModule,
+        TranslateModule,
+        TableModule,
+        InputTextModule,
+        ButtonModule,
+    ],
     declarations: [ManageUsersPage],
 })
 export class ManageUsersPageModule {}

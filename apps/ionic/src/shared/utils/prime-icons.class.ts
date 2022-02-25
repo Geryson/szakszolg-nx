@@ -207,7 +207,7 @@ export const NG_ICON = {
     spinner: 'spinner',
 }
 
-export class PrimeIcons {
+export class PrimeIcon {
     static create(icon: string, size: number = 1, spin = false, color = 'inherit', additional: string[] = []): string {
         // language=HTML
         return `<i class="${additional.join(' ')} pi pi-${icon} ${

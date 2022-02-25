@@ -13,6 +13,7 @@ import { SharedModule } from 'primeng/api'
 import { TranslateModule } from '@ngx-translate/core'
 import { TooltipModule } from 'primeng/tooltip'
 import { DialogModule } from 'primeng/dialog'
+import { NxSharedModule } from '../../../../shared/nx-shared.module'
 
 @NgModule({
     imports: [
@@ -26,6 +27,8 @@ import { DialogModule } from 'primeng/dialog'
         TranslateModule,
         TooltipModule,
         DialogModule,
+        SharedModule,
+        NxSharedModule,
     ],
     declarations: [SingleUserPage],
 })

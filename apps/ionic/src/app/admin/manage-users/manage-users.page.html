@@ -1,21 +1,71 @@
-<ion-header mode="ios" translucent="true">
-    <div id="yellowLine"></div>
-    <ion-toolbar color="secondary">
-        <ion-buttons class="nav-buttons-container" slot="start">
-            <ion-button class="nav-button" routerLink="{{ link(pages.admin.dashboard) }}" slot="start">
-                <ion-icon name="arrow-back"></ion-icon>
+<ion-header mode='ios' translucent='true'>
+    <div id='yellowLine'></div>
+    <ion-toolbar color='secondary'>
+        <ion-buttons class='nav-buttons-container' slot='start'>
+            <ion-button class='nav-button' routerLink='{{ link(pages.admin.dashboard) }}' slot='start'>
+                <ion-icon name='arrow-back'></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title class="nav-title" text-center>{{ 'NAVIGATION.USERS' | translate }}</ion-title>
-        <ion-button (click)="onClickLogOut()" class="nav-button exitbtn" routerLink="/home" slot="end">
-            <ion-icon name="exit"></ion-icon>
+        <ion-title class='nav-title' text-center>{{ 'NAVIGATION.USERS' | translate }}</ion-title>
+        <ion-button (click)='onClickLogOut()' class='nav-button exitbtn' routerLink='/home' slot='end'>
+            <ion-icon name='exit'></ion-icon>
         </ion-button>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <main>
-        {{(users | async)?.data | json}}
-        <p-table [value]='[]' responsiveLayout='stack'></p-table>
+        <p-table #dt [globalFilterFields]="['username', 'email']" [value]='users' responsiveLayout='stack'
+                 styleClass='p-datatable-striped'>
+            <ng-template pTemplate='caption'>
+                <div class='flex align-items-center justify-content-between'>
+                    <span class='p-input-icon-left'>
+                    <i class='pi pi-search'></i>
+                    <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
+                           placeholder="{{ 'MANAGE_USERS.SEARCH_NAME_OR_USERNAME' | translate }}" type='text' />
+                </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate='header'>
+                <tr>
+                    <th pSortableColumn='_id'>{{ 'MANAGE_USERS.TABLE.ID' | translate }}
+                        <p-sortIcon field='_id'></p-sortIcon>
+                    </th>
+                    <th pSortableColumn='username'>{{ 'MANAGE_USERS.TABLE.USERNAME' | translate }}
+                        <p-sortIcon field='username'></p-sortIcon>
+                    </th>
+                    <th pSortableColumn='email'>{{ 'MANAGE_USERS.TABLE.EMAIL' | translate }}
+                        <p-sortIcon field='email'></p-sortIcon>
+                    </th>
+                    <th pSortableColumn='roles'>{{ 'MANAGE_USERS.TABLE.ROLES' | translate }}
+                        <p-sortIcon field='roles'></p-sortIcon>
+                    </th>
+                    <th>{{ 'MANAGE_USERS.TABLE.ACTIONS' | translate }}</th>
+                </tr>
+            </ng-template>
+            <ng-template let-user pTemplate='body'>
+                <tr>
+                    <td><span
+                        class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ID' | translate }}</span>{{ user._id | slice:16 }}
+                    </td>
+                    <td><span
+                        class='p-column-title'>{{ 'MANAGE_USERS.TABLE.USERNAME' | translate }}</span>{{ user.username }}
+                    </td>
+                    <td><span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.EMAIL' | translate }}</span>{{ user.email }}
+                    </td>
+                    <td><span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ROLES' | translate }}</span>
+                        <span *ngFor='let role of user.roles'>
+                            {{ role.name }}
+                        </span>
+                    </td>
+                    <td><span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ACTIONS' | translate }}</span>
+                        <span class='p-buttonset'>
+                            <button (click)='editClick(user)' *ngIf='userCanEditUsers' class='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
+                            <button (click)='deleteClick(user)' *ngIf='userCanDeleteUsers' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
+                        </span>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
     </main>
 </ion-content>

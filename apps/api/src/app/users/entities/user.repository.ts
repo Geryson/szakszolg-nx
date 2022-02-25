@@ -23,7 +23,7 @@ export class UserRepository {
     public async findAll(data: GetUsersArgs | null): Promise<IUser[] & { roles?: IRole[] }> {
         return data && Object.keys(data).length > 0
             ? Promise.all(data.ids.map((id) => this.findOne({ id })))
-            : this.userModel.find().populate('roles')
+            : this.userModel.find({ deletedAt: { $eq: null } }).populate('roles')
     }
 
     public async findOne(data: GetUserArgs): Promise<IUser> {
