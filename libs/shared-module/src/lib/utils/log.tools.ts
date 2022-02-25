@@ -1,7 +1,7 @@
 function cons(method: string, from: string, message: string, ...optionalParams: any[]) {
     const date = new Date()
     ;(console as any)[method](
-        `(${date.getHours()}:${date.getMinutes()}::${date.getSeconds()}) [${from}] ${message}`,
+        `(${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}) [${from}] ${message}`,
         ...optionalParams,
     )
 }
