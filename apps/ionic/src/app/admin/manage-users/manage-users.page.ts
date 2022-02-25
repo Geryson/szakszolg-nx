@@ -78,7 +78,6 @@ export class ManageUsersPage implements OnInit, OnDestroy {
 
     private async checkPerms() {
         const user = await this.authService.user
-        Log.debug('ManageUsersPage::CheckPerms', 'user:', user)
         this.userCanEditUsers = check(user as IUser, { resource: RESOURCES.USERS, ability: ABILITIES.EDIT })
         this.userCanDeleteUsers = check(user as IUser, { resource: RESOURCES.USERS, ability: ABILITIES.DELETE })
     }
