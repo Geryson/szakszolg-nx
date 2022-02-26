@@ -1,0 +1,6 @@
+.p-column-title {
+    font-weight: bold;
+    &::after {
+        content: ":";
+    }
+}

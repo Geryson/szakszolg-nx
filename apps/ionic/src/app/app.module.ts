@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { Injector, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { Router, RouteReuseStrategy } from '@angular/router'
 
@@ -108,4 +108,10 @@ import { NxSharedModule } from '../shared/nx-shared.module'
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+    constructor(private readonly injector: Injector) {
+        APP_INJECTOR = this.injector
+    }
+}
+
+export let APP_INJECTOR: Injector

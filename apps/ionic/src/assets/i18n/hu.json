@@ -353,14 +353,15 @@
         "ADD_IDENTIFICATION":"Kérem adja meg az azonosítót:"
     },
 
-    "HANGMAN_WORDS_LIST":{
-        "SEARCH_ABOUT_TEXT":"Keresés szöveg alapján:",
-        "SEARCH_ABOUT_CATEGORY":"Keresés kategória alapján:",
-        "CATEGORIES": "Kategóriák",
-        "ALL": "Mind",
-        "CATEGORY_NAME": "Kategória neve",
+    "MANAGE_HANGMAN_WORDS":{
         "HANGMAN": "Akasztófa",
-        "CATEGORY":"Kategória"
+        "CATEGORY":"Kategória",
+        "WORD": "Szó",
+        "ACTIONS": "Műveletek",
+        "SEARCH": "Kategória / Szó...",
+        "DELETE_WORD_CONFIRM": "Biztosan törölni szeretné ezt a szót?",
+        "WORD_DELETED": "Szó törölve",
+        "WORD_DELETED_DETAIL": "Akasztófa szó sikeresen törölve."
     },
 
     "GET_FORM_TOKEN":{

@@ -11,26 +11,26 @@ export class HangmanWordService {
     constructor(@Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo) {}
 
     browse() {
-        return this.apolloClient.watchQuery({
+        return this.apolloClient.watchQuery<{ hangmanWords: Partial<IHangmanWord>[] }>({
             query: HANGMAN_WORDS.BROWSE,
         })
     }
 
     random() {
-        return this.apolloClient.watchQuery({
+        return this.apolloClient.watchQuery<{ hangmanWord: Partial<IHangmanWord> }>({
             query: HANGMAN_WORDS.RANDOM,
         })
     }
 
     edit(id: string, data: Partial<Omit<IHangmanWord, '_id'>>) {
-        return this.apolloClient.mutate<{ user: Partial<IHangmanWord> }>({
+        return this.apolloClient.mutate<{ hangmanWord: Partial<IHangmanWord> }>({
             mutation: HANGMAN_WORDS.EDIT,
             variables: { id, ...data },
         })
     }
 
     destroy(id: string) {
-        return this.apolloClient.mutate<{ user: Partial<IHangmanWord> }>({
+        return this.apolloClient.mutate<{ hangmanWord: Partial<IHangmanWord> }>({
             mutation: HANGMAN_WORDS.DESTROY,
             variables: { id },
         })

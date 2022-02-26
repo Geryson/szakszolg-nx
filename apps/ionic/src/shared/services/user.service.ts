@@ -7,7 +7,7 @@ import { IUser } from '@szakszolg-nx/api-interfaces'
     providedIn: 'root',
 })
 export class UserService {
-    constructor(@Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo) {}
+    constructor(@Inject(APOLLO_CLIENT) readonly apolloClient: Apollo) {}
 
     browse() {
         return this.apolloClient.watchQuery<{ users: Partial<IUser>[] }>({
