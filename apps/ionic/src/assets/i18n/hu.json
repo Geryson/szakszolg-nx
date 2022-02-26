@@ -361,7 +361,10 @@
         "SEARCH": "Kategória / Szó...",
         "DELETE_WORD_CONFIRM": "Biztosan törölni szeretné ezt a szót?",
         "WORD_DELETED": "Szó törölve",
-        "WORD_DELETED_DETAIL": "Akasztófa szó sikeresen törölve."
+        "WORD_DELETED_DETAIL": "Akasztófa szó sikeresen törölve.",
+        "SAVE": "Mentés",
+        "SUCCESS": "Sikeres Mentés",
+        "SUCCESS_DETAIL": "A változtatások sikeresen el lettek mentve"
     },
 
     "GET_FORM_TOKEN":{

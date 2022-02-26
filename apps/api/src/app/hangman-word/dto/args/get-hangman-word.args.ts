@@ -3,7 +3,7 @@ import { ArgsType, Field } from '@nestjs/graphql'
 
 @ArgsType()
 export class GetHangmanWordArgs extends IdArg {
-    @Field({ nullable: true, deprecationReason: 'This field is unused' })
+    @Field({ nullable: true })
     id: string
 
     @Field({ nullable: true })

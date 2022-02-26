@@ -42,7 +42,6 @@ export class SingleUserPage implements OnInit {
         const params = await task(this.activatedRoute.params)
         this.queryRef = this.userService.read(params.id)
         this.queryRef.valueChanges.subscribe(({ data }) => {
-            Log.debug('SingleUserPage::ngOnInit->valueChanges@queryRef', 'HIT', data.user)
             this.user = { ...data.user }
             this.originalUser = { ...data.user }
             this.loading = false

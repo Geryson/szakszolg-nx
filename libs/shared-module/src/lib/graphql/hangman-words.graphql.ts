@@ -52,4 +52,22 @@ export const HANGMAN_WORDS = {
             }
         }
     `,
+
+    READ: gql`
+        query ($id: String!) {
+            hangmanWord(id: $id) {
+                _id
+                word
+                category
+            }
+        }
+    `,
+
+    BROWSE_CATEGORIES: gql`
+        query {
+            hangmanWords {
+                category
+            }
+        }
+    `,
 }

@@ -35,6 +35,8 @@ export class HangmanWordRepository extends SimpleRepository<
     }
 
     override async findOne(data: GetHangmanWordArgs): Promise<IHangmanWord> {
+        if (data.id) return super.findOne(data)
+
         if (data?.category) {
             // Note: If we want more than a few hundred words per category, we should use findOne().skip()
             const res = await this.model.find({ category: { $regex: data.category, $options: 'i' } })

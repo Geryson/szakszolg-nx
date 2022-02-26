@@ -23,8 +23,6 @@ export class HangmanWordResolver {
     }
 
     @Query(() => [HangmanWord], { nullable: 'items' })
-    @Permission('browse')
-    @UseGuards(GqlAuthGuard, PermissionGuard)
     hangmanWords(@Args({ nullable: true }) data: GetHangmanWordsArgs | null): Promise<IHangmanWord[]> {
         return this.service.findAll(data)
     }

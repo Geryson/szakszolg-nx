@@ -35,4 +35,24 @@ export class HangmanWordService {
             variables: { id },
         })
     }
+
+    read(id: string) {
+        return this.apolloClient.watchQuery<{ hangmanWord: Partial<IHangmanWord> }>({
+            query: HANGMAN_WORDS.READ,
+            variables: { id },
+        })
+    }
+
+    browseCategories() {
+        return this.apolloClient.watchQuery<{ hangmanWords: Partial<IHangmanWord>[] }>({
+            query: HANGMAN_WORDS.BROWSE_CATEGORIES,
+        })
+    }
+
+    add(category: string, word: string) {
+        return this.apolloClient.mutate<{ hangmanWord: Partial<IHangmanWord> }>({
+            mutation: HANGMAN_WORDS.ADD,
+            variables: { category, word },
+        })
+    }
 }

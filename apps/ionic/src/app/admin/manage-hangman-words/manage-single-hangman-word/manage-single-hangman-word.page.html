@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>manage-single-hangman-word</ion-title>
-  </ion-toolbar>
-</ion-header>
+<nx12-header title='ADMIN_NAV.HANGMAN_WORDS_MANAGEMENT'></nx12-header>
 
 <ion-content>
-
+    <div *ngIf='!!word'>
+        <div>
+            <span>{{ 'MANAGE_HANGMAN_WORDS.WORD' | translate }}</span>
+            <input (click)='check("word")' [(ngModel)]='word!.word' pInputText type='text' />
+        </div>
+        <div>
+            <span>{{ 'MANAGE_HANGMAN_WORDS.CATEGORY' | translate }}</span>
+            <p-autoComplete (completeMethod)="search($event)" (input)='check("category")' [(ngModel)]="word!.category" [dropdown]='true' [suggestions]="filteredCategories"></p-autoComplete>
+        </div>
+        <div>
+            <p-button (click)="save()" [disabled]="!word?.word || !word?.category" label='{{ "MANAGE_HANGMAN_WORDS.SAVE" | translate }}'></p-button>
+        </div>
+    </div>
 </ion-content>

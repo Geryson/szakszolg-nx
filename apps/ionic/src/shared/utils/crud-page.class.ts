@@ -4,7 +4,7 @@ import { NG_ICON } from './prime-icons.class'
 import { QueryRef } from 'apollo-angular'
 import { Subscription } from 'rxjs'
 import { APP_INJECTOR } from '../../app/app.module'
-import { AUTH_SERVICE, AuthService, confirmThenDelete, RedirectService } from '@szakszolg-nx/shared-module'
+import { AUTH_SERVICE, AuthService, confirmThenDelete, Log, RedirectService } from '@szakszolg-nx/shared-module'
 import { IResourceService } from '@szakszolg-nx/ng-interfaces'
 import { ABILITIES, check, IApiResource, IUser } from '@szakszolg-nx/api-interfaces'
 
@@ -34,12 +34,12 @@ export abstract class CrudPageClass<T extends IApiResource, TQueryRef> implement
         this.sub?.unsubscribe()
     }
 
+    ionViewDidEnter() {
+        this.queryRef?.refetch().then()
+    }
+
     ngOnInit() {
-        this.checkPerms().then()
-        this.queryRef = this.resourceService.browse()
-        this.sub = this.queryRef.valueChanges.subscribe(
-            ({ data }: any) => (this.values = data[Object.keys(data)[0]]?.map((item: object) => ({ ...item }))),
-        )
+        this.init()
     }
 
     editClick(obj: T) {
@@ -58,5 +58,14 @@ export abstract class CrudPageClass<T extends IApiResource, TQueryRef> implement
         const user = await this.authService.user
         this.userCanEdit = check(user as IUser, { resource: this.resourceName, ability: ABILITIES.EDIT })
         this.userCanDelete = check(user as IUser, { resource: this.resourceName, ability: ABILITIES.DELETE })
+    }
+
+    private init() {
+        Log.debug('CrudPageClass.init()', 'HIT')
+        this.checkPerms().then()
+        this.queryRef = this.resourceService.browse()
+        this.sub = this.queryRef.valueChanges.subscribe(
+            ({ data }: any) => (this.values = data[Object.keys(data)[0]]?.map((item: object) => ({ ...item }))),
+        )
     }
 }
