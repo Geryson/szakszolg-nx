@@ -24,10 +24,11 @@ export function task<T>(observable: Observable<T>): Promise<T> {
     })
 }
 
-export function confirmThenDelete(
+export function confirmThenDelete( // TODO: Move translation to parameters
     id: string,
     resourceService: { destroy: (id: string) => Observable<any> },
     queryRef: { refetch: () => any },
+    translationKey: string,
 ) {
     const confirmation = APP_INJECTOR.get(ConfirmationService)
     const translate = APP_INJECTOR.get(TranslatePipe)
@@ -35,7 +36,7 @@ export function confirmThenDelete(
     const toast = APP_INJECTOR.get(MessageService)
 
     confirmation.confirm({
-        message: translate.transform('MANAGE_HANGMAN_WORDS.DELETE_WORD_CONFIRM'),
+        message: translate.transform(`${translationKey}.DELETE_CONFIRM`),
         closeOnEscape: true,
         accept: () => {
             resourceService.destroy(id).subscribe(async () => {
@@ -44,8 +45,8 @@ export function confirmThenDelete(
                 await queryRef?.refetch()
                 toast.add({
                     severity: 'success',
-                    summary: translate.transform('MANAGE_HANGMAN_WORDS.WORD_DELETED'),
-                    detail: translate.transform('MANAGE_HANGMAN_WORDS.WORD_DELETED_DETAIL'),
+                    summary: translate.transform(`${translationKey}.DELETED`),
+                    detail: translate.transform(`${translationKey}.DELETED_DETAIL`),
                 })
                 loading.dismiss().then()
             })

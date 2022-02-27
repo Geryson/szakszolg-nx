@@ -220,6 +220,7 @@
         "OWN_USER_MANAGEMENT":"Saját felhasználó kezelése",
         "USERS_MANAGEMENT": "Felhasználók kezelése",
         "FORM_MANAGEMENT": "Kérdőívek kezelése",
+        "GROUPING_MANAGEMENT": "Csoportosítások kezelése",
         "MIRROR_MANAGEMENT": "Tükörszövegek kezelése",
         "PAIRS_MANAGEMENT": "Párosítások kezelése",
         "HANGMAN_WORDS_MANAGEMENT": "Akasztófák kezelése",
@@ -245,6 +246,14 @@
         "CANCEL": "Biztosan eldobja a változtatásokat?",
         "PASSWORD_DIALOG_TITLE": "Jelszavas megerősítés",
         "PASSWORD_DIALOG_CONTENT": "A változtatások mentéséhez adja meg a jelenlegi jelszavát"
+    },
+
+    "MANAGE_GROUPINGS": {
+        "SEARCH": "Keresés szó alapján",
+        "ITEM": "Tárgy",
+        "GROUPS": "Csoportok",
+        "CORRECT": "Helyes",
+        "ACTIONS": "Műveletek"
     },
 
     "MANAGE_USERS":{
@@ -359,9 +368,9 @@
         "WORD": "Szó",
         "ACTIONS": "Műveletek",
         "SEARCH": "Kategória / Szó...",
-        "DELETE_WORD_CONFIRM": "Biztosan törölni szeretné ezt a szót?",
-        "WORD_DELETED": "Szó törölve",
-        "WORD_DELETED_DETAIL": "Akasztófa szó sikeresen törölve.",
+        "DELETE_CONFIRM": "Biztosan törölni szeretné ezt a szót?",
+        "DELETED": "Szó törölve",
+        "DELETED_DETAIL": "Akasztófa szó sikeresen törölve.",
         "SAVE": "Mentés",
         "SUCCESS": "Sikeres Mentés",
         "SUCCESS_DETAIL": "A változtatások sikeresen el lettek mentve"
