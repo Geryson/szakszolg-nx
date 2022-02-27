@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { IHangmanWord } from '@szakszolg-nx/api-interfaces'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { ActivatedRoute } from '@angular/router'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
-import { first, firstValueFrom, Subscription } from 'rxjs'
+import { first, Subscription } from 'rxjs'
 import { HangmanWordService } from '../../../../shared/services/hangman-word.service'
 import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
@@ -85,8 +85,8 @@ export class ManageSingleHangmanWordPage {
         this.originalWord = { ...this.word }
         this.toast.add({
             severity: 'success',
-            summary: this.translate.transform('MANAGE_HANGMAN_WORDS.SUCCESS'),
-            detail: this.translate.transform('MANAGE_HANGMAN_WORDS.SUCCESS_DETAIL'),
+            summary: this.translate.transform('FORM_OPERATION.SUCCESS'),
+            detail: this.translate.transform('FORM_OPERATION.SUCCESS_DETAIL'),
         })
         this.nav.back()
         this.getCategories().then()

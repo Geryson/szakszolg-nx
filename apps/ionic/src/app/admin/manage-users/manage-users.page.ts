@@ -50,7 +50,7 @@ export class ManageUsersPage implements OnInit, OnDestroy {
     }
 
     deleteClick(user: IUser) {
-        confirmThenDelete(user._id, this.userService, this.queryRef!)
+        confirmThenDelete(user._id, this.userService, this.queryRef!, 'MANAGE_USERS')
     }
 
     private async checkPerms() {

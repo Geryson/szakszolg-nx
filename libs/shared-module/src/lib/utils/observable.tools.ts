@@ -24,7 +24,7 @@ export function task<T>(observable: Observable<T>): Promise<T> {
     })
 }
 
-export function confirmThenDelete( // TODO: Move translation to parameters
+export function confirmThenDelete(
     id: string,
     resourceService: { destroy: (id: string) => Observable<any> },
     queryRef: { refetch: () => any },

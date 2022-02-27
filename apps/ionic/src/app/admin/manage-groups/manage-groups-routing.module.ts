@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ManageGroupsPage
+  },
+  {
+    path: ':id',
+    loadChildren: () => import('./manage-single-group/manage-single-group.module').then( m => m.ManageSingleGroupPageModule)
   }
 ];
 

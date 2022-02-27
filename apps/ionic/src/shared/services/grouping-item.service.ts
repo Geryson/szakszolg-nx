@@ -49,4 +49,11 @@ export class GroupingItemService
             variables: { id },
         })
     }
+
+    add(data: Partial<Omit<IGroupingItem, '_id'>>) {
+        return this.apolloClient.mutate<{ groupingItem: Partial<IGroupingItem> }>({
+            mutation: GROUPING_ITEMS.ADD,
+            variables: { ...data },
+        })
+    }
 }

@@ -70,4 +70,17 @@ export const GROUPING_ITEMS = {
             }
         }
     `,
+    ADD: gql`
+        mutation ($item: String!, $groups: [String!]!, $correct: String!) {
+            createGroupingItem(createGroupingItemData: { item: $item, groups: $groups, correct: $correct }) {
+                _id
+                item
+                groups
+                correct
+                createdAt
+                updatedAt
+                deletedAt
+            }
+        }
+    `,
 }

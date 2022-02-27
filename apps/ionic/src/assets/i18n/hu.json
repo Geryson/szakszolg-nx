@@ -250,10 +250,21 @@
 
     "MANAGE_GROUPINGS": {
         "SEARCH": "Keresés szó alapján",
+        "SAVE": "Mentés",
         "ITEM": "Tárgy",
         "GROUPS": "Csoportok",
         "CORRECT": "Helyes",
-        "ACTIONS": "Műveletek"
+        "ACTIONS": "Műveletek",
+        "NEW_GROUP": "Új válasz lehetőség",
+        "NO_GROUPS": "Még nincsennek csoportok felvéve",
+        "CORRECT_BUTTON": "Megoldás",
+        "MARKED_CORRECT": "Megjelölve megoldásnak"
+    },
+
+    "FORM_OPERATION":  {
+        "ACTIONS": "Műveletek",
+        "SUCCESS": "Siker",
+        "SUCCESS_DETAIL": "A változatások el lettek mentve."
     },
 
     "MANAGE_USERS":{
