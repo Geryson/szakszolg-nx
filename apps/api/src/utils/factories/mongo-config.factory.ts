@@ -1,7 +1,7 @@
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModuleOptions } from '@nestjs/mongoose'
 
-export const mongooseConfig = {
+export const mongooseConfigFactory = {
     imports: [ConfigModule],
     providers: [ConfigService],
     mongooseConfigFactory: async (configService: ConfigService): Promise<MongooseModuleOptions | any> => {
@@ -19,13 +19,13 @@ export const mongooseConfig = {
                 sslCert: cert,
             }
         } else {
-            uri = `mongodb+srv://${configService.get<string>('DATABASE_USER')}:${configService.get<string>('DATABASE_PASSWORD')}@${configService.get<string>(
-                'DATABASE_HOST',
-            )}/${configService.get<string>(
+            uri = `mongodb+srv://${configService.get<string>('DATABASE_USER')}:${configService.get<string>(
+                'DATABASE_PASSWORD',
+            )}@${configService.get<string>('DATABASE_HOST')}/${configService.get<string>(
                 'DATABASE_NAME',
             )}?retryWrites=true&w=majority`
             return {
-                uri
+                uri,
             }
         }
     },
