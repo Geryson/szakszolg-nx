@@ -1,9 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>manage-hangman-words</ion-title>
-  </ion-toolbar>
-</ion-header>
+<nx12-header title='ADMIN_NAV.HANGMAN_WORDS_MANAGEMENT'></nx12-header>
 
 <ion-content>
+    <p-table #dt [globalFilterFields]="['word', 'category']" [value]='values' responsiveLayout='stack' styleClass='p-table-stripped'>
+        <ng-template pTemplate='caption'>
+            <div class='flex align-items-center justify-content-between'>
+                <span class='p-input-icon-left'>
+                    <i class='pi pi-search'></i>
+                    <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
+                       placeholder="{{ 'MANAGE_HANGMAN_WORDS.SEARCH' | translate }}" type='text' />
+                </span>
+                <span>
+                    <button (click)='addClick()' class='p-button-success' icon='pi pi-plus' pButton type='button'></button>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate='header'>
+            <tr>
+                <th pSortableColumn='category'>{{ 'MANAGE_HANGMAN_WORDS.CATEGORY' | translate }}<p-sortIcon field='category'></p-sortIcon></th>
+                <th pSortableColumn='word'>{{ 'MANAGE_HANGMAN_WORDS.WORD' | translate }}<p-sortIcon field='word'></p-sortIcon></th>
+                <th>{{ 'MANAGE_HANGMAN_WORDS.ACTIONS' | translate }}</th>
+            </tr>
+        </ng-template>
+        <ng-template let-wordObject pTemplate='body'>
+            <tr>
+                <td><span class='p-column-title'>{{ 'MANAGE_HANGMAN_WORDS.CATEGORY' | translate }}</span> {{ wordObject.category }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_HANGMAN_WORDS.WORD' | translate }}</span> {{ wordObject.word }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_HANGMAN_WORDS.ACTIONS' | translate }}</span>
+                    <span class='p-buttonset'>
+                            <button (click)='editClick(wordObject)' *ngIf='userCanEdit' class='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
+                            <button (click)='deleteClick(wordObject)' *ngIf='userCanDelete' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
+                        </span>
+                </td>
 
+            </tr>
+        </ng-template>
+    </p-table>
 </ion-content>

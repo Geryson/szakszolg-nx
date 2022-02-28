@@ -1,0 +1,48 @@
+<nx12-header title='ADMIN_NAV.GROUPING_MANAGEMENT'></nx12-header>
+<ion-content>
+    <div *ngIf='!!item' class='p-fluid grid'>
+        <div class='field col-12 md:col-4 mt-4 mb-4'>
+        <span class='p-float-label'>
+            <input [(ngModel)]='item.item' id='item' pInputText type='text'>
+            <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
+        </span>
+        </div>
+        <div class='field col-12 md:col-4 mt-4 mb-4'>
+                 <span class='p-float-label'>
+                    <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' pInputText type='text'>
+                    <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
+                </span>
+            <span><button (click)='add(newGroup)' [disabled]='!newGroup.value?.length || item?.groups?.includes(newGroup.value)' class='p-button-success' icon='pi pi-{{ NG_ICON.plus }}' pButton type='button'></button></span>
+        </div>
+        <div class='field col-12 md:col-4 mt-4 mb-4'>
+            <p-table [value]='item.groups ?? []' id='groups'  responsiveLayout="stack">
+                <ng-template pTemplate='header'>
+                    <tr>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate='emptymessage'>
+                    <tr>
+                        <td>{{ 'MANAGE_GROUPINGS.NO_GROUPS' | translate }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template let-group pTemplate='body'>
+                    <tr>
+                        <td>
+                            <div>
+                                {{group}}
+                            </div>
+                            <div class='float-end'>
+                                <button (click)='markCorrect(group)' *ngIf='item?.correct !== group' class='p-button-success' icon='pi pi-{{ NG_ICON.check }}' pButton type='button'></button>
+                                <button *ngIf='item?.correct === group' [disabled]='true' class='p-button-primary' label='{{ "MANAGE_GROUPINGS.CORRECT_BUTTON" | translate }}' pButton type='button'></button>
+                                <button (click)='remove(group)' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <div class='field col-12 md:col-4 mt-4 mb-4'>
+            <span><button (click)='save()' [disabled]='!item?.item?.length || !item?.groups?.length || !item?.correct?.length' class='p-button-primary' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' pButton type='button'></button></span>
+        </div>
+    </div>
+</ion-content>

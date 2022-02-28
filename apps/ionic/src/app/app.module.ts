@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { Injector, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { Router, RouteReuseStrategy } from '@angular/router'
 
@@ -37,6 +37,7 @@ import { environment } from '../environments/environment'
 import { jwtOptionsFactory } from '../shared/utils/jwt-options'
 import { MirrorWordService } from '../shared/services/mirror-word.service'
 import { Drivers } from '@ionic/storage'
+import { NxSharedModule } from '../shared/nx-shared.module'
 
 @NgModule({
     declarations: [AppComponent],
@@ -50,6 +51,7 @@ import { Drivers } from '@ionic/storage'
         HttpClientModule,
         BrowserModule,
         BrowserAnimationsModule,
+        NxSharedModule,
         SharedModule,
         CommonModule,
         TranslateModule.forRoot({
@@ -106,4 +108,10 @@ import { Drivers } from '@ionic/storage'
     ],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+    constructor(private readonly injector: Injector) {
+        APP_INJECTOR = this.injector
+    }
+}
+
+export let APP_INJECTOR: Injector
