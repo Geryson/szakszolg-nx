@@ -1,9 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>guest-room</ion-title>
-  </ion-toolbar>
+<ion-header mode="ios" translucent="true">
+    <div id="yellowLine"></div>
+    <ion-toolbar color="secondary">
+        <ion-buttons class="nav-buttons-container" slot="start">
+            <ion-button class="nav-button" routerLink="/home" slot="start">
+                <ion-icon ios="ios-home" md="md-home"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="nav-title" text-center>{{ 'NAVIGATION.MENU' | translate }}</ion-title>
+        <ion-button  class="nav-button exitbtn" routerLink="/home" slot="end">
+            <ion-icon name="exit"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content fullscreen="true">
+    <div class="mainContainer">
+        <ion-button routerLink="{{ link(pages.guest.hangman) }}" shape="round navBtn">{{ 'GUEST_NAV.HANGMAN' | translate }}</ion-button>
+        <ion-button routerLink="{{ link(pages.guest.schoolFinder) }}" shape="round navBtn">{{ 'GUEST_NAV.SCHOOL_FINDER' | translate }}</ion-button>
+        <ion-button routerLink="{{ link(pages.guest.groupingItems) }}" shape="round navBtn">{{ 'GUEST_NAV.GROUPING_ITEMS' | translate }}</ion-button>
+        <ion-button routerLink="{{ link(pages.guest.puzzle) }}" shape="round navBtn">{{ 'GUEST_NAV.PUZZLE' | translate }}</ion-button>
+        <ion-button routerLink="{{ link(pages.guest.mirrorWords) }}" shape="round navBtn">{{ 'GUEST_NAV.MIRROR_WORDS' | translate }}</ion-button>
+    </div>
 </ion-content>
