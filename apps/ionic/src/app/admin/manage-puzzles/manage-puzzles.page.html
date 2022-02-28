@@ -1,9 +1,49 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>manage-puzzles</ion-title>
-  </ion-toolbar>
-</ion-header>
+<nx12-header title='ADMIN_NAV.PUZZLE_PICTURE_MANAGEMENT'></nx12-header>
 
 <ion-content>
-
+    <div class="card">
+        <p-dataView #dv [paginator]="true" [rows]="9" [sortField]="sortField" [sortOrder]="sortOrder"
+                    [value]="files" filterBy="path" layout="grid">
+            <ng-template pTemplate="header">
+                <div class="flex flex-column md:flex-row md:justify-content-between">
+                    <p-dropdown #sortOrder (onChange)="onSortChange($event)" *ngIf='sortOptions.length > 0' [(ngModel)]="sortField" [options]="sortOptions" styleClass="mb-2 md:mb-0"></p-dropdown>
+                    <span class="p-input-icon-left mb-2 md:mb-0">
+                    <i class="pi pi-search"></i>
+                    <input #search (input)="dv.filter(search.value)" pInputText placeholder="{{ 'PUZZLE_MANAGEMENT.SEARCH' | translate }}" type="search">
+                </span>
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+            </ng-template>
+            <ng-template let-item pTemplate="listItem">
+                <div class="col-12">
+                    <div class="product-list-item">
+                        <img [alt]="item.path" [src]="getImageUrl(item)"/>
+                        <div class="product-list-detail">
+                            <div class="product-name">{{getImageName(item)}}</div>
+                            <div class="product-description">{{item.createdAt | date:(('SHARED.DATE_FORMAT' | translate))}}</div>
+                        </div>
+                        <div class="product-list-action">
+                            <span class="product-price">{{item.size/1000}}KB</span>
+                            <p-button icon="pi pi-shopping-cart" label="Add to Cart"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template let-item pTemplate="gridItem">
+                <div class="col-12 md:col-4">
+                    <div class="product-grid-item card">
+                        <div class="product-grid-item-content">
+                            <img [alt]="item.path" [src]="getImageUrl(item)"/>
+                            <div class="product-name">{{getImageName(item)}}</div>
+                            <div class="product-description">{{item.createdAt | date:(('SHARED.DATE_FORMAT' | translate))}}</div>
+                        </div>
+                        <div class="product-grid-item-bottom">
+                            <span class="product-price">{{item.size/1000}}KB</span>
+                            <p-button (onClick)='destroy(item)' icon="pi pi-{{ NG_ICON.trash }}" styleClass='p-button-danger'></p-button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-dataView>
+    </div>
 </ion-content>
