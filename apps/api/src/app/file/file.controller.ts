@@ -1,12 +1,14 @@
-import { Controller, Get, Logger, Param, Post, Res, UploadedFiles, UseInterceptors } from '@nestjs/common'
+import { Controller, Get, Param, Post, Res, UploadedFiles, UseGuards, UseInterceptors } from '@nestjs/common'
 import { FilesInterceptor } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
-import { editFileName, imageFileFilter } from '../../utils/file.utils'
+import { editFileName, imageFileFilter, readDirAsync } from '../../utils/file.utils'
 import { UPLOAD_PATH } from '../../utils/constants'
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
 
 @Controller('file')
 export class FileController {
     @Post('')
+    @UseGuards(JwtAuthGuard)
     @UseInterceptors(
         FilesInterceptor('image', 20, {
             storage: diskStorage({
@@ -17,7 +19,6 @@ export class FileController {
         }),
     )
     async uploadMultipleFiles(@UploadedFiles() files) {
-        Logger.debug('HIT')
         const response = []
         files.forEach((file) => {
             const fileResponse = {
@@ -27,6 +28,11 @@ export class FileController {
             response.push(fileResponse)
         })
         return response
+    }
+
+    @Get('')
+    async getFiles() {
+        return readDirAsync(UPLOAD_PATH)
     }
 
     @Get(':path')
