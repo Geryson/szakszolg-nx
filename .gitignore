@@ -43,3 +43,5 @@ Thumbs.db
 **/*.ignore.*
 
 apps/ionic/src/environments/environment.ts
+
+uploads/
