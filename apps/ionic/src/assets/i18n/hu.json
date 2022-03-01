@@ -216,6 +216,10 @@
         "OM": "Oktatási azonosító"
     },
 
+    "SHARED": {
+        "DATE_FORMAT": "yyyy.MM.dd HH:mm:ss"
+    },
+
     "ADMIN_NAV": {
         "OWN_USER_MANAGEMENT":"Saját felhasználó kezelése",
         "USERS_MANAGEMENT": "Felhasználók kezelése",
@@ -226,6 +230,22 @@
         "HANGMAN_WORDS_MANAGEMENT": "Akasztófák kezelése",
         "PUZZLE_PICTURE_MANAGEMENT": "Puzzle képek kezelése",
         "ROLE_RIGHTS": "Szerepkör-jogkör kapcsolatok kezelése"
+    },
+
+    "PUZZLE_MANAGEMENT": {
+        "SINGLE": {
+            "TITLE": "Kép feltöltés",
+            "UPLOAD_BUTTON": "Válasszon feltöltendő képet"
+        },
+        "ADD_PICTURE": "Kép feltöltése",
+        "CREATED_AT": "Létrehozva (régiek előre)",
+        "REMOVE": "Törlés",
+        "CREATED_AT_DESC": "Létrehozva (újak előre)",
+        "NAME": "Fájl név (A-Z)",
+        "NAME_DESC": "Fájl név (Z-A)",
+        "SIZE": "Méret (Növekvő)",
+        "SIZE_DESC": "Méret (Csökkenő)",
+        "SEARCH": "Fájl név"
     },
 
     "USER_EDIT":{
@@ -264,7 +284,8 @@
     "FORM_OPERATION":  {
         "ACTIONS": "Műveletek",
         "SUCCESS": "Siker",
-        "SUCCESS_DETAIL": "A változatások el lettek mentve."
+        "SUCCESS_DETAIL": "A változatások el lettek mentve.",
+        "SAVE": "Mentés"
     },
 
     "MANAGE_USERS":{
