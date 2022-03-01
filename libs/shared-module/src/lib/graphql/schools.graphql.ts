@@ -5,8 +5,8 @@ export const SCHOOLS = {
         query {
             schools {
                 _id
-                om
                 name
+                om
                 address
                 county
                 types

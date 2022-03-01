@@ -1,10 +1,11 @@
-import {Inject} from "@angular/core"
+import {Inject, Injectable} from "@angular/core"
 import {APOLLO_CLIENT} from "@szakszolg-nx/shared-module"
 import {Apollo} from "apollo-angular"
 import {ISchool} from "@szakszolg-nx/api-interfaces"
 import {SCHOOLS} from "@szakszolg-nx/shared-module"
 
-export class SchoolsService {
+@Injectable()
+export class SchoolService {
     constructor(@Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo) {}
 
     browse() {
