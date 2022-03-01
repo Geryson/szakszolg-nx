@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { InputTextModule } from 'primeng/inputtext'
+import { ButtonModule } from 'primeng/button'
 import { IonicModule } from '@ionic/angular';
 
 import { PlayMirrorWordsPageRoutingModule } from './play-mirror-words-routing.module';
 
 import { PlayMirrorWordsPage } from './play-mirror-words.page';
+import {NxSharedModule} from "../../../shared/nx-shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PlayMirrorWordsPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        PlayMirrorWordsPageRoutingModule,
+        ButtonModule,
+        InputTextModule,
+        NxSharedModule
+    ],
   declarations: [PlayMirrorWordsPage]
 })
 export class PlayMirrorWordsPageModule {}

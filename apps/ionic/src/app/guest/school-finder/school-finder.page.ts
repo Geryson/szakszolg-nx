@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import {CrudPageClass} from "../../../shared/utils/crud-page.class"
 import {ISchool, RESOURCES} from "@szakszolg-nx/api-interfaces"
-import {SchoolService} from "../../../shared/services/schoolService"
+import {SchoolService} from "../../../shared/services/school.service"
 import {pages} from "../../../shared/utils/pages.const"
 
 @Component({

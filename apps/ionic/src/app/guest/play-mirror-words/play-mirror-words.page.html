@@ -1,9 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>play-mirror-words</ion-title>
-  </ion-toolbar>
-</ion-header>
+<nx12-header title="NAVIGATION.MIRROR_TEXT"></nx12-header>
 
-<ion-content>
+<ion-content fullscreen="true">
+    <div class="mainContainer">
 
+        <h5>Mirror Word Game</h5>
+        <label [ngClass]="{'flipV' : value===1, 'flipH': value===0}">{{ word }}</label>
+        <input type="text" class="p-inputtext-lg" placeholder="MirrorWord" pInputText />
+        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg"></button>
+
+    </div>
 </ion-content>
