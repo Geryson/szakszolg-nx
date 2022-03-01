@@ -7,14 +7,26 @@ import { IonicModule } from '@ionic/angular';
 import { SchoolFinderPageRoutingModule } from './school-finder-routing.module';
 
 import { SchoolFinderPage } from './school-finder.page';
+import {TranslateModule} from "@ngx-translate/core";
+import {TableModule} from "primeng/table";
+import {InputTextModule} from "primeng/inputtext";
+import {ButtonModule} from "primeng/button";
+import {SharedModule} from "@szakszolg-nx/shared-module";
+import {NxSharedModule} from "../../../shared/nx-shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    SchoolFinderPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        SharedModule,
+        IonicModule,
+        SchoolFinderPageRoutingModule,
+        TranslateModule,
+        TableModule,
+        InputTextModule,
+        ButtonModule,
+        NxSharedModule
+    ],
   declarations: [SchoolFinderPage]
 })
 export class SchoolFinderPageModule {}
