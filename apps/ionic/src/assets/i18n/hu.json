@@ -239,6 +239,7 @@
         },
         "ADD_PICTURE": "Kép feltöltése",
         "CREATED_AT": "Létrehozva (régiek előre)",
+        "REMOVE": "Törlés",
         "CREATED_AT_DESC": "Létrehozva (újak előre)",
         "NAME": "Fájl név (A-Z)",
         "NAME_DESC": "Fájl név (Z-A)",

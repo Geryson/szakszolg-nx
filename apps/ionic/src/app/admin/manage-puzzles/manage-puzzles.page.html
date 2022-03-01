@@ -23,9 +23,13 @@
                             <div class="product-name">{{getImageName(item)}}</div>
                             <div class="product-description">{{item.createdAt | date:(('SHARED.DATE_FORMAT' | translate))}}</div>
                         </div>
-                        <div class="product-list-action">
-                            <span class="product-price">{{item.size/1000}}KB</span>
-                            <p-button icon="pi pi-shopping-cart" label="Add to Cart"></p-button>
+                        <div class="product-list-action align-content-end">
+                            <div>
+                                <span class="product-price">{{item.size/1000}}KB</span>
+                            </div>
+                            <div style='align-content: end'>
+                                <p-button (onClick)='destroy(item)' icon="pi pi-{{ NG_ICON.trash }}" label='{{ "PUZZLE_MANAGEMENT.REMOVE" | translate }}' styleClass='p-button-danger'></p-button>
+                            </div>
                         </div>
                     </div>
                 </div>
