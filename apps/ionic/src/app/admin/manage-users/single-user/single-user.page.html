@@ -6,7 +6,7 @@
             <ion-list *ngIf='!!user'>
                 <ion-item *ngFor="let prop of ['_id', 'username', 'email', 'om']">
                     <p-inplace (onActivate)='editing[prop] = true' (onDeactivate)='cancel(prop)'
-                               [active]='editing[prop]' [closable]='true' [disabled]="prop == '_id'"
+                               [active]='editing[prop]' [closable]='true' [disabled]="prop === '_id'"
                                [ngStyle]="{display: 'inline'}">
                         <ng-template pTemplate='display'>
                             <div class='inline-flex align-items-center'>

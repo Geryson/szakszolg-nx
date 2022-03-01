@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { MirrorWordService } from '../../../shared/services/mirror-word.service'
 import { IMirrorWord } from '@szakszolg-nx/api-interfaces'
-import { BehaviorSubject, Subscription } from 'rxjs'
+import { BehaviorSubject, firstValueFrom, Subscription } from 'rxjs'
 import { NG_ICON } from '../../../shared/utils/prime-icons.class'
 import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
-import { task } from '@szakszolg-nx/shared-module'
 import { link, pages } from '../../../shared/utils/pages.const'
 
 @Component({
@@ -64,8 +63,9 @@ export class ManageMirrorWordsPage implements OnInit, OnDestroy {
 
     async save() {
         this.loading = true
-        if (this.wordIdUnderEdit) await task(this.mirrorWordService.edit(this.wordIdUnderEdit, this.wordUnderEdit))
-        else await task(this.mirrorWordService.add(this.wordUnderEdit))
+        if (this.wordIdUnderEdit)
+            await firstValueFrom(this.mirrorWordService.edit(this.wordIdUnderEdit, this.wordUnderEdit))
+        else await firstValueFrom(this.mirrorWordService.add(this.wordUnderEdit))
         this.closeDialogue()
         this.queryRef?.refetch().then(() => (this.loading = false))
     }
@@ -78,7 +78,7 @@ export class ManageMirrorWordsPage implements OnInit, OnDestroy {
 
     deleteWord(word: Partial<IMirrorWord>) {
         this.loading = true
-        task(this.mirrorWordService.destroy(word._id)).then(() =>
+        firstValueFrom(this.mirrorWordService.destroy(word._id)).then(() =>
             this.queryRef?.refetch().then(() => (this.loading = false)),
         )
     }

@@ -7,7 +7,6 @@ import {
     APOLLO_CLIENT,
     ENVIRONMENT,
     Log,
-    task,
     STORAGE_KEY,
     STORAGE_SERVICE,
     PROFILE,

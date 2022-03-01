@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component, Inject, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { IUser } from '@szakszolg-nx/api-interfaces'
 import { UserService } from '../../../../shared/services/user.service'
-import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
-import { AUTH_SERVICE, AuthService, Log, omit, task } from '@szakszolg-nx/shared-module'
+import { AUTH_SERVICE, AuthService, Log, omit } from '@szakszolg-nx/shared-module'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { ConfirmationService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { link, pages } from '../../../../shared/utils/pages.const'
+import { firstValueFrom } from 'rxjs'
 
 @Component({
     selector: 'nx12-single-user',
@@ -23,10 +24,10 @@ export class SingleUserPage implements OnInit {
     originalUser: Partial<IUser> | null | any = null
     editing: Record<string, boolean> = {}
     validationErrors: Record<string, string> = {}
-    password: string = ''
+    password = ''
     passwordDialog = false
     dialogCallback: (() => void) | null = null
-    private queryRef?: QueryRef<{ user: Partial<IUser> }, EmptyObject>
+    private queryRef?: QueryRef<{ user: Partial<IUser> }>
     private loading = false
 
     constructor(
@@ -39,7 +40,7 @@ export class SingleUserPage implements OnInit {
 
     async ngOnInit() {
         this.loading = true
-        const params = await task(this.activatedRoute.params)
+        const params = await firstValueFrom(this.activatedRoute.params)
         this.queryRef = this.userService.read(params.id)
         this.queryRef.valueChanges.subscribe(({ data }) => {
             this.user = { ...data.user }
@@ -98,13 +99,13 @@ export class SingleUserPage implements OnInit {
 }
 
 const validations: { [key: string]: (value: string, attribute: string) => boolean } = {
-    username: (value, _) => value.length > 3,
-    email: (value, _) =>
+    username: (value, __) => value.length > 3,
+    email: (value, __) =>
         !!value
             .toLowerCase()
             .match(
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             ),
-    newPassword: (value, _) => value.length > 3 && !!value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
-    om: (value, _) => !!value.match(/^7[0-9]{10}$/),
+    newPassword: (value, __) => value.length > 3 && !!value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
+    om: (value, __) => !!value.match(/^7[0-9]{10}$/),
 }

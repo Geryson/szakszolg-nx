@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core'
 import { link, pages } from '../../../shared/utils/pages.const'
-import { AUTH_SERVICE, AuthService, confirmThenDelete, Log, RedirectService } from '@szakszolg-nx/shared-module'
+import { AUTH_SERVICE, AuthService, RedirectService } from '@szakszolg-nx/shared-module'
 import { UserService } from '../../../shared/services/user.service'
-import { EmptyObject } from 'apollo-angular/build/types'
 import { ABILITIES, check, IUser, RESOURCES } from '@szakszolg-nx/api-interfaces'
 import { QueryRef } from 'apollo-angular'
 import { Subscription } from 'rxjs'
 import { NG_ICON } from '../../../shared/utils/prime-icons.class'
+import { confirmThenDelete } from '../../../shared/utils/observable.tools'
 
 @Component({
     selector: 'nx12-manage-users',
@@ -20,7 +21,7 @@ export class ManageUsersPage implements OnInit, OnDestroy {
     users: Partial<IUser>[] = []
     userCanEditUsers = false
     userCanDeleteUsers = false
-    private queryRef?: QueryRef<{ users: Partial<IUser>[] }, EmptyObject>
+    private queryRef?: QueryRef<{ users: Partial<IUser>[] }>
     private sub?: Subscription
 
     constructor(

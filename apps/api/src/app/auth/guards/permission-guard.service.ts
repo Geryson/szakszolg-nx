@@ -2,7 +2,6 @@ import { CanActivate, ExecutionContext, flatten, Injectable, Logger } from '@nes
 import { Reflector } from '@nestjs/core'
 import { GqlExecutionContext } from '@nestjs/graphql'
 import { IUser } from '@szakszolg-nx/api-interfaces'
-import { Log } from '@szakszolg-nx/shared-module'
 
 @Injectable()
 export class PermissionGuard implements CanActivate {

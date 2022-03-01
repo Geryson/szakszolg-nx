@@ -64,7 +64,7 @@ export class ManagePuzzlesPage implements OnInit {
     }
 
     onSortChange(event: any) {
-        let value = event.value
+        const value = event.value
 
         if (value.indexOf('!') === 0) {
             this.sortOrder = -1

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component } from '@angular/core'
 import { IHangmanWord } from '@szakszolg-nx/api-interfaces'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
@@ -8,7 +9,7 @@ import { first, Subscription } from 'rxjs'
 import { HangmanWordService } from '../../../../shared/services/hangman-word.service'
 import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
-import { Log, omit } from '@szakszolg-nx/shared-module'
+import { omit } from '@szakszolg-nx/shared-module'
 import { NavController } from '@ionic/angular'
 @Component({
     selector: 'nx12-manage-single-hangman-word',
@@ -69,7 +70,7 @@ export class ManageSingleHangmanWordPage {
 
     private create() {
         this.hangmanWordService
-            .add(this.word?.category!, this.word?.word!)
+            .add(this.word!.category!, this.word!.word!)
             .pipe(first())
             .subscribe(() => this.saveCallback())
     }

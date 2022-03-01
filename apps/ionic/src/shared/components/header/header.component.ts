@@ -8,7 +8,7 @@ import { AUTH_SERVICE, AuthService } from '@szakszolg-nx/shared-module'
     styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-    @Input() title: string = ''
+    @Input() title = ''
 
     constructor(@Inject(AUTH_SERVICE) private readonly authService: AuthService, private readonly nav: NavController) {}
 

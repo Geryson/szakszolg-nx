@@ -4,6 +4,7 @@ import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { HttpClient } from '@angular/common/http'
 import { environment } from '../../../../environments/environment'
 import { NavController } from '@ionic/angular'
+import { Log } from '@szakszolg-nx/shared-module'
 
 @Component({
     selector: 'nx12-manage-single-puzzle',
@@ -22,12 +23,14 @@ export class ManageSinglePuzzlePage implements OnInit {
 
     onFileSelected(event: any, input: HTMLInputElement): void {
         this.imageChangedEvent = event
-        this.fileName = input.value.replace(/.*([\/\\])/, '')
+        this.fileName = input.value.replace(/.*([/\\])/, '')
     }
     imageCropped(event: ImageCroppedEvent) {
         this.croppedImage = event.base64
     }
-    imageLoaded(image: LoadedImage) {}
+    imageLoaded(image: LoadedImage) {
+        Log.debug('ManageSinglePuzzlePage::imageLoaded', 'imageLoaded', image)
+    }
 
     cropperReady() {}
     loadImageFailed() {
@@ -45,7 +48,7 @@ export class ManageSinglePuzzlePage implements OnInit {
                     image: this.croppedImage,
                 },
             )
-            .subscribe((res) => this.redirect.back())
+            .subscribe(() => this.redirect.back())
     }
 
     onUploadButtonClicked(input: HTMLInputElement) {

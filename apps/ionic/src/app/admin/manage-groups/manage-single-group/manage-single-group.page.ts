@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Params } from '@angular/router'
-import { IGroupingItem, IHangmanWord } from '@szakszolg-nx/api-interfaces'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Component } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { IGroupingItem } from '@szakszolg-nx/api-interfaces'
 import { GroupingItemService } from '../../../../shared/services/grouping-item.service'
 import { TranslatePipe } from '@ngx-translate/core'
 import { MessageService } from 'primeng/api'
 import { NavController } from '@ionic/angular'
 import { first, Subscription } from 'rxjs'
-import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
 import { Log, omit } from '@szakszolg-nx/shared-module'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
@@ -21,7 +21,7 @@ export class ManageSingleGroupPage {
     originalItem?: Partial<IGroupingItem>
     NG_ICON = NG_ICON
     private readonly sub = new Subscription()
-    private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }, EmptyObject>
+    private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }>
     private validationErrors: { [key: string]: string } = {}
 
     constructor(
