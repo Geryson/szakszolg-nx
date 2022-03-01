@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import { link, pages } from '../../../shared/utils/pages.const'
 
 @Component({
   selector: 'nx12-guest-room',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class GuestRoomPage implements OnInit {
 
   constructor() { }
+    link = link
+    pages = pages
 
   ngOnInit() {
   }
