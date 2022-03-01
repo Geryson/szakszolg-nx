@@ -233,6 +233,11 @@
     },
 
     "PUZZLE_MANAGEMENT": {
+        "SINGLE": {
+            "TITLE": "Kép feltöltés",
+            "UPLOAD_BUTTON": "Válasszon feltöltendő képet"
+        },
+        "ADD_PICTURE": "Kép feltöltése",
         "CREATED_AT": "Létrehozva (régiek előre)",
         "CREATED_AT_DESC": "Létrehozva (újak előre)",
         "NAME": "Fájl név (A-Z)",
@@ -278,7 +283,8 @@
     "FORM_OPERATION":  {
         "ACTIONS": "Műveletek",
         "SUCCESS": "Siker",
-        "SUCCESS_DETAIL": "A változatások el lettek mentve."
+        "SUCCESS_DETAIL": "A változatások el lettek mentve.",
+        "SAVE": "Mentés"
     },
 
     "MANAGE_USERS":{

@@ -6,6 +6,7 @@ import { first } from 'rxjs'
 import { ConfirmationService, SelectItem } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { NG_ICON } from '../../../shared/utils/prime-icons.class'
+import { pages } from '../../../shared/utils/pages.const'
 
 @Component({
     selector: 'nx12-manage-puzzles',
@@ -19,6 +20,7 @@ export class ManagePuzzlesPage implements OnInit {
     sortOptions: SelectItem[] = []
     sortOrder = 0
     sortField = 'path'
+    pages = pages
 
     constructor(
         private readonly http: HttpClient,
@@ -79,6 +81,8 @@ export class ManagePuzzlesPage implements OnInit {
             .pipe(first())
             .subscribe(() => this.init())
     }
+
+    addPicture() {}
 
     private init() {
         this.http

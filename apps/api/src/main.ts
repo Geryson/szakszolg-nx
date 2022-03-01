@@ -14,6 +14,7 @@ import { QuizQuestionResolver } from './app/quiz-question/quiz-question.resolver
 import { QuizAnswerResolver } from './app/quiz-answer/quiz-answer.resolver'
 import { SchoolResolver } from './app/school/school.resolver'
 import { printSchema } from 'graphql'
+import * as bodyParser from 'body-parser'
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule)
@@ -22,6 +23,7 @@ async function bootstrap() {
     app.setGlobalPrefix(globalPrefix)
     const port = config.get('API_PORT') || 3000
     app.enableCors()
+    app.use(bodyParser.json({ limit: '50mb' }))
     await app.listen(port)
     Logger.log(`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`)
 }

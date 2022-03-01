@@ -1,0 +1,33 @@
+<nx12-header title='PUZZLE_MANAGEMENT.SINGLE.TITLE'></nx12-header>
+
+<ion-content>
+    <div class='p-3 bg-white'>
+        <div class='mb-3'>
+            <input #input (change)='onFileSelected($event, input)' hidden type='file' />
+            <p-button (click)='onUploadButtonClicked(input)' icon='pi pi-{{NG_ICON.cloudUpload}}'
+                      label='{{ "PUZZLE_MANAGEMENT.SINGLE.UPLOAD_BUTTON" | translate }}'></p-button>
+        </div>
+        <div *ngIf='fileName'>
+            <ion-card-title class='text-center'>{{ fileName }}</ion-card-title>
+            <div>
+                <image-cropper (cropperReady)='cropperReady()'
+                               (imageCropped)='imageCropped($event)'
+                               (imageLoaded)='imageLoaded($event)'
+                               (loadImageFailed)='loadImageFailed()'
+                               [aspectRatio]='4 / 3'
+                               [imageChangedEvent]='imageChangedEvent'
+                               [maintainAspectRatio]='true'
+                               format='png'
+                ></image-cropper>
+            </div>
+
+            <div>
+                <img [src]='croppedImage' />
+            </div>
+        </div>
+        <div>
+            <p-button (click)='save()' [disabled]='!croppedImage' icon='pi pi-{{NG_ICON.save}}'
+                      label='{{ "FORM_OPERATION.SAVE" | translate }}' styleClass='p-button-success {{ fileName ? "mt-2" : "" }}'></p-button>
+        </div>
+    </div>
+</ion-content>

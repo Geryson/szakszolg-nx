@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ManagePuzzlesPage
+  },
+  {
+    path: 'new',
+    loadChildren: () => import('./manage-single-puzzle/manage-single-puzzle.module').then( m => m.ManageSinglePuzzlePageModule)
   }
 ];
 

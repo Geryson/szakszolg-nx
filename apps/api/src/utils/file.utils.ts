@@ -9,14 +9,18 @@ export const imageFileFilter = (req, file, callback) => {
     callback(null, true)
 }
 
-export const editFileName = (req, file, callback) => {
-    const name = file.originalname.split('.')[0]
-    const fileExtName = extname(file.originalname)
+export function fileNameGenerator(original: string) {
+    const name = original.split('.')[0]
+    const fileExtName = extname(original)
     const randomName = Array(4)
         .fill(null)
         .map(() => Math.round(Math.random() * 16).toString(16))
         .join('')
-    callback(null, `${name}--${randomName}${fileExtName}`)
+    return `${name}--${randomName}${fileExtName}`
+}
+
+export const editFileName = (req, file, callback) => {
+    callback(null, fileNameGenerator(file.originalname))
 }
 
 export function readDirAsync(path: string) {
