@@ -1,9 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>play-groups</ion-title>
-  </ion-toolbar>
-</ion-header>
+<nx12-header title="NAVIGATION.PAIRING"></nx12-header>
 
 <ion-content>
 
+    <div>
+        <h3 pDraggable="products" (onDragStart)="dragStart(word)" (onDragEnd)="dragEnd()">{{word}}</h3>
+    </div>
+    <br>
+    <div class="col-12 md:col-6 drop-column" >
+        <p-table [value]="groups ?? []">
+            <ng-template let-group pTemplate="body">
+                <tr pDroppable="products" (onDrop)="drop(group)">
+                    <td *ngIf="group === selectedGroup" class="{{group === correct ? 'green' : 'red'}}">{{group}}</td>
+                    <td *ngIf="group !== selectedGroup">{{group}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <h3>Correct group: {{correct}}</h3>
+
 </ion-content>
+
