@@ -271,7 +271,24 @@
         "TITLE": "Kérdőívek kezelése",
         "DESCRIPTION": "Leírás",
         "CATEGORIES": "Kategóriák",
-        "ID": "Azonosító"
+        "ID": "Azonosító",
+        "SINGLE": {
+            "PAGE_TITLE": "Kérdéssor kezelése",
+            "TITLE": "Kérdőív címe",
+            "DESCRIPTION": "Leírás",
+            "CATEGORY": "Kategória"
+        }
+    },
+
+    "MANAGE_QUESTIONS": {
+        "TITLE": "Kérdések",
+        "SEARCH": "Kérdés szövege...",
+        "QUESTION": "Kérdés",
+        "TYPE": "Típus",
+        "TYPES": {
+            "FREE": "Szabad válasz",
+            "CHOOSE": "Felelet választós"
+        }
     },
 
     "MANAGE_GROUPINGS": {

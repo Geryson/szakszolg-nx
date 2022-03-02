@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ManageSurveysPage
+  },
+  {
+    path: ':id',
+    loadChildren: () => import('./manage-single-survey/manage-single-survey.module').then( m => m.ManageSingleSurveyPageModule)
   }
 ];
 

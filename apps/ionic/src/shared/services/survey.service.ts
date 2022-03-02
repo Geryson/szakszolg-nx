@@ -29,9 +29,29 @@ export class SurveyService {
     }
 
     destroy(id: string) {
-        return this.apolloClient.mutate<{ hangmanWord: Partial<IHangmanWord> }>({
+        return this.apolloClient.mutate<{ quiz: Partial<IQuiz> }>({
             mutation: SURVEYS.DESTROY,
             variables: { id },
+        })
+    }
+
+    add(data: Partial<Omit<IQuiz, '_id'>>) {
+        return this.apolloClient.mutate<{ quiz: Partial<IQuiz> }>({
+            mutation: SURVEYS.ADD,
+            variables: { ...data },
+        })
+    }
+
+    read(id: string) {
+        return this.apolloClient.watchQuery<{ quiz: Partial<IQuiz> }>({
+            query: SURVEYS.READ,
+            variables: { id },
+        })
+    }
+
+    getCategories() {
+        return this.apolloClient.watchQuery<{ quizzes: { categories: string[] }[] }>({
+            query: SURVEYS.CATEGORIES,
         })
     }
 }

@@ -38,7 +38,7 @@
                 <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.ID' | translate }}</span> {{ item._id | slice: 18 }}</td>
                 <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.TITLE' | translate }}</span> {{ item.title }}</td>
                 <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.DESCRIPTION' | translate }}</span> {{ item.description }}</td>
-                <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.CATEGORIES' | translate }}</span> {{ item.category }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.CATEGORIES' | translate }}</span> {{ item.categories | join:', ' }}</td>
                 <td><span class='p-column-title'>{{ 'FORM_OPERATION.ACTIONS' | translate }}</span>
                     <span class='p-buttonset'>
                             <button (click)='editClick(item)' *ngIf='userCanEdit' class='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
