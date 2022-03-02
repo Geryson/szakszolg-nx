@@ -9,6 +9,7 @@ import { PlayMirrorWordsPageRoutingModule } from './play-mirror-words-routing.mo
 
 import { PlayMirrorWordsPage } from './play-mirror-words.page';
 import {NxSharedModule} from "../../../shared/nx-shared.module";
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import {NxSharedModule} from "../../../shared/nx-shared.module";
         PlayMirrorWordsPageRoutingModule,
         ButtonModule,
         InputTextModule,
-        NxSharedModule
+        NxSharedModule,
+        DialogModule
     ],
   declarations: [PlayMirrorWordsPage]
 })
