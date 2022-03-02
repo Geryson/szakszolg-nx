@@ -5,7 +5,6 @@
         <h5>Mirror Word Game</h5>
         <label class="noselect" [ngClass]="{'flipV' : value===1, 'flipH': value===0}">{{ word }}</label>
         <input type="text" class="p-inputtext-lg" placeholder="MirrorWord" pInputText [(ngModel)]="inputValue" (keydown.enter)="check()"/>
-        <p>Próbálkozások száma: {{ counter }}</p>
         <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="check()"></button>
     </div>
     <p-dialog header="Ügyes" [(visible)]="found">
@@ -16,5 +15,11 @@
         <p>Nem talált!</p>
         <p>A megoldás: {{ answer }}</p>
         <p-button type="button" styleClass="p-button-text" icon="pi pi-check" label="Ok" (click)="nextWord()"></p-button>
+    </p-dialog>
+    <p-dialog header="sampletext" [(visible)]="mistake">
+        <p>Nem talált!</p>
+        <p>Próbálkozások száma: {{ counter }}</p>
+        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="mistake = false"></button>
+
     </p-dialog>
 </ion-content>

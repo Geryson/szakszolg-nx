@@ -24,6 +24,7 @@ export class PlayMirrorWordsPage{
     found = false;
     notFound = false;
     answer?: string;
+    mistake = false;
 
   constructor(private readonly service: MirrorWordService, private readonly alert: AlertService,
   ) { }
@@ -46,9 +47,11 @@ export class PlayMirrorWordsPage{
         else
             if(this.counter !== 0){
                 this.counter--
+                this.mistake = true
             }
             else{
                 this.notFound = true
+                this.mistake = false
                 this.answer = this.word
             }
 
