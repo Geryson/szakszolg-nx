@@ -267,6 +267,12 @@
         "PASSWORD_DIALOG_TITLE": "Jelszavas megerősítés",
         "PASSWORD_DIALOG_CONTENT": "A változtatások mentéséhez adja meg a jelenlegi jelszavát"
     },
+    "MANAGE_SURVEYS": {
+        "TITLE": "Kérdőívek kezelése",
+        "DESCRIPTION": "Leírás",
+        "CATEGORIES": "Kategóriák",
+        "ID": "Azonosító"
+    },
 
     "MANAGE_GROUPINGS": {
         "SEARCH": "Keresés szó alapján",

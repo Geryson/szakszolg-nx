@@ -1,9 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>manage-surveys</ion-title>
-  </ion-toolbar>
-</ion-header>
+<nx12-header title='MANAGE_SURVEYS.TITLE'></nx12-header>
 
 <ion-content>
-
+    <p-table #dt [globalFilterFields]='["title", "description", "categories", "_id"]' [value]='values' responsiveLayout='stack'
+             styleClass='p-table-stripped'>
+        <ng-template pTemplate='caption'>
+            <div class='flex align-items-center justify-content-between'>
+                <span class='p-input-icon-left'>
+                    <i class='pi pi-search'></i>
+                    <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
+                           placeholder="{{ 'MANAGE_SURVEYS.SEARCH' | translate }}" type='text' />
+                </span>
+                <span>
+                    <button (click)='addClick()' class='p-button-success' icon='pi pi-plus' pButton
+                            type='button'></button>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate='header'>
+            <tr>
+                <th pSortableColumn='_id'>{{ 'MANAGE_SURVEYS.ID' | translate }}
+                    <p-sortIcon field='_id'></p-sortIcon>
+                </th>
+                <th pSortableColumn='title'>{{ 'MANAGE_SURVEYS.TITLE' | translate }}
+                    <p-sortIcon field='title'></p-sortIcon>
+                </th>
+                <th pSortableColumn='description'>{{ 'MANAGE_SURVEYS.DESCRIPTION' | translate }}
+                    <p-sortIcon field='description'></p-sortIcon>'>
+                </th>
+                <th pSortableColumn='category'>{{ 'MANAGE_SURVEYS.CATEGORIES' | translate }}
+                    <p-sortIcon field='category'></p-sortIcon>
+                </th>
+                <th>{{ 'FORM_OPERATION.ACTIONS' | translate }}</th>
+            </tr>
+        </ng-template>
+        <ng-template let-item pTemplate='body'>
+            <tr>
+                <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.ID' | translate }}</span> {{ item._id | slice: 18 }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.TITLE' | translate }}</span> {{ item.title }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.DESCRIPTION' | translate }}</span> {{ item.description }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.CATEGORIES' | translate }}</span> {{ item.category }}</td>
+                <td><span class='p-column-title'>{{ 'FORM_OPERATION.ACTIONS' | translate }}</span>
+                    <span class='p-buttonset'>
+                            <button (click)='editClick(item)' *ngIf='userCanEdit' class='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
+                            <button (click)='deleteClick(item)' *ngIf='userCanDelete' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
+                        </span>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </ion-content>
