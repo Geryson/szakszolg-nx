@@ -1,4 +1,4 @@
-import { gql } from 'apollo-angular'
+import {gql} from 'apollo-angular'
 
 export const HANGMAN_WORDS = {
     BROWSE: gql`
@@ -12,6 +12,14 @@ export const HANGMAN_WORDS = {
                 deletedAt
             }
         }
+    `,
+
+    BROWSE_BY_CATEGORY: gql`
+    query ($category: String!) {
+    hangmanWord (category: $category) {
+        word
+    }
+}
     `,
 
     RANDOM: gql`
