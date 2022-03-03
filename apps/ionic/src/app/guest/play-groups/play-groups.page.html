@@ -16,7 +16,14 @@
             </ng-template>
         </p-table>
     </div>
-    <h3>Correct group: {{correct}}</h3>
+    <p-dialog header="sampletext" [(visible)]="guessedAnswer" [closable]="false">
+        <p>Talált!</p>
+        <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
+    </p-dialog>
+    <p-dialog header="sampletext" [(visible)]="notCorrect" [closable]="false">
+        <p>Nem talált</p>
+        <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
+    </p-dialog>
 
 </ion-content>
 

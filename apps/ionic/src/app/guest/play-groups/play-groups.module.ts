@@ -11,6 +11,8 @@ import {NxSharedModule} from "../../../shared/nx-shared.module";
 import {DragDropModule} from "primeng/dragdrop";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
+import {DialogModule} from "primeng/dialog";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
     imports: [
@@ -21,7 +23,9 @@ import {TableModule} from "primeng/table";
         NxSharedModule,
         DragDropModule,
         PanelModule,
-        TableModule
+        TableModule,
+        DialogModule,
+        ButtonModule
     ],
   declarations: [PlayGroupsPage]
 })

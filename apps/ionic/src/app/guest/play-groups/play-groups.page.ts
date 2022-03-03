@@ -21,6 +21,7 @@ export class PlayGroupsPage {
     selectedGroup?: string
     private draggedWord?: string | null;
     guessedAnswer?: boolean;
+    notCorrect?: boolean;
 
     constructor(private readonly service: GroupingItemService,private readonly alert: AlertService) { }
 
@@ -48,7 +49,10 @@ export class PlayGroupsPage {
     drop(group: string) {
         if(this.draggedWord){
             this.selectedGroup = group
-            this.guessedAnswer = group === this.correct;
+            this.guessedAnswer = group === this.correct
+            if(!this.guessedAnswer){
+                this.notCorrect = true
+            }
             this.draggedWord = null
         }
     }
@@ -57,4 +61,11 @@ export class PlayGroupsPage {
         this.draggedWord = null
     }
 
+    async nextWord() {
+        const loading = await this.alert.loading('MESSAGE.LOADING')
+        await this.queryRef?.refetch()
+        loading.dismiss().then()
+        this.guessedAnswer = false
+        this.notCorrect = false
+    }
 }
