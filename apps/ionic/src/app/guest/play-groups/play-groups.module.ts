@@ -7,14 +7,26 @@ import { IonicModule } from '@ionic/angular';
 import { PlayGroupsPageRoutingModule } from './play-groups-routing.module';
 
 import { PlayGroupsPage } from './play-groups.page';
+import {NxSharedModule} from "../../../shared/nx-shared.module";
+import {DragDropModule} from "primeng/dragdrop";
+import {PanelModule} from "primeng/panel";
+import {TableModule} from "primeng/table";
+import {DialogModule} from "primeng/dialog";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PlayGroupsPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        PlayGroupsPageRoutingModule,
+        NxSharedModule,
+        DragDropModule,
+        PanelModule,
+        TableModule,
+        DialogModule,
+        ButtonModule
+    ],
   declarations: [PlayGroupsPage]
 })
 export class PlayGroupsPageModule {}
