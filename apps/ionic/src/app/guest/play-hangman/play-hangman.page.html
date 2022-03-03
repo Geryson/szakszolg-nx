@@ -1,12 +1,14 @@
 <nx12-header title="NAVIGATION.HANGMAN_WORDS"></nx12-header>
 <ion-content>
+
     <p-dialog [visible]="!selectedCategory" [closable]="false">
         <p-listbox [options]="categories ?? []" [(ngModel)]="selectedCategory" (onClick)="showWord()"></p-listbox>
     </p-dialog>
-    <span *ngFor="let r of replaced" style="padding: 10px;">{{ r }}</span>
-    <br>
-    <br>
+
     <div *ngIf="selectedCategory">
+        <span *ngFor="let r of replaced" style="padding: 10px;">{{ r }}</span>
+        <br>
+        <br>
         <p-button *ngFor="let l of letters" (onClick)="checkLetter(l)"  id="{{l}}" [disabled]="selectedLetters.includes(l)">{{l}}</p-button>
     </div>
     <p-dialog header="sampletext" [(visible)]="failed" [closable]="false">

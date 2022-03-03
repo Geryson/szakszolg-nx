@@ -77,10 +77,11 @@ export class PlayHangmanPage{
             }
         }
         else{
-            if(this.counter<10)
-                this.counter++
-            else
+            this.counter++
+            if(this.counter === 10){
+                this.selectedLetters=this.letters
                 this.failed = true
+            }
 
         }
         if(!this.replaced?.includes('_'))
@@ -89,14 +90,15 @@ export class PlayHangmanPage{
     }
 
     async nextWord() {
+        this.selectedCategory=false
         this.counter = -1
         this.failed = false
         this.success = false
-        this.replaced = []
         this.selectedLetters = []
         const loading = await this.alert.loading('MESSAGE.LOADING')
         await this.queryRef2?.refetch()
         loading.dismiss().then()
 
     }
+
 }
