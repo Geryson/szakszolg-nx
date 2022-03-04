@@ -1,3 +1,7 @@
+@media (min-height: 23rem) {
+    .wrapper{margin: 10% 0;}
+}
+
 @media (min-width: 45rem) {
     .hangman{
         grid-area: image;
@@ -6,7 +10,7 @@
     }
     .wrapper {
         display: grid;
-        margin: 10% 0;
+
         grid-template:
         "image letters"
         "word letters";
