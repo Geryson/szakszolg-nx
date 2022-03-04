@@ -62,12 +62,13 @@ export class PlayHangmanPage {
             .subscribe((res) => {
                     this.word = res.data.hangmanWord.word ?? ''
                     console.log(this.word)
-                    this.replaced = this.word.replace(/[A-Za-z]/g, '_').split('')
+                    this.replaced = this.word.replace(/[A-Za-zŐőÚúÖöÜüÓóŰűÁáÉéÍí]/g, '_').split('')
                 }
             )
     }
 
     checkLetter(letter: string) {
+
         this.selectedLetters.push(letter)
         this.wordArray = this.word?.toLowerCase().split('')
         if (this.wordArray?.includes(letter)) {
@@ -80,10 +81,8 @@ export class PlayHangmanPage {
         else{
             this.counter++
             if(this.counter === 10){
-                this.selectedLetters=this.letters
                 this.failed = true
             }
-
         }
         if (!this.replaced?.includes('_'))
             this.success = true

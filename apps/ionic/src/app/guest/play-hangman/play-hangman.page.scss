@@ -1,0 +1,60 @@
+@media (min-width: 45rem) {
+    .hangman{
+        grid-area: image;
+        width: 29%;
+        margin: 5% 30% 0;
+    }
+    .wrapper {
+        display: grid;
+        margin: 10% 0;
+        grid-template:
+        "image letters"
+        "word letters";
+    }
+    .l-container{
+        grid-area: letters;
+        width: 50%;
+        margin-left: 30%;
+    }
+
+    .words {
+        grid-area: word;
+        margin-left: 15%;
+        margin-top: -5%;
+        span {
+            width: 5%;
+            display: inline-flex;
+        }
+    }
+}
+
+@media (max-width: 45rem) {
+    .wrapper{
+        display: grid;
+        margin: 0 auto;
+        grid-template: "image" "word" "letters";
+        height: 20%;
+    }
+
+    .l-container{
+        grid-area: letters;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .hangman{
+        grid-area: image;
+        width: 48%;
+        margin: 5% auto;
+    }
+
+    .words {
+        text-align: center;
+        margin: 0 auto 5%;
+        span {
+            width: 5%;
+            display: inline-flex;
+        }
+    }
+}

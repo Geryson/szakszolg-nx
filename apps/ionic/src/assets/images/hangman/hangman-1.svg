@@ -7,7 +7,7 @@
    viewBox="0 0 127 182"
    version="1.1"
    id="svg5"
-   sodipodi:docname="hangman0.svg"
+   sodipodi:docname="hangman-1.svg"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -38,14 +38,5 @@
   <g
      inkscape:label="Réteg 1"
      inkscape:groupmode="layer"
-     id="layer1">
-    <rect
-       style="fill:#aa4400;stroke:none;stroke-width:3.46867;stroke-linecap:round;stroke-miterlimit:5;paint-order:markers fill stroke"
-       id="rect864"
-       width="125.96481"
-       height="5.7820792"
-       x="-127.02341"
-       y="174.84013"
-       transform="scale(-1,1)" />
-  </g>
+     id="layer1" />
 </svg>

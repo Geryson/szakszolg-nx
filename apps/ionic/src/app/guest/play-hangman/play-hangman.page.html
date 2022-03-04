@@ -1,23 +1,28 @@
 <nx12-header title="NAVIGATION.HANGMAN_WORDS"></nx12-header>
 <ion-content>
+    <div class="wrapper" *ngIf="selectedCategory">
 
+        <img class="hangman" src="assets/images/hangman/hangman{{counter}}.svg">
+
+
+        <div class="words">
+            <span *ngFor="let r of replaced"><br *ngIf="r === ' '">{{ r }}</span>
+        </div>
+
+        <div class="l-container">
+            <p-button [style]="{'width': '13%', 'margin': '1%', 'padding': 'auto'}"  *ngFor="let l of letters" (onClick)="checkLetter(l)"  id="{{l}}" [disabled]="selectedLetters.includes(l)">{{l}}</p-button>
+        </div>
+    </div>
     <p-dialog [visible]="!selectedCategory" [closable]="false">
         <p-listbox [options]="categories ?? []" [(ngModel)]="selectedCategory" (onClick)="showWord()"></p-listbox>
     </p-dialog>
-
-    <div *ngIf="selectedCategory">
-        <span *ngFor="let r of replaced" style="padding: 10px;">{{ r }}</span>
-        <br>
-        <br>
-        <p-button *ngFor="let l of letters" (onClick)="checkLetter(l)"  id="{{l}}" [disabled]="selectedLetters.includes(l)">{{l}}</p-button>
-    </div>
-    <p-dialog header="sampletext" [(visible)]="failed" [closable]="false">
+    <p-dialog header="sampletext" [(visible)]="failed" [closable]="false" [modal]="true">
         <p>Nem sikerült!</p>
         <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="success" [closable]="false">
+    <p-dialog header="sampletext" [(visible)]="success" [closable]="false" [modal]="true">
         <p>Siker!</p>
         <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
-    <img *ngIf="counter >= 0" src="assets/images/hangman/hangman{{counter}}.svg">
+
 </ion-content>
