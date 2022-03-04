@@ -1,0 +1,83 @@
+<nx12-header title='MANAGE_SURVEYS.SINGLE.PAGE_TITLE'></nx12-header>
+
+<ion-content>
+    <div *ngIf='survey' class='p-fluid grid p-3 pt-5'>
+        <div class='field col-12 md:col-6'>
+            <div class='mb-4'>
+            <span class='p-float-label'>
+                <input [(ngModel)]='survey!.title' id='title' pInputText type='text'>
+                <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.TITLE' | translate }}</label>
+            </span>
+            </div>
+            <div class='mb-4'>
+                <span class='p-float-label'>
+                    <textarea [(ngModel)]='survey!.description' cols='50' id='description' pInputTextarea rows='3'></textarea>
+                    <label for='description'>{{ 'MANAGE_SURVEYS.SINGLE.DESCRIPTION' | translate }}</label>
+                </span>
+            </div>
+            <div class='mb-4'>
+                <span class='p-float-label'>
+                    <p-autoComplete (completeMethod)='search($event)' [(ngModel)]='survey!.categories![0]'
+                                    [suggestions]='filteredCategories' id='categories'></p-autoComplete>
+                    <label for='categories'>{{ 'MANAGE_SURVEYS.SINGLE.CATEGORY' | translate }}</label>
+                </span>
+            </div>
+            <div class='nx-sticky'>
+                <p-button (click)='save()' icon='pi pi-{{ NG_ICON.save }}' label='{{"FORM_OPERATION.SAVE" | translate}}'
+                          styleClass='p-button-success'></p-button>
+            </div>
+        </div>
+    <div class='field col-12 md:col-6'>
+        <h5>{{ 'MANAGE_QUESTIONS.TITLE' | translate }}</h5>
+        <p-table #dt [globalFilterFields]='["question"]' [value]='survey?.questions ?? []' responsiveLayout='stack'>
+            <ng-template pTemplate='caption'>
+                <div class='flex align-items-center justify-content-between'>
+                    <span class='p-input-icon-left'>
+                        <i class='pi pi-search'></i>
+                        <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
+                               placeholder="{{ 'MANAGE_QUESTIONS.SEARCH' | translate }}" type='text' />
+                    </span>
+                    <span>
+                    <button (click)='addClick()' class='p-button-success' icon='pi pi-plus' pButton
+                            type='button'></button>
+                </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate='header'>
+                <tr>
+                    <th pSortableColumn='question'>
+                        {{ 'MANAGE_QUESTIONS.QUESTION' | translate }}
+                        <p-sortIcon field='question'></p-sortIcon>
+                    </th>
+                    <th pSortableColumn='type'>
+                        {{ 'MANAGE_QUESTIONS.TYPE' | translate }}
+                        <p-sortIcon field='type'></p-sortIcon>
+                    </th>
+                    <th>
+                        {{ 'FORM_OPERATION.ACTIONS' | translate }}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template let-questionObject pTemplate='body'>
+                <tr>
+                    <td>
+                        <span class='p-column-title'>{{ 'MANAGE_QUESTIONS.QUESTION' | translate }}</span>
+                        {{ questionObject.question }}
+                    </td>
+                    <td>
+                        <span class='p-column-title'>{{ 'MANAGE_QUESTIONS.TYPE' | translate }}</span>
+                        {{ ('MANAGE_QUESTIONS.TYPES.' + questionObject.type.toUpperCase()) | translate }}
+                    </td>
+                    <td>
+                        <span class='p-column-title'>{{ 'FORM_OPERATION.ACTIONS' | translate }}</span> <span class='p-buttonset'>
+                            <button (click)='editClick(questionObject)' class='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
+                            <button (click)='deleteClick(questionObject)' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
+                        </span>
+
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    </div>
+</ion-content>
