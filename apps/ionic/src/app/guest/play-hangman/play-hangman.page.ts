@@ -8,11 +8,11 @@ import {EmptyObject} from "apollo-angular/build/types";
 import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'nx12-play-hangman',
-  templateUrl: './play-hangman.page.html',
-  styleUrls: ['./play-hangman.page.scss'],
+    selector: 'nx12-play-hangman',
+    templateUrl: './play-hangman.page.html',
+    styleUrls: ['./play-hangman.page.scss'],
 })
-export class PlayHangmanPage{
+export class PlayHangmanPage {
 
     private queryRef?: QueryRef<{ hangmanWords: Partial<IHangmanWord>[] }, EmptyObject>
     private sub?: Subscription
@@ -30,7 +30,8 @@ export class PlayHangmanPage{
     success = false;
     selectedLetters: string[] = []
 
-    constructor(private readonly service: HangmanWordService, private readonly alert: AlertService) { }
+    constructor(private readonly service: HangmanWordService, private readonly alert: AlertService) {
+    }
 
     async init() {
         const loading = await this.alert.loading('MESSAGE.LOADING')
@@ -46,14 +47,14 @@ export class PlayHangmanPage{
 
     }
 
-  ionViewDidEnter() {
-      this.init().then()
-  }
+    ionViewDidEnter() {
+        this.init().then()
+    }
 
-  ionViewDidLeave() {
+    ionViewDidLeave() {
         this.sub?.unsubscribe()
-      this.sub2?.unsubscribe()
-  }
+        this.sub2?.unsubscribe()
+    }
 
     showWord() {
         this.queryRef2 = this.service.browseByCategory(this.selectedCategory)
@@ -61,7 +62,7 @@ export class PlayHangmanPage{
             .subscribe((res) => {
                     this.word = res.data.hangmanWord.word ?? ''
                     console.log(this.word)
-                    this.replaced = this.word.replace(/[A-Za-z]/g,'_').split('')
+                    this.replaced = this.word.replace(/[A-Za-z]/g, '_').split('')
                 }
             )
     }
@@ -69,10 +70,10 @@ export class PlayHangmanPage{
     checkLetter(letter: string) {
         this.selectedLetters.push(letter)
         this.wordArray = this.word?.toLowerCase().split('')
-        if(this.wordArray?.includes(letter)){
-            for(let i = 0; i<this.wordArray?.length ; i++){
-                if(this.wordArray[i] === letter){
-                        this.replaced[i] = letter
+        if (this.wordArray?.includes(letter)) {
+            for (let i = 0; i < this.wordArray?.length; i++) {
+                if (this.wordArray[i] === letter) {
+                    this.replaced[i] = letter
                 }
             }
         }
@@ -84,7 +85,7 @@ export class PlayHangmanPage{
             }
 
         }
-        if(!this.replaced?.includes('_'))
+        if (!this.replaced?.includes('_'))
             this.success = true
 
     }
@@ -98,7 +99,6 @@ export class PlayHangmanPage{
         const loading = await this.alert.loading('MESSAGE.LOADING')
         await this.queryRef2?.refetch()
         loading.dismiss().then()
-
     }
 
 }
