@@ -13,6 +13,7 @@
 
 <ion-content fullscreen="true" padding=true>
     <form>
+        <div class="placeHolder"></div>
         <div class="container">
             <div class="top">
                 <ion-label class='input-label' text-wrap>{{ 'ADMIN.EMAIL' | translate }}</ion-label>
@@ -24,5 +25,6 @@
                 <ion-button (click)="login($event)" [disabled]="!valid" class='btn-login' shape="round" type="submit">{{ 'BUTTONS.ENTER' | translate }}</ion-button>
             </div>
         </div>
+        <div class="placeHolder"></div>
     </form>
 </ion-content>
