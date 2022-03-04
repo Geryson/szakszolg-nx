@@ -17,14 +17,15 @@ export class PlayMirrorWordsPage{
     inputValue?: string
     word?: string
     counter = 5
+    correctAnswers=0
     value: number | null = null
 
     private queryRef?: QueryRef<{ mirrorWord: Partial<IMirrorWord> }, EmptyObject>
     private sub?: Subscription
-    found = false;
-    notFound = false;
-    answer?: string;
-    mistake = false;
+    found = false
+    answer?: string
+    mistake = false
+    end=false
 
   constructor(private readonly service: MirrorWordService, private readonly alert: AlertService,
   ) { }
@@ -43,14 +44,18 @@ export class PlayMirrorWordsPage{
 
     async check() {
         if(this.inputValue?.toLowerCase() === this.word?.toLowerCase())
+        {
             this.found = true
+            this.inputValue=''
+            this.correctAnswers++
+        }
         else
-            if(this.counter !== 0){
+            if(this.counter !== 1){
                 this.counter--
                 this.mistake = true
             }
             else{
-                this.notFound = true
+                this.end = true
                 this.mistake = false
                 this.answer = this.word
             }
@@ -61,12 +66,16 @@ export class PlayMirrorWordsPage{
         const loading = await this.alert.loading('MESSAGE.LOADING')
         await this.queryRef?.refetch()
         loading.dismiss().then()
-        this.notFound = false
+        this.end = false
         this.found = false
-        this.counter = 5
         this.inputValue = ''
     }
+     newGame(){
+        this.nextWord().then()
+         this.counter=5
+         this.correctAnswers=0
 
+    }
     ionViewDidEnter(): void {
         this.init().then()
     }
