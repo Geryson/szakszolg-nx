@@ -1,64 +1,162 @@
-@media (min-height: 23rem) {
-    .wrapper{margin: 10% 0;}
+.hangman {
+    grid-area: image;
+    width: 30%;
+    margin: 0 30% 10%;
 }
 
-@media (min-width: 45rem) {
-    .hangman{
-        grid-area: image;
-        width: 29%;
-        margin: 5% 30% 0;
-    }
-    .wrapper {
-        display: grid;
+.wrapper {
+    display: grid;
+    margin: 10% 0;
+    grid-template:
+    "image letters"
+    "word letters";
+}
 
-        grid-template:
-        "image letters"
-        "word letters";
-    }
-    .l-container{
-        grid-area: letters;
-        width: 50%;
-        margin-left: 30%;
-    }
+.l-container {
+    grid-area: letters;
+    margin-left: 30%;
+}
 
-    .words {
-        grid-area: word;
-        margin-left: 15%;
-        margin-top: -5%;
-        span {
-            width: 5%;
-            display: inline-flex;
-        }
+.words {
+    grid-area: word;
+    margin-left: 15%;
+    margin-top: -5%;
+    span {
+        width: 5%;
+        display: inline-flex;
     }
 }
 
-@media (max-width: 45rem) {
-    .wrapper{
-        display: grid;
-        margin: 0 auto;
-        grid-template: "image" "word" "letters";
-        height: 20%;
-    }
-
-    .l-container{
-        grid-area: letters;
-        text-align: center;
-        margin: 0 auto;
-        width: 100%;
-    }
-
-    .hangman{
-        grid-area: image;
-        width: 48%;
-        margin: 5% auto;
-    }
-
-    .words {
-        text-align: center;
-        margin: 0 auto 5%;
-        span {
-            width: 5%;
-            display: inline-flex;
+@media (max-width: 1023px) and (orientation: landscape) {
+    .inner-scroll {
+        .scroll-y {
+            overflow-y: hidden !important;
         }
     }
+
+.wrapper {
+    display: grid;
+    margin: 10% auto;
+    grid-template: "image" "word" "letters";
+}
+
+.l-container {
+    grid-area: letters;
+    text-align: center;
+    margin-top: -67%;
+    margin-left: 50%;
+    width: 50%;
+}
+
+.hangman {
+    grid-area: image;
+    width: 16%;
+    margin: 0 0 35% 15%;
+}
+
+.words {
+    grid-area: word;
+    text-align: center;
+    margin: -35% 60% 0 1%;
+    span {
+        width: 5%;
+        display: inline-flex;
+    }
+}
+}
+
+
+@media (max-width: 1023px) and (orientation: portrait) {
+.wrapper {
+    display: grid;
+    margin: 0 auto;
+    grid-template: "image" "word" "letters";
+    height: 25%;
+}
+
+.l-container {
+    grid-area: letters;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hangman {
+    grid-area: image;
+    width: 48%;
+    margin: 4% auto;
+}
+
+.words {
+    text-align: center;
+    margin: 1% 5%;
+    span {
+        width: 5%;
+        display: inline-flex;
+    }
+}
+}
+
+
+@media (max-width: 767px) and (orientation: portrait) {
+.wrapper {
+    display: grid;
+    margin: 0 auto;
+    grid-template: "image" "word" "letters";
+    height: 25%;
+}
+
+.l-container {
+    grid-area: letters;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hangman {
+    grid-area: image;
+    width: 70%;
+    margin: 4% auto;
+}
+
+.words {
+    text-align: center;
+    margin: 1% 5%;
+    span {
+        width: 5%;
+        display: inline-flex;
+    }
+}
+}
+
+
+@media (max-width: 389px) and (orientation: portrait) {
+.wrapper {
+    display: grid;
+    margin: 0 auto;
+    grid-template: "image" "word" "letters";
+    height: 20%;
+}
+
+.l-container {
+    grid-area: letters;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hangman {
+    grid-area: image;
+    width: 42%;
+    margin: 3.85% auto;
+}
+
+.words {
+    text-align: center;
+    margin: 0 auto 5%;
+    span {
+        width: 5%;
+        display: inline-flex;
+    }
+}
 }
