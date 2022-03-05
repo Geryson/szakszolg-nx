@@ -63,4 +63,25 @@ export const SURVEYS = {
             }
         }
     `,
+    EDIT: gql`
+        mutation (
+            $id: String!
+            $title: String!
+            $description: String!
+            $categories: [String!]
+            $questions: [UpdateQuizQuestionInput!]
+        ) {
+            updateQuiz(
+                updateQuizData: {
+                    id: $id
+                    title: $title
+                    description: $description
+                    categories: $categories
+                    questions: $questions
+                }
+            ) {
+                _id
+            }
+        }
+    `,
 }

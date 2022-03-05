@@ -285,9 +285,14 @@
         "SEARCH": "Kérdés szövege...",
         "QUESTION": "Kérdés",
         "TYPE": "Típus",
+        "IS_SOLUTION": "Megoldás",
+        "NOT_SOLUTION": "Nem megoldás",
         "TYPES": {
             "FREE": "Szabad válasz",
-            "CHOOSE": "Felelet választós"
+            "CHOOSE": "Felelet választós",
+            "RATING": "1-5",
+            "CHOOSE-MANY": "Több lehetőséges",
+            "TRUE-FALSE": "Igaz-Hamis"
         }
     },
 
@@ -308,7 +313,8 @@
         "ACTIONS": "Műveletek",
         "SUCCESS": "Siker",
         "SUCCESS_DETAIL": "A változatások el lettek mentve.",
-        "SAVE": "Mentés"
+        "SAVE": "Mentés",
+        "CANCEL": "Mégsem"
     },
 
     "MANAGE_USERS":{

@@ -81,3 +81,8 @@
     </div>
     </div>
 </ion-content>
+
+<p-dialog [(visible)]="!!questionEditing" [closable]='false' [draggable]="false" [modal]="true" [resizable]="false"
+          [style]="{width: '95vw', minHeight: '98vh'}" header="{{ 'MANAGE_QUESTIONS.QUESTION' | translate }}">
+    <nx12-question-edit-form (canceled)='formCanceled()' (submitted)='formSubmitted($event)' *ngIf='!!questionEditing' [(question)]='questionEditing'></nx12-question-edit-form>
+</p-dialog>

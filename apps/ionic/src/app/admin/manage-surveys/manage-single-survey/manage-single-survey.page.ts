@@ -8,7 +8,7 @@ import { first, Subscription } from 'rxjs'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { NavController } from '@ionic/angular'
-import { omit } from '@szakszolg-nx/shared-module'
+import { deepCopy, omit } from '@szakszolg-nx/shared-module'
 import { SurveyService } from '../../../../shared/services/survey.service'
 
 @Component({
@@ -22,11 +22,12 @@ export class ManageSingleSurveyPage {
     NG_ICON = NG_ICON
     validationErrors: { [key: string]: string } = {}
     filteredCategories: string[] = []
+    questionEditing?: Partial<IQuizQuestion>
+    private originalQuestionEditing?: Partial<IQuizQuestion>
     private categories: string[] = []
     private queryRef?: QueryRef<{ quiz: Partial<IQuiz> }>
     private sub = new Subscription()
     private categoriesQueryRef?: QueryRef<{ quizzes: { categories: string[] }[] }>
-    private questionEditing?: Partial<IQuizQuestion>
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -70,24 +71,45 @@ export class ManageSingleSurveyPage {
 
     addClick() {
         const newQuestion = {
-            _id: '',
+            _id: this.survey?.questions?.length.toString() ?? '0',
             type: '',
             createdAt: new Date(),
             question: '',
             answers: [],
             correctAnswers: [],
-            category: '',
         }
+        if (!this.survey?.questions) this.survey!.questions = []
         this.survey?.questions?.push(newQuestion)
         this.questionEditing = newQuestion
+        this.originalQuestionEditing = deepCopy(newQuestion)
     }
 
     editClick(item: Omit<IQuizQuestion, '_id'>) {
         this.questionEditing = item
+        this.originalQuestionEditing = deepCopy(item)
     }
 
     deleteClick(item: Omit<IQuizQuestion, '_id'>) {
         this.survey!.questions = this.survey!.questions?.filter((question) => question.question !== item.question) // TODO: Add confirmation
+    }
+
+    formCanceled() {
+        this.questionEditing = Object.assign(this.questionEditing!, this.originalQuestionEditing!)
+
+        if (this.questionEditing?._id) {
+            this.survey?.questions?.slice(
+                this.survey?.questions?.findIndex((question) => question._id === this.questionEditing?._id),
+                1,
+            )
+        }
+
+        delete this.originalQuestionEditing
+        delete this.questionEditing
+    }
+
+    formSubmitted($event: Partial<IQuizQuestion>) {
+        delete this.questionEditing
+        delete this.originalQuestionEditing
     }
 
     private async init() {
@@ -107,9 +129,9 @@ export class ManageSingleSurveyPage {
                 this.queryRef = this.surveyService.read(params.id)
                 this.sub.add(
                     this.queryRef!.valueChanges.subscribe(({ data }) => {
-                        this.survey = { ...data.quiz }
+                        this.survey = deepCopy(data.quiz)
                         if (this.survey.categories?.length === 0) this.survey.categories = ['']
-                        this.originalSurvey = { ...this.survey }
+                        this.originalSurvey = deepCopy(this.survey)
                     }),
                 )
             }),
