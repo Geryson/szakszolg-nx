@@ -134,6 +134,7 @@ export class ManageSingleSurveyPage {
                         this.originalSurvey = deepCopy(this.survey)
                     }),
                 )
+                this.queryRef?.refetch().then()
             }),
         )
     }
