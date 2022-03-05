@@ -38,6 +38,7 @@ import { jwtOptionsFactory } from '../shared/utils/jwt-options'
 import { MirrorWordService } from '../shared/services/mirror-word.service'
 import { Drivers } from '@ionic/storage'
 import { NxSharedModule } from '../shared/nx-shared.module'
+import { AngularCropperjsModule } from 'angular-cropperjs'
 
 @NgModule({
     declarations: [AppComponent],
@@ -92,6 +93,7 @@ import { NxSharedModule } from '../shared/nx-shared.module'
             deps: [HttpLink],
         },
         StorageService,
+        AngularCropperjsModule,
         StaticService,
         MessageService,
         MirrorWordService,
