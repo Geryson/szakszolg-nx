@@ -41,6 +41,7 @@
                 <td><span class='p-column-title'>{{ 'MANAGE_SURVEYS.CATEGORIES' | translate }}</span> {{ item.categories | join:', ' }}</td>
                 <td><span class='p-column-title'>{{ 'FORM_OPERATION.ACTIONS' | translate }}</span>
                     <span class='p-buttonset'>
+                            <button (click)='createToken(item)' class='p-button-primary' icon='pi pi-{{ NG_ICON.key }}' pButton type='button'></button>
                             <button (click)='editClick(item)' *ngIf='userCanEdit' class='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
                             <button (click)='deleteClick(item)' *ngIf='userCanDelete' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
                         </span>
@@ -49,3 +50,14 @@
         </ng-template>
     </p-table>
 </ion-content>
+
+<p-dialog [(visible)]='tokenDialog' [draggable]='true' [modal]='true' [resizable]='false' [responsive]='true' header='MANAGE_SURVEYS.CREATE_TOKEN' >
+    <div class='p-grid'>
+        <div class='p-col-12'>
+            <h5>{{ generatedToken.token }}</h5>
+        </div>
+        <div class='p-col-12'>
+            <p-button (click)='copyToken()' icon='pi pi-copy' label='{{ (copied ? "FORM_OPERATION.COPIED" : "FORM_OPERATION.COPY") | translate }}' styleClass='p-button-{{ copied ? "success" : "primary" }}'></p-button>
+        </div>
+    </div>
+</p-dialog>

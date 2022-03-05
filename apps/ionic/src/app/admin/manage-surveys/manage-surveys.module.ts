@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
 import { SharedModule } from '@szakszolg-nx/shared-module'
+import { DialogModule } from 'primeng/dialog'
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { SharedModule } from '@szakszolg-nx/shared-module'
         TranslateModule,
         ButtonModule,
         InputTextModule,
+        DialogModule,
     ],
     declarations: [ManageSurveysPage],
 })

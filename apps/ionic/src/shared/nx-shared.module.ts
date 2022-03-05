@@ -5,12 +5,13 @@ import { IonicModule } from '@ionic/angular'
 import { TranslateModule } from '@ngx-translate/core'
 import { UserService } from './services/user.service'
 import { HangmanWordService } from './services/hangman-word.service'
-import {SchoolService} from "./services/schoolService";
+import { SchoolService } from './services/schoolService'
+import { TokenService } from './services/token.service'
 
 @NgModule({
     declarations: [HeaderComponent],
     imports: [CommonModule, IonicModule, TranslateModule],
-    providers: [UserService, HangmanWordService, SchoolService],
+    providers: [UserService, HangmanWordService, SchoolService, TokenService],
     exports: [HeaderComponent],
 })
 export class NxSharedModule {}
