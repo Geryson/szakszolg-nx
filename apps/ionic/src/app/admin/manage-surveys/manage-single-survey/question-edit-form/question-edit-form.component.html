@@ -8,15 +8,30 @@
         </div>
         <div class='mb-4'>
             <span class='p-float-label'>
-                <p-dropdown [(ngModel)]='question.type' [autoDisplayFirst]='false' [options]='questionTypes'
-                            id='type'></p-dropdown>
+                <p-dropdown [(ngModel)]='question.type' [autoDisplayFirst]='false'
+                            [disabled]='template !== "custom" && template !== "quiz"'
+                            [options]='questionTypes'
+                            [placeholder]='(template !== "custom" && template !== "quiz"
+                                    ? "MANAGE_QUESTIONS.TEMPLATE2." + template.toUpperCase()
+                                    : "FORM_OPERATION.PLEASE_CHOOSE"
+                                ) | translate'
+                            id='type'>
+                    <ng-template let-item pTemplate='item'>
+                        <div>
+                            {{ ('MANAGE_QUESTIONS.TYPES.' + item.toUpperCase()) | translate }}
+                        </div>
+                    </ng-template>
+
+                </p-dropdown>
                 <label for='type'>{{ 'MANAGE_QUESTIONS.TYPE' | translate }}</label>
             </span>
         </div>
         <div class='mb-4'>
                 <span class='p-buttonset'>
-                    <p-button (click)='save()' icon='pi pi-save' label='{{ "FORM_OPERATION.SAVE" | translate }}' styleClass='p-button-success'></p-button>
-                    <p-button (click)='cancel()' icon='pi pi-times' label='{{ "FORM_OPERATION.CANCEL" | translate }}' styleClass='p-button-danger'></p-button>
+                    <p-button (click)='save()' icon='pi pi-save' label='{{ "FORM_OPERATION.SAVE" | translate }}'
+                              styleClass='p-button-success'></p-button>
+                    <p-button (click)='cancel()' icon='pi pi-times' label='{{ "FORM_OPERATION.CANCEL" | translate }}'
+                              styleClass='p-button-danger'></p-button>
                 </span>
         </div>
         <div *ngIf='question.type?.startsWith("choose")' class='mb-4'>
@@ -33,10 +48,13 @@
                         <td>
                             <span class='p-buttonset'>
                                 <p-button (click)='markAsCorrect(ans)' *ngIf='!question.correctAnswers?.includes(ans)'
-                                          label='{{ "MANAGE_QUESTIONS.NOT_SOLUTION" | translate }}' styleClass='p-button-primary'></p-button>
+                                          label='{{ "MANAGE_QUESTIONS.NOT_SOLUTION" | translate }}'
+                                          styleClass='p-button-primary'></p-button>
                                 <p-button (click)='unMarkAsCorrect(ans)' *ngIf='question.correctAnswers?.includes(ans)'
-                                          label='{{ "MANAGE_QUESTIONS.IS_SOLUTION" | translate }}' styleClass='p-button-success'></p-button>
-                                <p-button (click)='removeAnswer(ans)' icon='pi pi-trash' styleClass='p-button-danger'></p-button>
+                                          label='{{ "MANAGE_QUESTIONS.IS_SOLUTION" | translate }}'
+                                          styleClass='p-button-success'></p-button>
+                                <p-button (click)='removeAnswer(ans)' icon='pi pi-trash'
+                                          styleClass='p-button-danger'></p-button>
                             </span>
                         </td>
                     </tr>

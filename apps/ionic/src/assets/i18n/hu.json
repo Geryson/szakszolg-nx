@@ -217,7 +217,9 @@
     },
 
     "SHARED": {
-        "DATE_FORMAT": "yyyy.MM.dd HH:mm:ss"
+        "DATE_FORMAT": "yyyy.MM.dd HH:mm:ss",
+        "LEAVE_PAGE_CONFIRM": "Néhány változtatás nincs elmentve. Biztosan vissza szeretne lépni?",
+        "LEAVE_PAGE_CONFIRM_HEADER": "Visszalépés"
     },
 
     "ADMIN_NAV": {
@@ -276,12 +278,13 @@
             "PAGE_TITLE": "Kérdéssor kezelése",
             "TITLE": "Kérdőív címe",
             "DESCRIPTION": "Leírás",
-            "CATEGORY": "Kategória"
+            "CATEGORIES": "Kategóriák"
         }
     },
 
     "MANAGE_QUESTIONS": {
         "TITLE": "Kérdések",
+        "DETAILS": "Kérdőív",
         "SEARCH": "Kérdés szövege...",
         "QUESTION": "Kérdés",
         "TYPE": "Típus",
@@ -290,7 +293,7 @@
         "TYPES": {
             "FREE": "Szabad válasz",
             "CHOOSE": "Felelet választós",
-            "RATING": "1-5",
+            "RATING": "Egytől Ötig",
             "CHOOSE-MANY": "Több lehetőséges",
             "TRUE-FALSE": "Igaz-Hamis"
         },
@@ -324,7 +327,11 @@
     },
 
     "FORM_OPERATION":  {
+        "COPY": "Másolás",
+        "COPIED": "Másolva",
+        "NO_ITEMS": "Nincsennek megjeleníthető elemek",
         "ACTIONS": "Műveletek",
+        "PLEASE_CHOOSE": "Kérem válasszon",
         "SUCCESS": "Siker",
         "SUCCESS_DETAIL": "A változatások el lettek mentve.",
         "SAVE": "Mentés",
@@ -351,7 +358,7 @@
         "DELETE_QUESTIONS": "Kérdés törlése",
         "ADD_QUESTIONS": "Kérdések hozzáadása:",
         "UNIQUE_ANSWERS": "Egyedi válaszok",
-        "ONE_TO_FIVE": "Egytől ötig",
+        "ONE_TO_FIVE": "Egytől-Ötig",
         "WHAT_IS_TRUE": "Melyik igaz?",
         "QUESTION": "kérdés...",
         "ANSWER": "válasz..."

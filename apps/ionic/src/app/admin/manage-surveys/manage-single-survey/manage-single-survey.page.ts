@@ -8,7 +8,7 @@ import { first, Subscription } from 'rxjs'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { NavController } from '@ionic/angular'
-import { deepCopy, omit } from '@szakszolg-nx/shared-module'
+import { areEqual, deepCopy, omit } from '@szakszolg-nx/shared-module'
 import { SurveyService } from '../../../../shared/services/survey.service'
 
 @Component({
@@ -19,16 +19,15 @@ import { SurveyService } from '../../../../shared/services/survey.service'
 export class ManageSingleSurveyPage {
     survey?: Partial<IQuiz>
     originalSurvey?: Partial<IQuiz>
+    areEqual = areEqual
     NG_ICON = NG_ICON
     validationErrors: { [key: string]: string } = {}
-    filteredCategories: string[] = []
     templateDialog = 0
     questionEditing?: Partial<IQuizQuestion>
+    categoryDialog = false
     private originalQuestionEditing?: Partial<IQuizQuestion>
-    private categories: string[] = []
     private queryRef?: QueryRef<{ quiz: Partial<IQuiz> }>
     private sub = new Subscription()
-    private categoriesQueryRef?: QueryRef<{ quizzes: { categories: string[] }[] }>
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -63,11 +62,6 @@ export class ManageSingleSurveyPage {
             return
         }
         this.create()
-    }
-
-    search($event: any) {
-        this.filteredCategories =
-            this.categories?.filter((category) => category.includes($event.query.toLowerCase())) ?? []
     }
 
     addClick() {
@@ -122,7 +116,7 @@ export class ManageSingleSurveyPage {
                 this.survey!.template = 'custom'
                 break
             default:
-                this.survey!.template = template.substring(9)
+                this.survey!.template = template
                 break
         }
 
@@ -134,8 +128,11 @@ export class ManageSingleSurveyPage {
         if (!onTemplate2) this.nav.back()
     }
 
+    openCategoryManagement() {
+        this.categoryDialog = true
+    }
+
     private async init() {
-        this.getCategories().then()
         this.sub.add(
             this.activatedRoute.params.subscribe(async (params) => {
                 if (params.id === 'new') {
@@ -143,9 +140,10 @@ export class ManageSingleSurveyPage {
                         title: '',
                         description: '',
                         questions: [],
-                        categories: [''],
+                        categories: [],
                         template: '',
                     }
+                    this.originalSurvey = deepCopy(this.survey)
                     this.templateDialog = 1
                     return
                 }
@@ -185,24 +183,6 @@ export class ManageSingleSurveyPage {
             detail: this.translate.transform('FORM_OPERATION.SUCCESS_DETAIL'),
         })
         this.nav.back()
-    }
-
-    private async getCategories() {
-        if (this.categoriesQueryRef) {
-            this.categoriesQueryRef.refetch().then()
-            return
-        }
-
-        this.categoriesQueryRef = this.surveyService.getCategories()
-        this.sub.add(
-            this.categoriesQueryRef.valueChanges.subscribe((res) => {
-                this.categories = []
-                const set = new Set<string>()
-                res.data.quizzes.forEach((quiz) => quiz.categories.forEach((category) => set.add(category)))
-                this.categories = Array.from(set)
-                this.filteredCategories = [...this.categories]
-            }),
-        )
     }
 }
 

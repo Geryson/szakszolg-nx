@@ -1,0 +1,24 @@
+<input #newCategory (keydown.enter)='add(newCategory)' pInputText>
+<p-button (click)='add(newCategory)' [disabled]='!newCategory.value' icon='pi pi-plus'></p-button>
+<p-table [value]='survey.categories ?? []'>
+    <ng-template  pTemplate='header'>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template let-item pTemplate='body'>
+        <tr>
+            <td>{{ item }}</td>
+            <td>
+                <p-button (click)='remove(item)' icon='pi pi-trash'
+                          styleClass='p-button-danger'></p-button>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate='emptymessage'>
+        {{ 'FORM_OPERATION.NO_ITEMS' | translate }}
+    </ng-template>
+</p-table>
+
+<p-button (click)='save()' [disabled]='!!survey.categories?.length' icon='pi pi-save' label='{{ "FORM_OPERATION.SAVE" | translate }}' styleClass='p-button-success'></p-button>

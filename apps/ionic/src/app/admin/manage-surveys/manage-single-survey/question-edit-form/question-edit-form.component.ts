@@ -12,7 +12,7 @@ export class QuestionEditFormComponent {
     @Output() questionChange = new EventEmitter<Partial<IQuizQuestion>>()
     @Output() canceled = new EventEmitter<void>()
     @Output() submitted = new EventEmitter<Partial<IQuizQuestion>>()
-    questionTypes = ['free', 'choose', 'choose-multiple', 'rating', 'true-false']
+    questionTypes = ['free', 'choose', 'rating', 'true-false']
 
     constructor() {}
 
