@@ -293,6 +293,20 @@
             "RATING": "1-5",
             "CHOOSE-MANY": "Több lehetőséges",
             "TRUE-FALSE": "Igaz-Hamis"
+        },
+        "TEMPLATE1": {
+            "HEADER": "Kérdőív típus",
+            "DESCRIPTION": "Milyen típusú kérdőívet szeretne létrehozni?",
+            "EVALUABLE": "Kiértékelendő",
+            "CUSTOM": "Egyedi"
+        },
+        "TEMPLATE2": {
+            "HEADER": "Sablon típus",
+            "DESCRIPTION": "Milyen típusú kiértékelendő kérdőívet szeretne létrehozni?",
+            "RATING": "Egytől-Ötig",
+            "TRUE-FALSE": "Igaz-Hamis",
+            "SKILL": "Képesség eldöntő",
+            "QUIZ": "Kvíz"
         }
     },
 

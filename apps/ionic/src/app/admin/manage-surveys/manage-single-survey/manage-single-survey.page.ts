@@ -22,6 +22,7 @@ export class ManageSingleSurveyPage {
     NG_ICON = NG_ICON
     validationErrors: { [key: string]: string } = {}
     filteredCategories: string[] = []
+    templateDialog = 0
     questionEditing?: Partial<IQuizQuestion>
     private originalQuestionEditing?: Partial<IQuizQuestion>
     private categories: string[] = []
@@ -70,7 +71,7 @@ export class ManageSingleSurveyPage {
     }
 
     addClick() {
-        const newQuestion = {
+        const newQuestion: IQuizQuestion = {
             _id: this.survey?.questions?.length.toString() ?? '0',
             type: '',
             createdAt: new Date(),
@@ -112,6 +113,27 @@ export class ManageSingleSurveyPage {
         delete this.originalQuestionEditing
     }
 
+    templateChosen(template: string) {
+        switch (template) {
+            case 'template/':
+                this.templateDialog = 2
+                return
+            case 'custom':
+                this.survey!.template = 'custom'
+                break
+            default:
+                this.survey!.template = template.substring(9)
+                break
+        }
+
+        this.templateDialog = 0
+    }
+
+    templateChoosingCancelled(onTemplate2: boolean = false) {
+        this.templateDialog--
+        if (!onTemplate2) this.nav.back()
+    }
+
     private async init() {
         this.getCategories().then()
         this.sub.add(
@@ -122,7 +144,9 @@ export class ManageSingleSurveyPage {
                         description: '',
                         questions: [],
                         categories: [''],
+                        template: '',
                     }
+                    this.templateDialog = 1
                     return
                 }
 

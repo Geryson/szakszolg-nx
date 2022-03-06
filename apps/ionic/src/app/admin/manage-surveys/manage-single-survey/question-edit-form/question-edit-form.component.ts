@@ -7,6 +7,7 @@ import { IQuizQuestion } from '@szakszolg-nx/api-interfaces'
     styleUrls: ['./question-edit-form.component.scss'],
 })
 export class QuestionEditFormComponent {
+    @Input() template = ''
     @Input() question: Partial<IQuizQuestion> = {}
     @Output() questionChange = new EventEmitter<Partial<IQuizQuestion>>()
     @Output() canceled = new EventEmitter<void>()

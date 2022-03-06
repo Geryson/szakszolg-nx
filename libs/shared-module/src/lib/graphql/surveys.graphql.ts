@@ -26,6 +26,7 @@ export const SURVEYS = {
             $description: String!
             $categories: [String!]!
             $questions: [CreateQuizQuestionInput!]!
+            $template: String!
         ) {
             createQuiz(
                 createQuizData: {
@@ -33,6 +34,7 @@ export const SURVEYS = {
                     description: $description
                     categories: $categories
                     questions: $questions
+                    template: $template
                 }
             ) {
                 _id

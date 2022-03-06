@@ -91,6 +91,7 @@ type Quiz {
     deletedAt: DateTime
     description: String!
     questions: [QuizQuestion!]!
+    template: String!
     title: String!
     tokens: [String!]!
     updatedAt: DateTime!
@@ -193,6 +194,7 @@ input CreateQuizInput {
     categories: [String!]!
     description: String!
     questions: [CreateQuizQuestionInput!]!
+    template: String!
     title: String!
 }
 
