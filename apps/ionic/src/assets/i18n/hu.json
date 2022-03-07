@@ -290,6 +290,13 @@
         "TYPE": "Típus",
         "IS_SOLUTION": "Megoldás",
         "NOT_SOLUTION": "Nem megoldás",
+        "ERRORS": {
+            "QUESTION_EMPTY": "A kérdés szövegét kötelező kitölteni",
+            "ANSWER_EMPTY": "A válasz szövegét kötelező kitölteni",
+            "NO_ANSWERS": "Nincsennek válaszok megadva",
+            "NO_CORRECT_ANSWER": "Nincs válasz megfejtésnek jelölve",
+            "NO_CATEGORIES": "Nincsennek kategóriák megadva"
+        },
         "TYPES": {
             "FREE": "Szabad válasz",
             "CHOOSE": "Felelet választós",

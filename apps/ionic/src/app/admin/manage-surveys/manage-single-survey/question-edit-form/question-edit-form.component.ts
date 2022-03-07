@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { IQuizQuestion } from '@szakszolg-nx/api-interfaces'
+import { TranslatePipe } from '@ngx-translate/core'
 
 @Component({
     selector: 'nx12-question-edit-form',
@@ -13,8 +14,9 @@ export class QuestionEditFormComponent {
     @Output() canceled = new EventEmitter<void>()
     @Output() submitted = new EventEmitter<Partial<IQuizQuestion>>()
     questionTypes = ['free', 'choose', 'rating', 'true-false']
+    validationErrors: { [key: string]: string } = {}
 
-    constructor() {}
+    constructor(private readonly translate: TranslatePipe) {}
 
     removeAnswer(ans: string) {
         this.question.answers = this.question.answers?.filter((a) => a !== ans)
@@ -55,5 +57,27 @@ export class QuestionEditFormComponent {
     cancel() {
         this.question = {}
         this.canceled.emit()
+    }
+
+    check() {
+        if (this.question.question?.length) delete this.validationErrors.question
+        else this.validationErrors.question = this.translate.transform('MANAGE_QUESTIONS.ERRORS.QUESTION_EMPTY')
+
+        switch (this.question.type) {
+            case 'skill':
+                if (this.question.answers?.length) delete this.validationErrors.answers
+                else this.validationErrors.answers = this.translate.transform('MANAGE_QUESTIONS.ERRORS.NO_ANSWERS')
+                break
+            case 'choose':
+            case 'true-false':
+                if (this.question.answers?.length) delete this.validationErrors.answers
+                else this.validationErrors.answers = this.translate.transform('MANAGE_QUESTIONS.ERRORS.NO_ANSWERS')
+                if (this.question.correctAnswers?.length) delete this.validationErrors.correctAnswers
+                else
+                    this.validationErrors.correctAnswers = this.translate.transform(
+                        'MANAGE_QUESTIONS.ERRORS.NO_CORRECT_ANSWER',
+                    )
+                break
+        }
     }
 }
