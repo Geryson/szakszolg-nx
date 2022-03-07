@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { AlertService } from '../../shared/services/alert.service'
-import { RedirectService } from '@szakszolg-nx/shared-module'
 import { link, pages } from '../../shared/utils/pages.const'
+import { RedirectService } from '../../shared/services/redirect.service'
 
 @Component({
     selector: 'nx12-home',

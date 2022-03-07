@@ -182,7 +182,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Field()<br />
+                            @Field({nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -332,7 +332,7 @@ export class CreateUserInput extends GqlInput {
     @IsNotEmpty()
     password: string
 
-    @Field()
+    @Field({ nullable: true })
     om?: string
 
     @Field(() &#x3D;&gt; [String], { nullable: &#x27;itemsAndList&#x27; })

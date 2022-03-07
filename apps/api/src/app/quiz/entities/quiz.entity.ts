@@ -19,6 +19,10 @@ export class Quiz implements IQuiz {
 
     @Field()
     @Prop()
+    template: string
+
+    @Field()
+    @Prop()
     description: string
 
     @Field(() => [String])

@@ -13,6 +13,8 @@ import { SchoolModule } from './school/school.module'
 import { QuizModule } from './quiz/quiz.module'
 import { QuizAnswerModule } from './quiz-answer/quiz-answer.module'
 import { FileModule } from './file/file.module'
+import { TokenModule } from './token/token.module'
+import { PuzzleModule } from './puzzle/puzzle.module'
 
 @Module({
     imports: [
@@ -27,6 +29,8 @@ import { FileModule } from './file/file.module'
         SchoolModule,
         QuizModule,
         QuizAnswerModule,
+        TokenModule,
+        PuzzleModule,
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -1,8 +1,8 @@
-import {Inject, Injectable} from "@angular/core"
-import {APOLLO_CLIENT} from "@szakszolg-nx/shared-module"
-import {Apollo} from "apollo-angular"
-import {ISchool} from "@szakszolg-nx/api-interfaces"
-import {SCHOOLS} from "@szakszolg-nx/shared-module"
+import { Inject, Injectable } from '@angular/core'
+import { Apollo } from 'apollo-angular'
+import { ISchool } from '@szakszolg-nx/api-interfaces'
+import { APOLLO_CLIENT } from '../injector.tokens'
+import { SCHOOLS } from '../graphql/schools.graphql'
 
 @Injectable()
 export class SchoolService {

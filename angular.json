@@ -11,7 +11,7 @@
             "projectType": "application",
             "architect": {
                 "build": {
-                    "builder": "@nrwl/node:build",
+                    "builder": "@nrwl/node:webpack",
                     "outputs": ["{options.outputPath}"],
                     "options": {
                         "outputPath": "dist/apps/api",
@@ -34,7 +34,7 @@
                     }
                 },
                 "serve": {
-                    "builder": "@nrwl/node:execute",
+                    "builder": "@nrwl/node:node",
                     "options": {
                         "buildTarget": "api:build"
                     }
@@ -282,29 +282,6 @@
                     "builder": "@nrwl/linter:eslint",
                     "options": {
                         "lintFilePatterns": ["libs/ng-interfaces/src/**/*.ts", "libs/ng-interfaces/src/**/*.html"]
-                    }
-                }
-            },
-            "tags": []
-        },
-        "shared-module": {
-            "projectType": "library",
-            "root": "libs/shared-module",
-            "sourceRoot": "libs/shared-module/src",
-            "prefix": "szakszolg-nx",
-            "architect": {
-                "test": {
-                    "builder": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/shared-module"],
-                    "options": {
-                        "jestConfig": "libs/shared-module/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                },
-                "lint": {
-                    "builder": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["libs/shared-module/src/**/*.ts", "libs/shared-module/src/**/*.html"]
                     }
                 }
             },

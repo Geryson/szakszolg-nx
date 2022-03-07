@@ -2,7 +2,8 @@ import { Inject, Injectable } from '@angular/core'
 import { IGroupingItem } from '@szakszolg-nx/api-interfaces'
 import { IResourceService } from '@szakszolg-nx/ng-interfaces'
 import { Apollo } from 'apollo-angular'
-import { APOLLO_CLIENT, GROUPING_ITEMS } from '@szakszolg-nx/shared-module'
+import { APOLLO_CLIENT } from '../injector.tokens'
+import { GROUPING_ITEMS } from '../graphql/grouping-items.graphql'
 
 @Injectable({
     providedIn: 'root',

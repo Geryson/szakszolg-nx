@@ -2,23 +2,22 @@
 
 <ion-content fullscreen="true">
     <div class="mainContainer">
-        <h5>Mirror Word Game</h5>
-        <label class="noselect" [ngClass]="{'flipV' : value===1, 'flipH': value===0}">{{ word }}</label>
-        <input type="text" class="p-inputtext-lg" placeholder="MirrorWord" pInputText [(ngModel)]="inputValue" (keydown.enter)="check()"/>
-        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="check()"></button>
+        <label class="noselect label margins" [ngClass]="{'flipV' : value===1, 'flipH': value===0}">{{ word }}</label>
+        <input type="text" class="p-inputtext-lg margins"  placeholder="MirrorWord" pInputText [(ngModel)]="inputValue" (keydown.enter)="check()"/>
+        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg margins" (click)="check()"></button>
+        <label>Próbálkozások száma: {{ counter }}</label>
+        <label>Jó válaszok száma: {{ correctAnswers }}</label>
     </div>
-    <p-dialog header="Ügyes" [(visible)]="found">
+    <p-dialog header="Ügyes" [(visible)]="found" [closable]="false">
         <p>Siker, eltaláltad!</p>
-        <p-button type="button" styleClass="p-button-text" icon="pi pi-check" label="Ok" (click)="nextWord()"></p-button>
+        <button pButton type="button" autofocus  styleClass="p-button-text" icon="pi pi-check" label="Ok" (click)="nextWord()"></button>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="notFound">
+    <p-dialog header="sampletext"  [(visible)]="mistake" [closable]="false">
         <p>Nem talált!</p>
-        <p>A megoldás: {{ answer }}</p>
-        <p-button type="button" styleClass="p-button-text" icon="pi pi-check" label="Ok" (click)="nextWord()"></p-button>
+        <button pButton type="button" autofocus  label="Ok" icon="pi pi-check" class="p-button-lg" (click)="mistake = false" ></button>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="mistake">
-        <p>Nem talált!</p>
-        <p>Próbálkozások száma: {{ counter }}</p>
-        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="mistake = false"></button>
+    <p-dialog header="Vége a játéknak!" [(visible)]="end" [closable]="false">
+        <p>A helyes válasz: {{answer}}</p>
+        <button pButton type="button" autofocus  label="Ok" icon="pi pi-check" class="p-button-lg" (click)="newGame()"></button>
     </p-dialog>
 </ion-content>

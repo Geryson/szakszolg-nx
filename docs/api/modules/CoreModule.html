@@ -79,8 +79,8 @@ import { validationSchema } from &#x27;./config/validation&#x27;
 import { GraphQLModule } from &#x27;@nestjs/graphql&#x27;
 import { CoreResolver } from &#x27;./core.resolver&#x27;
 import { MongooseModule } from &#x27;@nestjs/mongoose&#x27;
-import { mongooseConfig } from &#x27;./config/mongo-config.factory&#x27;
 import { ApolloDriver, ApolloDriverConfig } from &#x27;@nestjs/apollo&#x27;
+import { mongooseConfigFactory } from &#x27;../../utils/factories/mongo-config.factory&#x27;
 
 @Module({
     imports: [
@@ -95,9 +95,9 @@ import { ApolloDriver, ApolloDriverConfig } from &#x27;@nestjs/apollo&#x27;
             playground: true,
         }),
         MongooseModule.forRootAsync({
-            imports: mongooseConfig.imports,
-            useFactory: mongooseConfig.mongooseConfigFactory,
-            inject: mongooseConfig.providers,
+            imports: mongooseConfigFactory.imports,
+            useFactory: mongooseConfigFactory.mongooseConfigFactory,
+            inject: mongooseConfigFactory.providers,
         }),
     ],
     controllers: [],

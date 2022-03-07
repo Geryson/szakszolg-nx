@@ -3,7 +3,7 @@
     <ion-toolbar color="secondary">
         <ion-buttons class="nav-buttons-container" slot="start">
             <ion-button class="nav-button" routerLink="/home" slot="start">
-                <ion-icon ios="ios-home" md="md-home"></ion-icon>
+                <ion-icon ios="home" md="home"></ion-icon>
             </ion-button>
         </ion-buttons>
         <ion-title class="nav-title" text-center>{{ 'NAVIGATION.MENU' | translate }}</ion-title>
@@ -15,7 +15,7 @@
 
 <ion-content fullscreen="true">
     <div class="mainContainer">
-        <ion-button routerLink="{{ link(pages.admin.profile) }}" shape="round navBtn">{{ 'ADMIN_NAV.OWN_USER_MANAGEMENT' | translate }}</ion-button>
+        <ion-button routerLink="{{ link(pages.admin.users + '/' + this.user?._id) }}" shape="round navBtn">{{ 'ADMIN_NAV.OWN_USER_MANAGEMENT' | translate }}</ion-button>
         <ion-button *ngIf="canManageUsers" routerLink="{{ link(pages.admin.users) }}" shape="round navBtn">{{ 'ADMIN_NAV.USERS_MANAGEMENT' | translate }}</ion-button>
         <ion-button *ngIf="canManageRoles" routerLink="{{ link(pages.admin.roles) }}" shape="round navBtn">{{ 'ADMIN_NAV.ROLE_RIGHTS' | translate }}</ion-button>
         <ion-button routerLink="{{ link(pages.admin.surveysManagement) }}" shape="round navBtn">{{ 'ADMIN_NAV.FORM_MANAGEMENT' | translate }}</ion-button>

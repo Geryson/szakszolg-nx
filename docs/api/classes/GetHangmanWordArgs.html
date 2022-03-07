@@ -172,7 +172,7 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Field({nullable: true, deprecationReason: &#x27;This field is unused&#x27;})<br />
+                            @Field({nullable: true})<br />
                         </code>
                     </td>
                 </tr>
@@ -209,7 +209,7 @@ import { ArgsType, Field } from &#x27;@nestjs/graphql&#x27;
 
 @ArgsType()
 export class GetHangmanWordArgs extends IdArg {
-    @Field({ nullable: true, deprecationReason: &#x27;This field is unused&#x27; })
+    @Field({ nullable: true })
     id: string
 
     @Field({ nullable: true })

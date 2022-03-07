@@ -7,10 +7,9 @@ import { ConfirmationService, MessageService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { first, Subscription } from 'rxjs'
 import { HangmanWordService } from '../../../../shared/services/hangman-word.service'
-import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
-import { omit } from '@szakszolg-nx/shared-module'
 import { NavController } from '@ionic/angular'
+import { omit } from '../../../../shared/utils/object.tools'
 @Component({
     selector: 'nx12-manage-single-hangman-word',
     templateUrl: './manage-single-hangman-word.page.html',
@@ -23,9 +22,9 @@ export class ManageSingleHangmanWordPage {
     validationErrors: { [key: string]: string } = {}
     categories: string[] = []
     filteredCategories: string[] = []
-    private queryRef?: QueryRef<{ hangmanWord: Partial<IHangmanWord> }, EmptyObject>
+    private queryRef?: QueryRef<{ hangmanWord: Partial<IHangmanWord> }>
     private sub = new Subscription()
-    private categoryQueryRef?: QueryRef<{ hangmanWords: Partial<IHangmanWord>[] }, EmptyObject>
+    private categoryQueryRef?: QueryRef<{ hangmanWords: Partial<IHangmanWord>[] }>
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,

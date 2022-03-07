@@ -192,8 +192,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:33</a></div>
                 </td>
             </tr>
 
@@ -268,8 +268,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="47"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:47</a></div>
                 </td>
             </tr>
 
@@ -414,14 +414,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Query(undefined, {nullable: &#x27;items&#x27;})<br />@Permission(&#x27;browse&#x27;)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br /></code>
+                    <code>@Query(undefined, {nullable: &#x27;items&#x27;})<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:26</a></div>
                 </td>
             </tr>
 
@@ -496,8 +496,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">apps/api/src/app/hangman-word/hangman-word.resolver.ts:40</a></div>
                 </td>
             </tr>
 
@@ -580,8 +580,6 @@ export class HangmanWordResolver {
     }
 
     @Query(() &#x3D;&gt; [HangmanWord], { nullable: &#x27;items&#x27; })
-    @Permission(&#x27;browse&#x27;)
-    @UseGuards(GqlAuthGuard, PermissionGuard)
     hangmanWords(@Args({ nullable: true }) data: GetHangmanWordsArgs | null): Promise&lt;IHangmanWord[]&gt; {
         return this.service.findAll(data)
     }

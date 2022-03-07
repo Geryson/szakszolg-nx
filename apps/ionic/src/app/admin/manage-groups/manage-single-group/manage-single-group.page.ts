@@ -8,8 +8,9 @@ import { MessageService } from 'primeng/api'
 import { NavController } from '@ionic/angular'
 import { first, Subscription } from 'rxjs'
 import { QueryRef } from 'apollo-angular'
-import { Log, omit } from '@szakszolg-nx/shared-module'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
+import { Log } from '../../../../shared/utils/log.tools'
+import { omit } from '../../../../shared/utils/object.tools'
 
 @Component({
     selector: 'nx12-manage-single-group',

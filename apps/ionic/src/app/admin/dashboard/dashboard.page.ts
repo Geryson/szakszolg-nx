@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { link, pages } from '../../../shared/utils/pages.const'
-import { AUTH_SERVICE, AuthService } from '@szakszolg-nx/shared-module'
 import { ABILITIES, check, IUser, RESOURCES } from '@szakszolg-nx/api-interfaces'
+import { AuthService } from '../../../shared/services/auth.service'
 
 @Component({
     selector: 'nx12-dashboard',
@@ -14,8 +14,9 @@ export class DashboardPage implements OnInit {
 
     link = link
     pages = pages
+    user: Partial<IUser> | null = null
 
-    constructor(@Inject(AUTH_SERVICE) private readonly authService: AuthService) {}
+    constructor(private readonly authService: AuthService) {}
 
     ngOnInit() {
         this.checkPermissions().then()
@@ -27,6 +28,7 @@ export class DashboardPage implements OnInit {
 
     private async checkPermissions() {
         const user = await this.authService.user
+        this.user = user
         if (!user) {
             return
         }

@@ -36,27 +36,46 @@ type Mutation {
     createGroupingItem(createGroupingItemData: CreateGroupingItemInput!): GroupingItem!
     createHangmanWord(createHangmanWordData: CreateHangmanWordInput!): HangmanWord!
     createMirrorWord(createMirrorWordData: CreateMirrorWordInput!): MirrorWord!
+    createPuzzle(createPuzzleData: CreatePuzzleInput!): Puzzle!
     createQuiz(createQuizData: CreateQuizInput!): Quiz!
     createQuizAnswer(createQuizAnswerData: CreateQuizAnswerInput!): QuizAnswer!
     createRole(createRoleData: CreateRoleInput!): Role!
     createSchool(createSchoolData: CreateSchoolInput!): School!
+    createToken(createTokenData: CreateTokenInput!): Token!
     createUser(createUserData: CreateUserInput!): User!
     deleteGroupingItem(deleteGroupingItemData: DeleteGroupingItemInput!): GroupingItem!
     deleteHangmanWord(deleteHangmanWordData: DeleteHangmanWordInput!): HangmanWord!
     deleteMirrorWord(deleteMirrorWordData: DeleteMirrorWordInput!): MirrorWord!
+    deletePuzzle(deletePuzzleData: DeletePuzzleInput!): Puzzle!
     deleteQuiz(deleteQuizData: DeleteQuizInput!): Quiz!
     deleteQuizAnswer(deleteQuizAnswerData: DeleteQuizAnswerInput!): QuizAnswer!
     deleteRole(deleteRoleData: DeleteRoleInput!): Role!
     deleteSchool(deleteSchoolData: DeleteSchoolInput!): School!
+    deleteToken(deleteTokenData: DeleteTokenInput!): Token!
     deleteUser(deleteUserData: DeleteUserInput!): User!
     updateGroupingItem(updateGroupingItemData: UpdateGroupingItemInput!): GroupingItem!
     updateHangmanWord(updateHangmanWordData: UpdateHangmanWordInput!): HangmanWord!
     updateMirrorWord(updateMirrorWordData: UpdateMirrorWordInput!): MirrorWord!
+    updatePuzzle(updatePuzzleData: UpdatePuzzleInput!): Puzzle!
     updateQuiz(updateQuizData: UpdateQuizInput!): Quiz!
     updateQuizAnswer(updateQuizAnswerData: UpdateQuizAnswerInput!): QuizAnswer!
     updateRole(updateRoleData: UpdateRoleInput!): Role!
     updateSchool(updateSchoolData: UpdateSchoolInput!): School!
     updateUser(updateUserData: UpdateUserInput!): User!
+}
+
+type Puzzle {
+    _id: String!
+    columns: Float!
+    createdAt: DateTime!
+    cropHeight: Float!
+    cropLeft: Float!
+    cropTop: Float!
+    cropWidth: Float!
+    deletedAt: DateTime
+    pieceSize: Float!
+    updatedAt: DateTime!
+    url: String!
 }
 
 type Query {
@@ -67,6 +86,8 @@ type Query {
     hangmanWords(category: String, ids: [String!]): [HangmanWord]!
     mirrorWord(id: String): MirrorWord
     mirrorWords(ids: [String!]): [MirrorWord]!
+    puzzle(id: String!): Puzzle
+    puzzles(ids: [String!]): [Puzzle]!
     quiz(id: String!): Quiz
     quizAnswer(id: String!): QuizAnswer
     quizAnswers(ids: [String!], quizId: String): [QuizAnswer]!
@@ -75,6 +96,8 @@ type Query {
     roles(ids: [String!]): [Role]!
     school(id: String!): School
     schools(address: String, county: String, ids: [String!], name: String, om: String, type: String): [School]!
+    token(id: String, token: String!): Token
+    tokens(ids: [String!]): [Token]!
     uptime: Float!
     user(email: String, id: String): User
     users(ids: [String!]): [User]!
@@ -87,6 +110,7 @@ type Quiz {
     deletedAt: DateTime
     description: String!
     questions: [QuizQuestion!]!
+    template: String!
     title: String!
     tokens: [String!]!
     updatedAt: DateTime!
@@ -138,6 +162,16 @@ type School {
     updatedAt: DateTime!
 }
 
+type Token {
+    _id: String!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    expiresAt: DateTime!
+    quiz: Quiz!
+    token: String!
+    updatedAt: DateTime!
+}
+
 type User {
     _id: String!
     createdAt: DateTime!
@@ -167,6 +201,10 @@ input CreateMirrorWordInput {
     word: String!
 }
 
+input CreatePuzzleInput {
+    url: String!
+}
+
 input CreateQuizAnswerInput {
     answer: String!
     answeredAt: DateTime!
@@ -179,6 +217,7 @@ input CreateQuizInput {
     categories: [String!]!
     description: String!
     questions: [CreateQuizQuestionInput!]!
+    template: String!
     title: String!
 }
 
@@ -203,9 +242,15 @@ input CreateSchoolInput {
     types: [String!]!
 }
 
+input CreateTokenInput {
+    "The token lifetime in seconds"
+    expiresIn: Int
+    quizId: String!
+}
+
 input CreateUserInput {
     email: String!
-    om: String!
+    om: String
     password: String!
     roles: [String]
     username: String!
@@ -223,6 +268,10 @@ input DeleteMirrorWordInput {
     id: String!
 }
 
+input DeletePuzzleInput {
+    id: String!
+}
+
 input DeleteQuizAnswerInput {
     id: String!
 }
@@ -236,6 +285,10 @@ input DeleteRoleInput {
 }
 
 input DeleteSchoolInput {
+    id: String!
+}
+
+input DeleteTokenInput {
     id: String!
 }
 
@@ -259,6 +312,10 @@ input UpdateHangmanWordInput {
 input UpdateMirrorWordInput {
     id: String!
     word: String!
+}
+
+input UpdatePuzzleInput {
+    id: String!
 }
 
 input UpdateQuizAnswerInput {
