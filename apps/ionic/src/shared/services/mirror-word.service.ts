@@ -18,7 +18,7 @@ export class MirrorWordService {
     random() {
         return this.apolloClient.watchQuery<{ mirrorWord: Partial<IMirrorWord> }>({
             query: MIRROR_WORDS.RANDOM,
-        }).valueChanges
+        })
     }
 
     edit(id: string, word: string) {

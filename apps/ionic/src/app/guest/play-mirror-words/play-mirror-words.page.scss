@@ -1,0 +1,61 @@
+ion-content{
+    justify-content: center;
+    align-items: center;
+
+    .mainContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        .navBtn{
+            width: 90%;
+            @supports (-webkit-touch-callout: none) {
+                @media screen and (orientation: landscape) {
+                    width: 70%;
+                    height: 8vh;
+                }
+            }
+        }
+
+        .p-button-lg {
+            border-color: #1982e4;
+        }
+    }
+}
+
+label {
+    font-size: 1.25rem;
+}
+
+.flipH {
+    transform: scale(-1, 1);
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+.flipV {
+    transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+    transform: scale(1, -1);
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+
+

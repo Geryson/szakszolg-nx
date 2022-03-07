@@ -36,6 +36,7 @@ type Mutation {
     createGroupingItem(createGroupingItemData: CreateGroupingItemInput!): GroupingItem!
     createHangmanWord(createHangmanWordData: CreateHangmanWordInput!): HangmanWord!
     createMirrorWord(createMirrorWordData: CreateMirrorWordInput!): MirrorWord!
+    createPuzzle(createPuzzleData: CreatePuzzleInput!): Puzzle!
     createQuiz(createQuizData: CreateQuizInput!): Quiz!
     createQuizAnswer(createQuizAnswerData: CreateQuizAnswerInput!): QuizAnswer!
     createRole(createRoleData: CreateRoleInput!): Role!
@@ -45,6 +46,7 @@ type Mutation {
     deleteGroupingItem(deleteGroupingItemData: DeleteGroupingItemInput!): GroupingItem!
     deleteHangmanWord(deleteHangmanWordData: DeleteHangmanWordInput!): HangmanWord!
     deleteMirrorWord(deleteMirrorWordData: DeleteMirrorWordInput!): MirrorWord!
+    deletePuzzle(deletePuzzleData: DeletePuzzleInput!): Puzzle!
     deleteQuiz(deleteQuizData: DeleteQuizInput!): Quiz!
     deleteQuizAnswer(deleteQuizAnswerData: DeleteQuizAnswerInput!): QuizAnswer!
     deleteRole(deleteRoleData: DeleteRoleInput!): Role!
@@ -54,11 +56,26 @@ type Mutation {
     updateGroupingItem(updateGroupingItemData: UpdateGroupingItemInput!): GroupingItem!
     updateHangmanWord(updateHangmanWordData: UpdateHangmanWordInput!): HangmanWord!
     updateMirrorWord(updateMirrorWordData: UpdateMirrorWordInput!): MirrorWord!
+    updatePuzzle(updatePuzzleData: UpdatePuzzleInput!): Puzzle!
     updateQuiz(updateQuizData: UpdateQuizInput!): Quiz!
     updateQuizAnswer(updateQuizAnswerData: UpdateQuizAnswerInput!): QuizAnswer!
     updateRole(updateRoleData: UpdateRoleInput!): Role!
     updateSchool(updateSchoolData: UpdateSchoolInput!): School!
     updateUser(updateUserData: UpdateUserInput!): User!
+}
+
+type Puzzle {
+    _id: String!
+    columns: Float!
+    createdAt: DateTime!
+    cropHeight: Float!
+    cropLeft: Float!
+    cropTop: Float!
+    cropWidth: Float!
+    deletedAt: DateTime
+    pieceSize: Float!
+    updatedAt: DateTime!
+    url: String!
 }
 
 type Query {
@@ -69,6 +86,8 @@ type Query {
     hangmanWords(category: String, ids: [String!]): [HangmanWord]!
     mirrorWord(id: String): MirrorWord
     mirrorWords(ids: [String!]): [MirrorWord]!
+    puzzle(id: String!): Puzzle
+    puzzles(ids: [String!]): [Puzzle]!
     quiz(id: String!): Quiz
     quizAnswer(id: String!): QuizAnswer
     quizAnswers(ids: [String!], quizId: String): [QuizAnswer]!
@@ -182,6 +201,10 @@ input CreateMirrorWordInput {
     word: String!
 }
 
+input CreatePuzzleInput {
+    url: String!
+}
+
 input CreateQuizAnswerInput {
     answer: String!
     answeredAt: DateTime!
@@ -245,6 +268,10 @@ input DeleteMirrorWordInput {
     id: String!
 }
 
+input DeletePuzzleInput {
+    id: String!
+}
+
 input DeleteQuizAnswerInput {
     id: String!
 }
@@ -285,6 +312,10 @@ input UpdateHangmanWordInput {
 input UpdateMirrorWordInput {
     id: String!
     word: String!
+}
+
+input UpdatePuzzleInput {
+    id: String!
 }
 
 input UpdateQuizAnswerInput {
