@@ -16,4 +16,7 @@ export class CreateQuizInput extends GqlInput {
 
     @Field(() => [CreateQuizQuestionInput])
     questions: IQuizQuestion[]
+
+    @Field()
+    template: string
 }

@@ -14,6 +14,7 @@ export class DashboardPage implements OnInit {
 
     link = link
     pages = pages
+    user: Partial<IUser> | null = null
 
     constructor(@Inject(AUTH_SERVICE) private readonly authService: AuthService) {}
 
@@ -27,6 +28,7 @@ export class DashboardPage implements OnInit {
 
     private async checkPermissions() {
         const user = await this.authService.user
+        this.user = user
         if (!user) {
             return
         }

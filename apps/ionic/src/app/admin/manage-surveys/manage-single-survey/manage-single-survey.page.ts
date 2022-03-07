@@ -8,7 +8,7 @@ import { first, Subscription } from 'rxjs'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { NavController } from '@ionic/angular'
-import { omit } from '@szakszolg-nx/shared-module'
+import { areEqual, deepCopy, omit } from '@szakszolg-nx/shared-module'
 import { SurveyService } from '../../../../shared/services/survey.service'
 
 @Component({
@@ -19,14 +19,15 @@ import { SurveyService } from '../../../../shared/services/survey.service'
 export class ManageSingleSurveyPage {
     survey?: Partial<IQuiz>
     originalSurvey?: Partial<IQuiz>
+    areEqual = areEqual
     NG_ICON = NG_ICON
     validationErrors: { [key: string]: string } = {}
-    filteredCategories: string[] = []
-    private categories: string[] = []
+    templateDialog = 0
+    questionEditing?: Partial<IQuizQuestion>
+    categoryDialog = false
+    private originalQuestionEditing?: Partial<IQuizQuestion>
     private queryRef?: QueryRef<{ quiz: Partial<IQuiz> }>
     private sub = new Subscription()
-    private categoriesQueryRef?: QueryRef<{ quizzes: { categories: string[] }[] }>
-    private questionEditing?: Partial<IQuizQuestion>
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -63,35 +64,75 @@ export class ManageSingleSurveyPage {
         this.create()
     }
 
-    search($event: any) {
-        this.filteredCategories =
-            this.categories?.filter((category) => category.includes($event.query.toLowerCase())) ?? []
-    }
-
     addClick() {
-        const newQuestion = {
-            _id: '',
+        const newQuestion: IQuizQuestion = {
+            _id: this.survey?.questions?.length.toString() ?? '0',
             type: '',
             createdAt: new Date(),
             question: '',
             answers: [],
             correctAnswers: [],
-            category: '',
         }
+        if (!this.survey?.questions) this.survey!.questions = []
         this.survey?.questions?.push(newQuestion)
         this.questionEditing = newQuestion
+        this.originalQuestionEditing = deepCopy(newQuestion)
     }
 
     editClick(item: Omit<IQuizQuestion, '_id'>) {
         this.questionEditing = item
+        this.originalQuestionEditing = deepCopy(item)
     }
 
     deleteClick(item: Omit<IQuizQuestion, '_id'>) {
         this.survey!.questions = this.survey!.questions?.filter((question) => question.question !== item.question) // TODO: Add confirmation
     }
 
+    formCanceled() {
+        this.questionEditing = Object.assign(this.questionEditing!, this.originalQuestionEditing!)
+
+        if (this.questionEditing?._id) {
+            this.survey?.questions?.slice(
+                this.survey?.questions?.findIndex((question) => question._id === this.questionEditing?._id),
+                1,
+            )
+        }
+
+        delete this.originalQuestionEditing
+        delete this.questionEditing
+    }
+
+    formSubmitted($event: Partial<IQuizQuestion>) {
+        delete this.questionEditing
+        delete this.originalQuestionEditing
+    }
+
+    templateChosen(template: string) {
+        switch (template) {
+            case 'template/':
+                this.templateDialog = 2
+                return
+            case 'custom':
+                this.survey!.template = 'custom'
+                break
+            default:
+                this.survey!.template = template
+                break
+        }
+
+        this.templateDialog = 0
+    }
+
+    templateChoosingCancelled(onTemplate2: boolean = false) {
+        this.templateDialog--
+        if (!onTemplate2) this.nav.back()
+    }
+
+    openCategoryManagement() {
+        this.categoryDialog = true
+    }
+
     private async init() {
-        this.getCategories().then()
         this.sub.add(
             this.activatedRoute.params.subscribe(async (params) => {
                 if (params.id === 'new') {
@@ -99,19 +140,23 @@ export class ManageSingleSurveyPage {
                         title: '',
                         description: '',
                         questions: [],
-                        categories: [''],
+                        categories: [],
+                        template: '',
                     }
+                    this.originalSurvey = deepCopy(this.survey)
+                    this.templateDialog = 1
                     return
                 }
 
                 this.queryRef = this.surveyService.read(params.id)
                 this.sub.add(
                     this.queryRef!.valueChanges.subscribe(({ data }) => {
-                        this.survey = { ...data.quiz }
+                        this.survey = deepCopy(data.quiz)
                         if (this.survey.categories?.length === 0) this.survey.categories = ['']
-                        this.originalSurvey = { ...this.survey }
+                        this.originalSurvey = deepCopy(this.survey)
                     }),
                 )
+                this.queryRef?.refetch().then()
             }),
         )
     }
@@ -138,24 +183,6 @@ export class ManageSingleSurveyPage {
             detail: this.translate.transform('FORM_OPERATION.SUCCESS_DETAIL'),
         })
         this.nav.back()
-    }
-
-    private async getCategories() {
-        if (this.categoriesQueryRef) {
-            this.categoriesQueryRef.refetch().then()
-            return
-        }
-
-        this.categoriesQueryRef = this.surveyService.getCategories()
-        this.sub.add(
-            this.categoriesQueryRef.valueChanges.subscribe((res) => {
-                this.categories = []
-                const set = new Set<string>()
-                res.data.quizzes.forEach((quiz) => quiz.categories.forEach((category) => set.add(category)))
-                this.categories = Array.from(set)
-                this.filteredCategories = [...this.categories]
-            }),
-        )
     }
 }
 

@@ -1,4 +1,16 @@
-ion-button{
+.wide-button {
+    min-width: 50px !important;
+    @media screen and (max-width: 960px) {
+        width: 23.5% !important;
+    }
+
+    @media screen and (min-width: 960px) {
+        width: 100px !important;
+        margin-right: 1rem;
+    }
+}
+
+ion-button {
     --border-radius: 6px;
     --padding-top: 0;
     --padding-start: 0px;
@@ -14,39 +26,41 @@ ion-button{
     text-transform: uppercase;
     @supports (-webkit-touch-callout: none) {
         @media screen and (orientation: portrait) {
-            @supports(padding:max(0vh)) {
+            @supports (padding:max(0vh)) {
                 height: 40px;
             }
         }
         @media screen and (orientation: landscape) {
-            @supports(padding:max(0vh)) {
+            @supports (padding:max(0vh)) {
                 height: 50px;
             }
         }
     }
 }
 
-ion-buttons{
+ion-buttons {
     @supports (-webkit-touch-callout: none) {
         @media screen and (orientation: portrait) {
             padding-top: 0;
             padding-bottom: 20px;
         }
     }
-    ion-button{
+
+    ion-button {
         color: var(--ion-color-secondary-contrast);
     }
 }
 
-ion-toolbar{
+ion-toolbar {
     @supports (-webkit-touch-callout: none) {
         @media screen and (orientation: portrait) {
-            @supports(padding:max(0vh)) {
+            @supports (padding:max(0vh)) {
                 padding-top: env(safe-area-inset-top);
             }
         }
     }
-    ion-icon{
+
+    ion-icon {
         color: var(--ion-color-secondary-contrast);
     }
 }
@@ -54,20 +68,20 @@ ion-toolbar{
 body {
     @supports (-webkit-touch-callout: none) {
         @media screen and (orientation: portrait) {
-            @supports(padding:max(0vh)) {
+            @supports (padding:max(0vh)) {
                 padding-top: env(safe-area-inset-top);
             }
         }
     }
 }
 
-ion-label{
+ion-label {
     font-family: 'Ubuntu', Tahoma, sans-serif;
     font-size: 14px;
     font-weight: bold;
 }
 
-ion-input{
+ion-input {
     --border-radius: 4px;
     font-family: 'Ubuntu', Tahoma, sans-serif;
     font-size: 14px;
@@ -75,11 +89,12 @@ ion-input{
     background-color: var(--ion-color-secondary);
 }
 
-input{
+input {
     background-color: var(--ion-color-secondary);
 }
+
 /** Sets the input style */
-.rounded{
+.rounded {
     border-style: solid;
     border-width: 4px;
     border-radius: 0;
@@ -89,40 +104,42 @@ input{
     border-color: var(--ion-color-primary);
     padding: 0 10px;
 }
+
 /** Yellow line above the status bar */
-#yellowLine{
+#yellowLine {
     background: #2ea3f2;
-    width:100%;
+    width: 100%;
     height: 5px;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
 }
-circle{
-    fill:#2ea3f2;
+
+circle {
+    fill: #2ea3f2;
 }
-path{
+
+path {
     stroke: #2ea3f2;
 }
 
-.nav-button{
+.nav-button {
     display: block !important;
     opacity: 100% !important;
     --background: none !important;
     --color: var(--ion-color-secondary) !important;
-    --box-shadow:none;
+    --box-shadow: none;
     font-size: large;
-    width:fit-content;
+    width: fit-content;
 }
 
-.nav-buttons-container{
+.nav-buttons-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.scroll-content
-{
+.scroll-content {
     padding-bottom: 0 !important;
 }
 
@@ -144,10 +161,11 @@ ion-alert {
     z-index: 99999 !important;
     --background: var(--ion-background-color) !important;
 }
+
 .searchTextInput {
     @supports (-webkit-touch-callout: none) {
         @media screen and (orientation: landscape) {
-            @supports(padding:max(0vh)) {
+            @supports (padding:max(0vh)) {
                 padding-right: env(safe-area-inset-right);
                 padding-left: env(safe-area-inset-left);
             }
@@ -155,16 +173,23 @@ ion-alert {
     }
 }
 
-ion-footer{
+ion-footer {
     background-color: var(--ion-background-color);
 }
 
-.jtk-connector { z-index:1000; }
-.jtk-endpoint { z-index:1001; }
-.jtk-overlay { z-index:1002; }
+.jtk-connector {
+    z-index: 1000;
+}
 
-.scroll-content
-{
+.jtk-endpoint {
+    z-index: 1001;
+}
+
+.jtk-overlay {
+    z-index: 1002;
+}
+
+.scroll-content {
     padding-bottom: 0 !important;
 }
 
@@ -172,6 +197,7 @@ ion-footer{
 .alert-radio-label.sc-ion-alert-ios {
     white-space: normal;
 }
+
 .alert-tappable.alert-radio {
     height: auto;
     contain: content;

@@ -1,6 +1,7 @@
 import { gql } from 'apollo-angular'
 
 export const SURVEYS = {
+  
     BROWSE: gql`
         query {
             quizzes {
@@ -20,12 +21,14 @@ export const SURVEYS = {
             }
         }
     `,
+  
     ADD: gql`
         mutation (
             $title: String!
             $description: String!
             $categories: [String!]!
             $questions: [CreateQuizQuestionInput!]!
+            $template: String!
         ) {
             createQuiz(
                 createQuizData: {
@@ -33,6 +36,7 @@ export const SURVEYS = {
                     description: $description
                     categories: $categories
                     questions: $questions
+                    template: $template
                 }
             ) {
                 _id
@@ -56,10 +60,33 @@ export const SURVEYS = {
             }
         }
     `,
+  
     CATEGORIES: gql`
         query {
             quizzes {
                 categories
+            }
+        }
+    `,
+  
+    EDIT: gql`
+        mutation (
+            $id: String!
+            $title: String!
+            $description: String!
+            $categories: [String!]
+            $questions: [UpdateQuizQuestionInput!]
+        ) {
+            updateQuiz(
+                updateQuizData: {
+                    id: $id
+                    title: $title
+                    description: $description
+                    categories: $categories
+                    questions: $questions
+                }
+            ) {
+                _id
             }
         }
     `,

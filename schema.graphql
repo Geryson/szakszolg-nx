@@ -41,6 +41,7 @@ type Mutation {
     createQuizAnswer(createQuizAnswerData: CreateQuizAnswerInput!): QuizAnswer!
     createRole(createRoleData: CreateRoleInput!): Role!
     createSchool(createSchoolData: CreateSchoolInput!): School!
+    createToken(createTokenData: CreateTokenInput!): Token!
     createUser(createUserData: CreateUserInput!): User!
     deleteGroupingItem(deleteGroupingItemData: DeleteGroupingItemInput!): GroupingItem!
     deleteHangmanWord(deleteHangmanWordData: DeleteHangmanWordInput!): HangmanWord!
@@ -50,6 +51,7 @@ type Mutation {
     deleteQuizAnswer(deleteQuizAnswerData: DeleteQuizAnswerInput!): QuizAnswer!
     deleteRole(deleteRoleData: DeleteRoleInput!): Role!
     deleteSchool(deleteSchoolData: DeleteSchoolInput!): School!
+    deleteToken(deleteTokenData: DeleteTokenInput!): Token!
     deleteUser(deleteUserData: DeleteUserInput!): User!
     updateGroupingItem(updateGroupingItemData: UpdateGroupingItemInput!): GroupingItem!
     updateHangmanWord(updateHangmanWordData: UpdateHangmanWordInput!): HangmanWord!
@@ -94,6 +96,8 @@ type Query {
     roles(ids: [String!]): [Role]!
     school(id: String!): School
     schools(address: String, county: String, ids: [String!], name: String, om: String, type: String): [School]!
+    token(id: String, token: String!): Token
+    tokens(ids: [String!]): [Token]!
     uptime: Float!
     user(email: String, id: String): User
     users(ids: [String!]): [User]!
@@ -106,6 +110,7 @@ type Quiz {
     deletedAt: DateTime
     description: String!
     questions: [QuizQuestion!]!
+    template: String!
     title: String!
     tokens: [String!]!
     updatedAt: DateTime!
@@ -157,6 +162,16 @@ type School {
     updatedAt: DateTime!
 }
 
+type Token {
+    _id: String!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    expiresAt: DateTime!
+    quiz: Quiz!
+    token: String!
+    updatedAt: DateTime!
+}
+
 type User {
     _id: String!
     createdAt: DateTime!
@@ -202,6 +217,7 @@ input CreateQuizInput {
     categories: [String!]!
     description: String!
     questions: [CreateQuizQuestionInput!]!
+    template: String!
     title: String!
 }
 
@@ -224,6 +240,12 @@ input CreateSchoolInput {
     name: String!
     om: String!
     types: [String!]!
+}
+
+input CreateTokenInput {
+    "The token lifetime in seconds"
+    expiresIn: Int
+    quizId: String!
 }
 
 input CreateUserInput {
@@ -263,6 +285,10 @@ input DeleteRoleInput {
 }
 
 input DeleteSchoolInput {
+    id: String!
+}
+
+input DeleteTokenInput {
     id: String!
 }
 

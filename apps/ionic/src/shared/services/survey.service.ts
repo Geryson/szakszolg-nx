@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core'
-import { APOLLO_CLIENT, HANGMAN_WORDS, SURVEYS } from '@szakszolg-nx/shared-module'
+import { APOLLO_CLIENT, deepCopy, SURVEYS } from '@szakszolg-nx/shared-module'
 import { Apollo } from 'apollo-angular'
-import { IHangmanWord, IQuiz } from '@szakszolg-nx/api-interfaces'
+import { IQuiz } from '@szakszolg-nx/api-interfaces'
 
 @Injectable({
     providedIn: 'root',
@@ -9,22 +9,33 @@ import { IHangmanWord, IQuiz } from '@szakszolg-nx/api-interfaces'
 export class SurveyService {
     constructor(@Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo) {}
 
+    private static transformForGql(data: Partial<Omit<IQuiz, '_id'>>, includeId = false): Partial<Omit<IQuiz, '_id'>> {
+        const mutationData: any = deepCopy(data)
+        if (mutationData.questions?.length) {
+            mutationData.questions = mutationData.questions.map((question: IQuiz | any, index: number) => {
+                if (includeId) question.id = question._id ?? `${index}`
+
+                delete question._id
+                delete question.createdAt
+                delete question.__typename
+                return question
+            })
+        }
+        delete mutationData.__typename
+        return mutationData
+    }
+    
     browse() {
         return this.apolloClient.watchQuery<{ quizzes: Partial<IQuiz>[] }>({
             query: SURVEYS.BROWSE,
         })
     }
 
-    random() {
-        return this.apolloClient.watchQuery<{ hangmanWord: Partial<IHangmanWord> }>({
-            query: HANGMAN_WORDS.RANDOM,
-        })
-    }
-
-    edit(id: string, data: Partial<Omit<IHangmanWord, '_id'>>) {
-        return this.apolloClient.mutate<{ hangmanWord: Partial<IHangmanWord> }>({
-            mutation: HANGMAN_WORDS.EDIT,
-            variables: { id, ...data },
+  
+    edit(id: string, data: Partial<Omit<IQuiz, '_id'>>) {
+        return this.apolloClient.mutate<{ quiz: Partial<IQuiz> }>({
+            mutation: SURVEYS.EDIT,
+            variables: { id, ...SurveyService.transformForGql(data, true) },
         })
     }
 
@@ -38,7 +49,7 @@ export class SurveyService {
     add(data: Partial<Omit<IQuiz, '_id'>>) {
         return this.apolloClient.mutate<{ quiz: Partial<IQuiz> }>({
             mutation: SURVEYS.ADD,
-            variables: { ...data },
+            variables: { ...SurveyService.transformForGql(data) },
         })
     }
 

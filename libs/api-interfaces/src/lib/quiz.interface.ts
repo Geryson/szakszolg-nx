@@ -6,5 +6,6 @@ export interface IQuiz extends IApiResource {
     categories: string[]
     description: string
     questions: IQuizQuestion[]
+    template: string
     tokens: string[]
 }
