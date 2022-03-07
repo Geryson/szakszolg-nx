@@ -9,7 +9,7 @@ import { ManageSinglePuzzlePageRoutingModule } from './manage-single-puzzle-rout
 import { ManageSinglePuzzlePage } from './manage-single-puzzle.page'
 import { NxSharedModule } from '../../../../shared/nx-shared.module'
 import { FileUploadModule } from 'primeng/fileupload'
-import { ImageCropperModule } from 'ngx-image-cropper'
+// import { ImageCropperModule } from 'ngx-image-cropper'
 import { TranslateModule } from '@ngx-translate/core'
 
 @NgModule({
@@ -20,7 +20,7 @@ import { TranslateModule } from '@ngx-translate/core'
         ManageSinglePuzzlePageRoutingModule,
         NxSharedModule,
         FileUploadModule,
-        ImageCropperModule,
+        // ImageCropperModule,
         TranslateModule,
     ],
     declarations: [ManageSinglePuzzlePage],

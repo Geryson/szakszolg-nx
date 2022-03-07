@@ -69,7 +69,6 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.2",
-    "ngx-image-cropper": "^6.1.0",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -138,4 +137,3 @@
     ]
   }
 }
-
