@@ -19,14 +19,13 @@ import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt'
 import { Apollo, APOLLO_OPTIONS } from 'apollo-angular'
 import { InMemoryCache } from '@apollo/client/core'
 import { HttpLink } from 'apollo-angular/http'
-import { environment } from '../environments/environment'
 import { jwtOptionsFactory } from '../shared/utils/jwt-options'
 import { Drivers } from '@ionic/storage'
 import { NxSharedModule } from '../shared/nx-shared.module'
 import { AngularCropperjsModule } from 'angular-cropperjs'
 import { createTranslateLoader } from '../shared/utils/translate-loader.factory'
 import { AuthService } from '../shared/services/auth.service'
-import { APOLLO_CLIENT, ENVIRONMENT, STORAGE_SERVICE } from '../shared/injector.tokens'
+import { APOLLO_CLIENT, STORAGE_SERVICE } from '../shared/injector.tokens'
 import { DefaultInterceptor } from '../shared/interceptors/default.interceptor'
 import { RedirectService } from '../shared/services/redirect.service'
 import { api } from '../shared/utils/uri.tools'
@@ -74,7 +73,7 @@ import { api } from '../shared/utils/uri.tools'
                 return {
                     cache: new InMemoryCache(),
                     link: httpLink.create({
-                        uri: api('graphql', environment),
+                        uri: api('graphql'),
                     }),
                 }
             },

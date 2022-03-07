@@ -62,5 +62,5 @@ import 'zone.js' // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-//import 'url-polyfill'
+import 'url-polyfill'
 //import 'hammerjs'
