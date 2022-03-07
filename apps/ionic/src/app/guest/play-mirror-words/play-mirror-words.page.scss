@@ -26,10 +26,12 @@ ion-content{
     }
 }
 
-label {
-    font-size: 1.25rem;
+.label {
+    font-size: 2rem;
 }
-
+.margins{
+    margin-bottom:1%;
+}
 .flipH {
     transform: scale(-1, 1);
     -moz-transform: scale(-1, 1);
@@ -56,6 +58,3 @@ label {
     user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-
-
-
