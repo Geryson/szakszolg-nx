@@ -5,5 +5,10 @@
 </ion-header>
 
 <ion-content>
-
+    <div>
+        <p *ngFor="let q of questions">
+            {{q.question}}
+            <input type="range" min="1" max="10" value="5" step="1">
+        </p>
+    </div>
 </ion-content>

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { EnterTokenPageRoutingModule } from './enter-token-routing.module';
 
 import { EnterTokenPage } from './enter-token.page';
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    EnterTokenPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        EnterTokenPageRoutingModule,
+        ButtonModule
+    ],
   declarations: [EnterTokenPage]
 })
 export class EnterTokenPageModule {}

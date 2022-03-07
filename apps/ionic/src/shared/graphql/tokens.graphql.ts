@@ -8,4 +8,22 @@ export const TOKENS = {
             }
         }
     `,
+
+    READ: gql`
+        query ($token: String!){
+            token(token: $token) {
+                quiz{
+                    title
+                    template
+                    description
+                    categories
+                    questions{
+                        question
+                        type
+                        answers
+                    }
+                }
+            }
+        }
+    `,
 }
