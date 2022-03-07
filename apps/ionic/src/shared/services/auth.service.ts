@@ -1,25 +1,22 @@
-import { Injectable, Injector } from '@angular/core'
+import { Injectable } from '@angular/core'
 import { BehaviorSubject, firstValueFrom } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
 import { JwtHelperService } from '@auth0/angular-jwt'
-import {
-    api,
-    APOLLO_CLIENT,
-    ENVIRONMENT,
-    Log,
-    STORAGE_KEY,
-    STORAGE_SERVICE,
-    PROFILE,
-} from '@szakszolg-nx/shared-module'
 import { IDecodedJwt, IStorageService } from '@szakszolg-nx/ng-interfaces'
 import { Apollo } from 'apollo-angular'
 import { IUser } from '@szakszolg-nx/api-interfaces'
+import { STORAGE_KEY } from '../utils/constants'
+import { Log } from '../utils/log.tools'
+import { APOLLO_CLIENT, ENVIRONMENT, STORAGE_SERVICE } from '../injector.tokens'
+import { api } from '../utils/uri.tools'
+import { PROFILE } from '../graphql/profile.graphql'
+import { APP_INJECTOR } from '../../app/app.module'
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private readonly http: HttpClient, private readonly injector: Injector) {}
+    constructor(private readonly http: HttpClient) {}
 
     // region Properties
 
@@ -52,7 +49,7 @@ export class AuthService {
 
     private get jwtHelper(): JwtHelperService {
         if (!this._jwtHelper) {
-            this._jwtHelper = this.injector.get(JwtHelperService)
+            this._jwtHelper = APP_INJECTOR.get(JwtHelperService)
         }
         return this._jwtHelper
     }
@@ -61,7 +58,7 @@ export class AuthService {
 
     private get storage(): IStorageService {
         if (!this._storage) {
-            this._storage = this.injector.get(STORAGE_SERVICE)
+            this._storage = APP_INJECTOR.get(STORAGE_SERVICE)
         }
         return this._storage
     }
@@ -70,7 +67,7 @@ export class AuthService {
 
     private get environment(): object {
         if (!this._environment) {
-            this._environment = this.injector.get(ENVIRONMENT)
+            this._environment = APP_INJECTOR.get(ENVIRONMENT)
         }
         return this._environment
     }
@@ -106,7 +103,7 @@ export class AuthService {
             this.storage.get(STORAGE_KEY.ACCESS_TOKEN).then((res) => this._token.next(res)),
             this.storage.get(STORAGE_KEY.TOKEN_OBJECT).then((res) => this._tokenObject.next(res)),
         ])
-        let token = await this.token
+        const token = await this.token
         return token !== null && !this.jwtHelper.isTokenExpired(token)
     }
 
@@ -133,8 +130,7 @@ export class AuthService {
     }
 
     private loadProfile(email: string) {
-        this.injector
-            .get<Apollo>(APOLLO_CLIENT)
+        APP_INJECTOR.get<Apollo>(APOLLO_CLIENT)
             .query<{ user: IUser }>({
                 query: PROFILE.READ,
                 variables: { email },

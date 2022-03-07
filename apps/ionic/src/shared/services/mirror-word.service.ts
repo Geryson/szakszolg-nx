@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@angular/core'
 import { Apollo } from 'apollo-angular'
 import { IMirrorWord } from '@szakszolg-nx/api-interfaces'
-import { APOLLO_CLIENT, MIRROR_WORDS } from '@szakszolg-nx/shared-module'
+import { APOLLO_CLIENT } from '../injector.tokens'
+import { MIRROR_WORDS } from '../graphql/mirror-words.graphql'
 
 @Injectable({
     providedIn: 'root',

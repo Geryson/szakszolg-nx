@@ -1,6 +1,5 @@
 import { IUser } from './user.interface'
 import { IRole } from './role.interface'
-import { Log } from '@szakszolg-nx/shared-module'
 
 export const ABILITIES = {
     BROWSE: 'browse',

@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@angular/core'
-import { APOLLO_CLIENT, USERS } from '@szakszolg-nx/shared-module'
 import { Apollo } from 'apollo-angular'
 import { IUser } from '@szakszolg-nx/api-interfaces'
+import { APOLLO_CLIENT } from '../injector.tokens'
+import { USERS } from '../graphql/users.graphql'
 
 @Injectable({
     providedIn: 'root',

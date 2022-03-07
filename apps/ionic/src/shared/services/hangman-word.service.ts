@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@angular/core'
-import { APOLLO_CLIENT, HANGMAN_WORDS } from '@szakszolg-nx/shared-module'
 import { Apollo } from 'apollo-angular'
 import { IHangmanWord } from '@szakszolg-nx/api-interfaces'
+import { APOLLO_CLIENT } from '../injector.tokens'
+import { HANGMAN_WORDS } from '../graphql/hangman-words.graphql'
 
 @Injectable({
     providedIn: 'root',

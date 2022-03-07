@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Component, Inject, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { IUser } from '@szakszolg-nx/api-interfaces'
 import { UserService } from '../../../../shared/services/user.service'
 import { QueryRef } from 'apollo-angular'
-import { AUTH_SERVICE, AuthService, Log, omit } from '@szakszolg-nx/shared-module'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { ConfirmationService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { link, pages } from '../../../../shared/utils/pages.const'
 import { firstValueFrom } from 'rxjs'
+import { AuthService } from '../../../../shared/services/auth.service'
+import { omit } from '../../../../shared/utils/object.tools'
+import { Log } from '../../../../shared/utils/log.tools'
 
 @Component({
     selector: 'nx12-single-user',
@@ -31,7 +33,7 @@ export class SingleUserPage implements OnInit {
     private loading = false
 
     constructor(
-        @Inject(AUTH_SERVICE) private readonly authService: AuthService,
+        private readonly authService: AuthService,
         private readonly activatedRoute: ActivatedRoute,
         private readonly userService: UserService,
         private readonly confirmation: ConfirmationService,

@@ -5,11 +5,13 @@ import { NG_ICON } from './prime-icons.class'
 import { QueryRef } from 'apollo-angular'
 import { Subscription } from 'rxjs'
 import { APP_INJECTOR } from '../../app/app.module'
-import { AUTH_SERVICE, AuthService, Log, RedirectService } from '@szakszolg-nx/shared-module'
 import { IResourceService } from '@szakszolg-nx/ng-interfaces'
 import { ABILITIES, check, IApiResource, IUser } from '@szakszolg-nx/api-interfaces'
 import { confirmThenDelete } from './observable.tools'
 import { LoadingController } from '@ionic/angular'
+import { AuthService } from '../services/auth.service'
+import { RedirectService } from '../services/redirect.service'
+import { Log } from './log.tools'
 
 @Component({ selector: 'nx12-abstract-crud-page', template: `<div></div>` })
 export abstract class CrudPageClass<T extends IApiResource, TQueryRef> implements OnInit, OnDestroy {
@@ -30,7 +32,7 @@ export abstract class CrudPageClass<T extends IApiResource, TQueryRef> implement
     private sub?: Subscription
 
     protected constructor() {
-        this.authService = APP_INJECTOR.get<AuthService>(AUTH_SERVICE)
+        this.authService = APP_INJECTOR.get<AuthService>(AuthService)
         this.loadingController = APP_INJECTOR.get<LoadingController>(LoadingController)
         this.redirect = APP_INJECTOR.get<RedirectService>(RedirectService)
     }

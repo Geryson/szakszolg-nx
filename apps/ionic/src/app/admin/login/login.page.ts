@@ -1,9 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { IonInput } from '@ionic/angular'
 import { BehaviorSubject } from 'rxjs'
-import { RedirectService, Log, AUTH_SERVICE, AuthService } from '@szakszolg-nx/shared-module'
 import { AlertService } from '../../../shared/services/alert.service'
 import { pages } from '../../../shared/utils/pages.const'
+import { AuthService } from '../../../shared/services/auth.service'
+import { RedirectService } from '../../../shared/services/redirect.service'
+import { Log } from '../../../shared/utils/log.tools'
 
 @Component({
     selector: 'nx12-login',
@@ -17,7 +19,7 @@ export class LoginPage implements OnInit {
     private readonly _valid = new BehaviorSubject(false)
 
     constructor(
-        @Inject(AUTH_SERVICE) private readonly authService: AuthService,
+        private readonly authService: AuthService,
         private readonly redirect: RedirectService,
         private readonly alert: AlertService,
     ) {}

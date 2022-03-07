@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 
 import { Storage } from '@ionic/storage-angular'
 import { IStorageService } from '@szakszolg-nx/ng-interfaces'
-import { Log } from '@szakszolg-nx/shared-module'
+import { Log } from '../utils/log.tools'
 
 @Injectable({
     providedIn: 'root',

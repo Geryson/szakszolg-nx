@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
-import { AuthService, Log, RedirectService } from '@szakszolg-nx/shared-module'
 import { link, pages } from '../../../shared/utils/pages.const'
+import { RedirectService } from '../../../shared/services/redirect.service'
+import { AuthService } from '../../../shared/services/auth.service'
+import { Log } from '../../../shared/utils/log.tools'
 
 @Component({
     selector: 'nx12-profile',

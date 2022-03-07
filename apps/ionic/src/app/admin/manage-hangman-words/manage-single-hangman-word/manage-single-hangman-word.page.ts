@@ -8,8 +8,8 @@ import { TranslatePipe } from '@ngx-translate/core'
 import { first, Subscription } from 'rxjs'
 import { HangmanWordService } from '../../../../shared/services/hangman-word.service'
 import { QueryRef } from 'apollo-angular'
-import { omit } from '@szakszolg-nx/shared-module'
 import { NavController } from '@ionic/angular'
+import { omit } from '../../../../shared/utils/object.tools'
 @Component({
     selector: 'nx12-manage-single-hangman-word',
     templateUrl: './manage-single-hangman-word.page.html',

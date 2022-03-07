@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@angular/core'
-import { APOLLO_CLIENT, TOKENS } from '@szakszolg-nx/shared-module'
 import { Apollo, MutationResult } from 'apollo-angular'
 import { Observable } from 'rxjs'
+import { APOLLO_CLIENT } from '../injector.tokens'
+import { TOKENS } from '../graphql/tokens.graphql'
 
 @Injectable({
     providedIn: 'root',

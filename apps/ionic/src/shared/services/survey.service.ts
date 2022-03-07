@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@angular/core'
-import { APOLLO_CLIENT, deepCopy, SURVEYS } from '@szakszolg-nx/shared-module'
 import { Apollo } from 'apollo-angular'
 import { IQuiz } from '@szakszolg-nx/api-interfaces'
+import { SURVEYS } from '../graphql/surveys.graphql'
+import { APOLLO_CLIENT } from '../injector.tokens'
+import { deepCopy } from '../utils/object.tools'
 
 @Injectable({
     providedIn: 'root',
@@ -24,14 +26,13 @@ export class SurveyService {
         delete mutationData.__typename
         return mutationData
     }
-    
+
     browse() {
         return this.apolloClient.watchQuery<{ quizzes: Partial<IQuiz>[] }>({
             query: SURVEYS.BROWSE,
         })
     }
 
-  
     edit(id: string, data: Partial<Omit<IQuiz, '_id'>>) {
         return this.apolloClient.mutate<{ quiz: Partial<IQuiz> }>({
             mutation: SURVEYS.EDIT,

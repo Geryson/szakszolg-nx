@@ -6,10 +6,9 @@ import { HomePage } from './home.page'
 
 import { HomePageRoutingModule } from './home-routing.module'
 import { TranslateModule } from '@ngx-translate/core'
-import { SharedModule } from '@szakszolg-nx/shared-module'
 
 @NgModule({
-    imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule, TranslateModule, SharedModule],
+    imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule, TranslateModule],
     declarations: [HomePage],
 })
 export class HomePageModule {}

@@ -8,17 +8,6 @@ import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core'
-import {
-    APOLLO_CLIENT,
-    AUTH_SERVICE,
-    AuthService,
-    createTranslateLoader,
-    DefaultInterceptor,
-    ENVIRONMENT,
-    RedirectService,
-    SharedModule,
-    STORAGE_SERVICE,
-} from '@szakszolg-nx/shared-module'
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { ToastModule } from 'primeng/toast'
@@ -26,19 +15,21 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { CommonModule, DatePipe } from '@angular/common'
 import { StorageService } from '../shared/services/storage.service'
-import { AlertService } from '../shared/services/alert.service'
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt'
-import { StaticService } from '../shared/services/static.service'
 import { Apollo, APOLLO_OPTIONS } from 'apollo-angular'
 import { InMemoryCache } from '@apollo/client/core'
 import { HttpLink } from 'apollo-angular/http'
-import { api } from '@szakszolg-nx/shared-module'
 import { environment } from '../environments/environment'
 import { jwtOptionsFactory } from '../shared/utils/jwt-options'
-import { MirrorWordService } from '../shared/services/mirror-word.service'
 import { Drivers } from '@ionic/storage'
 import { NxSharedModule } from '../shared/nx-shared.module'
 import { AngularCropperjsModule } from 'angular-cropperjs'
+import { createTranslateLoader } from '../shared/utils/translate-loader.factory'
+import { AuthService } from '../shared/services/auth.service'
+import { APOLLO_CLIENT, ENVIRONMENT, STORAGE_SERVICE } from '../shared/injector.tokens'
+import { DefaultInterceptor } from '../shared/interceptors/default.interceptor'
+import { RedirectService } from '../shared/services/redirect.service'
+import { api } from '../shared/utils/uri.tools'
 
 @NgModule({
     declarations: [AppComponent],
@@ -53,7 +44,6 @@ import { AngularCropperjsModule } from 'angular-cropperjs'
         BrowserModule,
         BrowserAnimationsModule,
         NxSharedModule,
-        SharedModule,
         CommonModule,
         TranslateModule.forRoot({
             loader: {
@@ -74,9 +64,7 @@ import { AngularCropperjsModule } from 'angular-cropperjs'
         ConfirmDialogModule,
     ],
     providers: [
-        { provide: AUTH_SERVICE, useClass: AuthService },
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        { provide: ENVIRONMENT, useValue: environment },
         { provide: APOLLO_CLIENT, useClass: Apollo },
         ConfirmationService,
         { provide: STORAGE_SERVICE, useClass: StorageService },
@@ -92,12 +80,8 @@ import { AngularCropperjsModule } from 'angular-cropperjs'
             },
             deps: [HttpLink],
         },
-        StorageService,
         AngularCropperjsModule,
-        StaticService,
         MessageService,
-        MirrorWordService,
-        AlertService,
         {
             provide: HTTP_INTERCEPTORS,
             useFactory: (router: Router, storage: StorageService, redirect: RedirectService) =>
