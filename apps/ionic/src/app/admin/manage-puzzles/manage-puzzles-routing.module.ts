@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'new',
     loadChildren: () => import('./manage-single-puzzle/manage-single-puzzle.module').then( m => m.ManageSinglePuzzlePageModule)
+  },
+  {
+    path: 'scaler',
+    loadChildren: () => import('./puzzle-scaler/puzzle-scaler.module').then( m => m.PuzzleScalerPageModule)
   }
 ];
 
