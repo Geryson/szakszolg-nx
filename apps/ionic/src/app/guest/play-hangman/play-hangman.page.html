@@ -14,6 +14,7 @@
         </div>
     </div>
     <p-dialog [visible]="!selectedCategory" [closable]="false">
+        <p *ngIf="noMoreWords">Elfogytak a szavak, válassz új kategóriát!</p>
         <p-listbox [options]="categories ?? []" [(ngModel)]="selectedCategory" (onClick)="showWord()"></p-listbox>
     </p-dialog>
     <p-dialog header="sampletext" [(visible)]="failed" [closable]="false" [modal]="true">

@@ -16,10 +16,10 @@ export class PlayHangmanPage {
 
     private queryRef?: QueryRef<{ hangmanWords: Partial<IHangmanWord>[] }, EmptyObject>
     private sub?: Subscription
-    categories?: string[]
-    selectedCategory: any
     private queryRef2?: QueryRef<{ hangmanWord: Partial<IHangmanWord> }, EmptyObject>
     private sub2?: Subscription
+    categories?: string[]
+    selectedCategory: any
     word?: string;
     replaced?: string[]
     letters = ["a", "á", "b", "c", "d", "e", "é", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "o", "ó", "ö",
@@ -29,6 +29,8 @@ export class PlayHangmanPage {
     failed = false;
     success = false;
     selectedLetters: string[] = []
+    previousWords: string[] = []
+    noMoreWords = false
 
     constructor(private readonly service: HangmanWordService, private readonly alert: AlertService) {
     }
@@ -44,7 +46,6 @@ export class PlayHangmanPage {
                 }
             )
         loading.dismiss().then()
-
     }
 
     ionViewDidEnter() {
@@ -91,18 +92,30 @@ export class PlayHangmanPage {
     }
 
     async nextWord() {
+        let tries = 0
+
         this.counter = -1
         this.failed = false
         this.success = false
         this.selectedLetters = []
         const loading = await this.alert.loading('MESSAGE.LOADING')
+
+        this.previousWords.push(this.word!)
+
         await this.queryRef2?.refetch()
 
-        this.replaced = this.word?.replace(/[A-Za-zŐőÚúÖöÜüÓóŰűÁáÉéÍí]/g, '_').split('')
-
-        console.log(this.replaced)
-
+        while (this.previousWords.includes(this.word!)){
+            if (tries < 5){
+                await this.queryRef2?.refetch()
+                tries++
+            }
+            else
+            {
+                this.selectedCategory = false
+                this.noMoreWords = true
+                break
+            }
+        }
         loading.dismiss().then()
     }
-
 }
