@@ -28,90 +28,59 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content module">
+               <div class="content injectable">
                    <div class="content-data">
 
 
 
+
+
+
+
+
 <ol class="breadcrumb">
-    <li>Modules</li>
-    <li >CoreModule</li>
+  <li>Injectables</li>
+  <li >FileService</li>
 </ol>
 
-
 <ul class="nav nav-tabs" role="tablist">
-    <li  class="active" >
-        <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
-    </li>
-    <li >
-        <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
-    </li>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
 </ul>
 
 <div class="tab-content">
     <div class="tab-pane fade active in" id="c-info">
-
         <p class="comment">
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>apps/api/src/app/core/core.module.ts</code>
+            <code>apps/api/src/app/file/file.service.ts</code>
         </p>
 
 
 
 
 
-        <div class="container-fluid module">
-            <div class="row">
-            </div>
-        </div>
+
+
 
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;
-import { ConfigModule } from &#x27;@nestjs/config&#x27;
-import { configuration } from &#x27;./config/configuration&#x27;
-import { validationSchema } from &#x27;./config/validation&#x27;
-import { GraphQLModule } from &#x27;@nestjs/graphql&#x27;
-import { CoreResolver } from &#x27;./core.resolver&#x27;
-import { MongooseModule } from &#x27;@nestjs/mongoose&#x27;
-import { ApolloDriver, ApolloDriverConfig } from &#x27;@nestjs/apollo&#x27;
-import { mongooseConfigFactory } from &#x27;../../utils/factories/mongo-config.factory&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;
 
-@Module({
-    imports: [
-        ConfigModule.forRoot({
-            isGlobal: true,
-            load: [configuration],
-            validationSchema,
-        }),
-        GraphQLModule.forRoot&lt;ApolloDriverConfig&gt;({
-            driver: ApolloDriver,
-            autoSchemaFile: true,
-            playground: true,
-        }),
-        MongooseModule.forRootAsync({
-            imports: mongooseConfigFactory.imports,
-            useFactory: mongooseConfigFactory.mongooseConfigFactory,
-            inject: mongooseConfigFactory.providers,
-        }),
-    ],
-    controllers: [],
-    providers: [CoreResolver],
-    exports: [],
-})
-export class CoreModule {}
+@Injectable()
+export class FileService {}
 </code></pre>
     </div>
+
 </div>
-
-
-
-
 
 
 
@@ -149,8 +118,8 @@ export class CoreModule {}
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
-            var COMPODOC_CURRENT_PAGE_URL = 'CoreModule.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'FileService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

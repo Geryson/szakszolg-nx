@@ -63,7 +63,16 @@
                             <a href="#bootstrap" title="apps/api/src/main.ts" ><b>bootstrap</b>&nbsp;&nbsp;&nbsp;(apps/.../main.ts)</a>
                         </li>
                         <li>
+                            <a href="#fileNameGenerator" title="apps/api/src/utils/file.utils.ts" ><b>fileNameGenerator</b>&nbsp;&nbsp;&nbsp;(apps/.../file.utils.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#fstatAsync" title="apps/api/src/utils/file.utils.ts" ><b>fstatAsync</b>&nbsp;&nbsp;&nbsp;(apps/.../file.utils.ts)</a>
+                        </li>
+                        <li>
                             <a href="#generateSchema" title="apps/api/src/main.ts" ><b>generateSchema</b>&nbsp;&nbsp;&nbsp;(apps/.../main.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#readDirAsync" title="apps/api/src/utils/file.utils.ts" ><b>readDirAsync</b>&nbsp;&nbsp;&nbsp;(apps/.../file.utils.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -116,6 +125,183 @@
 
 
 
+        </tbody>
+    </table>
+</section>    <h3>apps/api/src/utils/file.utils.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileNameGenerator"></a>
+                    <span class="name">
+                        <span ><b>fileNameGenerator</b></span>
+                        <a href="#fileNameGenerator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fileNameGenerator(original: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>original</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fstatAsync"></a>
+                    <span class="name">
+                        <span ><b>fstatAsync</b></span>
+                        <a href="#fstatAsync"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fstatAsync(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>path</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;IFile&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="readDirAsync"></a>
+                    <span class="name">
+                        <span ><b>readDirAsync</b></span>
+                        <a href="#readDirAsync"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>readDirAsync(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>path</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </section>

@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -38,13 +38,9 @@
 
 
 
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >UsersResolver</li>
+  <li>Injectables</li>
+  <li >PuzzleRepository</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,12 +58,17 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>apps/api/src/app/users/users.resolver.ts</code>
+            <code>apps/api/src/app/puzzle/entities/puzzle.repository.ts</code>
         </p>
 
 
 
-
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+            </p>
 
 
             <section>
@@ -84,19 +85,29 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#createUser" >createUser</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#create" >create</a>
                             </li>
                             <li>
-                                <a href="#deleteUser" >deleteUser</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#delete" >delete</a>
                             </li>
                             <li>
-                                <a href="#updateUser" >updateUser</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findAll" >findAll</a>
                             </li>
                             <li>
-                                <a href="#user" >user</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOne" >findOne</a>
                             </li>
                             <li>
-                                <a href="#users" >users</a>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#update" >update</a>
                             </li>
                         </ul>
                     </td>
@@ -116,12 +127,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>)</code>
+<code>constructor(resourceModel: <a href="../classes/Puzzle.html" target="_self">Model&lt;PuzzleDocument&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">apps/api/src/app/users/users.resolver.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">apps/api/src/app/puzzle/entities/puzzle.repository.ts:22</a></div>
                             </td>
                         </tr>
 
@@ -139,10 +150,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>usersService</td>
+                                                        <td>resourceModel</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
+                                                                        <code><a href="../classes/Puzzle.html" target="_self" >Model&lt;PuzzleDocument&gt;</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -159,7 +170,6 @@
         </table>
 </section>
 
-
             <section>
     
     <h3 id="methods">
@@ -169,31 +179,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createUser"></a>
+                    <a name="create"></a>
                     <span class="name">
-                        <span ><b>createUser</b></span>
-                        <a href="#createUser"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>create</b></span>
+                        <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createUser(data: <a href="../classes/CreateUserInput.html" target="_self">CreateUserInput</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(data: TCreateInput)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;add&#x27;)<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:37</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:32</a></code>
+</div>
                 </td>
             </tr>
 
@@ -216,7 +228,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                                <code><a href="../classes/CreateUserInput.html" target="_self" >CreateUserInput</a></code>
+                                            <code>TCreateInput</code>
                                     </td>
 
                                     <td>
@@ -231,7 +243,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -245,31 +257,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="deleteUser"></a>
+                    <a name="delete"></a>
                     <span class="name">
-                        <span ><b>deleteUser</b></span>
-                        <a href="#deleteUser"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>delete</b></span>
+                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>deleteUser(data: <a href="../classes/DeleteUserInput.html" target="_self">DeleteUserInput</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>delete(data: TDeleteInput)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;delete&#x27;)<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:51</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:50</a></code>
+</div>
                 </td>
             </tr>
 
@@ -292,7 +306,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                                <code><a href="../classes/DeleteUserInput.html" target="_self" >DeleteUserInput</a></code>
+                                            <code>TDeleteInput</code>
                                     </td>
 
                                     <td>
@@ -307,7 +321,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -321,31 +335,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateUser"></a>
+                    <a name="findAll"></a>
                     <span class="name">
-                        <span ><b>updateUser</b></span>
-                        <a href="#updateUser"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateUser(data: <a href="../classes/UpdateUserInput.html" target="_self">UpdateUserInput</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll(data: TFindManyArgs | null)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;edit&#x27;)<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:44</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:19</a></code>
+</div>
                 </td>
             </tr>
 
@@ -368,7 +384,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                                <code><a href="../classes/UpdateUserInput.html" target="_self" >UpdateUserInput</a></code>
+                                            <code>TFindManyArgs | null</code>
                                     </td>
 
                                     <td>
@@ -383,7 +399,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;TInterface[]&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -397,31 +413,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="user"></a>
+                    <a name="findOne"></a>
                     <span class="name">
-                        <span ><b>user</b></span>
-                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>user(data: <a href="../classes/GetUserArgs.html" target="_self">GetUserArgs</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(data: TFindOneArgs)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Query(undefined, {nullable: true})<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;read&#x27;)<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:23</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:25</a></code>
+</div>
                 </td>
             </tr>
 
@@ -444,7 +462,7 @@
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                                <code><a href="../classes/GetUserArgs.html" target="_self" >GetUserArgs</a></code>
+                                            <code>TFindOneArgs</code>
                                     </td>
 
                                     <td>
@@ -459,7 +477,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -473,31 +491,33 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="users"></a>
+                    <a name="update"></a>
                     <span class="name">
-                        <span ><b>users</b></span>
-                        <a href="#users"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Public</span>
+                        <span class="modifier">Async</span>
+                        <span ><b>update</b></span>
+                        <a href="#update"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>users(data: GetUsersArgs | null)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(data)</code>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Query(undefined, {nullable: &#x27;items&#x27;})<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;browse&#x27;)<br /></code>
-                </td>
-            </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:30</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/SimpleRepository.html" target="_self" >SimpleRepository</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/SimpleRepository.html#source" target="_self" >SimpleRepository:42</a></code>
+</div>
                 </td>
             </tr>
 
@@ -512,16 +532,12 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>data</td>
-                                    <td>
-                                            <code>GetUsersArgs | null</code>
-                                    </td>
 
                                     <td>
                                         No
@@ -535,7 +551,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser[]&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;TInterface&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -547,71 +563,46 @@
     </table>
 </section>
 
-
-
-
-
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Resolver, Query, Args, Mutation } from &#x27;@nestjs/graphql&#x27;
-import { UsersService } from &#x27;./users.service&#x27;
-import { User } from &#x27;./entities/user.entity&#x27;
-import { GetUserArgs } from &#x27;./dto/args/get-user.args&#x27;
-import { GetUsersArgs } from &#x27;./dto/args/get-users.args&#x27;
-import { CreateUserInput } from &#x27;./dto/inputs/create-user.input&#x27;
-import { UpdateUserInput } from &#x27;./dto/inputs/update-user.input&#x27;
-import { DeleteUserInput } from &#x27;./dto/inputs/delete-user.input&#x27;
-import { UseGuards } from &#x27;@nestjs/common&#x27;
-import { GqlAuthGuard } from &#x27;../auth/guards/gql-auth.guard&#x27;
-import { IUser } from &#x27;@szakszolg-nx/api-interfaces&#x27;
-import { Permission, Resource } from &#x27;../auth/decorators/permission.decorator&#x27;
-import { PermissionGuard } from &#x27;../auth/guards/permission-guard.service&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;
+import { InjectModel } from &#x27;@nestjs/mongoose&#x27;
+import { Puzzle, PuzzleDocument } from &#x27;./puzzle.entity&#x27;
+import { Model } from &#x27;mongoose&#x27;
+import { UpdatePuzzleInput } from &#x27;../dto/inputs/update-puzzle.input&#x27;
+import { CreatePuzzleInput } from &#x27;../dto/inputs/create-puzzle.input&#x27;
+import { GetPuzzlesArgs } from &#x27;../dto/args/get-puzzles.args&#x27;
+import { GetPuzzleArgs } from &#x27;../dto/args/get-puzzle.args&#x27;
+import { IPuzzle } from &#x27;@szakszolg-nx/api-interfaces&#x27;
+import { DeletePuzzleInput } from &#x27;../dto/inputs/delete-puzzle.input&#x27;
+import { SimpleRepository } from &#x27;../../../shared/proxies/simple.repository&#x27;
 
-@Resolver(() &#x3D;&gt; User)
-@Resource(&#x27;users&#x27;)
-export class UsersResolver {
-    constructor(private readonly usersService: UsersService) {}
-
-    @Query(() &#x3D;&gt; User, { nullable: true })
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;read&#x27;)
-    user(@Args() data: GetUserArgs): Promise&lt;IUser&gt; {
-        return this.usersService.findOne(data)
+@Injectable()
+export class PuzzleRepository extends SimpleRepository&lt;
+    PuzzleDocument,
+    IPuzzle,
+    GetPuzzleArgs,
+    GetPuzzlesArgs,
+    CreatePuzzleInput,
+    UpdatePuzzleInput,
+    DeletePuzzleInput
+&gt; {
+    constructor(@InjectModel(Puzzle.name) resourceModel: Model&lt;PuzzleDocument&gt;) {
+        super(resourceModel)
     }
 
-    @Query(() &#x3D;&gt; [User], { nullable: &#x27;items&#x27; })
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;browse&#x27;)
-    users(@Args({ nullable: true }) data: GetUsersArgs | null): Promise&lt;IUser[]&gt; {
-        return this.usersService.findAll(data)
-    }
-
-    @Mutation(() &#x3D;&gt; User)
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;add&#x27;)
-    createUser(@Args(&#x27;createUserData&#x27;) data: CreateUserInput): Promise&lt;IUser&gt; {
-        return this.usersService.create(data)
-    }
-
-    @Mutation(() &#x3D;&gt; User)
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;edit&#x27;)
-    updateUser(@Args(&#x27;updateUserData&#x27;) data: UpdateUserInput): Promise&lt;IUser&gt; {
-        return this.usersService.update(data)
-    }
-
-    @Mutation(() &#x3D;&gt; User)
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;delete&#x27;)
-    deleteUser(@Args(&#x27;deleteUserData&#x27;) data: DeleteUserInput): Promise&lt;IUser&gt; {
-        return this.usersService.delete(data)
-    }
+    // TODO: Check if anything needs to be overridden
 }
 </code></pre>
     </div>
+
 </div>
+
+
+
+
 
 
 
@@ -645,8 +636,8 @@ export class UsersResolver {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'UsersResolver.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'PuzzleRepository.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

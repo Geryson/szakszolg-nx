@@ -224,7 +224,7 @@
 
 
         <div class="tab-pane fade  tab-source-code" id="c-source">
-            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CanActivate, ExecutionContext, flatten, Injectable } from &#x27;@nestjs/common&#x27;
+            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CanActivate, ExecutionContext, flatten, Injectable, Logger } from &#x27;@nestjs/common&#x27;
 import { Reflector } from &#x27;@nestjs/core&#x27;
 import { GqlExecutionContext } from &#x27;@nestjs/graphql&#x27;
 import { IUser } from &#x27;@szakszolg-nx/api-interfaces&#x27;
@@ -245,6 +245,7 @@ export class PermissionGuard implements CanActivate {
         if (context.getType() &#x3D;&#x3D;&#x3D; &#x27;http&#x27;) user &#x3D; context.switchToHttp().getRequest().user
         user &#x3D; GqlExecutionContext.create(context).getContext().req.user
         if (!user) return false
+        Logger.warn(&#x60;${user.email} is trying to access ${required} with roles ${JSON.stringify(user.roles)}&#x60;)
         const userPermissions &#x3D; flatten(user.roles.map((role) &#x3D;&gt; role.permissions ?? [])).map((permission: string) &#x3D;&gt;
             permission.replace(/^\*::/g, &#x60;${requiredAbilities[0]}::&#x60;).replace(/::\*$/g, &#x60;::${requiredResource[0]}&#x60;),
         )

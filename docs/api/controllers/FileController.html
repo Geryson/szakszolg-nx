@@ -28,23 +28,16 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content class">
+               <div class="content controller">
                    <div class="content-data">
 
 
 
 
 
-
-
-
-
-
-
-
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >UsersResolver</li>
+  <li>Controllers</li>
+  <li >FileController</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,8 +55,15 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>apps/api/src/app/users/users.resolver.ts</code>
+            <code>apps/api/src/app/file/file.controller.ts</code>
         </p>
+
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>file</code>
+            </p>
 
 
 
@@ -84,19 +84,23 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#createUser" >createUser</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteFile" >deleteFile</a>
                             </li>
                             <li>
-                                <a href="#deleteUser" >deleteUser</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#getFiles" >getFiles</a>
                             </li>
                             <li>
-                                <a href="#updateUser" >updateUser</a>
+                                <a href="#seeUploadedFile" >seeUploadedFile</a>
                             </li>
                             <li>
-                                <a href="#user" >user</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#uploadBase64" >uploadBase64</a>
                             </li>
                             <li>
-                                <a href="#users" >users</a>
+                                    <span class="modifier">Async</span>
+                                <a href="#uploadMultipleFiles" >uploadMultipleFiles</a>
                             </li>
                         </ul>
                     </td>
@@ -111,56 +115,6 @@
 </section>
 
             <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(usersService: <a href="../injectables/UsersService.html" target="_self">UsersService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">apps/api/src/app/users/users.resolver.ts:17</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>usersService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/UsersService.html" target="_self" >UsersService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
-
-
-            <section>
     
     <h3 id="methods">
         Methods
@@ -169,16 +123,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createUser"></a>
+                    <a name="deleteFile"></a>
                     <span class="name">
-                        <span ><b>createUser</b></span>
-                        <a href="#createUser"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>deleteFile</b></span>
+                        <a href="#deleteFile"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createUser(data: <a href="../classes/CreateUserInput.html" target="_self">CreateUserInput</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteFile(image)</code>
                 </td>
             </tr>
 
@@ -186,14 +142,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;add&#x27;)<br /></code>
+                    <code>@Delete(&#x27;:path&#x27;)<br />@UseGuards(JwtAuthGuard)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">apps/api/src/app/file/file.controller.ts:70</a></div>
                 </td>
             </tr>
 
@@ -208,16 +164,12 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/CreateUserInput.html" target="_self" >CreateUserInput</a></code>
-                                    </td>
+                                    <td>image</td>
 
                                     <td>
                                         No
@@ -231,7 +183,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser&gt;</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -245,16 +197,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="deleteUser"></a>
+                    <a name="getFiles"></a>
                     <span class="name">
-                        <span ><b>deleteUser</b></span>
-                        <a href="#deleteUser"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>getFiles</b></span>
+                        <a href="#getFiles"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>deleteUser(data: <a href="../classes/DeleteUserInput.html" target="_self">DeleteUserInput</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFiles()</code>
                 </td>
             </tr>
 
@@ -262,14 +216,58 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;delete&#x27;)<br /></code>
+                    <code>@Get(&#x27;&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">apps/api/src/app/file/file.controller.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>unknown</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="seeUploadedFile"></a>
+                    <span class="name">
+                        <span ><b>seeUploadedFile</b></span>
+                        <a href="#seeUploadedFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>seeUploadedFile(image, res)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;:path&#x27;)<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">apps/api/src/app/file/file.controller.ts:64</a></div>
                 </td>
             </tr>
 
@@ -284,16 +282,21 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>image</td>
+
                                     <td>
-                                                <code><a href="../classes/DeleteUserInput.html" target="_self" >DeleteUserInput</a></code>
+                                        No
                                     </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>res</td>
 
                                     <td>
                                         No
@@ -307,7 +310,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -321,16 +324,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateUser"></a>
+                    <a name="uploadBase64"></a>
                     <span class="name">
-                        <span ><b>updateUser</b></span>
-                        <a href="#updateUser"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>uploadBase64</b></span>
+                        <a href="#uploadBase64"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateUser(data: <a href="../classes/UpdateUserInput.html" target="_self">UpdateUserInput</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>uploadBase64(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, image: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -338,14 +343,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;edit&#x27;)<br /></code>
+                    <code>@Post(&#x27;base64&#x27;)<br />@UseGuards(JwtAuthGuard)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">apps/api/src/app/file/file.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -366,9 +371,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>name</td>
                                     <td>
-                                                <code><a href="../classes/UpdateUserInput.html" target="_self" >UpdateUserInput</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>image</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -383,7 +400,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser&gt;</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -397,16 +414,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="user"></a>
+                    <a name="uploadMultipleFiles"></a>
                     <span class="name">
-                        <span ><b>user</b></span>
-                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                        <span class="modifier">Async</span>
+                        <span ><b>uploadMultipleFiles</b></span>
+                        <a href="#uploadMultipleFiles"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>user(data: <a href="../classes/GetUserArgs.html" target="_self">GetUserArgs</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>uploadMultipleFiles(files)</code>
                 </td>
             </tr>
 
@@ -414,14 +433,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Query(undefined, {nullable: true})<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;read&#x27;)<br /></code>
+                    <code>@Post(&#x27;&#x27;)<br />@UseGuards(JwtAuthGuard)<br />@UseInterceptors(undefined)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="23"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:23</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">apps/api/src/app/file/file.controller.ts:34</a></div>
                 </td>
             </tr>
 
@@ -436,16 +455,12 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
-                                    <td>
-                                                <code><a href="../classes/GetUserArgs.html" target="_self" >GetUserArgs</a></code>
-                                    </td>
+                                    <td>files</td>
 
                                     <td>
                                         No
@@ -459,7 +474,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser&gt;</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -469,149 +484,99 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="users"></a>
-                    <span class="name">
-                        <span ><b>users</b></span>
-                        <a href="#users"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>users(data: GetUsersArgs | null)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Query(undefined, {nullable: &#x27;items&#x27;})<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;browse&#x27;)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">apps/api/src/app/users/users.resolver.ts:30</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>data</td>
-                                    <td>
-                                            <code>GetUsersArgs | null</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Promise&lt;IUser[]&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
-
-
-
-
-
-    </div>
+</section>    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Resolver, Query, Args, Mutation } from &#x27;@nestjs/graphql&#x27;
-import { UsersService } from &#x27;./users.service&#x27;
-import { User } from &#x27;./entities/user.entity&#x27;
-import { GetUserArgs } from &#x27;./dto/args/get-user.args&#x27;
-import { GetUsersArgs } from &#x27;./dto/args/get-users.args&#x27;
-import { CreateUserInput } from &#x27;./dto/inputs/create-user.input&#x27;
-import { UpdateUserInput } from &#x27;./dto/inputs/update-user.input&#x27;
-import { DeleteUserInput } from &#x27;./dto/inputs/delete-user.input&#x27;
-import { UseGuards } from &#x27;@nestjs/common&#x27;
-import { GqlAuthGuard } from &#x27;../auth/guards/gql-auth.guard&#x27;
-import { IUser } from &#x27;@szakszolg-nx/api-interfaces&#x27;
-import { Permission, Resource } from &#x27;../auth/decorators/permission.decorator&#x27;
-import { PermissionGuard } from &#x27;../auth/guards/permission-guard.service&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Logger,
+    Param,
+    Post,
+    Res,
+    UploadedFiles,
+    UseGuards,
+    UseInterceptors,
+} from &#x27;@nestjs/common&#x27;
+import { FilesInterceptor } from &#x27;@nestjs/platform-express&#x27;
+import { diskStorage } from &#x27;multer&#x27;
+import { editFileName, fileNameGenerator, imageFileFilter, readDirAsync } from &#x27;../../utils/file.utils&#x27;
+import { UPLOAD_PATH } from &#x27;../../utils/constants&#x27;
+import { JwtAuthGuard } from &#x27;../auth/guards/jwt-auth.guard&#x27;
+import { unlink, writeFile } from &#x27;fs/promises&#x27;
 
-@Resolver(() &#x3D;&gt; User)
-@Resource(&#x27;users&#x27;)
-export class UsersResolver {
-    constructor(private readonly usersService: UsersService) {}
-
-    @Query(() &#x3D;&gt; User, { nullable: true })
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;read&#x27;)
-    user(@Args() data: GetUserArgs): Promise&lt;IUser&gt; {
-        return this.usersService.findOne(data)
+@Controller(&#x27;file&#x27;)
+export class FileController {
+    @Post(&#x27;&#x27;)
+    @UseGuards(JwtAuthGuard)
+    @UseInterceptors(
+        FilesInterceptor(&#x27;image&#x27;, 20, {
+            storage: diskStorage({
+                destination: UPLOAD_PATH,
+                filename: editFileName,
+            }),
+            fileFilter: imageFileFilter,
+        }),
+    )
+    async uploadMultipleFiles(@UploadedFiles() files) {
+        const response &#x3D; []
+        files.forEach((file) &#x3D;&gt; {
+            const fileResponse &#x3D; {
+                originalName: file.originalname,
+                filename: file.filename,
+            }
+            response.push(fileResponse)
+        })
+        return response
     }
 
-    @Query(() &#x3D;&gt; [User], { nullable: &#x27;items&#x27; })
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;browse&#x27;)
-    users(@Args({ nullable: true }) data: GetUsersArgs | null): Promise&lt;IUser[]&gt; {
-        return this.usersService.findAll(data)
+    @Post(&#x27;base64&#x27;)
+    @UseGuards(JwtAuthGuard)
+    async uploadBase64(@Body(&#x27;name&#x27;) name: string, @Body(&#x27;image&#x27;) image: string) {
+        const buffer &#x3D; image.split(&#x27;;base64,&#x27;).pop()
+        const fileName &#x3D; fileNameGenerator(name)
+        await writeFile(&#x60;${UPLOAD_PATH}/${fileName}&#x60;, buffer, { encoding: &#x27;base64&#x27; })
+        return {
+            originalName: name,
+            filename: fileName,
+        }
     }
 
-    @Mutation(() &#x3D;&gt; User)
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;add&#x27;)
-    createUser(@Args(&#x27;createUserData&#x27;) data: CreateUserInput): Promise&lt;IUser&gt; {
-        return this.usersService.create(data)
+    @Get(&#x27;&#x27;)
+    async getFiles() {
+        return readDirAsync(UPLOAD_PATH)
     }
 
-    @Mutation(() &#x3D;&gt; User)
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;edit&#x27;)
-    updateUser(@Args(&#x27;updateUserData&#x27;) data: UpdateUserInput): Promise&lt;IUser&gt; {
-        return this.usersService.update(data)
+    @Get(&#x27;:path&#x27;)
+    seeUploadedFile(@Param(&#x27;path&#x27;) image, @Res() res) {
+        return res.sendFile(image, { root: UPLOAD_PATH })
     }
 
-    @Mutation(() &#x3D;&gt; User)
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;delete&#x27;)
-    deleteUser(@Args(&#x27;deleteUserData&#x27;) data: DeleteUserInput): Promise&lt;IUser&gt; {
-        return this.usersService.delete(data)
+    @Delete(&#x27;:path&#x27;)
+    @UseGuards(JwtAuthGuard)
+    async deleteFile(@Param(&#x27;path&#x27;) image) {
+        try {
+            Logger.log(&#x60;Deleting file ${image}&#x60;)
+            await unlink(&#x60;${UPLOAD_PATH}/${image}&#x60;)
+            return &#x27;&#x27;
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 </code></pre>
     </div>
 </div>
+
+
+
+
+
+
+
 
 
 
@@ -645,8 +610,8 @@ export class UsersResolver {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'UsersResolver.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'controller';
+            var COMPODOC_CURRENT_PAGE_URL = 'FileController.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
