@@ -21,7 +21,7 @@ export class PlayHangmanPage {
     private queryRef2?: QueryRef<{ hangmanWord: Partial<IHangmanWord> }, EmptyObject>
     private sub2?: Subscription
     word?: string;
-    replaced: string[] = []
+    replaced?: string[]
     letters = ["a", "á", "b", "c", "d", "e", "é", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "o", "ó", "ö",
         "ő", "p", "q", "r", "s", "t", "u", "ú", "ü", "ű", "v", "w", "x", "y", "z",]
     wordArray?: string[]
@@ -57,6 +57,7 @@ export class PlayHangmanPage {
     }
 
     showWord() {
+        this.replaced = []
         this.queryRef2 = this.service.browseByCategory(this.selectedCategory)
         this.sub2 = this.queryRef2.valueChanges
             .subscribe((res) => {
@@ -74,7 +75,7 @@ export class PlayHangmanPage {
         if (this.wordArray?.includes(letter)) {
             for (let i = 0; i < this.wordArray?.length; i++) {
                 if (this.wordArray[i] === letter) {
-                    this.replaced[i] = letter
+                    this.replaced![i] = letter
                 }
             }
         }
@@ -90,13 +91,17 @@ export class PlayHangmanPage {
     }
 
     async nextWord() {
-        this.selectedCategory=false
         this.counter = -1
         this.failed = false
         this.success = false
         this.selectedLetters = []
         const loading = await this.alert.loading('MESSAGE.LOADING')
         await this.queryRef2?.refetch()
+
+        this.replaced = this.word?.replace(/[A-Za-zŐőÚúÖöÜüÓóŰűÁáÉéÍí]/g, '_').split('')
+
+        console.log(this.replaced)
+
         loading.dismiss().then()
     }
 

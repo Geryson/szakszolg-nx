@@ -6,7 +6,7 @@
 
 .wrapper {
     display: grid;
-    margin: 10% 0;
+    margin: 2% 0;
     grid-template:
     "image letters"
     "word letters";
@@ -19,52 +19,19 @@
 
 .words {
     grid-area: word;
-    margin-left: 15%;
+    margin-left: 27%;
     margin-top: -5%;
+    line-height: 1.5rem;
     span {
         width: 5%;
         display: inline-flex;
     }
+
 }
 
-@media (max-width: 1023px) and (orientation: landscape) {
-    .inner-scroll {
-        .scroll-y {
-            overflow-y: hidden !important;
-        }
-    }
-
-.wrapper {
-    display: grid;
-    margin: 10% auto;
-    grid-template: "image" "word" "letters";
+.p-button{
+    background: tomato;
 }
-
-.l-container {
-    grid-area: letters;
-    text-align: center;
-    margin-top: -67%;
-    margin-left: 50%;
-    width: 50%;
-}
-
-.hangman {
-    grid-area: image;
-    width: 16%;
-    margin: 0 0 35% 15%;
-}
-
-.words {
-    grid-area: word;
-    text-align: center;
-    margin: -35% 60% 0 1%;
-    span {
-        width: 5%;
-        display: inline-flex;
-    }
-}
-}
-
 
 @media (max-width: 1023px) and (orientation: portrait) {
 .wrapper {
@@ -115,7 +82,7 @@
 
 .hangman {
     grid-area: image;
-    width: 70%;
+    width: 30%;
     margin: 4% auto;
 }
 
@@ -153,9 +120,9 @@
 
 .words {
     text-align: center;
-    margin: 0 auto 5%;
+    margin: 0 0 5%;
     span {
-        width: 5%;
+        width: 7%;
         display: inline-flex;
     }
 }

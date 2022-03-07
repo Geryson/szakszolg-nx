@@ -9,8 +9,8 @@
             <span *ngFor="let r of replaced"><br *ngIf="r === ' '">{{ r }}</span>
         </div>
 
-        <div class="l-container">
-            <p-button [style]="{'width': '13%', 'margin': '1%', 'padding': 'auto'}"  *ngFor="let l of letters" (onClick)="checkLetter(l)"  id="{{l}}" [disabled]="selectedLetters.includes(l)">{{l}}</p-button>
+        <div class="l-container justify-content-center">
+            <p-button [style]="{'width': '13%', 'margin': '1%'}" label="{{l}}" *ngFor="let l of letters" (onClick)="checkLetter(l)"  id="{{l}}" [disabled]="selectedLetters.includes(l)"></p-button>
         </div>
     </div>
     <p-dialog [visible]="!selectedCategory" [closable]="false">
