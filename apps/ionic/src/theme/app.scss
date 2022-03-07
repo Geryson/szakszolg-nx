@@ -10,6 +10,11 @@
     }
 }
 
+p-button {
+    background-color: var(--ion-color-primary);
+    border: var(--ion-color-primary);
+}
+
 ion-button {
     --border-radius: 6px;
     --padding-top: 0;
