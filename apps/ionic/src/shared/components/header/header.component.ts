@@ -1,8 +1,8 @@
 import { Component, Inject, Input, OnInit } from '@angular/core'
 import { NavController } from '@ionic/angular'
-import { AUTH_SERVICE, AuthService } from '@szakszolg-nx/shared-module'
 import { ConfirmationService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
+import { AuthService } from '../../services/auth.service'
 
 @Component({
     selector: 'nx12-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
     @Input() changed = false
 
     constructor(
-        @Inject(AUTH_SERVICE) private readonly authService: AuthService,
+        private readonly authService: AuthService,
         private readonly nav: NavController,
         private readonly confirm: ConfirmationService,
         private readonly translate: TranslatePipe,

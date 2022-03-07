@@ -12,7 +12,6 @@ import { TableModule } from 'primeng/table'
 import { TranslateModule } from '@ngx-translate/core'
 import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
-import { SharedModule } from '@szakszolg-nx/shared-module'
 import { DialogModule } from 'primeng/dialog'
 
 @NgModule({
@@ -22,7 +21,6 @@ import { DialogModule } from 'primeng/dialog'
         IonicModule,
         ManageSurveysPageRoutingModule,
         NxSharedModule,
-        SharedModule,
         TableModule,
         TranslateModule,
         ButtonModule,

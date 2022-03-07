@@ -8,8 +8,8 @@ import { first, Subscription } from 'rxjs'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { NavController } from '@ionic/angular'
-import { areEqual, deepCopy, omit } from '@szakszolg-nx/shared-module'
 import { SurveyService } from '../../../../shared/services/survey.service'
+import { areEqual, deepCopy, omit } from '../../../../shared/utils/object.tools'
 
 @Component({
     selector: 'nx12-manage-single-survey',

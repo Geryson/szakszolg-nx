@@ -186,7 +186,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;create&#x27;)<br /></code>
+                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;add&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -338,7 +338,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;update&#x27;)<br /></code>
+                    <code>@Mutation(undefined)<br />@UseGuards(GqlAuthGuard, PermissionGuard)<br />@Permission(&#x27;edit&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -590,14 +590,14 @@ export class UsersResolver {
 
     @Mutation(() &#x3D;&gt; User)
     @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;create&#x27;)
+    @Permission(&#x27;add&#x27;)
     createUser(@Args(&#x27;createUserData&#x27;) data: CreateUserInput): Promise&lt;IUser&gt; {
         return this.usersService.create(data)
     }
 
     @Mutation(() &#x3D;&gt; User)
     @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission(&#x27;update&#x27;)
+    @Permission(&#x27;edit&#x27;)
     updateUser(@Args(&#x27;updateUserData&#x27;) data: UpdateUserInput): Promise&lt;IUser&gt; {
         return this.usersService.update(data)
     }

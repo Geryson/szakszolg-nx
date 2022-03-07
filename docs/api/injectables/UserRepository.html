@@ -276,8 +276,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">apps/api/src/app/users/entities/user.repository.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">apps/api/src/app/users/entities/user.repository.ts:65</a></div>
                 </td>
             </tr>
 
@@ -492,8 +492,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">apps/api/src/app/users/entities/user.repository.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">apps/api/src/app/users/entities/user.repository.ts:46</a></div>
                 </td>
             </tr>
 
@@ -572,7 +572,7 @@ export class UserRepository {
     public async findAll(data: GetUsersArgs | null): Promise&lt;IUser[] &amp; { roles?: IRole[] }&gt; {
         return data &amp;&amp; Object.keys(data).length &gt; 0
             ? Promise.all(data.ids.map((id) &#x3D;&gt; this.findOne({ id })))
-            : this.userModel.find()
+            : this.userModel.find({ deletedAt: { $eq: null } }).populate(&#x27;roles&#x27;)
     }
 
     public async findOne(data: GetUserArgs): Promise&lt;IUser&gt; {
@@ -584,7 +584,12 @@ export class UserRepository {
     }
 
     public async create(data: CreateUserInput): Promise&lt;IUser&gt; {
-        return new this.userModel({ ...data, _id: new Types.ObjectId() }).save()
+        return new this.userModel({
+            ...data,
+            _id: new Types.ObjectId(),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+        }).save()
     }
 
     public async update(data: UpdateUserInput): Promise&lt;IUser&gt; {
