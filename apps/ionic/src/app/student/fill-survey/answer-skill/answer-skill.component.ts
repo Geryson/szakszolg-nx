@@ -2,15 +2,14 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
 
 @Component({
-  selector: 'nx12-answer-true-false',
-  templateUrl: './answer-true-false.component.html',
-  styleUrls: ['./answer-true-false.component.scss'],
+  selector: 'nx12-answer-skill',
+  templateUrl: './answer-skill.component.html',
+  styleUrls: ['./answer-skill.component.scss'],
 })
-export class AnswerTrueFalseComponent implements OnInit {
+export class AnswerSkillComponent implements OnInit {
     @Input() values:IQuizAnswer[] = []
     @Input() question!: IQuizQuestion
     @Input() index = 0
-
   constructor() { }
 
   ngOnInit() {}

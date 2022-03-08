@@ -1,8 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>fill-survey</ion-title>
-  </ion-toolbar>
-</ion-header>
+<nx12-header title="ASD"></nx12-header>
 <ion-content>
-    <nx12-answer-rating [values]="values" [questions]="questions"></nx12-answer-rating>
+    <div *ngIf="questions.length > 0">
+        <div [ngSwitch]="questions![service.index].type" >
+            <nx12-answer-rating *ngSwitchCase="'rating'"></nx12-answer-rating>
+            <nx12-answer-true-false *ngSwitchCase="'true-false'" [index]="service.index" [values]="service.answers" [question]="questions![service.index]"></nx12-answer-true-false>
+            <nx12-answer-skill *ngSwitchCase="'skill'" [index]="service.index" [values]="service.answers" [question]="questions![service.index]"></nx12-answer-skill>
+            <nx12-answer-free-answer *ngSwitchCase="'free'" [index]="service.index" [values]="service.answers" [question]="questions![service.index]"></nx12-answer-free-answer>
+            <nx12-answer-quiz *ngSwitchCase="'quiz'" [index]="service.index" [values]="service.answers" [question]="questions![service.index]"></nx12-answer-quiz>
+        </div>
+
+        <p-button (click)="next()">Next</p-button>
+        <p-button (click)="cancel()">Cancel</p-button>
+    </div>
+
 </ion-content>

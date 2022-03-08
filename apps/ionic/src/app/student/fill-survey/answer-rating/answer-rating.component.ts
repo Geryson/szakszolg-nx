@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IQuizQuestion} from "@szakszolg-nx/api-interfaces";
+import {Component, OnInit} from '@angular/core';
+import {TokenService} from "../../../../shared/services/token.service";
 
 @Component({
   selector: 'nx12-answer-rating',
@@ -7,10 +7,9 @@ import {IQuizQuestion} from "@szakszolg-nx/api-interfaces";
   styleUrls: ['./answer-rating.component.scss'],
 })
 export class AnswerRatingComponent implements OnInit {
-    @Input() values:number[] = []
-    @Input() questions: IQuizQuestion[] | undefined
-  constructor() { }
+    constructor(public readonly service: TokenService) { }
 
-  ngOnInit() {}
+    ngOnInit() {
+    }
 
 }

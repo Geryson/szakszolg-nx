@@ -1,0 +1,14 @@
+<div>
+    <h4>
+        {{question.question}}
+    </h4>
+    <div class="field-radiobutton">
+        <p-radioButton name="1" value="1" [(ngModel)]="values[index].answer" inputId="1"></p-radioButton>
+        <label for="1">{{ question.answers![0] }}</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="2" value="2" [(ngModel)]="values[index].answer" inputId="2"></p-radioButton>
+        <label for="2">{{ question.answers![1] }}</label>
+    </div>
+</div>
+

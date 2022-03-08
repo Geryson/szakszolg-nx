@@ -1,7 +1,26 @@
-<div *ngFor="let q of questions; index as i">
+<div>
     <h4>
-        {{q.question}}
+        {{service.activeQuiz?.questions?.[service.index]?.question}}
     </h4>
-    <p-slider [(ngModel)]="values![i]" [min]="1" [max]="10" [step]="1"></p-slider>
-    <span>{{values[i]}}</span>
+    
+    <div class="field-radiobutton">
+        <p-radioButton name="1" value="1" [(ngModel)]="service.answers[service.index].answer" inputId="1"></p-radioButton>
+        <label for="1">1</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="2" value="2" [(ngModel)]="service.answers[service.index].answer" inputId="2"></p-radioButton>
+        <label for="2">2</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="3" value="3" [(ngModel)]="service.answers[service.index].answer" inputId="3"></p-radioButton>
+        <label for="3">3</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="4" value="4" [(ngModel)]="service.answers[service.index].answer" inputId="4"></p-radioButton>
+        <label for="4">4</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="5" value="5" [(ngModel)]="service.answers[service.index].answer" inputId="5"></p-radioButton>
+        <label for="5">5</label>
+    </div>
 </div>

@@ -11,6 +11,8 @@ import {AnswerTrueFalseComponent} from "./answer-true-false/answer-true-false.co
 import {SliderModule} from "primeng/slider";
 import {ButtonModule} from "primeng/button";
 import {AnswerRatingComponent} from "./answer-rating/answer-rating.component";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {NxSharedModule} from "../../../shared/nx-shared.module";
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import {AnswerRatingComponent} from "./answer-rating/answer-rating.component";
         FillSurveyPageRoutingModule,
         SliderModule,
         ButtonModule,
+        RadioButtonModule,
+        NxSharedModule,
     ],
     declarations: [FillSurveyPage, AnswerTrueFalseComponent, AnswerRatingComponent]
 })

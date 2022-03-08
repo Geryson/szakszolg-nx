@@ -1,1 +1,14 @@
+<div>
+    <h4>
+        {{question.question}}
+    </h4>
+    <div class="field-radiobutton">
+        <p-radioButton name="true" value="true" [(ngModel)]="values[index].answer" inputId="true"></p-radioButton>
+        <label for="true">Igaz</label>
+    </div>
+    <div class="field-radiobutton">
+        <p-radioButton name="false" value="false" [(ngModel)]="values[index].answer" inputId="false"></p-radioButton>
+        <label for="false">Hamis</label>
+    </div>
+</div>
 

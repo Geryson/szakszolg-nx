@@ -9,6 +9,8 @@ import {RedirectService} from "../../../shared/services/redirect.service";
 import {pages} from "../../../shared/utils/pages.const";
 import {catchError} from "rxjs/operators";
 import {MessageService} from "primeng/api";
+import {StorageService} from "../../../shared/services/storage.service";
+import {STORAGE_KEY} from "../../../shared/utils/constants";
 
 @Component({
     selector: 'nx12-enter-token',
@@ -19,10 +21,9 @@ export class EnterTokenPage {
     token = ""
     private sub?: Subscription
     private queryRef?: QueryRef<{ token: Partial<IToken> }, EmptyObject>;
-    private quiz?: any
 
     constructor(protected readonly service: TokenService, private readonly redirect: RedirectService,
-                private readonly toast: MessageService) {
+                private readonly toast: MessageService, private readonly storage: StorageService) {
     }
 
     send() {
@@ -36,10 +37,26 @@ export class EnterTokenPage {
                 this.toast.add({summary: 'Ez a token nem létezik!', severity: 'error'})
                 return
             }
-            this.quiz = res.data.token.quiz ?? []
             this.service.activeQuiz = deepCopy(res.data.token.quiz as IQuiz)
-            console.log(this.service.activeQuiz)
+            this.service.token = this.token
+            this.storage.set(STORAGE_KEY.SURVEY_TOKEN, this.token).then()
             this.redirect.to(pages.student.fillSurvey)
+        })
+    }
+
+    ionViewDidEnter() {
+        if (this.service.token){
+            this.token = this.service.token
+            this.send()
+            return
+        }
+
+        this.storage.get(STORAGE_KEY.SURVEY_TOKEN).then(token => {
+            if(token){
+                this.service.token = token
+                this.token = token
+                this.send()
+            }
         })
     }
 
