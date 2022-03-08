@@ -3,12 +3,6 @@
     <ion-title>fill-survey</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-    <div>
-        <p *ngFor="let q of questions">
-            {{q.question}}
-            <input type="range" min="1" max="10" value="5" step="1">
-        </p>
-    </div>
+    <nx12-answer-rating [values]="values" [questions]="questions"></nx12-answer-rating>
 </ion-content>

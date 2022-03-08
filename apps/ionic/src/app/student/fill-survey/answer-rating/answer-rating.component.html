@@ -1,3 +1,7 @@
-<p>
-  answer-rating works!
-</p>
+<div *ngFor="let q of questions; index as i">
+    <h4>
+        {{q.question}}
+    </h4>
+    <p-slider [(ngModel)]="values![i]" [min]="1" [max]="10" [step]="1"></p-slider>
+    <span>{{values[i]}}</span>
+</div>
