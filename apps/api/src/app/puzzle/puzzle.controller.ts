@@ -18,8 +18,8 @@ import { UPLOAD_PATH } from '../../utils/constants'
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
 import { unlink, writeFile } from 'fs/promises'
 
-@Controller('file')
-export class FileController {
+@Controller('puzzle')
+export class PuzzleController {
     @Post('')
     @UseGuards(JwtAuthGuard)
     @UseInterceptors(

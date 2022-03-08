@@ -15,6 +15,7 @@ import { RedirectService } from './services/redirect.service'
 import { StaticService } from './services/static.service'
 import { SurveyService } from './services/survey.service'
 import { JoinPipe } from './pipes/join.pipe'
+import { PuzzleService } from './services/puzzle.service'
 
 @NgModule({
     declarations: [HeaderComponent, JoinPipe],
@@ -31,6 +32,7 @@ import { JoinPipe } from './pipes/join.pipe'
         SurveyService,
         TokenService,
         UserService,
+        PuzzleService,
     ],
     exports: [HeaderComponent, JoinPipe],
 })
