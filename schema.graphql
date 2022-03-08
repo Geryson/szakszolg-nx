@@ -202,6 +202,12 @@ input CreateMirrorWordInput {
 }
 
 input CreatePuzzleInput {
+    columns: Float!
+    cropHeight: Float!
+    cropLeft: Float!
+    cropTop: Float!
+    cropWidth: Float!
+    pieceSize: Float!
     url: String!
 }
 
