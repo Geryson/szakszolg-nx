@@ -1,11 +1,15 @@
 .d-none {
-  display: none !important;
+    display: none !important;
 }
 
 .d-md-inline {
     @media screen and (min-width: 768px) {
         display: inline !important;
     }
+}
+
+.text-warning {
+    color: var(--ion-color-warning);
 }
 
 .wide-button {

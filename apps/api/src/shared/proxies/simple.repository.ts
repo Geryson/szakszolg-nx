@@ -48,6 +48,6 @@ export class SimpleRepository<
     }
 
     public async delete(data: TDeleteInput): Promise<TInterface> {
-        return this.model.findByIdAndUpdate(data.id, { deletedAt: Date.now() }) as any
+        return this.model.findByIdAndUpdate(data.id, { deletedAt: Date.now() }, { new: true }) as any
     }
 }

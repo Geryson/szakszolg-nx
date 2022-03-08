@@ -28,4 +28,8 @@ export class PuzzleRepository extends SimpleRepository<
     createMany(data: PuzzleUrlInput) {
         return Promise.all(data.urls.map((d) => this.create({ url: d } as any)))
     }
+
+    async delete(data: DeletePuzzleInput): Promise<IPuzzle> {
+        return this.model.findByIdAndDelete(data.id, { deletedAt: Date.now() }) as any
+    }
 }

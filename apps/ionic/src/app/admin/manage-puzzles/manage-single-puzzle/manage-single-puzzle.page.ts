@@ -31,7 +31,7 @@ export class ManageSinglePuzzlePage {
     async save() {
         const loading = await showLoading()
         try {
-            const res = await this.service.upload(this.uploadedFiles)
+            const res = await this.service.add(this.uploadedFiles)
             Log.debug('ManageSinglePuzzlePage::save', 'res', res)
             this.redirect.back()
         } catch (e: any) {

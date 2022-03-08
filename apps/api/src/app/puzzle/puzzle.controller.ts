@@ -48,18 +48,6 @@ export class PuzzleController {
         return response
     }
 
-    @Post('base64')
-    @UseGuards(JwtAuthGuard)
-    async uploadBase64(@Body('name') name: string, @Body('image') image: string) {
-        const buffer = image.split(';base64,').pop()
-        const fileName = fileNameGenerator(name)
-        await writeFile(`${UPLOAD_PATH}/${fileName}`, buffer, { encoding: 'base64' })
-        return {
-            originalName: name,
-            filename: fileName,
-        }
-    }
-
     @Get(':path')
     seeUploadedFile(@Param('path') image, @Res() res) {
         return res.sendFile(image, { root: UPLOAD_PATH })

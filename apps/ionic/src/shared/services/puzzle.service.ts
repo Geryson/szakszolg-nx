@@ -34,22 +34,17 @@ export class PuzzleService {
         })
     }
 
-    add(om: string, name: string, address: string, county: string, types: [string]) {
-        return this.apolloClient.mutate<{ puzzle: Partial<IPuzzle> }>({
-            mutation: PUZZLES.ADD,
-            variables: { om, name, address, county, types },
-        })
-    }
-
     setPieceConfiguration(
+        id: string,
         currentCropBoxData: Cropper.CropBoxData,
         pieceSize: number,
         currentFullColumns: number | undefined,
     ) {
         return this.apolloClient
             .mutate<{ puzzle: Partial<IPuzzle> }>({
-                mutation: PUZZLES.ADD,
+                mutation: PUZZLES.EDIT,
                 variables: {
+                    id: id,
                     url: this.activePuzzle?.url,
                     columns: currentFullColumns,
                     cropLeft: currentCropBoxData.left,
@@ -62,7 +57,7 @@ export class PuzzleService {
             .pipe(first())
     }
 
-    async upload(uploadedFiles: File[]) {
+    async add(uploadedFiles: File[]) {
         const formData = new FormData()
         uploadedFiles.forEach((file) => formData.append('image', file))
         return firstValueFrom(

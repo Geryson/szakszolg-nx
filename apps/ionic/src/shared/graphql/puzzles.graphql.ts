@@ -27,6 +27,42 @@ export const PUZZLES = {
         }
     `,
 
+    EDIT: gql`
+        mutation (
+            $id: String!
+            $url: String!
+            $columns: Float
+            $cropLeft: Float
+            $cropTop: Float
+            $cropHeight: Float
+            $cropWidth: Float
+            $pieceSize: Float
+        ) {
+            updatePuzzle(
+                updatePuzzleData: {
+                    id: $id
+                    url: $url
+                    columns: $columns
+                    cropLeft: $cropLeft
+                    cropTop: $cropTop
+                    cropHeight: $cropHeight
+                    cropWidth: $cropWidth
+                    pieceSize: $pieceSize
+                }
+            ) {
+                _id
+                url
+                columns
+                createdAt
+                cropLeft
+                cropTop
+                cropHeight
+                cropWidth
+                pieceSize
+            }
+        }
+    `,
+
     ADD: gql`
         mutation (
             $url: String!

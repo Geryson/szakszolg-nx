@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { Component, OnInit, ViewChild } from '@angular/core'
-import { PuzzleService } from '../../../../shared/services/puzzle.service'
 import { CropperComponent } from 'angular-cropperjs'
 import { AlertController, NavController, Platform } from '@ionic/angular'
 import { TranslatePipe } from '@ngx-translate/core'
+import { PuzzleService } from '../../../../shared/services/puzzle.service'
 
 @Component({
     selector: 'nx12-puzzle-scaler',
@@ -12,6 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core'
 })
 export class PuzzleScalerPage implements OnInit {
     imageUrl = '../../assets/images/alaska-cliffs.jpg'
+    puzzleId = ''
 
     editOperations?: HTMLElement
     previewOperations?: HTMLElement
@@ -215,7 +216,7 @@ export class PuzzleScalerPage implements OnInit {
         currentCropBoxData.height = currentCropBoxData.height - this.currentYRemainder
 
         this.service
-            .setPieceConfiguration(currentCropBoxData, this.rangerValue, this.currentFullColumns)
+            .setPieceConfiguration(this.puzzleId, currentCropBoxData, this.rangerValue, this.currentFullColumns)
             .subscribe(async () => {
                 this.navController.navigateForward(['add-puzzle']).then()
                 const alert = await this.alertController.create({
