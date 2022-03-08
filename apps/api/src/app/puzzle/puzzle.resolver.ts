@@ -11,6 +11,7 @@ import { UpdatePuzzleInput } from './dto/inputs/update-puzzle.input'
 import { DeletePuzzleInput } from './dto/inputs/delete-puzzle.input'
 import { Permission, Resource } from '../auth/decorators/permission.decorator'
 import { PermissionGuard } from '../auth/guards/permission-guard.service'
+import { PuzzleUrlInput } from './dto/inputs/puzzle-url.input'
 
 @Resolver(() => Puzzle)
 @Resource('puzzles')
@@ -18,17 +19,20 @@ export class PuzzleResolver {
     constructor(private readonly service: PuzzleService) {}
 
     @Query(() => Puzzle, { nullable: true })
-    @UseGuards(GqlAuthGuard, PermissionGuard)
-    @Permission('read')
     puzzle(@Args({ nullable: true }) data: GetPuzzleArgs): Promise<IPuzzle> {
         return this.service.findOne(data)
     }
 
     @Query(() => [Puzzle], { nullable: 'items' })
-    @Permission('browse')
-    @UseGuards(GqlAuthGuard, PermissionGuard)
     puzzles(@Args({ nullable: true }) data: GetPuzzlesArgs | null): Promise<IPuzzle[]> {
         return this.service.findAll(data)
+    }
+
+    @Mutation(() => [Puzzle], { nullable: 'items' })
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission('create')
+    createManyPuzzles(@Args('data') data: PuzzleUrlInput): Promise<IPuzzle[]> {
+        return this.service.createMany(data)
     }
 
     @Mutation(() => Puzzle)

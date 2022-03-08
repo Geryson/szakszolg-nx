@@ -35,6 +35,7 @@ type MirrorWord {
 type Mutation {
     createGroupingItem(createGroupingItemData: CreateGroupingItemInput!): GroupingItem!
     createHangmanWord(createHangmanWordData: CreateHangmanWordInput!): HangmanWord!
+    createManyPuzzles(data: PuzzleUrlInput!): [Puzzle]!
     createMirrorWord(createMirrorWordData: CreateMirrorWordInput!): MirrorWord!
     createPuzzle(createPuzzleData: CreatePuzzleInput!): Puzzle!
     createQuiz(createQuizData: CreateQuizInput!): Quiz!
@@ -66,14 +67,14 @@ type Mutation {
 
 type Puzzle {
     _id: String!
-    columns: Float!
+    columns: Float
     createdAt: DateTime!
-    cropHeight: Float!
-    cropLeft: Float!
-    cropTop: Float!
-    cropWidth: Float!
+    cropHeight: Float
+    cropLeft: Float
+    cropTop: Float
+    cropWidth: Float
     deletedAt: DateTime
-    pieceSize: Float!
+    pieceSize: Float
     updatedAt: DateTime!
     url: String!
 }
@@ -302,6 +303,10 @@ input DeleteUserInput {
     id: String!
 }
 
+input PuzzleUrlInput {
+    urls: [String!]!
+}
+
 input UpdateGroupingItemInput {
     correct: String
     groups: [String]
@@ -321,7 +326,14 @@ input UpdateMirrorWordInput {
 }
 
 input UpdatePuzzleInput {
+    columns: Float
+    cropHeight: Float
+    cropLeft: Float
+    cropTop: Float
+    cropWidth: Float
     id: String!
+    pieceSize: Float
+    url: String!
 }
 
 input UpdateQuizAnswerInput {

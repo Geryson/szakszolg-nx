@@ -6,6 +6,7 @@ import { GetPuzzlesArgs } from './dto/args/get-puzzles.args'
 import { GetPuzzleArgs } from './dto/args/get-puzzle.args'
 import { DeletePuzzleInput } from './dto/inputs/delete-puzzle.input'
 import { RepositoryProxyService } from '../../shared/proxies/repository-proxy.service'
+import { PuzzleUrlInput } from './dto/inputs/puzzle-url.input'
 
 @Injectable()
 export class PuzzleService extends RepositoryProxyService<
@@ -18,5 +19,9 @@ export class PuzzleService extends RepositoryProxyService<
 > {
     constructor(repository: PuzzleRepository) {
         super(repository)
+    }
+
+    createMany(data: PuzzleUrlInput) {
+        return this.repository.createMany(data)
     }
 }
