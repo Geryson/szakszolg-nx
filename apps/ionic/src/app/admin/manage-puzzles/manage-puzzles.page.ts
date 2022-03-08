@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { IFile } from '@szakszolg-nx/api-interfaces'
 import { environment } from '../../../environments/environment'
@@ -13,7 +13,7 @@ import { pages } from '../../../shared/utils/pages.const'
     templateUrl: './manage-puzzles.page.html',
     styleUrls: ['./manage-puzzles.page.scss'],
 })
-export class ManagePuzzlesPage implements OnInit {
+export class ManagePuzzlesPage {
     NG_ICON = NG_ICON
 
     files: IFile[] = []
@@ -40,7 +40,7 @@ export class ManagePuzzlesPage implements OnInit {
     }
 
     private static get api() {
-        return `http${environment.API_SSL ? 's' : ''}://${environment.API_HOST}:${environment.API_PORT}/api/file`
+        return `http${environment.API_SSL ? 's' : ''}://${environment.API_HOST}:${environment.API_PORT}/api/puzzle`
     }
 
     private static getImageID(file: IFile) {
@@ -59,7 +59,7 @@ export class ManagePuzzlesPage implements OnInit {
             .substring(2)
     }
 
-    ngOnInit() {
+    ionViewDidEnter() {
         this.init()
     }
 

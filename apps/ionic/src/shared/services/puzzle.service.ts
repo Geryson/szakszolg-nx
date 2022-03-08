@@ -71,7 +71,7 @@ export class PuzzleService {
                     originalName: string
                     filename: string
                 }[]
-            >(api('api/file'), formData),
+            >(api('api/puzzle'), formData),
         )
     }
 }

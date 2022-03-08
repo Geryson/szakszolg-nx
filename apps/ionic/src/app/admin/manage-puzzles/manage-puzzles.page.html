@@ -12,7 +12,7 @@
                         <input #search (input)="dv.filter(search.value)" pInputText placeholder="{{ 'PUZZLE_MANAGEMENT.SEARCH' | translate }}" type="search">
                     </span>
                     <p-button icon='pi pi-{{NG_ICON.plus}}' label="{{ 'PUZZLE_MANAGEMENT.ADD_PICTURE' | translate }}" routerLink='new' styleClass="p-button-success"></p-button>
-                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    <span class='d-none d-md-inline'><p-dataViewLayoutOptions></p-dataViewLayoutOptions></span>
                 </div>
             </ng-template>
             <ng-template let-item pTemplate="listItem">

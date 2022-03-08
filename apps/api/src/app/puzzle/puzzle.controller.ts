@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common'
 import { FilesInterceptor } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
-import { editFileName, fileNameGenerator, imageFileFilter, readDirAsync } from '../../utils/file.utils'
+import { editFileName, fileNameGenerator, imageFileFilter } from '../../utils/file.utils'
 import { UPLOAD_PATH } from '../../utils/constants'
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
 import { unlink, writeFile } from 'fs/promises'
@@ -58,11 +58,6 @@ export class PuzzleController {
             originalName: name,
             filename: fileName,
         }
-    }
-
-    @Get('')
-    async getFiles() {
-        return readDirAsync(UPLOAD_PATH)
     }
 
     @Get(':path')
