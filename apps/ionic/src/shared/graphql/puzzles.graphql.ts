@@ -6,6 +6,11 @@ export const PUZZLES = {
             puzzles {
                 _id
                 url
+                columns
+                cropTop
+                cropLeft
+                cropWidth
+                cropHeight
                 createdAt
             }
         }

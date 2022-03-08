@@ -38,16 +38,17 @@
                 <div class="col-12 md:col-4">
                     <div class="product-grid-item card">
                         <div class="product-grid-item-content">
-                            <img [alt]="item.url" [src]="getImageUrl(item.url)"/>
+                            <img *ngIf='item.columns' [alt]="item.url" [src]="getImageUrl(item.url)"/>
                             <div class="product-name">
                                 {{getImageName(item.url)}}
-                                <a *ngIf='item' routerLink='./scaler'><i class="pi pi-exclamation-triangle text-warning" style="font-size: 1.25rem"></i></a>
+                                <i *ngIf='!item.columns' class="pi pi-exclamation-triangle text-warning" style="font-size: 1.25rem"></i>
                             </div>
                             <div class="product-description">{{item.createdAt | date:(('SHARED.DATE_FORMAT' | translate))}}</div>
                         </div>
                         <div class="product-grid-item-bottom">
 <!--                            <span class="product-price">{{item.size/1000}}KB</span>-->
                             <p-button (onClick)='destroy(item)' icon="pi pi-trash" styleClass='p-button-danger'></p-button>
+                            <p-button (onClick)='navigateToScaler(item)' icon='pi pi-window-minimize' styleClass='p-button-warning'></p-button>
                         </div>
                     </div>
                 </div>

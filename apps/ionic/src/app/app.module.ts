@@ -29,6 +29,8 @@ import { APOLLO_CLIENT, STORAGE_SERVICE } from '../shared/injector.tokens'
 import { DefaultInterceptor } from '../shared/interceptors/default.interceptor'
 import { RedirectService } from '../shared/services/redirect.service'
 import { api } from '../shared/utils/uri.tools'
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx'
+import { PuzzleService } from '../shared/services/puzzle.service'
 
 @NgModule({
     declarations: [AppComponent],
@@ -40,7 +42,6 @@ import { api } from '../shared/utils/uri.tools'
         AppRoutingModule,
         FormsModule,
         HttpClientModule,
-        BrowserModule,
         BrowserAnimationsModule,
         NxSharedModule,
         CommonModule,
@@ -80,6 +81,8 @@ import { api } from '../shared/utils/uri.tools'
             deps: [HttpLink],
         },
         AngularCropperjsModule,
+        ScreenOrientation,
+        PuzzleService,
         MessageService,
         {
             provide: HTTP_INTERCEPTORS,

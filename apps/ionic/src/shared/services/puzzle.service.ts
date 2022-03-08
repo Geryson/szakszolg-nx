@@ -35,16 +35,17 @@ export class PuzzleService {
     }
 
     setPieceConfiguration(
-        id: string,
         currentCropBoxData: Cropper.CropBoxData,
         pieceSize: number,
         currentFullColumns: number | undefined,
     ) {
+        if (!this.activePuzzle) throw 'No active puzzle'
+
         return this.apolloClient
             .mutate<{ puzzle: Partial<IPuzzle> }>({
                 mutation: PUZZLES.EDIT,
                 variables: {
-                    id: id,
+                    id: this.activePuzzle?._id,
                     url: this.activePuzzle?.url,
                     columns: currentFullColumns,
                     cropLeft: currentCropBoxData.left,

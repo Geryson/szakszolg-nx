@@ -10,6 +10,7 @@ import { QueryRef } from 'apollo-angular'
 import { deepCopy } from '../../../shared/utils/object.tools'
 import { firstValueFrom, Subscription } from 'rxjs'
 import { showLoading } from '../../../shared/utils/observable.tools'
+import { RedirectService } from '../../../shared/services/redirect.service'
 
 @Component({
     selector: 'nx12-manage-puzzles',
@@ -32,6 +33,7 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
     constructor(
         private readonly service: PuzzleService,
         private readonly translate: TranslatePipe,
+        private readonly redirect: RedirectService,
         private readonly confirm: ConfirmationService,
     ) {
         setTimeout(() => {
@@ -79,5 +81,10 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.sub?.unsubscribe()
+    }
+
+    navigateToScaler(item: IPuzzle) {
+        this.service.activePuzzle = deepCopy(item)
+        this.redirect.to(`${pages.admin.puzzleImages}/scaler`)
     }
 }

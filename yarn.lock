@@ -498,6 +498,20 @@
   dependencies:
     tslib "^2.0.0"
 
+"@awesome-cordova-plugins/core@^5.40.0":
+  version "5.40.0"
+  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/core/-/core-5.40.0.tgz#aa07eef57f50acc9da2e0d538bf5858e262348dd"
+  integrity sha512-tk5QlnXfSE2Zu3mJVC3f11Guu5iqnLtNkvvClNHjz/e4FsJEmprfXWCv/QImWs5fLsismHcn31LKYBfWIhOv9g==
+  dependencies:
+    "@types/cordova" latest
+
+"@awesome-cordova-plugins/screen-orientation@^5.40.0":
+  version "5.40.0"
+  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/screen-orientation/-/screen-orientation-5.40.0.tgz#4ba308b83dc718a1aa642df6e0b297844d924d11"
+  integrity sha512-oeGJIqqYOCdxgzyudWDFzx0eEkuunxh/vh1zr3+6iYOD2Cy7ia21BcaKyZk/GS6BqS5zeT2P1k0qh+CHj2rKsg==
+  dependencies:
+    "@types/cordova" latest
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.8.3":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.16.7.tgz#44416b6bd7624b998f5b1af5d470856c40138789"
@@ -3449,6 +3463,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/cordova@latest":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
+  integrity sha1-6nrd907Ow9dimCegw54smt3HPQQ=
+
 "@types/cors@2.8.12":
   version "2.8.12"
   resolved "https://registry.yarnpkg.com/@types/cors/-/cors-2.8.12.tgz#6b2c510a7ad7039e98e7b8d3d6598f4359e5c080"
@@ -5656,6 +5675,11 @@ copy-webpack-plugin@^9.0.1:
     normalize-path "^3.0.0"
     schema-utils "^3.1.1"
     serialize-javascript "^6.0.0"
+
+cordova-plugin-screen-orientation@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-screen-orientation/-/cordova-plugin-screen-orientation-3.0.2.tgz#81290a933cfe84d35482cfcb251c931cc7b71931"
+  integrity sha512-2w6CMC+HGvbhogJetalwGurL2Fx8DQCCPy3wlSZHN1/W7WoQ5n9ujVozcoKrY4VaagK6bxrPFih+ElkO8Uqfzg==
 
 core-js-compat@^3.20.2, core-js-compat@^3.21.0:
   version "3.21.1"

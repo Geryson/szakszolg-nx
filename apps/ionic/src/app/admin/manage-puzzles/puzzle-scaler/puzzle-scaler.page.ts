@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Component, OnInit, ViewChild } from '@angular/core'
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core'
 import { CropperComponent } from 'angular-cropperjs'
-import { AlertController, NavController, Platform } from '@ionic/angular'
+import { AlertController, Platform } from '@ionic/angular'
 import { TranslatePipe } from '@ngx-translate/core'
 import { PuzzleService } from '../../../../shared/services/puzzle.service'
+import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx'
+import { getImageUrl } from '../../../../shared/utils/uri.tools'
+import { RedirectService } from '../../../../shared/services/redirect.service'
+import { pages } from '../../../../shared/utils/pages.const'
 
 @Component({
     selector: 'nx12-puzzle-scaler',
     templateUrl: './puzzle-scaler.page.html',
     styleUrls: ['./puzzle-scaler.page.scss'],
 })
-export class PuzzleScalerPage implements OnInit {
+export class PuzzleScalerPage implements AfterViewInit, OnInit {
     imageUrl = '../../assets/images/alaska-cliffs.jpg'
-    puzzleId = ''
 
     editOperations?: HTMLElement
     previewOperations?: HTMLElement
@@ -41,25 +44,31 @@ export class PuzzleScalerPage implements OnInit {
     @ViewChild('puzzleCropper') public puzzleCropper?: CropperComponent
 
     constructor(
-        private navController: NavController,
-        private service: PuzzleService,
-        private platform: Platform,
-        private screenOrientation: ScreenOrientation,
-        public translatePipe: TranslatePipe,
-        private alertController: AlertController,
+        private readonly redirect: RedirectService,
+        private readonly service: PuzzleService,
+        private readonly platform: Platform,
+        public readonly translatePipe: TranslatePipe,
+        private readonly alertController: AlertController,
+        private readonly screenOrientation: ScreenOrientation,
     ) {
-        platform.ready().then(() => screenOrientation.lock('landscape'))
+        platform.ready().then(() => this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE))
     }
 
     ngOnInit() {
+        if (!this.service.activePuzzle) throw 'No active puzzle'
+        this.imageUrl = getImageUrl(this.service.activePuzzle.url)
+        // 'https://avante.biz/wp-content/uploads/Android-Beach-Wallpapers/Android-Beach-Wallpapers-007.jpg'
+    }
+
+    ngAfterViewInit() {
+        this.init()
+    }
+
+    init() {
         this.rangerValue = this.rangerMin
 
         this.editOperations = <HTMLElement>document.getElementsByClassName('operations-edit').item(0)
         this.previewOperations = <HTMLElement>document.getElementsByClassName('operations-preview').item(0)
-
-        this.imageUrl =
-            this.service.activePuzzle?.url ??
-            'https://avante.biz/wp-content/uploads/Android-Beach-Wallpapers/Android-Beach-Wallpapers-007.jpg'
 
         if (this.puzzleCropper) {
             this.puzzleCropper.cropperOptions.viewMode = 0
@@ -216,9 +225,9 @@ export class PuzzleScalerPage implements OnInit {
         currentCropBoxData.height = currentCropBoxData.height - this.currentYRemainder
 
         this.service
-            .setPieceConfiguration(this.puzzleId, currentCropBoxData, this.rangerValue, this.currentFullColumns)
+            .setPieceConfiguration(currentCropBoxData, this.rangerValue, this.currentFullColumns)
             .subscribe(async () => {
-                this.navController.navigateForward(['add-puzzle']).then()
+                this.redirect.to(pages.admin.puzzleImages)
                 const alert = await this.alertController.create({
                     message: await this.translatePipe.transform('MESSAGE.SUCCESS_UPLOAD'),
                     buttons: [
@@ -229,7 +238,7 @@ export class PuzzleScalerPage implements OnInit {
                 })
                 await alert.present()
                 this.screenOrientation.unlock()
-                this.screenOrientation.lock('portrait').then()
+                this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then()
             })
     }
 
@@ -252,9 +261,9 @@ export class PuzzleScalerPage implements OnInit {
                     text: await this.translatePipe.transform('BUTTONS.YES'),
                     handler: () => {
                         this.screenOrientation.unlock()
-                        this.screenOrientation.lock('portrait')
+                        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then()
 
-                        this.navController.navigateForward(['add-puzzle'])
+                        this.redirect.to(pages.admin.puzzleImages)
                     },
                 },
             ],
