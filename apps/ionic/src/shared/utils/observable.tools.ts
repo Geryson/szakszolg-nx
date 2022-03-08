@@ -33,3 +33,18 @@ export function confirmThenDelete(
         },
     })
 }
+
+export async function showLoading(translationKey = '') {
+    const loadingController = APP_INJECTOR.get(LoadingController)
+    const translate = APP_INJECTOR.get(TranslatePipe)
+
+    const l = await loadingController.create(
+        translationKey
+            ? {
+                  message: translate.transform(`${translationKey}.LOADING`),
+              }
+            : {},
+    )
+    l.present().then()
+    return l
+}

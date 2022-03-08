@@ -46,7 +46,7 @@
         "ADD_ANSWER": "Válasz hozzáadása",
         "SEND": "Beküldés",
         "SAVE_AND_GO_TO_QUESTION_EDITING": "Kérdések szerkesztése",
-        "EDIT_EVALUATION_CATEGORIES": "Kategóriák szerkesztése",
+        "EDIT_EVALUATIONCATEGORIES": "Kategóriák szerkesztése",
         "SAVE_AND_BACK_TO_THE_LIST": "Mentés és vissza a listához",
         "ADD": "Hozzáadás",
         "UPLOAD": "Feltöltés",
@@ -56,11 +56,11 @@
         "ADD_QF": "Kérdőív hozzáadása",
         "NEXT_TO_ADD_QF": "Tovább a kérdések hozzáadásához",
         "REJECT": "Feladom",
-        "ADD_HANGMAN": "Akasztófa hozzáadása",
+        "ADD_GALLOW": "Akasztófa hozzáadása",
         "COPY_TOKEN": "Token másolása",
         "START": "Indítás",
         "RESTART": "Újrakezdés",
-        "HANGMAN":"Akasztófa",
+        "GALLOW":"Akasztófa",
         "SCHOOL_FINDER":"Iskola kereső",
         "PAIRING": "Párosítás",
         "PUZZLE":"Puzzle",
@@ -79,7 +79,9 @@
         "AGAIN": "Újra",
         "ONLINE":"Online",
         "OFFLINE":"Offline",
-        "SHOW":"Mutasd"
+        "SHOW":"Mutasd",
+        "PREVIEW":"Előnézet",
+        "BACK":"Vissza"
     },
 
     "MESSAGE":{
@@ -231,6 +233,7 @@
         "PAIRS_MANAGEMENT": "Párosítások kezelése",
         "HANGMAN_WORDS_MANAGEMENT": "Akasztófák kezelése",
         "PUZZLE_PICTURE_MANAGEMENT": "Puzzle képek kezelése",
+        "PUZZLE_SCALER": "Kép metsző",
         "ROLE_RIGHTS": "Szerepkör-jogkör kapcsolatok kezelése"
     },
 
@@ -574,6 +577,12 @@
 
     "PUZZLE_SCALE": {
         "EDIT_ABORT": "Biztosan megszakítja a szerkesztést?"
+    },
+
+    "PUZZLE_SCALER": {
+        "EDIT_ABORT": "Biztosan megszakítja a szerkesztést?",
+        "RANGER_TITLE": "Darabok mérete:",
+        "PREVIEW_WARNING": "A kijelölésen kívüli és piros színnel kiemelt területek le lesznek vágva a játékhoz használt képről. Elmenti ezt a beállítást?"
     },
 
     "any": "Mind",
