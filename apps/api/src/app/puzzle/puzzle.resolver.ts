@@ -52,7 +52,7 @@ export class PuzzleResolver {
     @Mutation(() => Puzzle)
     @UseGuards(GqlAuthGuard, PermissionGuard)
     @Permission('delete')
-    deletePuzzle(@Args('deletePuzzleData') data: DeletePuzzleInput): Promise<IPuzzle> {
+    deletePuzzle(@Args('deletePuzzleData') data: DeletePuzzleInput): Promise<Partial<IPuzzle>> {
         return this.service.delete(data)
     }
 }
