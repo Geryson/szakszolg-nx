@@ -17,9 +17,12 @@ import { editFileName, fileNameGenerator, imageFileFilter, readDirAsync } from '
 import { UPLOAD_PATH } from '../../utils/constants'
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
 import { unlink, writeFile } from 'fs/promises'
+import { PuzzleService } from './puzzle.service'
 
 @Controller('puzzle')
 export class PuzzleController {
+    constructor(private readonly puzzleService: PuzzleService) {}
+
     @Post('')
     @UseGuards(JwtAuthGuard)
     @UseInterceptors(
@@ -31,7 +34,7 @@ export class PuzzleController {
             fileFilter: imageFileFilter,
         }),
     )
-    async uploadMultipleFiles(@UploadedFiles() files) {
+    async uploadMultipleFiles(@UploadedFiles() files: any[]) {
         const response = []
         files.forEach((file) => {
             const fileResponse = {
@@ -40,6 +43,8 @@ export class PuzzleController {
             }
             response.push(fileResponse)
         })
+        await this.puzzleService.createMany({ urls: response.map((file) => file.filename) })
+
         return response
     }
 
