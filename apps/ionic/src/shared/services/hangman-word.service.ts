@@ -16,6 +16,13 @@ export class HangmanWordService {
         })
     }
 
+    browseByCategory(category: string){
+        return this.apolloClient.watchQuery<{ hangmanWord: Partial<IHangmanWord> }>({
+            query: HANGMAN_WORDS.BROWSE_BY_CATEGORY,
+            variables: { category },
+        })
+    }
+
     random() {
         return this.apolloClient.watchQuery<{ hangmanWord: Partial<IHangmanWord> }>({
             query: HANGMAN_WORDS.RANDOM,
