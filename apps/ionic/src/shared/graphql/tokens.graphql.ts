@@ -13,6 +13,7 @@ export const TOKENS = {
         query ($token: String!){
             token(token: $token) {
                 quiz{
+                    _id
                     title
                     template
                     description

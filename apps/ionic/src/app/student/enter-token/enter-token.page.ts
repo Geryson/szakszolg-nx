@@ -11,6 +11,7 @@ import {catchError} from "rxjs/operators";
 import {MessageService} from "primeng/api";
 import {StorageService} from "../../../shared/services/storage.service";
 import {STORAGE_KEY} from "../../../shared/utils/constants";
+import {Log} from "../../../shared/utils/log.tools";
 
 @Component({
     selector: 'nx12-enter-token',
@@ -38,6 +39,7 @@ export class EnterTokenPage {
                 return
             }
             this.service.activeQuiz = deepCopy(res.data.token.quiz as IQuiz)
+            Log.debug('EnterToken::send', 'active quiz', this.service.activeQuiz)
             this.service.token = this.token
             this.storage.set(STORAGE_KEY.SURVEY_TOKEN, this.token).then()
             this.redirect.to(pages.student.fillSurvey)

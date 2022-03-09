@@ -11,7 +11,7 @@ import {STORAGE_KEY} from "../../../shared/utils/constants";
     templateUrl: './fill-survey.page.html',
     styleUrls: ['./fill-survey.page.scss'],
 })
-export class FillSurveyPage {
+export class FillSurveyPage implements OnInit{
 
     public questions: IQuizQuestion[] = []
 
@@ -20,32 +20,39 @@ export class FillSurveyPage {
     }
 
     ionViewDidEnter() {
+        this.onEnterInit().then()
+    }
 
+    private async onEnterInit() {
         this.storage.get(STORAGE_KEY.SURVEY_INDEX).then(index => {
-            if(index){
+            if (index) {
                 this.service.index = index
             }
         })
 
-        this.questions = this.service.activeQuiz?.questions ?? []
-        console.log(this.service.activeQuiz)
-        if(this.questions.length < 1)
-            this.redirect.to(pages.student.enterToken)
-        else{
-            for (const question of this.questions) {
-                this.service.answers?.push({
-                    _id: null,
-                    createdAt: new Date,
+        this.storage.get(STORAGE_KEY.SURVEY_ANSWER).then(answer => {
+            if (answer) {
+                this.service.answers = answer
+            }
+        })
 
-                    quizId: this.service.activeQuiz?._id,
-                    questionId: question._id,
-                    answer: '',
-                    om: this.service.activeOM
-                })
-            }
-            for (const question of this.questions) {
-                console.log(question.type)
-            }
+        this.questions = this.service.activeQuiz?.questions ?? []
+        this.questions.sort((a, b) => Math.random() - 0.5)
+        console.log(this.service.activeQuiz)
+
+        for (const question of this.questions) {
+            this.service.answers?.push({
+                _id: null,
+                createdAt: new Date,
+
+                quizId: this.service.activeQuiz?._id,
+                questionId: question._id,
+                answer: '',
+                om: this.service.activeOM
+            })
+        }
+        for (const question of this.questions) {
+            console.log(question.type)
         }
     }
 
@@ -57,9 +64,7 @@ export class FillSurveyPage {
         if (this.service.index < this.questions.length -1) {
             this.service.index++
             this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
-            //this.storage.set('', this.service.activeQuiz)
-            // async const quiz = await this.storage.get<IQuiz>('')
-            // sync this.storage.get<IQuiz>('').then(res => {})
+            this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
         }
     }
 
@@ -68,6 +73,12 @@ export class FillSurveyPage {
         this.service.index = 0
         await this.storage.remove(STORAGE_KEY.SURVEY_TOKEN).then()
         await this.storage.remove(STORAGE_KEY.SURVEY_INDEX).then()
+        await this.storage.remove(STORAGE_KEY.SURVEY_ANSWER).then()
         this.redirect.to(pages.student.enterToken)
+    }
+
+    ngOnInit() {
+        if(!this.service.activeQuiz)
+            this.redirect.to(pages.student.enterToken)
     }
 }

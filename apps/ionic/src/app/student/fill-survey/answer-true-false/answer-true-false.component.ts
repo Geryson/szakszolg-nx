@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
+import {Component, OnInit} from '@angular/core';
+import {TokenService} from "../../../../shared/services/token.service";
 
 @Component({
   selector: 'nx12-answer-true-false',
@@ -7,12 +7,13 @@ import {IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
   styleUrls: ['./answer-true-false.component.scss'],
 })
 export class AnswerTrueFalseComponent implements OnInit {
-    @Input() values:IQuizAnswer[] = []
-    @Input() question!: IQuizQuestion
-    @Input() index = 0
+  constructor(public readonly service: TokenService) { }
 
-  constructor() { }
+    ngOnInit() {}
 
-  ngOnInit() {}
+    next(bool: string) {
+        this.service.answers[this.service.index].answer = bool
+        this.service.index++
+    }
 
 }

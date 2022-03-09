@@ -8,6 +8,7 @@ import { EnterTokenPageRoutingModule } from './enter-token-routing.module';
 
 import { EnterTokenPage } from './enter-token.page';
 import {ButtonModule} from "primeng/button";
+import {NxSharedModule} from "../../../shared/nx-shared.module";
 
 @NgModule({
     imports: [
@@ -15,7 +16,8 @@ import {ButtonModule} from "primeng/button";
         FormsModule,
         IonicModule,
         EnterTokenPageRoutingModule,
-        ButtonModule
+        ButtonModule,
+        NxSharedModule
     ],
   declarations: [EnterTokenPage]
 })

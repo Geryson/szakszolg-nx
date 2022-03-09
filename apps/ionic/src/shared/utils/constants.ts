@@ -3,5 +3,6 @@ export const STORAGE_KEY = {
     TOKEN_OBJECT: 'token_object',
     PROFILE: 'profile',
     SURVEY_TOKEN: 'survey_token',
-    SURVEY_INDEX: 'survey_index'
+    SURVEY_INDEX: 'survey_index',
+    SURVEY_ANSWER: 'survey_answer'
 }

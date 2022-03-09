@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
+import {Component, OnInit} from '@angular/core';
+import {TokenService} from "../../../../shared/services/token.service";
 
 @Component({
   selector: 'nx12-answer-free-answer',
@@ -7,10 +7,7 @@ import {IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
   styleUrls: ['./answer-free-answer.component.scss'],
 })
 export class AnswerFreeAnswerComponent implements OnInit {
-    @Input() values:IQuizAnswer[] = []
-    @Input() question!: IQuizQuestion
-    @Input() index = 0
-  constructor() { }
+  constructor(public readonly service: TokenService) { }
 
   ngOnInit() {}
 

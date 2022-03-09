@@ -1,14 +1,12 @@
 <div>
     <h4>
-        {{question.question}}
+        {{service.activeQuiz?.questions?.[service.index]?.question}}
     </h4>
-    <div class="field-radiobutton">
-        <p-radioButton name="true" value="true" [(ngModel)]="values[index].answer" inputId="true"></p-radioButton>
-        <label for="true">Igaz</label>
+    <div>
+        <p-button (click)="next('true')" label="Igaz"></p-button>
     </div>
-    <div class="field-radiobutton">
-        <p-radioButton name="false" value="false" [(ngModel)]="values[index].answer" inputId="false"></p-radioButton>
-        <label for="false">Hamis</label>
+    <div>
+        <p-button (click)="next('false')" label="Hamis"></p-button>
     </div>
 </div>
 

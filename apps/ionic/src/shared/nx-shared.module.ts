@@ -15,10 +15,17 @@ import { RedirectService } from './services/redirect.service'
 import { StaticService } from './services/static.service'
 import { SurveyService } from './services/survey.service'
 import { JoinPipe } from './pipes/join.pipe'
+import {AnswerChooseComponent} from "../app/student/fill-survey/answer-choose/answer-choose.component";
+import {RadioButtonModule} from "primeng/radiobutton";
+import {FormsModule} from "@angular/forms";
+import {AnswerFreeAnswerComponent} from "../app/student/fill-survey/answer-free-answer/answer-free-answer.component";
+import {AnswerCustomComponent} from "../app/student/fill-survey/answer-custom/answer-custom.component";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
-    declarations: [HeaderComponent, JoinPipe],
-    imports: [CommonModule, IonicModule, TranslateModule],
+    declarations: [HeaderComponent, JoinPipe, AnswerChooseComponent, AnswerFreeAnswerComponent, AnswerCustomComponent],
+    imports: [CommonModule, IonicModule, TranslateModule, RadioButtonModule, FormsModule, InputTextareaModule, ButtonModule],
     providers: [
         AlertService,
         AuthService,
@@ -29,9 +36,8 @@ import { JoinPipe } from './pipes/join.pipe'
         SchoolService,
         StaticService,
         SurveyService,
-        TokenService,
         UserService,
     ],
-    exports: [HeaderComponent, JoinPipe],
+    exports: [HeaderComponent, JoinPipe, AnswerChooseComponent, AnswerFreeAnswerComponent, AnswerCustomComponent],
 })
 export class NxSharedModule {}
