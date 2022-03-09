@@ -21,12 +21,13 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
     getImageUrl = getImageUrl
     getImageName = getImageName
     NG_ICON = NG_ICON
+    pages = pages
 
     puzzles: Partial<IPuzzle>[] = []
     sortOptions: SelectItem[] = []
     sortOrder = 0
     sortField = 'url'
-    pages = pages
+
     private queryRef?: QueryRef<{ puzzles: Partial<IPuzzle>[] }>
     private sub?: Subscription
 

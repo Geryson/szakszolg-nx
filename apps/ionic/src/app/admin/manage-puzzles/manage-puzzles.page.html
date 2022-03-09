@@ -18,6 +18,7 @@
             <ng-template let-item pTemplate="listItem">
                 <div class="col-12">
                     <div class="product-list-item">
+
                         <img [alt]="item.url" [src]="getImageUrl(item.url)"/>
                         <div class="product-list-detail">
                             <div class="product-name">{{getImageName(item.url)}}</div>
@@ -38,7 +39,7 @@
                 <div class="col-12 md:col-4">
                     <div class="product-grid-item card">
                         <div class="product-grid-item-content">
-                            <img *ngIf='item.columns' [alt]="item.url" [src]="getImageUrl(item.url)"/>
+                            <img [alt]="item.url" [src]="getImageUrl(item.url)"/>
                             <div class="product-name">
                                 {{getImageName(item.url)}}
                                 <i *ngIf='!item.columns' class="pi pi-exclamation-triangle text-warning" style="font-size: 1.25rem"></i>
