@@ -19,7 +19,7 @@
     <div *ngIf="service.activeQuiz!.template === 'quiz'">
         <nx12-answer-choose></nx12-answer-choose>
     </div>
-
+    <p-button (click)="back()">Back</p-button>
     <p-button (click)="cancel()">Cancel</p-button>
 
 </ion-content>

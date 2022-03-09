@@ -39,25 +39,40 @@ export class EnterTokenPage {
                 return
             }
             this.service.activeQuiz = deepCopy(res.data.token.quiz as IQuiz)
-            Log.debug('EnterToken::send', 'active quiz', this.service.activeQuiz)
             this.service.token = this.token
             this.storage.set(STORAGE_KEY.SURVEY_TOKEN, this.token).then()
-            this.redirect.to(pages.student.fillSurvey)
+            if(this.service.answers.length !== this.service.activeQuiz.questions.length) {
+                for (const question of this.service.activeQuiz.questions) {
+                    this.service.answers?.push({
+                        _id: null,
+                        createdAt: new Date,
+
+                        quizId: this.service.activeQuiz?._id,
+                        questionId: question._id,
+                        answer: '',
+                        om: this.service.activeOM
+                    })
+                }
+            }
+            this.storage.set(STORAGE_KEY.SURVEY_INDEX, 0).then(() => this.redirect.to(pages.student.surveyDetails))
+            console.log(this.service.activeQuiz.questions)
         })
     }
 
     ionViewDidEnter() {
-        if (this.service.token){
+        /*if (this.service.token){
             this.token = this.service.token
             this.send()
             return
-        }
+        }*/
 
         this.storage.get(STORAGE_KEY.SURVEY_TOKEN).then(token => {
             if(token){
                 this.service.token = token
                 this.token = token
                 this.send()
+            } else {
+                this.service.index = 0
             }
         })
     }

@@ -51,11 +51,11 @@ export const SURVEYS = {
                 description
                 categories
                 questions {
-                    _id
                     question
                     type
-                    answers
-                    correctAnswers
+                    answers {
+                        text
+                    }
                 }
                 createdAt
             }

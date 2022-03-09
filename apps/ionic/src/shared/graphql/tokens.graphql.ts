@@ -21,7 +21,9 @@ export const TOKENS = {
                     questions{
                         question
                         type
-                        answers
+                        answers {
+                            text
+                        }
                     }
                 }
             }
