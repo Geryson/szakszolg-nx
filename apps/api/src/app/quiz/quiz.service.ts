@@ -23,9 +23,10 @@ export class QuizService extends RepositoryProxyService<
 
     async findOne(data: GetQuizArgs): Promise<any> {
         const res: IQuiz = await super.findOne(data)
-        return res.questions.map((question, index) => {
+        res.questions = res.questions.map((question, index) => {
             if (!question._id) question._id = index
             return question
         })
+        return res
     }
 }
