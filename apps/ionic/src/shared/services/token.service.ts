@@ -3,7 +3,7 @@ import { Apollo, MutationResult } from 'apollo-angular'
 import { Observable } from 'rxjs'
 import { APOLLO_CLIENT } from '../injector.tokens'
 import { TOKENS } from '../graphql/tokens.graphql'
-import {IQuiz, IQuizAnswer, IToken} from "@szakszolg-nx/api-interfaces";
+import {IQuiz, IQuizAnswer, IQuizQuestion, IToken} from "@szakszolg-nx/api-interfaces";
 
 @Injectable({
     providedIn: 'root',
@@ -11,6 +11,7 @@ import {IQuiz, IQuizAnswer, IToken} from "@szakszolg-nx/api-interfaces";
 export class TokenService {
     activeQuiz?: IQuiz;
     answers:IQuizAnswer[] = [];
+    questions: IQuizQuestion[] = []
     index = 0
     token?:string // delete this.tokenService.token
     activeOM = ''

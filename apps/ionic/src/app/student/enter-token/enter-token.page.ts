@@ -54,7 +54,8 @@ export class EnterTokenPage {
                     })
                 }
             }
-            this.storage.set(STORAGE_KEY.SURVEY_INDEX, 0).then(() => this.redirect.to(pages.student.surveyDetails))
+            //this.storage.set(STORAGE_KEY.SURVEY_INDEX, 0).then(() => this.redirect.to(pages.student.surveyDetails))
+            this.redirect.to(pages.student.surveyDetails)
             console.log(this.service.activeQuiz.questions)
         })
     }

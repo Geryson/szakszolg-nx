@@ -13,7 +13,7 @@ import {STORAGE_KEY} from "../../../shared/utils/constants";
 })
 export class FillSurveyPage implements OnInit{
 
-    public questions: IQuizQuestion[] = []
+
 
     constructor(public readonly service: TokenService, private readonly redirect: RedirectService,
                 private readonly storage: StorageService) {
@@ -24,21 +24,40 @@ export class FillSurveyPage implements OnInit{
     }
 
     private async onEnterInit() {
-        this.questions = this.service.activeQuiz?.questions ?? []
-        this.storage.get(STORAGE_KEY.SURVEY_INDEX).then(index => {
+        await this.storage.get(STORAGE_KEY.SURVEY_QUESTIONS).then(questions => {
+            if (!questions) {
+                return;
+            }
+            this.service.questions = questions
+        })
+
+        await this.storage.get(STORAGE_KEY.SURVEY_INDEX).then(index => {
             if (!index) {
                 return;
             }
             this.service.index = index
         })
 
-        this.storage.get(STORAGE_KEY.SURVEY_ANSWER).then(answer => {
+        await this.storage.get(STORAGE_KEY.SURVEY_ANSWER).then(answer => {
             if (answer) {
                 this.service.answers = answer
             }
         })
-        if (this.service.activeQuiz?.template !== 'quiz' && this.service.index < 1)
-            this.questions.sort((a, b) => Math.random() - 0.5)
+
+        console.log(this.service.activeQuiz?.template)
+        console.log(this.service.index)
+
+        if (this.service.activeQuiz?.template !== 'quiz' && this.service.index < 1) {
+
+            this.service.questions = this.service.activeQuiz?.questions.sort((a, b) =>
+                Math.random() - 0.5) ?? []
+            this.storage.set(STORAGE_KEY.SURVEY_QUESTIONS, this.service.questions).then()
+        }
+        if (this.service.activeQuiz?.template === 'quiz'){
+            this.service.questions = this.service.activeQuiz?.questions ?? []
+            this.storage.set(STORAGE_KEY.SURVEY_QUESTIONS, this.service.questions).then()
+        }
+
         console.log(this.service.activeQuiz)
     }
 
@@ -47,7 +66,7 @@ export class FillSurveyPage implements OnInit{
     }
 
     async next() {
-        if (this.service.index >= this.questions.length - 1) {
+        if (this.service.index >= this.service.questions.length - 1) {
             console.log('oh shit')
             return
         }
