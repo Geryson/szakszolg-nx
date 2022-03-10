@@ -283,7 +283,14 @@
             "PAGE_TITLE": "Kérdéssor kezelése",
             "TITLE": "Kérdőív címe",
             "DESCRIPTION": "Leírás",
-            "CATEGORIES": "Kategóriák"
+            "CATEGORIES": "Kategóriák",
+            "ERROR": {
+                "TITLE": "A cím kitöltése kötelező",
+                "DESCRIPTION": "A leírás kitöltése kötelező",
+                "QUESTIONS": "Nincsennek elemek megadva",
+                "SKILLQUESTION": "Nincs megadva kérdés",
+                "CATEGORIES": "Nincs kategória megadva"
+            }
         }
     },
 

@@ -46,7 +46,7 @@
                     <tr>
                         <td>
                             {{ ans.text }}
-                            <p-dropdown (loadstart)='populateCategories()' [(ngModel)]='ans.categoryIndex' [options]='options' optionLabel="name" optionValue="value" styleClass='w-100'></p-dropdown>
+                            <p-dropdown (select)='log($event)' [(ngModel)]='ans.categoryIndex' [options]='options' optionLabel="name" optionValue="value" styleClass='w-100'></p-dropdown>
                         </td>
                         <td>
                             <span class='p-buttonset'>
@@ -55,9 +55,9 @@
                                           styleClass='p-button-primary'></p-button>
                                 <p-button (click)='unMarkAsCorrect(ans)' *ngIf='template !== "skill" && ans.isCorrect'
                                           label='{{ "MANAGE_QUESTIONS.IS_SOLUTION" | translate }}'
-                                          styleClass='p-button-success'></p-button>
+                                          styleClass='p-button-primary'></p-button>
                                 <p-button (click)='removeAnswer(ans)' icon='pi pi-trash'
-                                          styleClass='p-button-danger'></p-button>
+                                          styleClass='p-button-primary'></p-button>
                             </span>
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
                     <input #newAnswer (keydown.enter)='addAnswer(newAnswer)' id='newAnswer' pInputText type='text'>
                     <label for='newAnswer'>{{ 'MANAGE_QUESTIONS.NEW_ANSWER' | translate }}</label>
                 </span>
-                <p-button (click)='addAnswer(newAnswer)' icon='pi pi-plus' type='button'></p-button>
+                <p-button (click)='addAnswer(newAnswer)' icon='pi pi-plus' styleClass='p-button-primary' type='button'></p-button>
             </div>
         </div>
     </div>

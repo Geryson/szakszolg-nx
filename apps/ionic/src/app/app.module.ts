@@ -7,7 +7,7 @@ import { IonicStorageModule } from '@ionic/storage-angular'
 import { AppComponent } from './app.component'
 import { AppRoutingModule } from './app-routing.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core'
+import { TranslateLoader, TranslateModule, TranslatePipe, TranslateService } from '@ngx-translate/core'
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { ToastModule } from 'primeng/toast'
@@ -31,6 +31,14 @@ import { RedirectService } from '../shared/services/redirect.service'
 import { api } from '../shared/utils/uri.tools'
 import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx'
 import { PuzzleService } from '../shared/services/puzzle.service'
+import { AlertService } from '../shared/services/alert.service'
+import { GroupingItemService } from '../shared/services/grouping-item.service'
+import { HangmanWordService } from '../shared/services/hangman-word.service'
+import { MirrorWordService } from '../shared/services/mirror-word.service'
+import { SchoolService } from '../shared/services/school.service'
+import { StaticService } from '../shared/services/static.service'
+import { SurveyService } from '../shared/services/survey.service'
+import { UserService } from '../shared/services/user.service'
 
 @NgModule({
     declarations: [AppComponent],
@@ -84,6 +92,16 @@ import { PuzzleService } from '../shared/services/puzzle.service'
         ScreenOrientation,
         PuzzleService,
         MessageService,
+        AlertService,
+        AuthService,
+        GroupingItemService,
+        HangmanWordService,
+        MirrorWordService,
+        RedirectService,
+        SchoolService,
+        StaticService,
+        SurveyService,
+        UserService,
         {
             provide: HTTP_INTERCEPTORS,
             useFactory: (router: Router, storage: StorageService, redirect: RedirectService) =>
@@ -91,6 +109,7 @@ import { PuzzleService } from '../shared/services/puzzle.service'
             multi: true,
             deps: [Router, StorageService, RedirectService],
         },
+        TranslateService,
         TranslatePipe,
         DatePipe,
     ],
