@@ -10,7 +10,7 @@
             </div>
             <div *ngIf="service.questions![service.index].type === 'rating' ||
             service.questions![service.index].type === 'free'">
-                <p-button [disabled]="!service.answers[service.index].answer" (click)="next()">Next</p-button>
+                <p-button [disabled]="!service.answers[service.index].answer" (click)="next()" label="Következő"></p-button>
             </div>
 
 
@@ -19,7 +19,7 @@
     <div *ngIf="service.activeQuiz!.template === 'quiz'">
         <nx12-answer-choose></nx12-answer-choose>
     </div>
-    <p-button (click)="back()">Back</p-button>
-    <p-button (click)="cancel()">Cancel</p-button>
+    <p-button (click)="back()" label="Vissza"></p-button>
+    <p-button (click)="service.confirm()" label="Kilép"></p-button>
 
 </ion-content>
