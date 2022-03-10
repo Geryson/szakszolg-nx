@@ -75,7 +75,11 @@ export class ManageSingleSurveyPage {
     }
 
     addClick() {
-        if (this.survey?.template === 'skill' && (!this.survey.categories || !this.skillQuestion)) return
+        if (
+            (this.survey?.template !== 'quiz' && !this.survey?.categories?.length) ||
+            (this.survey?.template === 'skill' && !this.skillQuestion)
+        )
+            return
 
         this.options = this.survey?.categories?.map((c, i) => ({ name: c, value: i })) ?? []
         if (!this.survey?.questions) this.survey!.questions = []
@@ -108,13 +112,17 @@ export class ManageSingleSurveyPage {
         this.validator.check('questions')
     }
 
-    templateChosen(template: string) {
+    async templateChosen(template: string) {
         switch (template) {
             case 'template/':
                 this.templateDialog = 2
                 return
             case 'custom':
                 this.survey!.template = 'custom'
+                break
+            case 'true-false':
+                this.survey!.categories = [await translate('FORM_OPERATION.NOTHING')]
+                this.survey!.template = template
                 break
             default:
                 this.survey!.template = template

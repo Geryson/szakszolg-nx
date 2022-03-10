@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { IQuizAnswerOption, IQuizQuestion } from '@szakszolg-nx/api-interfaces'
 import { TranslatePipe } from '@ngx-translate/core'
-import { Log } from '../../../../../shared/utils/log.tools'
 import { Validator } from '../../../../../shared/utils/translation.tools'
+import { Log } from '../../../../../shared/utils/log.tools'
 
 @Component({
     selector: 'nx12-question-edit-form',
@@ -28,41 +28,85 @@ export class QuestionEditFormComponent {
                 const answers = value as IQuizAnswerOption[]
                 if (answers.length === 0) return false
 
+                if (this.template === 'quiz') {
+                    return answers.length === 4 && answers.filter((a) => a.isCorrect).length === 1
+                }
+
+                switch (subject.type) {
+                    case 'choose':
+                        return answers.length > 2
+                    case 'skill':
+                        return answers.length === 2
+                }
+
                 return true
             },
         },
     })
+    trueFalseAnswer: any
 
     constructor(private readonly translate: TranslatePipe) {
         setTimeout(() => {
-            Log.debug('QuestionEditFormComponent', 'constructor', 'options', this.options)
-        }, 2000)
+            Log.debug('QuestionEditFormComponent::constructor()', 'template', this.template)
+            switch (this.template) {
+                case 'true-false':
+                    this.question.type = 'true-false'
+                    this.questionTypeChanged({ value: 'true-false' })
+                    break
+                case 'quiz':
+                    this.question.type = 'choose'
+                    this.questionTypeChanged({ value: 'choose' })
+                    break
+            }
+        }, 100)
     }
 
-    removeAnswer(ans: string) {
-        this.question.answers = this.question.answers?.filter((a) => a.text !== ans)
+    get templateKey() {
+        return this.template.toUpperCase()
+    }
+
+    removeAnswer(ans: IQuizAnswerOption) {
+        this.question.answers = this.question.answers?.filter((a) => a._id !== ans._id)
+        this.validator.check('answers')
     }
 
     addAnswer(newAnswerInput: HTMLInputElement) {
-        if (newAnswerInput.value) {
-            if (!this.question.answers) this.question.answers = []
-            this.question.answers.push({
-                _id: this.question.answers.length,
-                text: newAnswerInput.value,
-                categoryIndex: undefined,
-                isCorrect: false,
-                createdAt: new Date(),
-            })
-            newAnswerInput.value = ''
-            newAnswerInput.focus()
-        }
+        if (!newAnswerInput.value) return
+        if (this.question.type === 'skill' && (this.question.answers?.length ?? 0) > 1) return
+        if (!this.question.answers) this.question.answers = []
+
+        this.question.answers.push({
+            _id: this.question.answers.length,
+            text: newAnswerInput.value,
+            categoryIndex: undefined,
+            isCorrect: false,
+            createdAt: new Date(),
+        })
+        newAnswerInput.value = ''
+        newAnswerInput.focus()
+        this.validator.check('answers')
     }
 
-    markAsCorrect(ans: string) {}
+    markAsCorrect(ans: IQuizAnswerOption) {
+        this.question.answers?.forEach((a) => (a.isCorrect = false))
+        ans.isCorrect = true
+        this.validator.check('answers')
+    }
 
-    unMarkAsCorrect(ans: string) {}
+    unMarkAsCorrect(ans: IQuizAnswerOption) {
+        ans.isCorrect = false
+        this.validator.check('answers')
+    }
 
     save() {
+        if (
+            !this.question?.question ||
+            !this.question.type ||
+            (this.question.type !== 'rating' && this.question.type !== 'free' && !this.question.answers?.length)
+        ) {
+            this.validator.check()
+            return
+        }
         this.submitted.emit(this.question)
     }
 
@@ -70,7 +114,30 @@ export class QuestionEditFormComponent {
         this.canceled.emit()
     }
 
-    log($event: Event) {
-        Log.debug('QuestionEditFormComponent', 'event', $event)
+    questionTypeChanged($event: { originalEvent?: Event; value: string }) {
+        switch ($event.value) {
+            case 'rating':
+            case 'free':
+                this.question.answers = []
+                break
+            case 'choose':
+                this.question.answers = []
+                break
+            case 'true-false':
+                this.question.answers = [
+                    {
+                        _id: 0,
+                        text: this.translate.transform('FORM_OPERATION.TRUE'),
+                        isCorrect: false,
+                        createdAt: new Date(),
+                    },
+                    {
+                        _id: 1,
+                        text: this.translate.transform('FORM_OPERATION.FALSE'),
+                        isCorrect: false,
+                        createdAt: new Date(),
+                    },
+                ]
+        }
     }
 }
