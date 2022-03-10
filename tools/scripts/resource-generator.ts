@@ -2,7 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const readline = require('readline')
-const files = []
+const files: any[] = []
 
 main().then()
 
@@ -120,7 +120,7 @@ export interface I${resourceName.pascalCase} extends IApiResource {
 ////////////////////////////////////////////////////////
 ////////////////////// FUNCTIONS ///////////////////////
 
-function walkDir(directory) {
+function walkDir(directory: any) {
     const filesInDirectory = fs.readdirSync(directory)
     for (const file of filesInDirectory) {
         const absolute = path.join(directory, file)
@@ -190,14 +190,14 @@ function toPascalCase(str: string) {
         .replace(/^./, (str) => str.toUpperCase())
 }
 
-function prompt(query): Promise<string> {
+function prompt(query: any): Promise<string> {
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
     })
 
     return new Promise((resolve) =>
-        rl.question(query, (ans) => {
+        rl.question(query, (ans: any) => {
             rl.close()
             resolve(ans)
         }),

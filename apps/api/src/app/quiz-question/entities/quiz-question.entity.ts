@@ -1,7 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { IQuizQuestion } from '@szakszolg-nx/api-interfaces'
+import { IQuizAnswerOption, IQuizQuestion } from '@szakszolg-nx/api-interfaces'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { Schema as MongooseSchema, Document } from 'mongoose'
+import { QuizAnswerOption } from '../../quiz-answer-option/entities/quiz-answer-option.entity'
 
 export type QuizQuestionDocument = IQuizQuestion & Document
 
@@ -20,13 +21,9 @@ export class QuizQuestion implements IQuizQuestion {
     @Prop()
     type: string
 
-    @Field(() => [String], { nullable: 'itemsAndList' })
-    @Prop({ type: [String] })
-    answers?: string[]
-
-    @Field(() => [String], { nullable: 'itemsAndList' })
-    @Prop({ type: [String] })
-    correctAnswers?: string[]
+    @Field(() => [QuizAnswerOption], { nullable: 'itemsAndList' })
+    @Prop({ type: [MongooseSchema.Types.Mixed] })
+    answers?: IQuizAnswerOption[]
 
     @Field()
     @Prop()

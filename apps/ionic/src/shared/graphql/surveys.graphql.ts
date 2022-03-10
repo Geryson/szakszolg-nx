@@ -1,7 +1,6 @@
 import { gql } from 'apollo-angular'
 
 export const SURVEYS = {
-
     BROWSE: gql`
         query {
             quizzes {
@@ -49,11 +48,14 @@ export const SURVEYS = {
                 _id
                 title
                 description
+                template
                 categories
                 questions {
+                    _id
                     question
                     type
                     answers {
+                        _id
                         text
                     }
                 }

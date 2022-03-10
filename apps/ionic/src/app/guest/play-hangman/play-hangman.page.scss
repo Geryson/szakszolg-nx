@@ -1,0 +1,125 @@
+.hangman {
+    grid-area: image;
+    width: 30%;
+    margin: 0 30% 10%;
+}
+
+.wrapper {
+    display: grid;
+    margin: 2% 0;
+    grid-template:
+    "image letters"
+    "word letters";
+}
+
+.l-container {
+    grid-area: letters;
+    margin-left: 30%;
+}
+
+.words {
+    grid-area: word;
+    margin-left: 27%;
+    margin-top: -5%;
+    line-height: 1.5rem;
+    span {
+        width: 5%;
+        display: inline-flex;
+    }
+
+}
+
+@media (max-width: 1023px) and (orientation: portrait) {
+.wrapper {
+    display: grid;
+    margin: 0 auto;
+    grid-template: "image" "word" "letters";
+    height: 25%;
+}
+
+.l-container {
+    grid-area: letters;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hangman {
+    grid-area: image;
+    width: 48%;
+    margin: 4% auto;
+}
+
+.words {
+    text-align: center;
+    margin: 1% 5%;
+    span {
+        width: 5%;
+        display: inline-flex;
+    }
+}
+}
+
+
+@media (max-width: 767px) and (orientation: portrait) {
+.wrapper {
+    display: grid;
+    margin: 0 auto;
+    grid-template: "image" "word" "letters";
+    height: 25%;
+}
+
+.l-container {
+    grid-area: letters;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hangman {
+    grid-area: image;
+    width: 30%;
+    margin: 4% auto;
+}
+
+.words {
+    text-align: center;
+    margin: 1% 5%;
+    span {
+        width: 5%;
+        display: inline-flex;
+    }
+}
+}
+
+
+@media (max-width: 389px) and (orientation: portrait) {
+.wrapper {
+    display: grid;
+    margin: 0 auto;
+    grid-template: "image" "word" "letters";
+    height: 20%;
+}
+
+.l-container {
+    grid-area: letters;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.hangman {
+    grid-area: image;
+    width: 42%;
+    margin: 3.85% auto;
+}
+
+.words {
+    text-align: center;
+    margin: 0 0 5%;
+    span {
+        width: 7%;
+        display: inline-flex;
+    }
+}
+}

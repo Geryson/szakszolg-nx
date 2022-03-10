@@ -1,3 +1,21 @@
+.d-none {
+    display: none !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.d-md-inline {
+    @media screen and (min-width: 768px) {
+        display: inline !important;
+    }
+}
+
+.text-warning {
+    color: var(--ion-color-warning);
+}
+
 .wide-button {
     min-width: 50px !important;
     @media screen and (max-width: 960px) {
@@ -10,7 +28,7 @@
     }
 }
 
-p-button {
+.p-button {
     background-color: var(--ion-color-primary);
     border: var(--ion-color-primary);
 }

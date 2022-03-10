@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
             await this.authService.login(this.email, this.password)
             this.redirect.to(pages.admin.dashboard)
         } catch (err: any) {
-            Log.error('LoginPage::login->catch', err)
+            Log.error('LoginPage::login->catch', err.message)
             await this.alert.show('LOGIN_UNSUCCESSFUL')
         } finally {
             await loading.dismiss().then()

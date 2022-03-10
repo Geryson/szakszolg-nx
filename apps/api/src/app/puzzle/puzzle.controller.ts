@@ -13,13 +13,16 @@ import {
 } from '@nestjs/common'
 import { FilesInterceptor } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
-import { editFileName, fileNameGenerator, imageFileFilter, readDirAsync } from '../../utils/file.utils'
+import { editFileName, fileNameGenerator, imageFileFilter } from '../../utils/file.utils'
 import { UPLOAD_PATH } from '../../utils/constants'
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard'
 import { unlink, writeFile } from 'fs/promises'
+import { PuzzleService } from './puzzle.service'
 
-@Controller('file')
-export class FileController {
+@Controller('puzzle')
+export class PuzzleController {
+    constructor(private readonly puzzleService: PuzzleService) {}
+
     @Post('')
     @UseGuards(JwtAuthGuard)
     @UseInterceptors(
@@ -31,7 +34,7 @@ export class FileController {
             fileFilter: imageFileFilter,
         }),
     )
-    async uploadMultipleFiles(@UploadedFiles() files) {
+    async uploadMultipleFiles(@UploadedFiles() files: any[]) {
         const response = []
         files.forEach((file) => {
             const fileResponse = {
@@ -40,24 +43,9 @@ export class FileController {
             }
             response.push(fileResponse)
         })
+        await this.puzzleService.createMany({ urls: response.map((file) => file.filename) })
+
         return response
-    }
-
-    @Post('base64')
-    @UseGuards(JwtAuthGuard)
-    async uploadBase64(@Body('name') name: string, @Body('image') image: string) {
-        const buffer = image.split(';base64,').pop()
-        const fileName = fileNameGenerator(name)
-        await writeFile(`${UPLOAD_PATH}/${fileName}`, buffer, { encoding: 'base64' })
-        return {
-            originalName: name,
-            filename: fileName,
-        }
-    }
-
-    @Get('')
-    async getFiles() {
-        return readDirAsync(UPLOAD_PATH)
     }
 
     @Get(':path')

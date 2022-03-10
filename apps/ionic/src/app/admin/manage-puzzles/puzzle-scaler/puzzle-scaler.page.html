@@ -1,0 +1,19 @@
+<nx12-header title='ADMIN_NAV.PUZZLE_SCALER'></nx12-header>
+
+<ion-content [scrollY]="false" class="puzzle-scaler-content">
+    <div class="puzzle-container">
+        <angular-cropper #puzzleCropper [imageUrl]="imageUrl"></angular-cropper>
+    </div>
+    <div class="toolbar">
+        <div class="operations-edit">
+            <p class="ranger-title">{{ 'PUZZLE_SCALER.RANGER_TITLE' | translate }}</p>
+            <input #ranger (input)="onRangeInput(ranger.value)" max="{{rangerMax}}" min="{{rangerMin}}" step="1" style="transform: rotate(270deg); margin-top: 90px; margin-bottom: 125px" type="range" value="{{rangerValue}}">
+            <ion-button (click)="preview()" [class.button-disabled]="previewDisabled" class="preview" shape="round">{{ 'BUTTONS.PREVIEW' | translate }}</ion-button>
+        </div>
+        <div class="operations-preview">
+            <p class="preview-warning">{{ 'PUZZLE_SCALER.PREVIEW_WARNING' | translate }}</p>
+            <ion-button (click)="back()" [class.button-disabled]="backDisabled" class="back" shape="round">{{ 'BUTTONS.BACK' | translate }}</ion-button>
+            <ion-button (click)="save()" [class.button-disabled]="saveDisabled" class="save" shape="round">{{ 'BUTTONS.SAVE' | translate }}</ion-button>
+        </div>
+    </div>
+</ion-content>

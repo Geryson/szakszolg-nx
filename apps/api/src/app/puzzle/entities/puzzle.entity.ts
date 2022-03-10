@@ -24,29 +24,29 @@ export class Puzzle implements IPuzzle {
     @Prop()
     deletedAt?: Date
 
-    @Field()
-    @Prop()
-    columns: number
+    @Field({ nullable: true })
+    @Prop({ default: null })
+    columns?: number
 
-    @Field()
-    @Prop()
-    cropHeight: number
+    @Field({ nullable: true })
+    @Prop({ default: null })
+    cropHeight?: number
 
-    @Field()
-    @Prop()
-    cropLeft: number
+    @Field({ nullable: true })
+    @Prop({ default: null })
+    cropLeft?: number
 
-    @Field()
-    @Prop()
-    cropTop: number
+    @Field({ nullable: true })
+    @Prop({ default: null })
+    cropTop?: number
 
-    @Field()
-    @Prop()
-    cropWidth: number
+    @Field({ nullable: true })
+    @Prop({ default: null })
+    cropWidth?: number
 
-    @Field()
-    @Prop()
-    pieceSize: number
+    @Field({ nullable: true })
+    @Prop({ default: null })
+    pieceSize?: number
 
     @Field()
     @Prop()

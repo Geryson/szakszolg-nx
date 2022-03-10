@@ -79,7 +79,7 @@
             "prefix": "nx12",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular-builders/custom-webpack:browser",
                     "outputs": ["{options.outputPath}"],
                     "options": {
                         "outputPath": "dist/apps/ionic",
@@ -88,6 +88,10 @@
                         "polyfills": "apps/ionic/src/polyfills.ts",
                         "tsConfig": "apps/ionic/tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
+                        "customWebpackConfig": {
+                            "path": "./extra-webpack.config.js",
+                            "replaceDuplicatePlugins": true
+                        },
                         "assets": [
                             "apps/ionic/src/assets",
                             {
@@ -112,13 +116,13 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
+                                    "maximumWarning": "1mb",
+                                    "maximumError": "10mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kb",
-                                    "maximumError": "4kb"
+                                    "maximumWarning": "4kb",
+                                    "maximumError": "100kb"
                                 }
                             ],
                             "fileReplacements": [

@@ -7,7 +7,7 @@ import { Apollo } from 'apollo-angular'
 import { IUser } from '@szakszolg-nx/api-interfaces'
 import { STORAGE_KEY } from '../utils/constants'
 import { Log } from '../utils/log.tools'
-import { APOLLO_CLIENT, ENVIRONMENT, STORAGE_SERVICE } from '../injector.tokens'
+import { APOLLO_CLIENT, STORAGE_SERVICE } from '../injector.tokens'
 import { api } from '../utils/uri.tools'
 import { PROFILE } from '../graphql/profile.graphql'
 import { APP_INJECTOR } from '../../app/app.module'
@@ -63,21 +63,12 @@ export class AuthService {
         return this._storage
     }
 
-    private _environment: object | null = null
-
-    private get environment(): object {
-        if (!this._environment) {
-            this._environment = APP_INJECTOR.get(ENVIRONMENT)
-        }
-        return this._environment
-    }
-
     //endregion
 
     // region Public methods
 
     login(email: string, password: string) {
-        const url = api('api/auth/login', this.environment)
+        const url = api('api/auth/login')
         return firstValueFrom(this.http.post<{ access_token: string }>(url, { email, password })).then(
             ({ access_token }) => {
                 const decoded = this.decode(access_token)

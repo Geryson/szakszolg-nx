@@ -9,53 +9,45 @@ import { TranslatePipe } from '@ngx-translate/core'
 })
 export class QuestionEditFormComponent {
     @Input() template = ''
-    @Input() question: Partial<IQuizQuestion> = {}
-    @Output() questionChange = new EventEmitter<Partial<IQuizQuestion>>()
+    @Input() categories: string[] = []
+    @Input() question!: IQuizQuestion
+    @Output() questionChange = new EventEmitter<IQuizQuestion>()
     @Output() canceled = new EventEmitter<void>()
-    @Output() submitted = new EventEmitter<Partial<IQuizQuestion>>()
+    @Output() submitted = new EventEmitter<IQuizQuestion>()
     questionTypes = ['free', 'choose', 'rating', 'true-false']
     validationErrors: { [key: string]: string } = {}
+    options: { name: string; value: number }[] = []
 
     constructor(private readonly translate: TranslatePipe) {}
 
     removeAnswer(ans: string) {
-        this.question.answers = this.question.answers?.filter((a) => a !== ans)
+        this.question.answers = this.question.answers?.filter((a) => a.text !== ans)
     }
 
-    addAnswer(newAnswer: HTMLInputElement) {
-        if (newAnswer.value && !this.question.answers?.includes(newAnswer.value)) {
+    addAnswer(newAnswerInput: HTMLInputElement) {
+        if (newAnswerInput.value) {
             if (!this.question.answers) this.question.answers = []
-            this.question.answers.push(newAnswer.value)
-            newAnswer.value = ''
-            newAnswer.focus()
+            this.question.answers.push({
+                _id: this.question.answers.length,
+                text: newAnswerInput.value,
+                categoryIndex: undefined,
+                isCorrect: false,
+                createdAt: new Date(),
+            })
+            newAnswerInput.value = ''
+            newAnswerInput.focus()
         }
     }
 
-    markAsCorrect(ans: string) {
-        if (this.question.type === 'choose') {
-            this.question.correctAnswers = [ans]
-            return
-        }
+    markAsCorrect(ans: string) {}
 
-        if (!this.question.correctAnswers) this.question.correctAnswers = []
-        this.question.correctAnswers.push(ans)
-    }
-
-    unMarkAsCorrect(ans: string) {
-        if (this.question.type === 'choose') {
-            this.question.correctAnswers = []
-            return
-        }
-
-        this.question.correctAnswers = this.question.correctAnswers?.filter((a) => a !== ans)
-    }
+    unMarkAsCorrect(ans: string) {}
 
     save() {
         this.submitted.emit(this.question)
     }
 
     cancel() {
-        this.question = {}
         this.canceled.emit()
     }
 
@@ -72,12 +64,11 @@ export class QuestionEditFormComponent {
             case 'true-false':
                 if (this.question.answers?.length) delete this.validationErrors.answers
                 else this.validationErrors.answers = this.translate.transform('MANAGE_QUESTIONS.ERRORS.NO_ANSWERS')
-                if (this.question.correctAnswers?.length) delete this.validationErrors.correctAnswers
-                else
-                    this.validationErrors.correctAnswers = this.translate.transform(
-                        'MANAGE_QUESTIONS.ERRORS.NO_CORRECT_ANSWER',
-                    )
                 break
         }
+    }
+
+    populateCategories() {
+        this.options = this.categories.map((c, i) => ({ name: c, value: i }))
     }
 }

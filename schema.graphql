@@ -35,10 +35,12 @@ type MirrorWord {
 type Mutation {
     createGroupingItem(createGroupingItemData: CreateGroupingItemInput!): GroupingItem!
     createHangmanWord(createHangmanWordData: CreateHangmanWordInput!): HangmanWord!
+    createManyPuzzles(data: PuzzleUrlInput!): [Puzzle]!
     createMirrorWord(createMirrorWordData: CreateMirrorWordInput!): MirrorWord!
     createPuzzle(createPuzzleData: CreatePuzzleInput!): Puzzle!
     createQuiz(createQuizData: CreateQuizInput!): Quiz!
     createQuizAnswer(createQuizAnswerData: CreateQuizAnswerInput!): QuizAnswer!
+    createQuizAnswerOption(createQuizAnswerOptionData: CreateQuizAnswerOptionInput!): QuizAnswerOption!
     createRole(createRoleData: CreateRoleInput!): Role!
     createSchool(createSchoolData: CreateSchoolInput!): School!
     createToken(createTokenData: CreateTokenInput!): Token!
@@ -49,6 +51,7 @@ type Mutation {
     deletePuzzle(deletePuzzleData: DeletePuzzleInput!): Puzzle!
     deleteQuiz(deleteQuizData: DeleteQuizInput!): Quiz!
     deleteQuizAnswer(deleteQuizAnswerData: DeleteQuizAnswerInput!): QuizAnswer!
+    deleteQuizAnswerOption(deleteQuizAnswerOptionData: DeleteQuizAnswerOptionInput!): QuizAnswerOption!
     deleteRole(deleteRoleData: DeleteRoleInput!): Role!
     deleteSchool(deleteSchoolData: DeleteSchoolInput!): School!
     deleteToken(deleteTokenData: DeleteTokenInput!): Token!
@@ -59,6 +62,7 @@ type Mutation {
     updatePuzzle(updatePuzzleData: UpdatePuzzleInput!): Puzzle!
     updateQuiz(updateQuizData: UpdateQuizInput!): Quiz!
     updateQuizAnswer(updateQuizAnswerData: UpdateQuizAnswerInput!): QuizAnswer!
+    updateQuizAnswerOption(updateQuizAnswerOptionData: UpdateQuizAnswerOptionInput!): QuizAnswerOption!
     updateRole(updateRoleData: UpdateRoleInput!): Role!
     updateSchool(updateSchoolData: UpdateSchoolInput!): School!
     updateUser(updateUserData: UpdateUserInput!): User!
@@ -66,14 +70,14 @@ type Mutation {
 
 type Puzzle {
     _id: String!
-    columns: Float!
+    columns: Float
     createdAt: DateTime!
-    cropHeight: Float!
-    cropLeft: Float!
-    cropTop: Float!
-    cropWidth: Float!
+    cropHeight: Float
+    cropLeft: Float
+    cropTop: Float
+    cropWidth: Float
     deletedAt: DateTime
-    pieceSize: Float!
+    pieceSize: Float
     updatedAt: DateTime!
     url: String!
 }
@@ -90,6 +94,8 @@ type Query {
     puzzles(ids: [String!]): [Puzzle]!
     quiz(id: String!): Quiz
     quizAnswer(id: String!): QuizAnswer
+    quizAnswerOption(id: String!): QuizAnswerOption
+    quizAnswerOptions(ids: [String!]): [QuizAnswerOption]!
     quizAnswers(ids: [String!], quizId: String): [QuizAnswer]!
     quizzes(category: String, ids: [String!]): [Quiz]!
     role(id: String!): Role
@@ -129,10 +135,19 @@ type QuizAnswer {
     updatedAt: DateTime!
 }
 
+type QuizAnswerOption {
+    _id: String!
+    categoryIndex: Float
+    createdAt: DateTime!
+    deletedAt: DateTime
+    isCorrect: Boolean
+    text: String!
+    updatedAt: DateTime!
+}
+
 type QuizQuestion {
     _id: String!
-    answers: [String]
-    correctAnswers: [String]
+    answers: [QuizAnswerOption]
     createdAt: DateTime!
     deletedAt: DateTime
     question: String!
@@ -202,6 +217,12 @@ input CreateMirrorWordInput {
 }
 
 input CreatePuzzleInput {
+    columns: Float!
+    cropHeight: Float!
+    cropLeft: Float!
+    cropTop: Float!
+    cropWidth: Float!
+    pieceSize: Float!
     url: String!
 }
 
@@ -213,6 +234,12 @@ input CreateQuizAnswerInput {
     quizId: String!
 }
 
+input CreateQuizAnswerOptionInput {
+    categoryIndex: Float
+    isCorrect: Boolean
+    text: String!
+}
+
 input CreateQuizInput {
     categories: [String!]!
     description: String!
@@ -222,8 +249,7 @@ input CreateQuizInput {
 }
 
 input CreateQuizQuestionInput {
-    answers: [String]
-    correctAnswers: [String]
+    answers: [CreateQuizAnswerOptionInput]
     question: String!
     type: String!
 }
@@ -276,6 +302,10 @@ input DeleteQuizAnswerInput {
     id: String!
 }
 
+input DeleteQuizAnswerOptionInput {
+    id: String!
+}
+
 input DeleteQuizInput {
     id: String!
 }
@@ -294,6 +324,10 @@ input DeleteTokenInput {
 
 input DeleteUserInput {
     id: String!
+}
+
+input PuzzleUrlInput {
+    urls: [String!]!
 }
 
 input UpdateGroupingItemInput {
@@ -315,7 +349,14 @@ input UpdateMirrorWordInput {
 }
 
 input UpdatePuzzleInput {
+    columns: Float
+    cropHeight: Float
+    cropLeft: Float
+    cropTop: Float
+    cropWidth: Float
     id: String!
+    pieceSize: Float
+    url: String!
 }
 
 input UpdateQuizAnswerInput {
@@ -327,6 +368,13 @@ input UpdateQuizAnswerInput {
     quizId: String
 }
 
+input UpdateQuizAnswerOptionInput {
+    categoryIndex: Float
+    id: String!
+    isCorrect: Boolean
+    text: String
+}
+
 input UpdateQuizInput {
     categories: [String]
     description: String
@@ -336,8 +384,7 @@ input UpdateQuizInput {
 }
 
 input UpdateQuizQuestionInput {
-    answers: [String]
-    correctAnswers: [String]
+    answers: [UpdateQuizAnswerOptionInput]
     id: String!
     question: String
     type: String

@@ -14,6 +14,7 @@ export class SimpleRepository<
     TUpdateInput extends IdInput,
     TDeleteInput extends IdInput,
 > {
+    private softDelete = false
     constructor(protected readonly model: Model<TDocument>) {}
 
     public async findAll(data: TFindManyArgs | null): Promise<TInterface[]> {
@@ -48,6 +49,8 @@ export class SimpleRepository<
     }
 
     public async delete(data: TDeleteInput): Promise<TInterface> {
-        return this.model.findByIdAndUpdate(data.id, { deletedAt: Date.now() }) as any
+        return this.softDelete
+            ? (this.model.findByIdAndUpdate(data.id, { deletedAt: Date.now() }, { new: true }) as any)
+            : (this.model.findByIdAndDelete(data.id) as any)
     }
 }

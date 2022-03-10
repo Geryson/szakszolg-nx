@@ -44,7 +44,7 @@ export class QuizAnswerRepository extends SimpleRepository<
         }
 
         if (originalQuestion.type !== 'free-text') {
-            data.isCorrect = originalQuestion.answers.includes(data.answer)
+            data.isCorrect = originalQuestion.answers.find((a) => a.text === data.answer)?.isCorrect
         }
         return super.create(data)
     }

@@ -1,0 +1,157 @@
+.puzzle-scaler-content {
+    --background: #ededed;
+}
+
+@media screen and (orientation: landscape){
+    .toolbar{
+        width: 25%;
+        height: 100%;
+        border: 1px none black;
+        border-left-style: solid;
+        float: right;
+    }
+
+    .puzzle-container{
+        width: 59%;
+        height: 100%;
+        float: left;
+        padding-left: 10vh;
+        padding-right: 10vh;
+    }
+
+    .puzzle-container img {
+        max-height: 90%;
+    }
+
+    .operations-edit {
+        padding: 0 5%;
+        height: 60%;
+        bottom: 0;
+
+        .ranger-title {
+            text-align: center;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+    }
+
+    .operations-preview {
+        padding: 0 5%;
+        height: 60%;
+        bottom: 0;
+        display: none;
+
+        .preview-warning {
+            text-align: center;
+            color: red;
+            margin-bottom: 40px;
+            font-weight: bold;
+            font-size: larger;
+        }
+    }
+
+    .preview{
+        width: 80%;
+        margin-bottom: 5%;
+        margin-left: 10%;
+    }
+
+    .back{
+        width: 80%;
+        margin-bottom: 5%;
+        margin-left: 10%;
+    }
+
+    .save{
+        width: 80%;
+        margin-bottom: 5%;
+        margin-left: 10%;
+    }
+}
+
+//Range slider beállítások
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 18px 0;
+    width: 100%;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    background: #673a8e;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -11px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #673a8e;
+}
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    background: #673a8e;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+input[type=range]::-ms-track {
+    width: 100%;
+    height: 8.4px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #673a8e;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+    background: #673a8e;
+    border: 0.2px solid #010101;
+    border-radius: 2.6px;
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 36px;
+    width: 16px;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #673a8e;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #673a8e;
+}

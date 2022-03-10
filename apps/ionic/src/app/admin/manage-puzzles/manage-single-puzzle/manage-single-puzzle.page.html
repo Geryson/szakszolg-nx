@@ -3,31 +3,12 @@
 <ion-content>
     <div class='p-3 bg-white'>
         <div class='mb-3'>
-            <input #input (change)='onFileSelected($event, input)' hidden type='file' />
-            <p-button (click)='onUploadButtonClicked(input)' icon='pi pi-{{NG_ICON.cloudUpload}}'
-                      label='{{ "PUZZLE_MANAGEMENT.SINGLE.UPLOAD_BUTTON" | translate }}'></p-button>
-        </div>
-        <div *ngIf='fileName'>
-            <ion-card-title class='text-center'>{{ fileName }}</ion-card-title>
-            <div>
-<!--                <image-cropper (cropperReady)='cropperReady()'-->
-<!--                               (imageCropped)='imageCropped($event)'-->
-<!--                               (imageLoaded)='imageLoaded($event)'-->
-<!--                               (loadImageFailed)='loadImageFailed()'-->
-<!--                               [aspectRatio]='4 / 3'-->
-<!--                               [imageChangedEvent]='imageChangedEvent'-->
-<!--                               [maintainAspectRatio]='true'-->
-<!--                               format='png'-->
-<!--                ></image-cropper>-->
-            </div>
-
-            <div>
-                <img [src]='croppedImage' />
-            </div>
+            <p-fileUpload (onSelect)='onSelect($event)' [customUpload]='true' [maxFileSize]="10000000" [multiple]='true' [showUploadButton]='false' accept="image/*" name="data[]">
+            </p-fileUpload>
         </div>
         <div>
-            <p-button (click)='save()' [disabled]='!croppedImage' icon='pi pi-{{NG_ICON.save}}'
-                      label='{{ "FORM_OPERATION.SAVE" | translate }}' styleClass='p-button-success {{ fileName ? "mt-2" : "" }}'></p-button>
+            <p-button (click)='save()' [disabled]='!uploadedFiles.length' icon='pi pi-save'
+                      label='{{ "FORM_OPERATION.UPLOAD" | translate }}' styleClass='p-button-success {{ !!uploadedFiles.length ? "mt-2" : "" }}'></p-button>
         </div>
     </div>
 </ion-content>
