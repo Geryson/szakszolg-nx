@@ -20,13 +20,10 @@ export class TokenService {
     index = 0
     token?:string // delete this.tokenService.token
     activeOM = ''
-    id: number
 
     constructor(@Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo,
                 private readonly storage: StorageService, private confirmationService: ConfirmationService,
                 private messageService: MessageService, private readonly redirect: RedirectService,) {
-        this.id = Math.random()
-        console.log(this.id)
     }
 
     create(quizId: string): Observable<MutationResult<{ createToken: { token: string; __typename: 'Token' } }>> {

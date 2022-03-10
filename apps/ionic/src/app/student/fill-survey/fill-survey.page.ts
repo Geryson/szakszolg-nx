@@ -49,6 +49,20 @@ export class FillSurveyPage implements OnInit{
             this.storage.set(STORAGE_KEY.SURVEY_QUESTIONS, this.service.questions).then()
         }
 
+        if(this.service.answers.length !== this.service.questions.length) {
+            for (const question of this.service.questions) {
+                this.service.answers?.push({
+                    _id: null,
+                    createdAt: new Date,
+
+                    quizId: this.service.activeQuiz?._id,
+                    questionId: question._id,
+                    answer: '',
+                    om: this.service.activeOM
+                })
+            }
+        }
+
         console.log(this.service.activeQuiz)
     }
 
