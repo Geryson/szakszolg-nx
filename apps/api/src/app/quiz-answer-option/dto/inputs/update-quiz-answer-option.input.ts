@@ -7,7 +7,7 @@ import { IUpdatedAt } from '@szakszolg-nx/api-interfaces'
 export class UpdateQuizAnswerOptionInput extends IdInput implements IUpdatedAt {
     @Field()
     @IsNotEmpty()
-    id: string
+    _id: number
 
     @Field({ nullable: true })
     categoryIndex?: number
