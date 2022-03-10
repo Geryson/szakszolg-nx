@@ -4,21 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EnterTokenPageRoutingModule } from './enter-token-routing.module';
+import { SurveyDetailsPageRoutingModule } from './survey-details-routing.module';
 
-import { EnterTokenPage } from './enter-token.page';
-import {ButtonModule} from "primeng/button";
+import { SurveyDetailsPage } from './survey-details.page';
 import {NxSharedModule} from "../../../shared/nx-shared.module";
+import {ButtonModule} from "primeng/button";
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        EnterTokenPageRoutingModule,
-        ButtonModule,
-        NxSharedModule
+        SurveyDetailsPageRoutingModule,
+        NxSharedModule,
+        ButtonModule
     ],
-  declarations: [EnterTokenPage]
+  declarations: [SurveyDetailsPage]
 })
-export class EnterTokenPageModule {}
+export class SurveyDetailsPageModule {}
