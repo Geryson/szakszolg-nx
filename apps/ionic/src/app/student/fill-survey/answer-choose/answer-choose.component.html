@@ -1,11 +1,13 @@
-<div>
+<div class="choose">
     <h4>
         {{service.questions[service.index].question}}
     </h4>
 
-    <div *ngFor="let item of service.activeQuiz!.questions[service.index].answers">
-        <div>
-            <p-button (click)="next(item)" label="{{item}}"></p-button>
+    <div class="buttons">
+        <div *ngFor="let item of service.questions[service.index].answers" class="button">
+            <div>
+                <p-button class="asd" [style]="{'width': '75%', 'min-height': '5rem'}" (click)="next(item)" label="{{item.text}}"></p-button>
+            </div>
         </div>
     </div>
 

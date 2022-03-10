@@ -58,10 +58,10 @@ export class TokenService {
         this.redirect.to(pages.student.enterToken)
     }
 
-    confirm() {
+    confirm(message: string, header: string) {
         this.confirmationService.confirm({
-            message: 'Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni',
-            header: 'Megerősítés',
+            message: message,
+            header: header,
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.cancel().then()

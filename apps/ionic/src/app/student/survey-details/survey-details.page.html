@@ -7,5 +7,5 @@
     <h3>{{service.activeQuiz?.description}}</h3>
     <p *ngIf="service.index > 0">Eddig megválaszolt kérdések:{{service.index}}/{{service.activeQuiz!.questions.length}}</p>
     <p-button label="Tovább a kérdőív kitöltéséhez" (click)="redirectTo()"></p-button>
-    <p-button (click)="service.confirm()">Cancel</p-button>
+    <p-button (click)="service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')">Cancel</p-button>
 </ion-content>

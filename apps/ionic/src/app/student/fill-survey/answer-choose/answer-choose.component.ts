@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { TokenService } from '../../../../shared/services/token.service'
 import { IQuizAnswerOption, IQuizQuestion } from '@szakszolg-nx/api-interfaces'
+import {STORAGE_KEY} from "../../../../shared/utils/constants";
+import {StorageService} from "../../../../shared/services/storage.service";
 
 @Component({
     selector: 'nx12-answer-choose',
@@ -9,16 +11,20 @@ import { IQuizAnswerOption, IQuizQuestion } from '@szakszolg-nx/api-interfaces'
 })
 export class AnswerChooseComponent implements OnInit {
     @Input() quizQuestions: IQuizQuestion[] = []
-    constructor(public readonly service: TokenService) {}
+    constructor(public readonly service: TokenService, public readonly storage: StorageService) {}
 
     ngOnInit() {}
 
-    next(answer: IQuizAnswerOption) {
-        if (this.service.activeQuiz?.questions) {
-            if (this.service.index < this.service.activeQuiz.questions.length - 1) {
-                this.service.answers[this.service.index].answer = answer.text
-                this.service.index++
+    async next(answer: IQuizAnswerOption) {
+        if (this.service.activeQuiz?.questions && this.service.index < this.service.activeQuiz.questions.length) {
+            this.service.answers[this.service.index].answer = answer.text
+            await this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
+            if (this.service.index === this.service.activeQuiz.questions.length - 1) {
+                return
             }
+            this.service.index++
+            await this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
+            console.log('Itt van')
         }
     }
 }

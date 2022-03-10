@@ -71,8 +71,6 @@ export class FillSurveyPage implements OnInit{
         this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
     }
 
-
-
     ngOnInit() {
         if(!this.service.activeQuiz)
             this.redirect.to(pages.student.enterToken)
@@ -84,5 +82,10 @@ export class FillSurveyPage implements OnInit{
         }
         this.service.index--
         this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
+    }
+
+    submit() {
+        this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
+        this.service.confirm('Itt a vége', 'Fuss el véle')
     }
 }
