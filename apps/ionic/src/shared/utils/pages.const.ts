@@ -29,6 +29,7 @@ export const pages = {
         _path: 'student',
         enterToken: 'student/enter-token',
         fillSurvey: 'student/fill-survey',
+        surveyDetails: 'student/survey-details',
     },
 }
 

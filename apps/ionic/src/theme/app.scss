@@ -1,5 +1,18 @@
+.p-button-danger {
+    border: 0 !important;
+}
+
 .d-none {
     display: none !important;
+}
+
+.text-invalid {
+    color: var(--ion-color-danger);
+    font-size: 0.8rem;
+}
+
+.w-100 {
+    width: 100% !important;
 }
 
 .d-md-inline {

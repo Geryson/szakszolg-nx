@@ -1,24 +1,31 @@
 <div class='p-fluid grid p-3 pt-5'>
-    <div class='field col-12 md:col-6'>
-        <div class='mb-4'>
+    <div class='field col-12'>
+        <div *ngIf='template !== "skill"' class='mb-4'>
             <span class='p-float-label'>
-                <input [(ngModel)]='question.question' id='title' pInputText type='text'>
+                <input [(ngModel)]='question.question' [disabled]='template === "skill"' id='title' pInputText
+                       type='text'>
                 <label for='title'>{{ 'MANAGE_QUESTIONS.QUESTION' | translate }}</label>
             </span>
         </div>
-        <div class='mb-4'>
+        <div *ngIf='template === "custom" || template === "quiz"' class='mb-4'>
             <span class='p-float-label'>
-                <p-dropdown [(ngModel)]='question.type' [autoDisplayFirst]='false'
+                <p-dropdown (onChange)='questionTypeChanged($event)' [(ngModel)]='question.type'
+                            [autoDisplayFirst]='false'
                             [disabled]='template !== "custom" && template !== "quiz"'
                             [options]='questionTypes'
                             [placeholder]='(template !== "custom" && template !== "quiz"
-                                    ? "MANAGE_QUESTIONS.TEMPLATE2." + template.toUpperCase()
+                                    ? "MANAGE_QUESTIONS.TEMPLATE2." + templateKey
                                     : "FORM_OPERATION.PLEASE_CHOOSE"
                                 ) | translate'
                             id='type'>
                     <ng-template let-item pTemplate='item'>
                         <div>
                             {{ ('MANAGE_QUESTIONS.TYPES.' + item.toUpperCase()) | translate }}
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate='selectedItem'>
+                        <div *ngIf='question.type'>
+                            {{ ('MANAGE_QUESTIONS.TYPES.' + question.type.toUpperCase()) | translate }}
                         </div>
                     </ng-template>
 
@@ -28,13 +35,29 @@
         </div>
         <div class='mb-4'>
                 <span class='p-buttonset'>
-                    <p-button (click)='save()' icon='pi pi-save' label='{{ "FORM_OPERATION.SAVE" | translate }}'
-                              styleClass='p-button-success'></p-button>
+                    <p-button (click)='save()' [disabled]='
+                    !this.question?.question ||
+                    !this.question.type ||
+                    (this.question.type !== "rating"
+                        && this.question.type !== "free"
+                        && !this.question.answers?.length
+                    ) ||
+                    (this.question.type === "skill" && this.question.answers?.length !== 2)
+                    ' icon='pi pi-save' label='{{ "FORM_OPERATION.SAVE" | translate }}'
+                              styleClass='p-button-primary'></p-button>
                     <p-button (click)='cancel()' icon='pi pi-times' label='{{ "FORM_OPERATION.CANCEL" | translate }}'
-                              styleClass='p-button-danger'></p-button>
+                              styleClass='p-button-primary'></p-button>
                 </span>
         </div>
-        <div *ngIf='question.type?.startsWith("choose")' class='mb-4'>
+        <div *ngIf='question.type && !["free", "rating"].includes(question.type)' class='mb-4'>
+            <div *ngIf='question.type !== "true-false"' class='my-4'>
+                <span class='p-float-label'>
+                    <input #newAnswer (keydown.enter)='addAnswer(newAnswer)' id='newAnswer' pInputText type='text'>
+                    <label for='newAnswer'>{{ 'MANAGE_QUESTIONS.NEW_ANSWER' | translate }}</label>
+                </span>
+                <p-button (click)='addAnswer(newAnswer)' [disabled]='question.type === "skill" && (question.answers?.length ?? 0) > 1' icon='pi pi-plus'
+                          styleClass='p-button-primary' type='button'></p-button>
+            </div>
             <p-table [value]='question.answers ?? []'>
                 <ng-template pTemplate='header'>
                     <tr>
@@ -44,29 +67,36 @@
                 </ng-template>
                 <ng-template let-ans pTemplate='body'>
                     <tr>
-                        <td>{{ ans }}</td>
+                        <td>
+                            {{ ans.text }}
+                            <p-dropdown *ngIf='options.length' [(ngModel)]='ans.categoryIndex'
+                                        [options]='options'
+                                        optionLabel='name' optionValue='value' styleClass='w-100'></p-dropdown>
+                        </td>
                         <td>
                             <span class='p-buttonset'>
-                                <p-button (click)='markAsCorrect(ans)' *ngIf='!question.correctAnswers?.includes(ans)'
+                                <p-button (click)='markAsCorrect(ans)'
+                                          *ngIf='template === "quiz" && !ans.isCorrect'
                                           label='{{ "MANAGE_QUESTIONS.NOT_SOLUTION" | translate }}'
                                           styleClass='p-button-primary'></p-button>
-                                <p-button (click)='unMarkAsCorrect(ans)' *ngIf='question.correctAnswers?.includes(ans)'
+                                <p-button (click)='unMarkAsCorrect(ans)'
+                                          *ngIf='template === "quiz" && ans.isCorrect'
                                           label='{{ "MANAGE_QUESTIONS.IS_SOLUTION" | translate }}'
                                           styleClass='p-button-success'></p-button>
-                                <p-button (click)='removeAnswer(ans)' icon='pi pi-trash'
-                                          styleClass='p-button-danger'></p-button>
+                                <p-button (click)='removeAnswer(ans)' *ngIf='question.type === "choose"' icon='pi pi-trash'
+                                          styleClass='p-button-primary'></p-button>
                             </span>
                         </td>
                     </tr>
                 </ng-template>
+                <ng-template pTemplate='emptymessage'>
+                    <tr>
+                        <td [colSpan]='2'>
+                            <p-message severity='info' text='{{ "MANAGE_QUESTIONS.NO_ANSWERS" | translate }}'></p-message>
+                        </td>
+                    </tr>
+                </ng-template>
             </p-table>
-            <div class='my-4'>
-                <span class='p-float-label'>
-                    <input #newAnswer (keydown.enter)='addAnswer(newAnswer)' id='newAnswer' pInputText type='text'>
-                    <label for='newAnswer'>{{ 'MANAGE_QUESTIONS.NEW_ANSWER' | translate }}</label>
-                </span>
-                <p-button (click)='addAnswer(newAnswer)' icon='pi pi-plus' type='button'></p-button>
-            </div>
         </div>
     </div>
 </div>
