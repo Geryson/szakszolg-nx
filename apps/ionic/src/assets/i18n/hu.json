@@ -278,6 +278,8 @@
         "CATEGORIES": "Kategóriák",
         "ID": "Azonosító",
         "SINGLE": {
+            "NEW_QUESTION": "Új kérdés felvétele",
+            "NEW_ANSWER_PAIR": "Új válaszpár",
             "PAGE_TITLE": "Kérdéssor kezelése",
             "TITLE": "Kérdőív címe",
             "DESCRIPTION": "Leírás",

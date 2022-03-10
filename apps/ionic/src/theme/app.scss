@@ -2,6 +2,10 @@
     display: none !important;
 }
 
+.w-100 {
+    width: 100% !important;
+}
+
 .d-md-inline {
     @media screen and (min-width: 768px) {
         display: inline !important;

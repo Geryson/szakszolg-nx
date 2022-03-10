@@ -1,7 +1,6 @@
 import { gql } from 'apollo-angular'
 
 export const SURVEYS = {
-  
     BROWSE: gql`
         query {
             quizzes {
@@ -21,7 +20,7 @@ export const SURVEYS = {
             }
         }
     `,
-  
+
     ADD: gql`
         mutation (
             $title: String!
@@ -49,18 +48,22 @@ export const SURVEYS = {
                 _id
                 title
                 description
+                template
                 categories
                 questions {
+                    _id
                     question
                     type
-                    answers
-                    correctAnswers
+                    answers {
+                        _id
+                        text
+                    }
                 }
                 createdAt
             }
         }
     `,
-  
+
     CATEGORIES: gql`
         query {
             quizzes {
@@ -68,7 +71,7 @@ export const SURVEYS = {
             }
         }
     `,
-  
+
     EDIT: gql`
         mutation (
             $id: String!
