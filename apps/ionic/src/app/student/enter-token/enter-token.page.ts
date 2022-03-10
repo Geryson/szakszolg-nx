@@ -76,9 +76,17 @@ export class EnterTokenPage {
                 this.service.index = 0
             }
         })
+
+        this.storage.get(STORAGE_KEY.SURVEY_INDEX).then(index => {
+            if (!index) {
+                return;
+            }
+            this.service.index = index
+        })
     }
 
     ionViewDidLeave() {
         this.sub?.unsubscribe()
+        this.token = ''
     }
 }
