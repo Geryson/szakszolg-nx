@@ -52,6 +52,7 @@ export class TokenService {
         await this.storage.remove(STORAGE_KEY.SURVEY_INDEX).then()
         await this.storage.remove(STORAGE_KEY.SURVEY_ANSWER).then()
         await this.storage.remove(STORAGE_KEY.SURVEY_QUESTIONS).then()
+        await this.storage.remove(STORAGE_KEY.EDU_ID).then()
         this.redirect.to(pages.student.enterToken)
     }
 

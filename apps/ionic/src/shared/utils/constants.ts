@@ -5,5 +5,6 @@ export const STORAGE_KEY = {
     SURVEY_TOKEN: 'survey_token',
     SURVEY_INDEX: 'survey_index',
     SURVEY_ANSWER: 'survey_answer',
-    SURVEY_QUESTIONS: 'survey_questions'
+    SURVEY_QUESTIONS: 'survey_questions',
+    EDU_ID: 'edu_id'
 }

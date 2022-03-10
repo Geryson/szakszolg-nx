@@ -2,7 +2,7 @@
     <h4>
         {{service.questions[service.index].question}}
     </h4>
-    <div class="buttons">
+    <div *ngIf="service.answers.length" class="buttons">
         <div class="field-radiobutton">
             <p-radioButton name="1" value="1" [(ngModel)]="service.answers[service.index].answer" inputId="1"></p-radioButton>
             <label for="1">1</label>

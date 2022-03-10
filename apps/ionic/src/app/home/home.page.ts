@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { AlertService } from '../../shared/services/alert.service'
 import { link, pages } from '../../shared/utils/pages.const'
 import { RedirectService } from '../../shared/services/redirect.service'
+import {StorageService} from "../../shared/services/storage.service";
+import {STORAGE_KEY} from "../../shared/utils/constants";
 
 @Component({
     selector: 'nx12-home',
@@ -16,7 +18,8 @@ export class HomePage implements OnInit {
     pages = pages
     link = link
 
-    constructor(private readonly alert: AlertService, private readonly redirect: RedirectService) {}
+    constructor(private readonly alert: AlertService, private readonly redirect: RedirectService,
+                private readonly storage: StorageService) {}
 
     ngOnInit() {}
 
@@ -28,8 +31,8 @@ export class HomePage implements OnInit {
 
     saveEduId() {
         if (this.eduIdIsValid()) {
-            // Save the eduId
-            // Navigate to survey
+            this.storage.set(STORAGE_KEY.EDU_ID, this.eduId).then()
+            this.redirect.to(pages.student.enterToken)
         } else {
             this.alert.show('ERROR_OM', ['AGAIN']).then()
         }

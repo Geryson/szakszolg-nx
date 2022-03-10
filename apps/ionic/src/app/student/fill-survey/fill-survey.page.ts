@@ -22,6 +22,13 @@ export class FillSurveyPage implements OnInit{
     }
 
     private async onEnterInit() {
+        await this.storage.get(STORAGE_KEY.SURVEY_INDEX).then(index => {
+            if (!index) {
+                return;
+            }
+            this.service.index = index
+        })
+
         await this.storage.get(STORAGE_KEY.SURVEY_QUESTIONS).then(questions => {
             if (!questions) {
                 return;
@@ -35,8 +42,11 @@ export class FillSurveyPage implements OnInit{
             }
         })
 
-        console.log(this.service.activeQuiz?.template)
-        console.log(this.service.index)
+        await this.storage.get(STORAGE_KEY.EDU_ID).then(edu_id => {
+            if (edu_id) {
+                this.service.activeOM = edu_id
+            }
+        })
 
         if (this.service.activeQuiz?.template !== 'quiz' && this.service.index < 1) {
 
@@ -63,7 +73,12 @@ export class FillSurveyPage implements OnInit{
             }
         }
 
-        console.log(this.service.activeQuiz)
+        console.log(this.service.questions)
+        console.log(this.service.answers)
+        console.log('q length '+this.service.questions.length)
+        console.log('a length '+this.service.answers.length)
+        console.log('index '+this.service.index)
+
     }
 
     log() {

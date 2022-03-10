@@ -39,6 +39,14 @@ export class EnterTokenPage {
                 return
             }
             console.log(res)
+
+            this.storage.get(STORAGE_KEY.EDU_ID).then(edu_id => {
+                if (edu_id) {
+                    this.service.activeOM = edu_id
+                    console.log('Bent vagyok')
+                }
+            })
+
             this.service.activeQuiz = deepCopy(res.data.token.quiz as IQuiz)
             this.service.token = this.token
             this.storage.set(STORAGE_KEY.SURVEY_TOKEN, this.token).then()
@@ -55,6 +63,12 @@ export class EnterTokenPage {
             this.send()
             return
         }*/
+
+        this.storage.get(STORAGE_KEY.EDU_ID).then(om => {
+            if(!om){
+                this.redirect.to(pages.home)
+            }
+        })
 
         this.storage.get(STORAGE_KEY.SURVEY_TOKEN).then(token => {
             if(token){

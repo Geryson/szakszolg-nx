@@ -1,7 +1,7 @@
 <nx12-header title="ASD"></nx12-header>
 <ion-content>
     <div *ngIf="service.activeQuiz!.template !== 'quiz'">
-        <div *ngIf="service.questions.length > 0">
+        <div *ngIf="service.questions.length && service.answers.length">
             <div [ngSwitch]="service.questions![service.index].type" >
                 <nx12-answer-rating *ngSwitchCase="'rating'"></nx12-answer-rating>
                 <nx12-answer-true-false *ngSwitchCase="'true-false'"></nx12-answer-true-false>
