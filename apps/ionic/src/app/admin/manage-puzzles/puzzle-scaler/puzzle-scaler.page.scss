@@ -155,3 +155,76 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
     background: #673a8e;
 }
+.scaler-view {
+    transform: rotate(270deg);
+    margin-top: 100px;
+    margin-bottom: 125px;
+}
+
+.button-native {
+    height: 150% !important;
+    width: 150% !important;
+    margin: 3px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 1024px) and (orientation: portrait) {
+    input[type=range] {
+        -webkit-appearance: none;
+        margin: 2%;
+        width: 95%;
+    }
+
+    .scaler-view {
+        transform: none;
+        margin: 20px;
+    }
+
+    .ranger-title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    .preview-warning {
+        text-align: center;
+        color: red;
+        font-size: 1.5rem;
+    }
+
+    .button-native {
+        height: 150% !important;
+        width: 150% !important;
+        margin: 3px;
+        border-radius: 5px;
+    }
+}
+
+/**
+@media screen and (max-width: 767px) and (orientation: portrait) {
+    input[type=range] {
+        -webkit-appearance: none;
+        margin: 20px;
+        width: 95%;
+    }
+
+    .scaler-view {
+        transform: none;
+        margin: 20px;
+    }
+}
+
+
+@media screen and (max-width: px) and (orientation: portrait) {
+    input[type=range] {
+        -webkit-appearance: none;
+        margin: 20px;
+        width: 95%;
+    }
+
+    .scaler-view {
+        transform: none;
+        margin: 20px;
+    }
+}
+*/
