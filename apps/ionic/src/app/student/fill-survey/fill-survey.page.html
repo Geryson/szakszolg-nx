@@ -1,18 +1,18 @@
 <nx12-header title="ASD"></nx12-header>
-<ion-content>
+<ion-content class="fill-survey">
     <div *ngIf="service.activeQuiz!.template !== 'quiz'">
         <div *ngIf="service.questions.length && service.answers.length">
             <div [ngSwitch]="service.questions![service.index].type" >
                 <nx12-answer-rating *ngSwitchCase="'rating'"></nx12-answer-rating>
-                <nx12-answer-true-false *ngSwitchCase="'true-false'"></nx12-answer-true-false>
+                <nx12-answer-choose *ngSwitchCase="'true-false'"></nx12-answer-choose>
                 <nx12-answer-choose *ngSwitchCase="'choose'"></nx12-answer-choose>
                 <nx12-answer-choose *ngSwitchCase="'skill'"></nx12-answer-choose>
                 <nx12-answer-free-answer *ngSwitchCase="'free'"></nx12-answer-free-answer>
             </div>
-            <div *ngIf="service.questions![service.index].type === 'rating' ||
+            <div class="button" *ngIf="service.questions![service.index].type === 'rating' ||
             service.questions![service.index].type === 'free'">
-                <p-button *ngIf="service.index !== service.questions.length - 1" [disabled]="!service.answers[service.index].answer" (click)="next()" label="Következő"></p-button>
-                <p-button *ngIf="service.index === service.questions.length - 1" [disabled]="!service.answers[service.index].answer" (click)="submit()" label="Elküld"></p-button>
+                <p-button  [style]="{'min-width': '30%'}" *ngIf="service.index !== service.questions.length - 1" [disabled]="!service.answers[service.index].answer" (click)="next()" label="Következő"></p-button>
+                <p-button [style]="{'min-width': '30%'}" *ngIf="service.index === service.questions.length - 1" [disabled]="!service.answers[service.index].answer" (click)="submit()" label="Elküld"></p-button>
             </div>
 
 
@@ -21,7 +21,9 @@
     <div *ngIf="service.activeQuiz!.template === 'quiz'">
         <nx12-answer-choose></nx12-answer-choose>
     </div>
-    <p-button (click)="back()" label="Vissza"></p-button>
-    <p-button (click)="service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')" label="Kilép"></p-button>
+    <div class="buttons">
+        <p-button [style]="{'min-width': '30%'}" (click)="back()" label="Vissza" ></p-button>
+        <p-button [style]="{'min-width': '30%'}"  (click)="service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')" label="Kilép"></p-button>
+    </div>
 
 </ion-content>
