@@ -9,11 +9,35 @@
 
 .choose {
     text-align: center;
+
+}
+
+.grid {
+    display: grid;
+    grid-template:
+        "one"
+        "two";
 }
 
 h4 {
     margin-bottom: 3%;
 }
+
+
+.one {
+    grid-area: one;
+    display: inline;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.two {
+    margin-top: 2%;
+    grid-area: two;
+    display: inline;
+    width: 100%;
+}
+
 
 @media (max-height: 384px) {
     h4 {
