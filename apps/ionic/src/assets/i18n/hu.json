@@ -276,6 +276,7 @@
         "TITLE": "Kérdőívek kezelése",
         "DESCRIPTION": "Leírás",
         "CATEGORIES": "Kategóriák",
+        "SEARCH": "Keresés cím alapján",
         "ID": "Azonosító",
         "SINGLE": {
             "QUESTION": "A kérdés",
@@ -304,6 +305,7 @@
         "IS_SOLUTION": "Megoldás",
         "NOT_SOLUTION": "Nem megoldás",
         "NO_ANSWERS": "Nincsennek válaszok megadva",
+        "NO_ITEMS": "Nincsennek megjeleníthető elemek",
         "NEW_ANSWER": "Új válasz...",
         "ERRORS": {
             "QUESTION_EMPTY": "A kérdés szövegét kötelező kitölteni",
