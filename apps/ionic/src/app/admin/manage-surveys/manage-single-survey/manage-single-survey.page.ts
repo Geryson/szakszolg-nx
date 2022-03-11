@@ -152,6 +152,7 @@ export class ManageSingleSurveyPage {
             type: !(this.survey?.template === 'custom' || this.survey?.template === 'quiz')
                 ? this.survey?.template ?? 'free'
                 : '',
+            categoryIndex: -1,
             createdAt: new Date(),
             question: this.survey?.template === 'skill' ? this.skillQuestion : '',
             answers: [],

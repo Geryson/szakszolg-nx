@@ -28,10 +28,14 @@
                             {{ ('MANAGE_QUESTIONS.TYPES.' + question.type.toUpperCase()) | translate }}
                         </div>
                     </ng-template>
-
                 </p-dropdown>
                 <label for='type'>{{ 'MANAGE_QUESTIONS.TYPE' | translate }}</label>
             </span>
+        </div>
+        <div *ngIf='template === "rating"' class='mb-4'>
+            <p-dropdown *ngIf='options.length' [(ngModel)]='question.categoryIndex'
+                        [options]='options'
+                        optionLabel='name' optionValue='value' styleClass='w-100'></p-dropdown>
         </div>
         <div class='mb-4'>
                 <span class='p-buttonset'>

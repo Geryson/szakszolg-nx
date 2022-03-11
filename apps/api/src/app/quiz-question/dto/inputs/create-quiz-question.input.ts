@@ -11,6 +11,9 @@ export class CreateQuizQuestionInput extends GqlInput {
     @Field()
     question: string
 
+    @Field({ nullable: true })
+    categoryIndex?: number
+
     @Field()
     type: string
 
