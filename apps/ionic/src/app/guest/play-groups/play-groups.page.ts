@@ -20,6 +20,10 @@ export class PlayGroupsPage {
     private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }>
     private sub?: Subscription
     private draggedWord?: string | null
+    previousWords: string[] = []
+    noMoreWords = false
+    newWord = ''
+
     constructor(private readonly service: GroupingItemService, private readonly alert: AlertService) {}
 
     async init() {
@@ -36,7 +40,7 @@ export class PlayGroupsPage {
     }
 
     ionViewDidEnter(): void {
-        this.init().then()
+        this.init().then(() => this.newWord = this.word)
     }
 
     dragStart(word: string | undefined) {
@@ -60,9 +64,31 @@ export class PlayGroupsPage {
     }
 
     async nextWord() {
-        const loading = await this.alert.loading('MESSAGE.LOADING')
+        let tries = 0
+
         this.selectedGroup = ""
+        this.previousWords.push(this.word)
+
+        const loading = await this.alert.loading('MESSAGE.LOADING')
+
         await this.queryRef?.refetch()
+
+        while (this.previousWords.includes(this.word)){
+            if (tries < 5){
+                await this.queryRef?.refetch()
+                tries++
+            }
+            else
+            {
+                this.noMoreWords = true
+                console.log('else')
+                break
+            }
+        }
+
+        this.newWord = this.word
+
+        console.log(this.previousWords)
         loading.dismiss().then()
         this.guessedAnswer = false
         this.notCorrect = false

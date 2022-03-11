@@ -3,7 +3,7 @@
 <ion-content>
 
     <div>
-        <h3 pDraggable="products" (onDragStart)="dragStart(word)" (onDragEnd)="dragEnd()">{{word}}</h3>
+        <h3 pDraggable="products" (onDragStart)="dragStart(word)" (onDragEnd)="dragEnd()">{{newWord}}</h3>
     </div>
     <br>
     <div class="col-12 md:col-6 drop-column">
@@ -16,6 +16,10 @@
             </ng-template>
         </p-table>
     </div>
+
+    <p-dialog [visible]="noMoreWords" [closable]="false">
+        <p>Elfogytak a szavak</p>
+    </p-dialog>
 
     <p-dialog header="sampletext" [(visible)]="guessedAnswer" [closable]="false" [modal]="true">
         <p>Talált!</p>

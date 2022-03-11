@@ -13,6 +13,7 @@ import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
 import {DialogModule} from "primeng/dialog";
 import {ButtonModule} from "primeng/button";
+import {ListboxModule} from "primeng/listbox";
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import {ButtonModule} from "primeng/button";
         PanelModule,
         TableModule,
         DialogModule,
-        ButtonModule
+        ButtonModule,
+        ListboxModule
     ],
   declarations: [PlayGroupsPage]
 })
