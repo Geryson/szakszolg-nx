@@ -307,6 +307,7 @@
         "NO_ANSWERS": "Nincsennek válaszok megadva",
         "NO_ITEMS": "Nincsennek megjeleníthető elemek",
         "NEW_ANSWER": "Új válasz...",
+        "CATEGORIES": "Kategóriák",
         "ERRORS": {
             "QUESTION_EMPTY": "A kérdés szövegét kötelező kitölteni",
             "ANSWER_EMPTY": "A válasz szövegét kötelező kitölteni",
