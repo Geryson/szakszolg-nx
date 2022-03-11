@@ -11,16 +11,15 @@ import { GroupingItemService } from '../../../shared/services/grouping-item.serv
     styleUrls: ['./play-groups.page.scss'],
 })
 export class PlayGroupsPage {
-    correct?: string
+    correct?: string | undefined
     groups?: string[]
-    word?: string
+    word!: string
     selectedGroup?: string
     guessedAnswer?: boolean
     notCorrect?: boolean
     private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }>
     private sub?: Subscription
     private draggedWord?: string | null
-
     constructor(private readonly service: GroupingItemService, private readonly alert: AlertService) {}
 
     async init() {
@@ -50,6 +49,7 @@ export class PlayGroupsPage {
             this.guessedAnswer = group === this.correct
             if (!this.guessedAnswer) {
                 this.notCorrect = true
+                this.correct = undefined
             }
             this.draggedWord = null
         }
@@ -61,6 +61,7 @@ export class PlayGroupsPage {
 
     async nextWord() {
         const loading = await this.alert.loading('MESSAGE.LOADING')
+        this.selectedGroup = ""
         await this.queryRef?.refetch()
         loading.dismiss().then()
         this.guessedAnswer = false

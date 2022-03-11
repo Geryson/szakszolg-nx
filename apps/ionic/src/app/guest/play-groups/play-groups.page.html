@@ -6,7 +6,7 @@
         <h3 pDraggable="products" (onDragStart)="dragStart(word)" (onDragEnd)="dragEnd()">{{word}}</h3>
     </div>
     <br>
-    <div class="col-12 md:col-6 drop-column" >
+    <div class="col-12 md:col-6 drop-column">
         <p-table [value]="groups ?? []">
             <ng-template let-group pTemplate="body">
                 <tr pDroppable="products" (onDrop)="drop(group)">
@@ -16,14 +16,14 @@
             </ng-template>
         </p-table>
     </div>
-    <p-dialog header="sampletext" [(visible)]="guessedAnswer" [closable]="false">
+
+    <p-dialog header="sampletext" [(visible)]="guessedAnswer" [closable]="false" [modal]="true">
         <p>Talált!</p>
         <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="notCorrect" [closable]="false">
+    <p-dialog header="sampletext" [(visible)]="notCorrect" [closable]="false" [modal]="true">
         <p>Nem talált</p>
         <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
-
 </ion-content>
 
