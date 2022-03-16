@@ -10,6 +10,8 @@ import { PuzzleScalerPage } from './puzzle-scaler.page'
 import { NxSharedModule } from '../../../../shared/nx-shared.module'
 import { AngularCropperjsModule } from 'angular-cropperjs'
 import { TranslateModule } from '@ngx-translate/core'
+import { OrientationDialogComponent } from './orientation-dialog/orientation-dialog.component'
+import { DialogModule } from 'primeng/dialog'
 
 @NgModule({
     imports: [
@@ -20,7 +22,8 @@ import { TranslateModule } from '@ngx-translate/core'
         NxSharedModule,
         AngularCropperjsModule,
         TranslateModule,
+        DialogModule,
     ],
-    declarations: [PuzzleScalerPage],
+    declarations: [PuzzleScalerPage, OrientationDialogComponent],
 })
 export class PuzzleScalerPageModule {}

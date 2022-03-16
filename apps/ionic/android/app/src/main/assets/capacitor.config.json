@@ -2,5 +2,9 @@
 	"appId": "io.ionic.starter",
 	"appName": "ionic",
 	"webDir": "../../dist/apps/ionic",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"includePlugins": [
+		"es6-promise-plugin",
+		"cordova-plugin-screen-orientation"
+	],
 }
