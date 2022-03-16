@@ -355,7 +355,7 @@
         "TRUE": "Igaz",
         "FALSE": "Hamis",
         "NA": "Nincs",
-        "NOTHING": "Semmi",
+        "NOTHING": "semleges",
         "COPY": "Másolás",
         "COPIED": "Másolva",
         "NO_ITEMS": "Nincsennek megjeleníthető elemek",
