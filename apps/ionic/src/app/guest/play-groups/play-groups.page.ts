@@ -4,6 +4,8 @@ import { QueryRef } from 'apollo-angular'
 import { IGroupingItem } from '@szakszolg-nx/api-interfaces'
 import { Subscription } from 'rxjs'
 import { GroupingItemService } from '../../../shared/services/grouping-item.service'
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {log} from "util";
 
 @Component({
     selector: 'nx12-play-groups',
@@ -12,7 +14,7 @@ import { GroupingItemService } from '../../../shared/services/grouping-item.serv
 })
 export class PlayGroupsPage {
     correct?: string | undefined
-    groups?: string[]
+    groups!: string[]
     word!: string
     selectedGroup?: string
     guessedAnswer?: boolean
@@ -22,7 +24,13 @@ export class PlayGroupsPage {
     private draggedWord?: string | null
     previousWords: string[] = []
     noMoreWords = false
-    newWord = ''
+
+    wArray: string[] = [''];
+    first: string[] = []
+    second: string[] = []
+    third: string[] = []
+    fourth: string[] = []
+
 
     constructor(private readonly service: GroupingItemService, private readonly alert: AlertService) {}
 
@@ -32,7 +40,8 @@ export class PlayGroupsPage {
         this.sub = this.queryRef.valueChanges.subscribe(
             (res) => (
                 (this.word = res.data.groupingItem.item ?? '!'),
-                (this.correct = res.data.groupingItem.correct ?? '!'),
+                (console.log(this.word), this.wArray.push(this.word)),
+                (this.correct = res.data.groupingItem.correct ?? '!', console.log('correct: '+this.correct)),
                 (this.groups = res.data.groupingItem.groups ?? [])
             ),
         )
@@ -40,15 +49,33 @@ export class PlayGroupsPage {
     }
 
     ionViewDidEnter(): void {
-        this.init().then(() => this.newWord = this.word)
+        this.init().then()
     }
 
     dragStart(word: string | undefined) {
         this.draggedWord = word
     }
 
-    drop(group: string) {
-        if (this.draggedWord) {
+    drop(event: CdkDragDrop<string[]>/*group: string*/) {
+            transferArrayItem(
+                event.previousContainer.data,
+                event.container.data,
+                event.previousIndex,
+                event.currentIndex,
+            );
+
+            const length = event.container.id.length
+            
+            const answerId = +event.container.id.substring(length-1, length) - 1
+            const correctId = this.groups.findIndex(x => x === this.correct)
+
+            if (correctId === answerId)
+                console.log('Helyes')
+            else
+                console.log('Helytelen')
+
+
+        /*if (this.draggedWord) {
             this.selectedGroup = group
             this.guessedAnswer = group === this.correct
             if (!this.guessedAnswer) {
@@ -56,7 +83,7 @@ export class PlayGroupsPage {
                 this.correct = undefined
             }
             this.draggedWord = null
-        }
+        }*/
     }
 
     dragEnd() {
@@ -85,8 +112,6 @@ export class PlayGroupsPage {
                 break
             }
         }
-
-        this.newWord = this.word
 
         console.log(this.previousWords)
         loading.dismiss().then()
