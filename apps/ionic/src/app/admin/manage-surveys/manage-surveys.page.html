@@ -9,11 +9,10 @@
                 <span class='p-input-icon-left'>
                     <i class='pi pi-search'></i>
                     <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
-                           placeholder="{{ 'MANAGE_SURVEYS.SEARCH' | translate }}" type='text' />
+                           placeholder="{{ 'MANAGE_SURVEYS.SEARCH' | translate }}" type='text' maxlength="255" />
                 </span>
                 <span>
-                    <button (click)='addClick()' class='p-button-success' icon='pi pi-plus' pButton
-                            type='button'></button>
+                    <p-button (click)='addClick()' styleClass='p-button-success' icon='pi pi-plus' type='button'></p-button>
                 </span>
             </div>
         </ng-template>
@@ -33,14 +32,14 @@
                     <span></span>
                 </td>
                 <td>
-                    <button (click)='createToken(item)' class='p-button-primary wide-button'
-                            icon='pi pi-{{ NG_ICON.key }}' pButton type='button'></button>
-                    <button (click)='editClick(item)' *ngIf='userCanEdit' class='p-button-primary wide-button'
-                            icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
-                    <button (click)='editClick(item)' *ngIf='userCanEdit' class='p-button-primary wide-button'
-                            icon='pi pi-{{ NG_ICON.download }}' pButton type='button'></button>
-                    <button (click)='deleteClick(item)' *ngIf='userCanDelete' class='p-button-danger wide-button'
-                            icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
+                    <p-button (click)='createToken(item)' styleClass='p-button-primary wide-button'
+                            icon='pi pi-{{ NG_ICON.key }}' type='button'></p-button>
+                    <p-button (click)='editClick(item)' *ngIf='userCanEdit' styleClass='p-button-primary wide-button'
+                            icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                    <p-button (click)='editClick(item)' *ngIf='userCanEdit' styleClass='p-button-primary wide-button'
+                            icon='pi pi-{{ NG_ICON.download }}' type='button'></p-button>
+                    <p-button (click)='deleteClick(item)' *ngIf='userCanDelete' styleClass='p-button-danger wide-button'
+                            icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                 </td>
             </tr>
         </ng-template>

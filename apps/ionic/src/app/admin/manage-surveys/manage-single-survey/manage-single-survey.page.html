@@ -4,103 +4,145 @@
     <div *ngIf='survey' class='p-fluid grid p-3 pt-5'>
         <div class='field col-12'>
             <div class='my-4'>
-            <span class='p-float-label'>
-                <input [(ngModel)]='survey!.title' id='title' pInputText type='text'>
-                <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.TITLE' | translate }}</label>
-            </span>
+                <span class='p-float-label'>
+                    <input (input)='validator.check("title")' [(ngModel)]='survey!.title' id='title' pInputText type='text' maxlength="80">
+                    <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.TITLE' | translate }}</label>
+                </span>
+                <div class='text-invalid my-1'>{{ validator.validationErrors['title'] }}</div>
             </div>
             <div class='mb-4'>
                 <span class='p-float-label'>
-                    <textarea [(ngModel)]='survey!.description' cols='50' id='description' pInputTextarea rows='3'></textarea>
+                    <textarea (input)='validator.check("description")' [(ngModel)]='survey!.description' cols='50'
+                              id='description' pInputTextarea
+                              rows='3' maxlength="255"></textarea>
                     <label for='description'>{{ 'MANAGE_SURVEYS.SINGLE.DESCRIPTION' | translate }}</label>
                 </span>
+                <div class='text-invalid my-1'>{{ validator.validationErrors['description'] }}</div>
             </div>
-            <div *ngIf='survey?.template === "skill"' class='mb-4'>
-                <p-button (click)='openCategoryManagement()' icon='pi pi-{{ NG_ICON.tags }}' label='{{ "MANAGE_SURVEYS.SINGLE.CATEGORIES" | translate }} ({{ survey?.categories?.length ?? 0 }})'
-                          styleClass='p-button-primary'></p-button>
-            </div>
+                <div *ngIf='survey?.template === "skill"' class='mb-4'>
+                    <span class='p-float-label'>
+                        <input (input)='validator.check("skillQuestion")' [(ngModel)]='skillQuestion' id='questionText' pInputText
+                               type='text' maxlength="255">
+                        <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.QUESTION' | translate }}</label>
+                    </span>
+                    <div class='text-invalid my-1'>{{ validator.validationErrors['skillQuestion'] }}</div>
+                </div>
+                <div *ngIf='survey?.template !== "quiz"' class='mb-4'>
+                    <p-button (click)='openCategoryManagement()' icon='pi pi-{{ NG_ICON.tags }}'
+                              label='{{ "MANAGE_SURVEYS.SINGLE.CATEGORIES" | translate }} ({{ survey?.categories?.length ?? 0 }})'
+                              styleClass='p-button-primary'></p-button>
+                    <div class='text-invalid my-1'>{{ validator.validationErrors['categories'] }}</div>
+                </div>
             <div class='nx-sticky'>
-                <p-button (click)='save()' icon='pi pi-{{ NG_ICON.save }}' label='{{"FORM_OPERATION.SAVE" | translate}}'
-                          styleClass='p-button-success'></p-button>
+                <p-button (click)='save()' [disabled]='!validator.valid' icon='pi pi-{{ NG_ICON.save }}'
+                          label='{{"FORM_OPERATION.SAVE" | translate}}' styleClass='p-button-primary'></p-button>
             </div>
         </div>
-    <div class='field col-12'>
-        <p-table #dt [globalFilterFields]='["question"]' [value]='survey?.questions ?? []' responsiveLayout='stack'>
-            <ng-template pTemplate='caption'>
-                <div class='flex align-items-center justify-content-between'>
-                    <span class='p-input-icon-left'>
-                        <i class='pi pi-search'></i>
-                        <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
-                               placeholder="{{ 'MANAGE_QUESTIONS.SEARCH' | translate }}" type='text' />
-                    </span>
-                    <span>
-                    <button (click)='addClick()' class='p-button-success' icon='pi pi-plus' pButton
-                            type='button'></button>
-                </span>
-                </div>
-            </ng-template>
-            <ng-template pTemplate='header'>
-                <tr>
-                    <th pSortableColumn='question'>
-                        {{ 'MANAGE_QUESTIONS.QUESTION' | translate }}
-                        <p-sortIcon field='question'></p-sortIcon>
-                    </th>
-                    <th *ngIf='survey?.template === "quiz" || survey?.template === "custom"' pSortableColumn='type'>
-                        {{ 'MANAGE_QUESTIONS.TYPE' | translate }}
-                        <p-sortIcon field='type'></p-sortIcon>
-                    </th>
-                    <th>
-                        {{ 'FORM_OPERATION.ACTIONS' | translate }}
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template let-questionObject pTemplate='body'>
-                <tr>
-                    <td>
-                        <span></span>
-                        <span><h6>{{ questionObject.question }}</h6></span>
-                        <span></span>
-                    </td>
-                    <td *ngIf='survey?.template === "quiz" || survey?.template === "custom"'>
-                        <span class='p-column-title'>{{ 'MANAGE_QUESTIONS.TYPE' | translate }}</span>
-                        {{ ('MANAGE_QUESTIONS.TYPES.' + questionObject.type.toUpperCase()) | translate }}
-                    </td>
-                    <td>
-                        <button (click)='editClick(questionObject)' class='p-button-primary wide-button' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
-                        <button (click)='deleteClick(questionObject)' class='p-button-danger wide-button' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </div>
+        <div class='field col-12'>
+            <p-table [globalFilterFields]='["question"]' [value]='survey?.questions ?? []' responsiveLayout='stack'>
+                <ng-template pTemplate='caption'>
+                    <div class='flex align-items-center justify-content-between'>
+                        <span>
+                            <p-button (click)='addClick()'
+                                      [disabled]='(survey?.template !== "quiz" && !survey?.categories?.length) || (survey?.template === "skill" && !skillQuestion)'
+                                      icon='pi pi-plus'
+                                      label='{{ ("MANAGE_SURVEYS.SINGLE." + (survey?.template === "skill" ? "NEW_ANSWER_PAIR" : "NEW_QUESTION")) | translate }}'
+                                      styleClass='p-button-primary' type='button'></p-button>
+                            <div class='text-invalid my-1'>{{ validator.validationErrors['questions'] }}</div>
+
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate='header'>
+                    <tr>
+                        <th pSortableColumn='question'>
+                            {{ 'MANAGE_QUESTIONS.QUESTION' | translate }}
+                            <p-sortIcon field='question'></p-sortIcon>
+                        </th>
+                        <th *ngIf='survey?.template === "quiz" || survey?.template === "custom"' pSortableColumn='type'>
+                            {{ 'MANAGE_QUESTIONS.TYPE' | translate }}
+                            <p-sortIcon field='type'></p-sortIcon>
+                        </th>
+                        <th>
+                            {{ 'FORM_OPERATION.ACTIONS' | translate }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template let-questionObject pTemplate='body'>
+                    <tr>
+                        <td>
+                            <ng-container *ngIf='survey?.template !== "skill"'>
+                                <span></span>
+                                <span><h6>{{ questionObject.question }}</h6></span>
+                                <span></span>
+                            </ng-container>
+                            <ng-container *ngIf='survey?.template === "skill"'>
+                                <table>
+                                    <tr>
+                                        <td>{{ questionObject.answers[0]?.text }}</td>
+                                        <td>{{ questionObject.answers[1]?.text }}</td>
+                                    </tr>
+                                </table>
+                            </ng-container>
+                        </td>
+                        <td *ngIf='survey?.template === "quiz" || survey?.template === "custom"'>
+                            <span class='p-column-title'>{{ 'MANAGE_QUESTIONS.TYPE' | translate }}</span>
+                            {{ ('MANAGE_QUESTIONS.TYPES.' + questionObject.type.toUpperCase()) | translate }}
+                        </td>
+                        <td>
+                            <p-button (click)='editClick(questionObject)' styleClass='p-button-primary wide-button'
+                                    icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                            <p-button (click)='deleteClick(questionObject)' styleClass='p-button-primary wide-button'
+                                    icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </div>
 </ion-content>
 
-<p-dialog [(visible)]="!!questionEditing" [closable]='false' [draggable]="false" [modal]="true" [resizable]="false"
+<p-dialog [(visible)]='!!questionEditing' [closable]='false' [draggable]='false' [modal]='true' [resizable]='false'
           [style]="{width: '95vw', minHeight: '98vh'}" header="{{ 'MANAGE_QUESTIONS.QUESTION' | translate }}">
-    <nx12-question-edit-form (canceled)='formCanceled()' (submitted)='formSubmitted($event)' *ngIf='!!questionEditing' [(question)]='questionEditing' [template]='survey?.template ?? ""'></nx12-question-edit-form>
+    <nx12-question-edit-form (canceled)='formCanceled()' (submitted)='formSubmitted($event)' *ngIf='!!questionEditing'
+                             [options]='options'
+                             [question]='questionEditing'
+                             [template]='survey?.template ?? ""'></nx12-question-edit-form>
 </p-dialog>
 
-<p-dialog [closable]='false' [draggable]="false" [modal]="true" [resizable]="false" [visible]='templateDialog === 1' header="{{ 'MANAGE_QUESTIONS.TEMPLATE1.HEADER' | translate }}">
+<p-dialog [closable]='false' [draggable]='false' [modal]='true' [resizable]='false' [visible]='templateDialog === 1'
+          header="{{ 'MANAGE_QUESTIONS.TEMPLATE1.HEADER' | translate }}">
     <p>{{ 'MANAGE_QUESTIONS.TEMPLATE1.DESCRIPTION' | translate }}</p>
-    <span class='p-buttonset'>
-        <button (click)='templateChosen("template/")' class='p-button-primary' label='{{ "MANAGE_QUESTIONS.TEMPLATE1.EVALUABLE" | translate}}' pButton type='button'></button>
-        <button (click)='templateChosen("custom")' class='p-button-primary' label='{{ "MANAGE_QUESTIONS.TEMPLATE1.CUSTOM" | translate}}' pButton type='button'></button>
-        <button (click)='templateChoosingCancelled()' class='p-button-danger' label='{{ "FORM_OPERATION.CANCEL" | translate}}' pButton type='button'></button>
-    </span>
+    <div class='button-ladder'>
+        <p-button (click)='templateChosen("template/")' styleClass='p-button-primary'
+                label='{{ "MANAGE_QUESTIONS.TEMPLATE1.EVALUABLE" | translate}}' type='button'></p-button><br>
+        <p-button (click)='templateChosen("custom")' styleClass='p-button-primary'
+                label='{{ "MANAGE_QUESTIONS.TEMPLATE1.CUSTOM" | translate}}' type='button'></p-button><br>
+        <p-button (click)='templateChoosingCancelled()' styleClass='p-button-danger'
+                label='{{ "FORM_OPERATION.CANCEL" | translate}}' type='button'></p-button>
+    </div>
 </p-dialog>
 
-<p-dialog [closable]='false' [draggable]="false" [modal]="true" [resizable]="false" [visible]='templateDialog === 2' header="{{ 'MANAGE_QUESTIONS.TEMPLATE2.HEADER' | translate }}">
+<p-dialog [closable]='false' [draggable]='false' [modal]='true' [resizable]='false' [visible]='templateDialog === 2'
+          header="{{ 'MANAGE_QUESTIONS.TEMPLATE2.HEADER' | translate }}">
     <p>{{ 'MANAGE_QUESTIONS.TEMPLATE2.DESCRIPTION' | translate }}</p>
-    <span class='p-buttonset'>
-        <button (click)='templateChosen("rating")' class='p-button-primary' label='{{ "MANAGE_QUESTIONS.TEMPLATE2.RATING" | translate}}' pButton type='button'></button>
-        <button (click)='templateChosen("true-false")' class='p-button-primary' label='{{ "MANAGE_QUESTIONS.TEMPLATE2.TRUE-FALSE" | translate}}' pButton type='button'></button>
-        <button (click)='templateChosen("skill")' class='p-button-primary' label='{{ "MANAGE_QUESTIONS.TEMPLATE2.SKILL" | translate}}' pButton type='button'></button>
-        <button (click)='templateChosen("quiz")' class='p-button-primary' label='{{ "MANAGE_QUESTIONS.TEMPLATE2.QUIZ" | translate}}' pButton type='button'></button>
-        <button (click)='templateChoosingCancelled(true)' class='p-button-danger' label='{{ "FORM_OPERATION.CANCEL" | translate}}' pButton type='button'></button>
-    </span>
+    <div class='button-ladder'>
+        <p-button (click)='templateChosen("rating")' styleClass='p-button-primary'
+                label='{{ "MANAGE_QUESTIONS.TEMPLATE2.RATING" | translate}}' type='button'></p-button> <br>
+        <p-button (click)='templateChosen("true-false")' styleClass='p-button-primary'
+                label='{{ "MANAGE_QUESTIONS.TEMPLATE2.TRUE-FALSE" | translate}}' type='button'></p-button><br>
+        <p-button (click)='templateChosen("skill")' styleClass='p-button-primary'
+                label='{{ "MANAGE_QUESTIONS.TEMPLATE2.SKILL" | translate}}' type='button'></p-button><br>
+        <p-button (click)='templateChosen("quiz")' styleClass='p-button-primary'
+                label='{{ "MANAGE_QUESTIONS.TEMPLATE2.QUIZ" | translate}}' type='button'></p-button><br>
+        <p-button (click)='templateChoosingCancelled(true)' styleClass='p-button-danger'
+                label='{{ "FORM_OPERATION.CANCEL" | translate}}' type='button'></p-button>
+    </div>
 </p-dialog>
 
-<p-dialog [closable]='false' [draggable]="false" [modal]="true" [resizable]="false" [style]="{width: '95vw', minHeight: '98vh'}" [visible]='categoryDialog' header="{{ 'MANAGE_QUESTIONS.CATEGORIES' | translate }}">
-    <nx12-category-edit-form (closing)='categoryDialog = false' *ngIf='survey' [(survey)]='survey'></nx12-category-edit-form>
+<p-dialog [closable]='false' [draggable]='false' [modal]='true' [resizable]='false'
+          [style]="{width: '95vw', minHeight: '98vh'}" [visible]='categoryDialog'
+          header="{{ 'MANAGE_QUESTIONS.CATEGORIES' | translate }}">
+    <nx12-category-edit-form (closing)='categoryEditClosing()' *ngIf='survey'
+                             [(survey)]='survey'></nx12-category-edit-form>
 </p-dialog>
