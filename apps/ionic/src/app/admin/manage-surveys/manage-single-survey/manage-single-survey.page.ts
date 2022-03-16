@@ -182,14 +182,10 @@ export class ManageSingleSurveyPage {
                         this.originalSurvey = deepCopy(this.survey)
                         if (this.survey?.template === 'skill')
                             this.skillQuestion = this.survey?.questions?.[0]?.question ?? ''
-                        Log.debug('ManageSingleSurveyPage::init', '176')
                         this.initValidator()
                     }),
                 )
-                this.queryRef?.refetch().then(() => {
-                    Log.debug('ManageSingleSurveyPage::init', '181')
-                    this.initValidator()
-                })
+                this.queryRef?.refetch().then(() => this.initValidator())
             }),
         )
     }
