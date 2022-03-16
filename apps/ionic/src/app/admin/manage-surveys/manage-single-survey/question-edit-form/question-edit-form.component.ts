@@ -144,8 +144,4 @@ export class QuestionEditFormComponent {
                 ]
         }
     }
-
-    populateCategories() {
-        this.options = this.categories.map((c, i) => ({ name: c, value: i }))
-    }
 }
