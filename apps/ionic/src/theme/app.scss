@@ -1,6 +1,9 @@
+.p-button-danger, .p-button-success {
+  border: 0 !important;
+}
+
 .p-button-danger {
     background-color: var(--ion-color-danger) !important;
-    border: 0 !important;
 }
 
 .d-flex {
