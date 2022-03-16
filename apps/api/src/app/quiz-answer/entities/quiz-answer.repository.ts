@@ -37,15 +37,18 @@ export class QuizAnswerRepository extends SimpleRepository<
     }
 
     override async create(data: CreateQuizAnswerInput): Promise<IQuizAnswer> {
-        const originalQuiz: IQuiz = await this.quizService.findOne({ id: data.quizId })
-        const originalQuestion = originalQuiz.questions.find((q) => q._id.toString() === data.questionId)
-        if (!originalQuestion) {
-            throw new NotFoundException(`Question not found: ${data.quizId}/${data.questionId}`)
-        }
-
-        if (originalQuestion.type !== 'free-text') {
-            data.isCorrect = originalQuestion.answers.find((a) => a.text === data.answer)?.isCorrect
-        }
+        // const originalQuiz: IQuiz = await this.quizService.findOne({ id: data.quizId })
+        // if (!originalQuiz) {
+        //     throw new NotFoundException(`Quiz with id ${data.quizId} not found`)
+        // }
+        // const originalQuestion = originalQuiz.questions.find((q) => q._id.toString() === data.questionId)
+        // if (!originalQuestion) {
+        //     throw new NotFoundException(`Question not found: ${data.quizId}/${data.questionId}`)
+        // }
+        //
+        // if (originalQuiz.template === 'quiz') {
+        //     data.isCorrect = originalQuestion.answers.find((a) => a.text === data.answer)?.isCorrect
+        // }
         return super.create(data)
     }
 }
