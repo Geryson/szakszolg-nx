@@ -22,7 +22,7 @@
                                         <span class='p-float-label'>
                                             <input (input)='check(prop)' [(ngModel)]='user[prop]'
                                                    id='input-text-{{ prop }}' pInputText
-                                                   type='text'>
+                                                   type='text' maxlength="80" />
                                             <label
                                                 for='input-text-{{prop}}'>{{('USER_EDIT.' + prop) | translate}}</label>
                                         </span>
@@ -33,9 +33,7 @@
                                     <span class='text-danger'>{{ validationErrors[prop] }}</span>
                                 </div>
                             </div>
-                            <button (click)='save(prop)' [disabled]='!!validationErrors[prop]' icon='pi pi-check'
-                                    pButton
-                                    type='button'></button>
+                            <p-button (click)='save(prop)' [disabled]='!!validationErrors[prop]' icon='pi pi-check' type='button'></p-button>
                         </ng-template>
                     </p-inplace>
                 </ion-item>
@@ -47,11 +45,11 @@
 <p-dialog *ngIf='!!user' [(visible)]='passwordDialog' [closable]='false' header="{{ 'USER_EDIT.PASSWORD_DIALOG_TITLE' | translate }}">
     <p>{{ 'USER_EDIT.PASSWORD_DIALOG_CONTENT' | translate }}</p>
     <form>
-        <input [(ngModel)]='user.password' name='password' pInputText type='password'>
+        <input [(ngModel)]='user.password' name='password' pInputText type='password' maxlength="80" />
         <div>
             <span class='p-buttonset'>
-                <button (click)='savePassword()' class='p-button-success' icon='pi pi-check' label="{{ 'BUTTONS.SAVE' | translate}}" pButton type='button'></button>
-                <button (click)='cancel()' class='p-button-danger' icon='pi pi-times' label="{{ 'BUTTONS.CANCEL' | translate }}" pButton type='button'></button>
+                <p-button (click)='savePassword()' class='p-button-success' icon='pi pi-check' label="{{ 'BUTTONS.SAVE' | translate}}" type='button'></p-button>
+                <p-button (click)='cancel()' class='p-button-danger' icon='pi pi-times' label="{{ 'BUTTONS.CANCEL' | translate }}" type='button'></p-button>
             </span>
         </div>
     </form>

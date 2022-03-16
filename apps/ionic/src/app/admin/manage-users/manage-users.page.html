@@ -22,7 +22,7 @@
                     <span class='p-input-icon-left'>
                     <i class='pi pi-search'></i>
                     <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
-                           placeholder="{{ 'MANAGE_USERS.SEARCH_NAME_OR_USERNAME' | translate }}" type='text' />
+                           placeholder="{{ 'MANAGE_USERS.SEARCH_NAME_OR_USERNAME' | translate }}" type='text' maxlength="80" />
                 </span>
                 </div>
             </ng-template>
@@ -45,23 +45,26 @@
             </ng-template>
             <ng-template let-user pTemplate='body'>
                 <tr>
-                    <td><span
-                        class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ID' | translate }}</span>{{ user._id | slice:16 }}
+                    <td>
+                        <span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ID' | translate }}</span>{{ user._id | slice:16 }}
                     </td>
-                    <td><span
-                        class='p-column-title'>{{ 'MANAGE_USERS.TABLE.USERNAME' | translate }}</span>{{ user.username }}
+                    <td>
+                        <span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.USERNAME' | translate }}</span>{{ user.username }}
                     </td>
-                    <td><span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.EMAIL' | translate }}</span>{{ user.email }}
+                    <td>
+                        <span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.EMAIL' | translate }}</span>{{ user.email }}
                     </td>
-                    <td><span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ROLES' | translate }}</span>
+                    <td>
+                        <span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ROLES' | translate }}</span>
                         <span *ngFor='let role of user.roles'>
                             {{ role.name }}
                         </span>
                     </td>
-                    <td><span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ACTIONS' | translate }}</span>
+                    <td>
+                        <span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ACTIONS' | translate }}</span>
                         <span class='p-buttonset'>
-                            <button (click)='editClick(user)' *ngIf='userCanEditUsers' class='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
-                            <button (click)='deleteClick(user)' *ngIf='userCanDeleteUsers' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
+                            <p-button (click)='editClick(user)' *ngIf='userCanEditUsers' styleClass='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                            <p-button (click)='deleteClick(user)' *ngIf='userCanDeleteUsers' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                         </span>
                     </td>
                 </tr>
