@@ -28,20 +28,7 @@ export class ManageSingleSurveyPage {
     categoryDialog = false
     skillQuestion = ''
     options: { name: string; value: number }[] = []
-    validator = new Validator<IQuiz>({
-        subjectFactory: (__) => this.survey!,
-        attributeFactory: (prop) =>
-            prop === 'skillQuestion' ? this.skillQuestion : this.survey?.[prop as keyof IQuiz],
-        translationKey: 'MANAGE_SURVEYS.SINGLE',
-        properties: ['title', 'description', 'categories', 'questions', 'skillQuestion'],
-        rules: {
-            title: (survey, title) => !!title,
-            description: (survey, description) => !!description,
-            questions: (survey, questions) => !!questions && (questions as IQuizQuestion[]).length > 0,
-            categories: (survey, categories) => !!categories && (categories as string[]).length > 0,
-            skillQuestion: (survey, skillQuestion) => survey.template !== 'skill' || !!skillQuestion,
-        },
-    })
+    validator = new Validator<IQuiz>()
     private originalQuestionEditing?: IQuizQuestion
     private queryRef?: QueryRef<{ quiz: Partial<IQuiz> }>
     private sub = new Subscription()
@@ -63,8 +50,8 @@ export class ManageSingleSurveyPage {
     }
 
     save() {
-        if (!this.validator.valid) {
-            this.validator.check()
+        if (!this.validator?.valid) {
+            this.validator?.check()
             return
         }
         if (this.survey?._id) {
@@ -106,10 +93,19 @@ export class ManageSingleSurveyPage {
     }
 
     formSubmitted($event: IQuizQuestion) {
+        if (!this.survey) throw 'No survey'
+        if (!this.survey.questions) this.survey.questions = []
+
         delete this.questionEditing
         delete this.originalQuestionEditing
-        this.survey?.questions?.push($event)
-        this.validator.check('questions')
+        if ($event._id) {
+            const index = this.survey.questions.findIndex((question) => question._id === $event._id)
+            if (index >= 0) this.survey.questions[index] = $event
+            else this.survey.questions.push($event)
+        } else {
+            this.survey.questions.push($event)
+        }
+        this.validator?.check('questions')
     }
 
     async templateChosen(template: string) {
@@ -119,13 +115,16 @@ export class ManageSingleSurveyPage {
                 return
             case 'custom':
                 this.survey!.template = 'custom'
+                this.initValidator()
                 break
             case 'true-false':
-                this.survey!.categories = [await translate('FORM_OPERATION.NOTHING')]
+                //this.survey!.categories = [await translate('FORM_OPERATION.NOTHING')] // Automatically add "nothing" category
                 this.survey!.template = template
+                this.initValidator()
                 break
             default:
                 this.survey!.template = template
+                this.initValidator()
                 break
         }
 
@@ -143,7 +142,7 @@ export class ManageSingleSurveyPage {
 
     categoryEditClosing() {
         this.categoryDialog = false
-        this.validator.check('categories')
+        this.validator?.check('categories')
     }
 
     private getNewQuestion() {
@@ -183,9 +182,14 @@ export class ManageSingleSurveyPage {
                         this.originalSurvey = deepCopy(this.survey)
                         if (this.survey?.template === 'skill')
                             this.skillQuestion = this.survey?.questions?.[0]?.question ?? ''
+                        Log.debug('ManageSingleSurveyPage::init', '176')
+                        this.initValidator()
                     }),
                 )
-                this.queryRef?.refetch().then()
+                this.queryRef?.refetch().then(() => {
+                    Log.debug('ManageSingleSurveyPage::init', '181')
+                    this.initValidator()
+                })
             }),
         )
     }
@@ -224,5 +228,23 @@ export class ManageSingleSurveyPage {
                 ?.map((question) => parseInt(question._id))
                 .reduce((max, question_id) => Math.max(max, question_id), 0) + 1
         )
+    }
+
+    private initValidator() {
+        this.validator.init({
+            subjectFactory: (__) => this.survey!,
+            attributeFactory: (prop) =>
+                prop === 'skillQuestion' ? this.skillQuestion : this.survey?.[prop as keyof IQuiz],
+            translationKey: 'MANAGE_SURVEYS.SINGLE',
+            properties: ['title', 'description', 'categories', 'questions', 'skillQuestion'],
+            rules: {
+                title: (survey, title) => !!title,
+                description: (survey, description) => !!description,
+                questions: (survey, questions) => !!questions && (questions as IQuizQuestion[]).length > 0,
+                categories: (survey, categories) =>
+                    survey.template === 'quiz' || (!!categories && (categories as string[]).length > 0),
+                skillQuestion: (survey, skillQuestion) => survey.template !== 'skill' || !!skillQuestion,
+            },
+        })
     }
 }
