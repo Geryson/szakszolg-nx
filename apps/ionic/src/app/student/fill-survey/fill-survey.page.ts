@@ -64,6 +64,7 @@ export class FillSurveyPage implements OnInit{
                 this.service.answers?.push({
                     _id: null,
                     createdAt: new Date,
+                    answeredAt: new Date,
                     quizId: this.service.activeQuiz?._id,
                     questionId: question._id,
                     answer: '',

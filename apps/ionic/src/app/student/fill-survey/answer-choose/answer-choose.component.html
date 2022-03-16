@@ -3,7 +3,7 @@
         {{service.questions[service.index].question}}
     </h3>
     <h4>
-        Jó válaszok száma: {{correctCounter}} / {{service.activeQuiz!.questions!.length}}
+        Jó válaszok száma: {{service.index}} / {{service.activeQuiz!.questions!.length}}
     </h4>
 
     <div *ngIf="service.activeQuiz!.template !== 'quiz'" class="buttons">
