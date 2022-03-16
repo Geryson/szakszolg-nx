@@ -1,14 +1,5 @@
-<ion-header mode="ios" translucent="true">
-    <div id="yellowLine"></div>
-    <ion-toolbar color="secondary">
-        <ion-buttons class="nav-buttons-container" slot="start">
-            <ion-button [routerLink]="[ link(pages.admin.dashboard) ]" class="nav-button" routerDirection="back" slot="start">
-                <ion-icon name="arrow-back"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title class="nav-title" text-center>{{ 'ADMIN_NAV.MIRROR_MANAGEMENT' | translate }}</ion-title>
-    </ion-toolbar>
-</ion-header>
+<nx12-header [logoutButton]='true' title='ADMIN_NAV.MIRROR_MANAGEMENT'></nx12-header>
+
 
 <ion-content>
     <p-table #dt1 [value]='(filteredMirrorWords$ | async)!' responsiveLayout='scroll' styleClass='p-datatable-striped'>

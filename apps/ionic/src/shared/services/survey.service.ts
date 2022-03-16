@@ -60,6 +60,7 @@ export class SurveyService {
         return this.apolloClient.watchQuery<{ quiz: Partial<IQuiz> }>({
             query: SURVEYS.READ,
             variables: { id },
+            fetchPolicy: 'no-cache', // This is a hack. Fix it.
         })
     }
 

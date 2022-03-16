@@ -41,4 +41,8 @@ export class CategoryEditFormComponent {
     save() {
         this.closing.emit()
     }
+
+    cancel() {
+        this.closing.emit()
+    }
 }
