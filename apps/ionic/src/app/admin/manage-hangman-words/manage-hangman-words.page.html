@@ -7,10 +7,10 @@
                 <span class='p-input-icon-left'>
                     <i class='pi pi-search'></i>
                     <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
-                       placeholder="{{ 'MANAGE_HANGMAN_WORDS.SEARCH' | translate }}" type='text' />
+                       placeholder="{{ 'MANAGE_HANGMAN_WORDS.SEARCH' | translate }}" type='text' maxlength="80" />
                 </span>
                 <span>
-                    <button (click)='addClick()' class='p-button-success' icon='pi pi-plus' pButton type='button'></button>
+                    <p-button (click)='addClick()' styleClass='p-button-success' icon='pi pi-plus' type='button'></p-button>
                 </span>
             </div>
         </ng-template>
@@ -27,11 +27,10 @@
                 <td><span class='p-column-title'>{{ 'MANAGE_HANGMAN_WORDS.WORD' | translate }}</span> {{ wordObject.word }}</td>
                 <td><span class='p-column-title'>{{ 'MANAGE_HANGMAN_WORDS.ACTIONS' | translate }}</span>
                     <span class='p-buttonset'>
-                            <button (click)='editClick(wordObject)' *ngIf='userCanEdit' class='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' pButton type='button'></button>
-                            <button (click)='deleteClick(wordObject)' *ngIf='userCanDelete' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
-                        </span>
+                        <p-button (click)='editClick(wordObject)' *ngIf='userCanEdit' styleClass='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                        <p-button (click)='deleteClick(wordObject)' *ngIf='userCanDelete' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
+                    </span>
                 </td>
-
             </tr>
         </ng-template>
     </p-table>
