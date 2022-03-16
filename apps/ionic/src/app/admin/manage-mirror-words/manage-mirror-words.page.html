@@ -17,7 +17,7 @@
                 <span class='p-input-icon-left ml-auto'>
                     <i class='pi pi-search'></i>
                     <input #searchInput (input)='filter(searchInput)' pInputText
-                           placeholder="{{ 'MIRROR_LIST.SEARCH_BY_TEXT' | translate}}" type='text' />
+                           placeholder="{{ 'MIRROR_LIST.SEARCH_BY_TEXT' | translate}}" type='text' maxlength="80" />
                 </span>
                 <p-button (click)='clear(searchInput)' [disabled]='!searchInput.value'
                         icon='pi pi-{{ NG_ICON.filterSlash }}' label="{{ 'MIRROR_LIST.CLEAR' | translate}}"></p-button>
@@ -44,7 +44,7 @@
     <div class='p-grid'>
         <div class='p-col-12'>
             <input [(ngModel)]='wordUnderEdit' [placeholder]="'MIRROR_LIST.EXAMPLE' | translate" [required]='true' name='word'
-                   pInputText type='text'>
+                   pInputText type='text' maxlength="80">
         </div>
     </div>
     <ng-template pTemplate='footer'>
