@@ -51,7 +51,7 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
         private readonly alertController: AlertController,
         private readonly screenOrientation: ScreenOrientation,
     ) {
-        platform.ready().then(() => this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE))
+        platform.ready().then(() => this.lockLandscape())
     }
 
     ngOnInit() {
@@ -237,8 +237,7 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
                     ],
                 })
                 await alert.present()
-                this.screenOrientation.unlock()
-                this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then()
+                this.lockPortrait()
             })
     }
 
@@ -260,9 +259,7 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
                 {
                     text: await this.translatePipe.transform('BUTTONS.YES'),
                     handler: () => {
-                        this.screenOrientation.unlock()
-                        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then()
-
+                        this.unlockOrientation()
                         this.redirect.to(pages.admin.puzzleImages)
                     },
                 },
@@ -275,5 +272,24 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
         this.rangerValue = parseInt(value)
         if (!this.cropperFace) throw 'No cropper face'
         this.cropperFace.style.backgroundSize = value + 'px'
+    }
+
+    private lockPortrait() {
+        window.screen.orientation.unlock()
+        this.unlockOrientation()
+        window.screen.orientation.lock('portrait').then()
+        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then()
+    }
+
+    private lockLandscape() {
+        window.screen.orientation.unlock()
+        this.unlockOrientation()
+        window.screen.orientation.lock('landscape').then()
+        return this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)
+    }
+
+    private unlockOrientation() {
+        window.screen.orientation.unlock()
+        this.screenOrientation.unlock()
     }
 }

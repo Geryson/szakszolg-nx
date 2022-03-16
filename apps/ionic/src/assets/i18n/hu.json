@@ -242,6 +242,7 @@
             "TITLE": "Kép feltöltés",
             "UPLOAD_BUTTON": "Válasszon feltöltendő képet"
         },
+        "SCALE": "Vágás",
         "ADD_PICTURE": "Kép feltöltése",
         "CREATED_AT": "Létrehozva (régiek előre)",
         "REMOVE": "Törlés",
