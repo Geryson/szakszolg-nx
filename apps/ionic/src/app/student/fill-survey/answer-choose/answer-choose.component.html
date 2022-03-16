@@ -1,6 +1,9 @@
 <div *ngIf="service.answers.length" class="choose">
-    <h4>
+    <h3>
         {{service.questions[service.index].question}}
+    </h3>
+    <h4>
+        Jó válaszok száma: {{correctCounter}} / {{service.activeQuiz!.questions!.length}}
     </h4>
 
     <div *ngIf="service.activeQuiz!.template !== 'quiz'" class="buttons">
@@ -23,7 +26,13 @@
 
                 <p-button  [style]="{'width': '25%', 'min-height': '3rem', 'margin-left': '1%'}" (click)="next(service.questions[service.index].answers![3])" label="{{service.questions[service.index].answers![3].text}}"></p-button>
         </div>
-
     </div>
-
+    <p-dialog [visible]="failed" [style]="{width: '50vw'}" [closable]="false" [modal]="true">
+        <ng-template pTemplate="header">
+            <h1>Játék vége!</h1>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button type="button" pButton icon="pi pi-home" label="Kilépés" (click)="service.cancel()"></button>
+        </ng-template>
+    </p-dialog>
 </div>

@@ -11,6 +11,7 @@ import { AnswerFreeAnswerComponent } from '../app/student/fill-survey/answer-fre
 import { AnswerCustomComponent } from '../app/student/fill-survey/answer-custom/answer-custom.component'
 import { InputTextareaModule } from 'primeng/inputtextarea'
 import { ButtonModule } from 'primeng/button'
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
     declarations: [HeaderComponent, JoinPipe, AnswerChooseComponent, AnswerFreeAnswerComponent, AnswerCustomComponent],
@@ -22,6 +23,7 @@ import { ButtonModule } from 'primeng/button'
         FormsModule,
         InputTextareaModule,
         ButtonModule,
+        DialogModule,
     ],
     providers: [],
     exports: [HeaderComponent, JoinPipe, AnswerChooseComponent, AnswerFreeAnswerComponent, AnswerCustomComponent],

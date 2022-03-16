@@ -15,11 +15,13 @@
         <nx12-answer-choose></nx12-answer-choose>
     </div>
     <div class="buttons">
-        <p-button [style]="{'min-width': '30%'}" (click)="back()" label="Vissza" ></p-button>
-        <p-button  [style]="{'min-width': '30%'}" *ngIf="service.index !== service.questions.length - 1"
-                   (click)="next()" label="Következő"></p-button>
-        <p-button [style]="{'min-width': '30%'}" *ngIf="service.index === service.questions.length - 1"
-                  (click)="submit()" label="Elküld"></p-button>
+        <div *ngIf="service.activeQuiz!.template !== 'quiz'">
+            <p-button [style]="{'min-width': '30%'}" (click)="back()" label="Vissza" ></p-button>
+            <p-button  [style]="{'min-width': '30%'}" *ngIf="service.index !== service.questions.length - 1"
+                       (click)="next()" label="Következő"></p-button>
+            <p-button [style]="{'min-width': '30%'}" *ngIf="service.index === service.questions.length - 1"
+                      (click)="submit()" label="Elküld"></p-button>
+        </div>
         <p-button [style]="{'min-width': '30%', 'margin-top': '2%'}"  (click)="service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')" label="Kilép"></p-button>
     </div>
     <p-dialog [visible]="service.end" [style]="{width: '50vw'}" [closable]="false" [modal]="true">

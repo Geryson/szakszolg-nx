@@ -24,6 +24,7 @@ export const TOKENS = {
                         type
                         answers {
                             text
+                            isCorrect
                         }
                     }
                 }

@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core'
-import { TokenService } from '../../../../shared/services/token.service'
-import { IQuizAnswerOption, IQuizQuestion } from '@szakszolg-nx/api-interfaces'
+import {Component, Input, OnInit} from '@angular/core'
+import {TokenService} from '../../../../shared/services/token.service'
+import {IQuizAnswerOption, IQuizQuestion} from '@szakszolg-nx/api-interfaces'
 import {STORAGE_KEY} from "../../../../shared/utils/constants";
 import {StorageService} from "../../../../shared/services/storage.service";
 
@@ -11,11 +11,27 @@ import {StorageService} from "../../../../shared/services/storage.service";
 })
 export class AnswerChooseComponent implements OnInit {
     @Input() quizQuestions: IQuizQuestion[] = []
-    constructor(public readonly service: TokenService, public readonly storage: StorageService) {}
+    public failed = false
+    public correctCounter = 0
 
-    ngOnInit() {}
+    constructor(public readonly service: TokenService, public readonly storage: StorageService) {
+    }
+
+    ngOnInit() {
+    }
+
+    ionViewDidLeave(){
+        this.failed = false
+        this.correctCounter = 0
+    }
 
     async next(answer: IQuizAnswerOption) {
+        if(!answer.isCorrect){
+            console.log('NEM JÓ')
+            this.failed = true
+            return
+        }
+        this.correctCounter++
         if (this.service.activeQuiz?.questions && this.service.index < this.service.activeQuiz.questions.length) {
             this.service.answers[this.service.index].answer = answer.text
             await this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()

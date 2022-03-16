@@ -64,7 +64,6 @@ export class FillSurveyPage implements OnInit{
                 this.service.answers?.push({
                     _id: null,
                     createdAt: new Date,
-
                     quizId: this.service.activeQuiz?._id,
                     questionId: question._id,
                     answer: '',
@@ -72,13 +71,6 @@ export class FillSurveyPage implements OnInit{
                 })
             }
         }
-
-        console.log(this.service.questions)
-        console.log(this.service.answers)
-        console.log('q length '+this.service.questions.length)
-        console.log('a length '+this.service.answers.length)
-        console.log('index '+this.service.index)
-
     }
 
     log() {
