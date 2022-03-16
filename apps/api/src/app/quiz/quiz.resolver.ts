@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql'
 import { QuizService } from './quiz.service'
 import { Quiz } from './entities/quiz.entity'
-import { UseGuards } from '@nestjs/common'
+import { Logger, UseGuards } from '@nestjs/common'
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard'
 import { GetQuizArgs } from './dto/args/get-quiz.args'
 import { IQuiz } from '@szakszolg-nx/api-interfaces'
@@ -20,8 +20,10 @@ export class QuizResolver {
     @Query(() => Quiz, { nullable: true })
     @UseGuards(GqlAuthGuard, PermissionGuard)
     @Permission('read')
-    quiz(@Args({ nullable: true }) data: GetQuizArgs): Promise<IQuiz> {
-        return this.service.findOne(data)
+    async quiz(@Args({ nullable: true }) data: GetQuizArgs): Promise<IQuiz> {
+        const res = await this.service.findOne(data)
+        Logger.log(`QuizResolver.quiz: ${JSON.stringify(res)}`)
+        return res
     }
 
     @Query(() => [Quiz], { nullable: 'items' })

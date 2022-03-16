@@ -1,4 +1,4 @@
-<nx12-header title='ADMIN_NAV.HANGMAN_WORDS_MANAGEMENT'></nx12-header>
+<nx12-header [logoutButton]='true' title='ADMIN_NAV.HANGMAN_WORDS_MANAGEMENT'></nx12-header>
 
 <ion-content>
     <p-table #dt [globalFilterFields]="['word', 'category']" [value]='values' responsiveLayout='stack' styleClass='p-table-stripped'>

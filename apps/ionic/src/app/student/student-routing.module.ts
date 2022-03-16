@@ -15,6 +15,10 @@ const routes: Routes = [
         path: lastPartOf(pages.student.fillSurvey),
         loadChildren: () => import('./fill-survey/fill-survey.module').then((m) => m.FillSurveyPageModule),
     },
+  {
+    path: 'survey-details',
+    loadChildren: () => import('./survey-details/survey-details.module').then( m => m.SurveyDetailsPageModule)
+  },
 ]
 
 @NgModule({

@@ -1,7 +1,7 @@
-<nx12-header title='ADMIN_NAV.HANGMAN_WORDS_MANAGEMENT'></nx12-header>
+<nx12-header [logoutButton]='true' title='ADMIN_NAV.HANGMAN_WORDS_MANAGEMENT'></nx12-header>
 
 <ion-content>
-    <div class="wrapper" *ngIf='!!word'>
+    <div *ngIf='!!word' class="wrapper">
         <div>
             <h4 class="ml-2">{{ 'MANAGE_HANGMAN_WORDS.WORD' | translate }}</h4>
             <input (click)='check("word")' [(ngModel)]='word!.word' pInputText type='text' class="sizes p-inputtext" maxlength="255" />

@@ -19,7 +19,6 @@ export class PermissionGuard implements CanActivate {
         if (context.getType() === 'http') user = context.switchToHttp().getRequest().user
         user = GqlExecutionContext.create(context).getContext().req.user
         if (!user) return false
-        Logger.warn(`${user.email} is trying to access ${required} with roles ${JSON.stringify(user.roles)}`)
         const userPermissions = flatten(user.roles.map((role) => role.permissions ?? [])).map((permission: string) =>
             permission.replace(/^\*::/g, `${requiredAbilities[0]}::`).replace(/::\*$/g, `::${requiredResource[0]}`),
         )

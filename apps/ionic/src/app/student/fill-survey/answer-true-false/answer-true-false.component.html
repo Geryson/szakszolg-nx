@@ -1,0 +1,12 @@
+<div>
+    <h4>
+        {{service.activeQuiz?.questions?.[service.index]?.question}}
+    </h4>
+    <div>
+        <p-button (click)="next('true')" label="Igaz"></p-button>
+    </div>
+    <div>
+        <p-button (click)="next('false')" label="Hamis"></p-button>
+    </div>
+</div>
+

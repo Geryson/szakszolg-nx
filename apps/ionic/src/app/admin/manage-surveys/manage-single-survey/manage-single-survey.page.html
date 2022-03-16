@@ -1,4 +1,4 @@
-<nx12-header [changed]='!areEqual(survey, originalSurvey)' title='MANAGE_SURVEYS.SINGLE.PAGE_TITLE'></nx12-header>
+<nx12-header [changed]='!areEqual(survey, originalSurvey)' [logoutButton]='true' title='MANAGE_SURVEYS.SINGLE.PAGE_TITLE'></nx12-header>
 
 <ion-content>
     <div *ngIf='survey' class='p-fluid grid p-3 pt-5'>
@@ -21,8 +21,8 @@
             </div>
                 <div *ngIf='survey?.template === "skill"' class='mb-4'>
                     <span class='p-float-label'>
-                        <input (input)='validator.check("skillQuestion")' [(ngModel)]='skillQuestion' id='questionText' pInputText
-                               type='text' maxlength="255">
+                        <input (input)='validator.check("skillQuestion")' [(ngModel)]='skillQuestion' [maxLength]='255' id='questionText' pInputText
+                               type='text'>
                         <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.QUESTION' | translate }}</label>
                     </span>
                     <div class='text-invalid my-1'>{{ validator.validationErrors['skillQuestion'] }}</div>
