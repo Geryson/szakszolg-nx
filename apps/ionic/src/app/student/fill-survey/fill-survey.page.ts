@@ -90,10 +90,6 @@ export class FillSurveyPage implements OnInit{
             console.log('oh shit')
             return
         }
-        if(!this.service.answers[this.service.index].answer) {
-            console.log('fk')
-            return
-        }
 
         this.service.index++
         this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
@@ -112,9 +108,13 @@ export class FillSurveyPage implements OnInit{
         this.service.index--
         this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
     }
+    ionViewDidLeave(){
+        this.service.answers = []
+    }
 
     submit() {
         this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
-        this.service.confirm('Itt a vége', 'Fuss el véle')
+        this.service.end = true
+        //this.service.answers = []
     }
 }

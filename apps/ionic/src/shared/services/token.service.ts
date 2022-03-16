@@ -20,6 +20,7 @@ export class TokenService {
     index = 0
     token?:string // delete this.tokenService.token
     activeOM = ''
+    end = false;
 
     constructor(@Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo,
                 private readonly storage: StorageService, private confirmationService: ConfirmationService,
@@ -54,6 +55,15 @@ export class TokenService {
         await this.storage.remove(STORAGE_KEY.SURVEY_QUESTIONS).then()
         await this.storage.remove(STORAGE_KEY.EDU_ID).then()
         this.redirect.to(pages.student.enterToken)
+    }
+    accept(){
+        this.end = false
+        this.cancel().then()
+    }
+
+    reject(){
+        this.end = false
+        return
     }
 
     confirm(message: string, header: string) {
