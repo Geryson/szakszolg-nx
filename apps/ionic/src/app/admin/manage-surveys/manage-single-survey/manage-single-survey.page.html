@@ -21,7 +21,7 @@
             </div>
                 <div *ngIf='survey?.template === "skill"' class='mb-4'>
                     <span class='p-float-label'>
-                        <input (input)='validator.check("skillQuestion")' [(ngModel)]='skillQuestion' id='questionText' pInputText
+                        <input (input)='validator.check("skillQuestion")' [(ngModel)]='skillQuestion' [maxLength]='255' id='questionText' pInputText
                                type='text'>
                         <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.QUESTION' | translate }}</label>
                     </span>
