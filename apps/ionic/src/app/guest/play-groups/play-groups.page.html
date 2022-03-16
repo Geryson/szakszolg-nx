@@ -2,91 +2,94 @@
 
 <ion-content>
 
-    <div *ngIf="groups" cdkDropListGroup>
-        <div class="example-container">
+    <div class="container" *ngIf="groups" cdkDropListGroup>
+        <div class="example-container word">
             <div
                 cdkDropList
                 [cdkDropListData]="wArray"
                 (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let item of wArray" cdkDrag>{{item}}</div>
+                <div class="example-box" *ngFor="let item of wArray" cdkDrag><div>{{item}}</div></div>
             </div>
         </div>
 
-        <div class="example-container">
-            <div
-                cdkDropList
-                [cdkDropListData]="first"
-                class="example-list"
-                (cdkDropListDropped)="drop($event)">
-                <h2>{{ groups[0] }}</h2>
-                <div class="example-box" *ngFor="let item of first" cdkDrag>{{item}}</div>
+        <div class="top">
+            <div class="example-container one">
+                <div
+                    cdkDropList
+                    [cdkDropListData]="first"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+
+                    <p>{{ groups[0] }}</p>
+
+                </div>
+            </div>
+
+            <div class="example-container two">
+                <div
+                    cdkDropList
+                    [cdkDropListData]="second"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+
+                    <p>{{ groups[1] }}</p>
+
+                </div>
             </div>
         </div>
 
-        <div class="example-container">
-            <div
-                cdkDropList
-                [cdkDropListData]="second"
-                class="example-list"
-                (cdkDropListDropped)="drop($event)">
-                <h2>{{ groups[1] }}</h2>
-                <div class="example-box" *ngFor="let item of second" cdkDrag>{{item}}</div>
+        <div class="bottom">
+            <div class="example-container three">
+                <div
+                    cdkDropList
+                    [cdkDropListData]="third"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+
+                    <p>{{ groups[2] }}</p>
+
+                </div>
+            </div>
+
+            <div class="example-container four">
+                <div
+                    cdkDropList
+                    [cdkDropListData]="fourth"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+
+                    <p>{{ groups[3] }}</p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="components">
+            <div class="quit">
+                <p-button (click)="quitConfirm()" label="Kilépés"></p-button>
+            </div>
+            <div class="answers">
+                Helyes válaszok száma: <p>{{ counter }}</p>
             </div>
         </div>
 
-        <div class="example-container">
-            <div
-                cdkDropList
-                [cdkDropListData]="third"
-                class="example-list"
-                (cdkDropListDropped)="drop($event)">
-                <h2>{{ groups[2] }}</h2>
-                <div class="example-box" *ngFor="let item of third" cdkDrag>{{item}}</div>
-            </div>
-        </div>
-
-        <div class="example-container">
-            <div
-                cdkDropList
-                [cdkDropListData]="fourth"
-                class="example-list"
-                (cdkDropListDropped)="drop($event)">
-                <h2>{{ groups[3] }}</h2>
-                <div class="example-box" *ngFor="let item of fourth" cdkDrag>{{item}}</div>
-            </div>
-        </div>
     </div>
 
 
 
-    <!--
-    <div>
-        <h3 pDraggable="products" (onDragStart)="dragStart(word)" (onDragEnd)="dragEnd()">{{newWord}}</h3>
-    </div>
-    <br>
-    <div class="col-12 md:col-6 drop-column">
-        <p-table [value]="groups ?? []">
-            <ng-template let-group pTemplate="body">
-                <tr pDroppable="products" (onDrop)="drop(group)">
-                    <td *ngIf="group === selectedGroup" class="{{group === correct ? 'green' : 'red'}}">{{group}}</td>
-                    <td *ngIf="group !== selectedGroup">{{group}}</td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </div>
-    -->
 
-    <p-dialog [visible]="noMoreWords" [closable]="false">
+    <p-dialog [visible]="noMoreWords" [closable]="false" [modal]="true">
         <p>Elfogytak a szavak</p>
+        <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="quit()"></button>
     </p-dialog>
 
-    <p-dialog header="sampletext" [(visible)]="guessedAnswer" [closable]="false" [modal]="true">
+    <p-dialog [(visible)]="guessedAnswer" [closable]="false" [modal]="true">
         <p>Talált!</p>
         <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="notCorrect" [closable]="false" [modal]="true">
+    <p-dialog [(visible)]="notCorrect" [closable]="false" [modal]="true">
         <p>Nem talált</p>
         <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
 </ion-content>
-

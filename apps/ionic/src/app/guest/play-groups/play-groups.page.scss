@@ -1,32 +1,131 @@
-.grid{
-    display: flex;
-    gap: 2rem;
+.container{
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas:
+        'top'
+        'word'
+        'bottom'
+        'components'
+    ;
+    width: 100%;
 }
 
-.random{
-    background-color: blue;
+.top {
+    display: grid;
+    grid-area: top;
+    grid-template-areas:
+        'one two'
+    ;
+    margin-top: 8%;
 }
+
+.bottom{
+    display: grid;
+    grid-area: bottom;
+    grid-template-areas:
+        'three four'
+    ;
+}
+
+.components{
+    display: grid;
+    grid-area: components;
+    grid-template-areas:
+        'quit answers'
+    ;
+}
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: two;
+}
+
+.three {
+    grid-area: three;
+}
+
+.four {
+    grid-area: four;
+}
+
+.word {
+    grid-area: word;
+}
+
+.quit {
+    grid-area: quit;
+    margin: 8% auto;
+}
+
+.answers {
+    grid-area: answers;
+    margin: 8% auto;
+}
+
 .red{
+    border: solid 1px #ccc;
     background-color: red !important;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
 }
 .green{
+    border: solid 1px #ccc;
     background-color: green !important;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
 }
 
 .example-container {
-    width: 400px;
-    max-width: 100%;
-    margin: 0 25px 25px 0;
-    display: inline-block;
-    vertical-align: top;
+    width: 70%;
+    margin: 0 auto;
 }
 
 
 .example-list {
     border: solid 1px #ccc;
-    min-height: 60px;
     background: white;
     border-radius: 4px;
     overflow: hidden;
-    display: block;
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
+}
+
+.example-box {
+    width: 70%;
+    margin: 10% auto 10%;
+    border: solid 1px #ccc;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
+    cursor: move;
+
+}
+
+@media screen and (orientation: landscape) {
+    html {
+        /* Rotate the content container */
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        /* Set content width to viewport height */
+        width: 100vh;
+        /* Set content height to viewport width */
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
 }

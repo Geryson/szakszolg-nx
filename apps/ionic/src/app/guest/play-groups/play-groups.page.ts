@@ -4,8 +4,10 @@ import { QueryRef } from 'apollo-angular'
 import { IGroupingItem } from '@szakszolg-nx/api-interfaces'
 import { Subscription } from 'rxjs'
 import { GroupingItemService } from '../../../shared/services/grouping-item.service'
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
-import {log} from "util";
+import {CdkDragDrop, transferArrayItem} from "@angular/cdk/drag-drop";
+import {RedirectService} from "../../../shared/services/redirect.service";
+import {pages} from "../../../shared/utils/pages.const";
+import {ConfirmationService} from "primeng/api";
 
 @Component({
     selector: 'nx12-play-groups',
@@ -16,30 +18,33 @@ export class PlayGroupsPage {
     correct?: string | undefined
     groups!: string[]
     word!: string
-    selectedGroup?: string
     guessedAnswer?: boolean
     notCorrect?: boolean
     private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }>
     private sub?: Subscription
-    private draggedWord?: string | null
     previousWords: string[] = []
     noMoreWords = false
 
-    wArray: string[] = [''];
+    wArray: string[] = []
     first: string[] = []
     second: string[] = []
     third: string[] = []
     fourth: string[] = []
 
+    answerId = -1
+    correctId = -1
 
-    constructor(private readonly service: GroupingItemService, private readonly alert: AlertService) {}
+    counter = 0
+
+    constructor(private readonly service: GroupingItemService, private readonly alert: AlertService,
+                private readonly redirect: RedirectService, private confirmationService: ConfirmationService) {}
 
     async init() {
         const loading = await this.alert.loading('MESSAGE.LOADING')
         this.queryRef = this.service.random()
         this.sub = this.queryRef.valueChanges.subscribe(
             (res) => (
-                (this.word = res.data.groupingItem.item ?? '!'),
+                (this.wArray = [] ,this.word = res.data.groupingItem.item ?? '!'),
                 (console.log(this.word), this.wArray.push(this.word)),
                 (this.correct = res.data.groupingItem.correct ?? '!', console.log('correct: '+this.correct)),
                 (this.groups = res.data.groupingItem.groups ?? [])
@@ -52,10 +57,6 @@ export class PlayGroupsPage {
         this.init().then()
     }
 
-    dragStart(word: string | undefined) {
-        this.draggedWord = word
-    }
-
     drop(event: CdkDragDrop<string[]>/*group: string*/) {
             transferArrayItem(
                 event.previousContainer.data,
@@ -65,57 +66,89 @@ export class PlayGroupsPage {
             );
 
             const length = event.container.id.length
-            
-            const answerId = +event.container.id.substring(length-1, length) - 1
-            const correctId = this.groups.findIndex(x => x === this.correct)
 
-            if (correctId === answerId)
-                console.log('Helyes')
-            else
-                console.log('Helytelen')
+            this.answerId = +event.container.id.substring(length-1, length) - 1
+            this.correctId = this.groups.findIndex(x => x === this.correct)
 
-
-        /*if (this.draggedWord) {
-            this.selectedGroup = group
-            this.guessedAnswer = group === this.correct
-            if (!this.guessedAnswer) {
-                this.notCorrect = true
-                this.correct = undefined
+            if (this.correctId === this.answerId)
+            {
+                this.guessedAnswer = true
+                this.counter += 1
             }
-            this.draggedWord = null
-        }*/
-    }
+            else{
+                this.notCorrect = true
+            }
 
-    dragEnd() {
-        this.draggedWord = null
+            this.wArray = []
+            this.first = []
+            this.second = []
+            this.third = []
+            this.fourth = []
     }
 
     async nextWord() {
         let tries = 0
-
-        this.selectedGroup = ""
         this.previousWords.push(this.word)
 
         const loading = await this.alert.loading('MESSAGE.LOADING')
-
+        this.wArray = []
         await this.queryRef?.refetch()
 
         while (this.previousWords.includes(this.word)){
             if (tries < 5){
+                this.wArray = []
                 await this.queryRef?.refetch()
                 tries++
             }
             else
             {
+                this.wArray = []
                 this.noMoreWords = true
-                console.log('else')
                 break
             }
         }
+
+        this.answerId = - 1
+        this.correctId = - 1
 
         console.log(this.previousWords)
         loading.dismiss().then()
         this.guessedAnswer = false
         this.notCorrect = false
+    }
+
+    quit() {
+        this.counter = 0
+        this.guessedAnswer = false
+        this.notCorrect = false
+        this.noMoreWords = false
+
+        this.answerId = - 1
+        this.correctId = - 1
+
+        this.wArray = []
+        this.first = []
+        this.second = []
+        this.third = []
+        this.fourth = []
+
+        this.previousWords = []
+
+        this.redirect.to(pages.guest.guestRoom)
+    }
+
+    quitConfirm() {
+        this.confirmationService.confirm({
+            message: 'Biztos hogy ki akarsz lépni?',
+            header: 'Kilépés',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.quit()
+            },
+            reject: (type: any) => {
+                return
+            }
+
+        });
     }
 }
