@@ -1,5 +1,7 @@
-.p-buttonset {
-    .p-button-primary, .p-button-danger {
-        margin: 2px;
-    }
+.p-button {
+    border-radius: 5px;
+}
+
+.p-button-danger {
+    border: 0 !important;
 }

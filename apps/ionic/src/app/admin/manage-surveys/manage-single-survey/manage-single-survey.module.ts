@@ -19,6 +19,8 @@ import { DialogModule } from 'primeng/dialog'
 import { DropdownModule } from 'primeng/dropdown'
 import { ListboxModule } from 'primeng/listbox'
 import { CategoryEditFormComponent } from './category-edit-form/category-edit-form.component'
+import { SelectButtonModule } from 'primeng/selectbutton'
+import { MessageModule } from 'primeng/message'
 
 @NgModule({
     imports: [
@@ -36,6 +38,8 @@ import { CategoryEditFormComponent } from './category-edit-form/category-edit-fo
         DialogModule,
         DropdownModule,
         ListboxModule,
+        SelectButtonModule,
+        MessageModule,
     ],
     declarations: [ManageSingleSurveyPage, QuestionEditFormComponent, CategoryEditFormComponent],
 })

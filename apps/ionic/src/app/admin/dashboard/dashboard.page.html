@@ -1,23 +1,10 @@
-<ion-header mode="ios" translucent="true">
-    <div id="yellowLine"></div>
-    <ion-toolbar color="secondary">
-        <ion-buttons class="nav-buttons-container" slot="start">
-            <ion-button class="nav-button" routerLink="/home" slot="start">
-                <ion-icon ios="home" md="home"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title class="nav-title" text-center>{{ 'NAVIGATION.MENU' | translate }}</ion-title>
-        <ion-button (click)="onClickLogOut()" class="nav-button exitbtn" routerLink="/home" slot="end">
-            <ion-icon name="exit"></ion-icon>
-        </ion-button>
-    </ion-toolbar>
-</ion-header>
+<nx12-header [logoutButton]="true" title='NAVIGATION.MENU'></nx12-header>
 
 <ion-content fullscreen="true">
-    <div class="mainContainer">
+      <div class="mainContainer">
         <ion-button routerLink="{{ link(pages.admin.users + '/' + this.user?._id) }}" shape="round navBtn">{{ 'ADMIN_NAV.OWN_USER_MANAGEMENT' | translate }}</ion-button>
         <ion-button *ngIf="canManageUsers" routerLink="{{ link(pages.admin.users) }}" shape="round navBtn">{{ 'ADMIN_NAV.USERS_MANAGEMENT' | translate }}</ion-button>
-        <ion-button *ngIf="canManageRoles" routerLink="{{ link(pages.admin.roles) }}" shape="round navBtn">{{ 'ADMIN_NAV.ROLE_RIGHTS' | translate }}</ion-button>
+<!--        <ion-button *ngIf="canManageRoles" routerLink="{{ link(pages.admin.roles) }}" shape="round navBtn">{{ 'ADMIN_NAV.ROLE_RIGHTS' | translate }}</ion-button>-->
         <ion-button routerLink="{{ link(pages.admin.surveysManagement) }}" shape="round navBtn">{{ 'ADMIN_NAV.FORM_MANAGEMENT' | translate }}</ion-button>
         <ion-button routerLink="{{ link(pages.admin.mirrorWords) }}" shape="round navBtn">{{ 'ADMIN_NAV.MIRROR_MANAGEMENT' | translate }}</ion-button>
 <!--        <ion-button routerLink="/pairs-list" shape="round navBtn">{{ 'ADMIN_NAV.PAIRS_MANAGEMENT' | translate }}</ion-button>-->

@@ -1,0 +1,14 @@
+<div>
+    <h4>
+        {{service.activeQuiz?.questions?.[service.index]?.question}}
+    </h4>
+
+    <div *ngFor="let item of service.activeQuiz!.questions[service.index].answers">
+        <div>
+            <p-button (click)="next(item)" label="{{item}}"></p-button>
+        </div>
+    </div>
+
+
+</div>
+

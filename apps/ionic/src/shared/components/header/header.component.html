@@ -7,7 +7,7 @@
             </ion-button>
         </ion-buttons>
         <ion-title class='nav-title' text-center>{{ title | translate }}</ion-title>
-        <ion-button (click)='onClickLogOut()' class='nav-button exitbtn' routerLink='/home' slot='end'>
+        <ion-button (click)='onClickLogOut()' *ngIf='logoutButton' class='nav-button exitbtn' routerLink='/home' slot='end'>
             <ion-icon name='exit'></ion-icon>
         </ion-button>
     </ion-toolbar>

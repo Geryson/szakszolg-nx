@@ -1,4 +1,4 @@
-<nx12-header title='MANAGE_SURVEYS.TITLE'></nx12-header>
+<nx12-header [logoutButton]='true' title='MANAGE_SURVEYS.TITLE'></nx12-header>
 
 <ion-content>
     <p-table #dt [globalFilterFields]='["title", "description", "categories", "_id"]' [value]='values'
@@ -12,7 +12,7 @@
                            placeholder="{{ 'MANAGE_SURVEYS.SEARCH' | translate }}" type='text' />
                 </span>
                 <span>
-                    <button (click)='addClick()' class='p-button-success' icon='pi pi-plus' pButton
+                    <button (click)='addClick()' class='p-button-primary' icon='pi pi-plus' pButton
                             type='button'></button>
                 </span>
             </div>

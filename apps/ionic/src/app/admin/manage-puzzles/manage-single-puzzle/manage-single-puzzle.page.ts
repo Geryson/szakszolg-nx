@@ -4,6 +4,7 @@ import { Log } from '../../../../shared/utils/log.tools'
 import { RedirectService } from '../../../../shared/services/redirect.service'
 import { showLoading } from '../../../../shared/utils/observable.tools'
 import { PuzzleService } from '../../../../shared/services/puzzle.service'
+import { pages } from '../../../../shared/utils/pages.const'
 
 @Component({
     selector: 'nx12-manage-single-puzzle',
@@ -11,6 +12,7 @@ import { PuzzleService } from '../../../../shared/services/puzzle.service'
     styleUrls: ['./manage-single-puzzle.page.scss'],
 })
 export class ManageSinglePuzzlePage {
+    pages = pages
     uploadedFiles: any[] = []
     constructor(
         private readonly messageService: MessageService,
