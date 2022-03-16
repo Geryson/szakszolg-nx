@@ -39,3 +39,11 @@ export const omit: Omit2 = (obj, ...keys) => {
     }
     return result
 }
+
+export function debounce<TRes>(f: () => TRes, interval = 300): Promise<TRes> {
+    let timer: NodeJS.Timeout | null = null
+    if (timer) clearTimeout(timer)
+    return new Promise((resolve) => {
+        timer = setTimeout(() => resolve(f()), interval)
+    })
+}

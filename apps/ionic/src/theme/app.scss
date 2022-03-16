@@ -1,5 +1,23 @@
+.p-button-danger {
+    background-color: var(--ion-color-danger) !important;
+    border: 0 !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
 .d-none {
     display: none !important;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.text-invalid {
+    color: var(--ion-color-danger);
+    font-size: 0.8rem;
 }
 
 .w-100 {

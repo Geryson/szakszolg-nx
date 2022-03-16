@@ -276,14 +276,23 @@
         "TITLE": "Kérdőívek kezelése",
         "DESCRIPTION": "Leírás",
         "CATEGORIES": "Kategóriák",
+        "SEARCH": "Keresés cím alapján",
         "ID": "Azonosító",
         "SINGLE": {
+            "QUESTION": "A kérdés",
             "NEW_QUESTION": "Új kérdés felvétele",
             "NEW_ANSWER_PAIR": "Új válaszpár",
             "PAGE_TITLE": "Kérdéssor kezelése",
             "TITLE": "Kérdőív címe",
             "DESCRIPTION": "Leírás",
-            "CATEGORIES": "Kategóriák"
+            "CATEGORIES": "Kategóriák",
+            "ERROR": {
+                "TITLE": "A cím kitöltése kötelező",
+                "DESCRIPTION": "A leírás kitöltése kötelező",
+                "QUESTIONS": "Nincsennek elemek megadva",
+                "SKILLQUESTION": "Nincs megadva kérdés",
+                "CATEGORIES": "Nincs kategória megadva"
+            }
         }
     },
 
@@ -295,6 +304,10 @@
         "TYPE": "Típus",
         "IS_SOLUTION": "Megoldás",
         "NOT_SOLUTION": "Nem megoldás",
+        "NO_ANSWERS": "Nincsennek válaszok megadva",
+        "NO_ITEMS": "Nincsennek megjeleníthető elemek",
+        "NEW_ANSWER": "Új válasz...",
+        "CATEGORIES": "Kategóriák",
         "ERRORS": {
             "QUESTION_EMPTY": "A kérdés szövegét kötelező kitölteni",
             "ANSWER_EMPTY": "A válasz szövegét kötelező kitölteni",
@@ -339,6 +352,10 @@
     },
 
     "FORM_OPERATION":  {
+        "TRUE": "Igaz",
+        "FALSE": "Hamis",
+        "NA": "Nincs",
+        "NOTHING": "semleges",
         "COPY": "Másolás",
         "COPIED": "Másolva",
         "NO_ITEMS": "Nincsennek megjeleníthető elemek",

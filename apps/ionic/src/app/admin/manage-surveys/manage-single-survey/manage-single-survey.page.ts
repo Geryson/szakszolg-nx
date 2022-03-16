@@ -6,12 +6,12 @@ import { QueryRef } from 'apollo-angular'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { first, Subscription } from 'rxjs'
 import { ConfirmationService, MessageService } from 'primeng/api'
-import { TranslatePipe } from '@ngx-translate/core'
 import { NavController } from '@ionic/angular'
 import { SurveyService } from '../../../../shared/services/survey.service'
 import { areEqual, deepCopy, omit } from '../../../../shared/utils/object.tools'
-import { Log } from 'apps/ionic/src/shared/utils/log.tools'
+import { Log } from '../../../../shared/utils/log.tools'
 import { showLoading } from '../../../../shared/utils/observable.tools'
+import { translate, Validator } from '../../../../shared/utils/translation.tools'
 
 @Component({
     selector: 'nx12-manage-single-survey',
@@ -23,11 +23,12 @@ export class ManageSingleSurveyPage {
     originalSurvey?: Partial<IQuiz>
     areEqual = areEqual
     NG_ICON = NG_ICON
-    validationErrors: { [key: string]: string } = {}
     templateDialog = 0
     questionEditing?: IQuizQuestion
     categoryDialog = false
     skillQuestion = ''
+    options: { name: string; value: number }[] = []
+    validator = new Validator<IQuiz>()
     private originalQuestionEditing?: IQuizQuestion
     private queryRef?: QueryRef<{ quiz: Partial<IQuiz> }>
     private sub = new Subscription()
@@ -36,7 +37,6 @@ export class ManageSingleSurveyPage {
         private readonly activatedRoute: ActivatedRoute,
         private readonly surveyService: SurveyService,
         private readonly confirmation: ConfirmationService,
-        private readonly translate: TranslatePipe,
         private readonly nav: NavController,
         private readonly toast: MessageService,
     ) {}
@@ -45,45 +45,38 @@ export class ManageSingleSurveyPage {
         this.init().then()
     }
 
-    check(prop: keyof IQuiz) {
-        const validation = validations[prop](this.survey![prop as keyof IQuiz], prop)
-        setTimeout(() => {
-            if (!validation) this.validationErrors[prop] = this.translate.transform(`USER_EDIT.ERROR.${prop}`)
-            // TODO: translate and show on UI
-            else this.validationErrors[prop] = ''
-        }, 50)
-        return !validation
-    }
-
     ionViewDidLeave() {
         this.sub?.unsubscribe()
     }
 
     save() {
-        if (this.survey?._id) {
-            this.update()
+        if (!this.validator?.valid) {
+            this.validator?.check()
             return
         }
-        this.create()
+        if (this.survey?._id) {
+            this.update().then()
+            return
+        }
+        this.create().then()
     }
 
     addClick() {
-        Log.debug('ManageSingleSurveyPage::addClick', 'template', this.survey)
-        const newQuestion: IQuizQuestion = {
-            _id: this.getNextId(),
-            type: !(this.survey?.template === 'custom' || this.survey?.template === 'quiz')
-                ? this.survey?.template ?? 'free'
-                : '',
-            createdAt: new Date(),
-            question: this.survey?.template === 'skill' ? this.skillQuestion : '',
-            answers: [],
-        }
+        if (
+            (this.survey?.template !== 'quiz' && !this.survey?.categories?.length) ||
+            (this.survey?.template === 'skill' && !this.skillQuestion)
+        )
+            return
+
+        this.options = this.survey?.categories?.map((c, i) => ({ name: c, value: i })) ?? []
         if (!this.survey?.questions) this.survey!.questions = []
+        const newQuestion: IQuizQuestion = this.getNewQuestion()
         this.questionEditing = newQuestion
         this.originalQuestionEditing = deepCopy(newQuestion)
     }
 
     editClick(item: IQuizQuestion) {
+        this.options = this.survey?.categories?.map((c, i) => ({ name: c, value: i })) ?? []
         this.questionEditing = item
         this.originalQuestionEditing = deepCopy(item)
     }
@@ -100,21 +93,38 @@ export class ManageSingleSurveyPage {
     }
 
     formSubmitted($event: IQuizQuestion) {
+        if (!this.survey) throw 'No survey'
+        if (!this.survey.questions) this.survey.questions = []
+
         delete this.questionEditing
         delete this.originalQuestionEditing
-        this.survey?.questions?.push($event)
+        if ($event._id) {
+            const index = this.survey.questions.findIndex((question) => question._id === $event._id)
+            if (index >= 0) this.survey.questions[index] = $event
+            else this.survey.questions.push($event)
+        } else {
+            this.survey.questions.push($event)
+        }
+        this.validator?.check('questions')
     }
 
-    templateChosen(template: string) {
+    async templateChosen(template: string) {
         switch (template) {
             case 'template/':
                 this.templateDialog = 2
                 return
             case 'custom':
                 this.survey!.template = 'custom'
+                this.initValidator()
+                break
+            case 'true-false':
+                //this.survey!.categories = [await translate('FORM_OPERATION.NOTHING')] // Automatically add "nothing" category
+                this.survey!.template = template
+                this.initValidator()
                 break
             default:
                 this.survey!.template = template
+                this.initValidator()
                 break
         }
 
@@ -128,6 +138,24 @@ export class ManageSingleSurveyPage {
 
     openCategoryManagement() {
         this.categoryDialog = true
+    }
+
+    categoryEditClosing() {
+        this.categoryDialog = false
+        this.validator?.check('categories')
+    }
+
+    private getNewQuestion() {
+        return {
+            _id: this.getNextId(),
+            type: !(this.survey?.template === 'custom' || this.survey?.template === 'quiz')
+                ? this.survey?.template ?? 'free'
+                : '',
+            categoryIndex: -1,
+            createdAt: new Date(),
+            question: this.survey?.template === 'skill' ? this.skillQuestion : '',
+            answers: [],
+        }
     }
 
     private async init() {
@@ -152,9 +180,12 @@ export class ManageSingleSurveyPage {
                         this.survey = deepCopy(data.quiz)
                         if (this.survey.categories?.length === 0) this.survey.categories = ['']
                         this.originalSurvey = deepCopy(this.survey)
+                        if (this.survey?.template === 'skill')
+                            this.skillQuestion = this.survey?.questions?.[0]?.question ?? ''
+                        this.initValidator()
                     }),
                 )
-                this.queryRef?.refetch().then()
+                this.queryRef?.refetch().then(() => this.initValidator())
             }),
         )
     }
@@ -175,27 +206,41 @@ export class ManageSingleSurveyPage {
             .subscribe(() => this.saveCallback(l))
     }
 
-    private saveCallback(l: HTMLIonLoadingElement) {
+    private async saveCallback(l: HTMLIonLoadingElement) {
         this.originalSurvey = { ...this.survey }
         this.toast.add({
             severity: 'success',
-            summary: this.translate.transform('FORM_OPERATION.SUCCESS'),
-            detail: this.translate.transform('FORM_OPERATION.SUCCESS_DETAIL'),
+            summary: await translate('FORM_OPERATION.SUCCESS'),
+            detail: await translate('FORM_OPERATION.SUCCESS_DETAIL'),
         })
         l.dismiss().then()
         this.nav.back()
     }
 
-    private getNextId(): string {
-        if (!this.survey?.questions) return '0'
-        const next = (
+    private getNextId(): number {
+        if (!this.survey?.questions) return 0
+        return (
             this.survey?.questions
                 ?.map((question) => parseInt(question._id))
                 .reduce((max, question_id) => Math.max(max, question_id), 0) + 1
-        ).toString()
-        Log.debug('ManageSingleSurveyPage::getNextId', 'next', next)
-        return next
+        )
+    }
+
+    private initValidator() {
+        this.validator.init({
+            subjectFactory: (__) => this.survey!,
+            attributeFactory: (prop) =>
+                prop === 'skillQuestion' ? this.skillQuestion : this.survey?.[prop as keyof IQuiz],
+            translationKey: 'MANAGE_SURVEYS.SINGLE',
+            properties: ['title', 'description', 'categories', 'questions', 'skillQuestion'],
+            rules: {
+                title: (survey, title) => !!title,
+                description: (survey, description) => !!description,
+                questions: (survey, questions) => !!questions && (questions as IQuizQuestion[]).length > 0,
+                categories: (survey, categories) =>
+                    survey.template === 'quiz' || (!!categories && (categories as string[]).length > 0),
+                skillQuestion: (survey, skillQuestion) => survey.template !== 'skill' || !!skillQuestion,
+            },
+        })
     }
 }
-
-const validations: { [key: string]: (value: string, attribute: string) => boolean } = {}

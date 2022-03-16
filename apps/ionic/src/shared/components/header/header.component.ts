@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core'
+import { Component, Input } from '@angular/core'
 import { NavController } from '@ionic/angular'
 import { ConfirmationService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
@@ -9,8 +9,10 @@ import { AuthService } from '../../services/auth.service'
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
     @Input() title = ''
+    @Input() logoutButton = false
+    @Input() target = ''
     @Input() changed = false
 
     constructor(
@@ -20,24 +22,28 @@ export class HeaderComponent implements OnInit {
         private readonly translate: TranslatePipe,
     ) {}
 
-    ngOnInit() {}
-
     back() {
         if (this.changed) {
             this.confirm.confirm({
                 closeOnEscape: true,
                 header: this.translate.transform('SHARED.LEAVE_PAGE_CONFIRM_HEADER'),
                 message: this.translate.transform('SHARED.LEAVE_PAGE_CONFIRM'),
-                accept: () => {
-                    this.nav.back()
-                },
+                accept: () => this.navigate(),
             })
         } else {
-            this.nav.back()
+            this.navigate()
         }
     }
 
     onClickLogOut() {
         this.authService.logout()
+    }
+
+    private navigate() {
+        if (this.target) {
+            this.nav.navigateBack(this.target).then()
+        } else {
+            this.nav.back()
+        }
     }
 }

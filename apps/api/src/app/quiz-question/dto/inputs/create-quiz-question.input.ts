@@ -6,7 +6,13 @@ import { CreateQuizAnswerOptionInput } from '../../../quiz-answer-option/dto/inp
 @InputType()
 export class CreateQuizQuestionInput extends GqlInput {
     @Field()
+    _id: number
+
+    @Field()
     question: string
+
+    @Field({ nullable: true })
+    categoryIndex?: number
 
     @Field()
     type: string
