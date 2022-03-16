@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core'
 import { TableModule } from 'primeng/table'
 import { InputTextModule } from 'primeng/inputtext'
 import { ButtonModule } from 'primeng/button'
+import { NxSharedModule } from '../../../shared/nx-shared.module'
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import { ButtonModule } from 'primeng/button'
         TableModule,
         InputTextModule,
         ButtonModule,
+        NxSharedModule,
     ],
     declarations: [ManageUsersPage],
 })

@@ -1,4 +1,4 @@
-<nx12-header title='MANAGE_SURVEYS.TITLE'></nx12-header>
+<nx12-header [logoutButton]='true' title='MANAGE_SURVEYS.TITLE'></nx12-header>
 
 <ion-content>
     <p-table #dt [globalFilterFields]='["title", "description", "categories", "_id"]' [value]='values'
