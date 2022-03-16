@@ -7,7 +7,7 @@ import {AnswerService} from "../../../../shared/services/answer.service";
 import {date} from "joi";
 import {log} from "util";
 import {showLoading} from "../../../../shared/utils/observable.tools";
-import {first} from "rxjs";
+import {first, firstValueFrom} from "rxjs";
 
 @Component({
     selector: 'nx12-answer-choose',
@@ -16,22 +16,23 @@ import {first} from "rxjs";
 })
 export class AnswerChooseComponent implements OnInit{
     @Input() quizQuestions: IQuizQuestion[] = []
-    public failed = false
-
+    public finish = false
+    correctAnswers=0
     constructor(public readonly service: TokenService, public readonly storage: StorageService, protected readonly sendData: AnswerService) {
     }
 
     ngOnInit() {
+        this.correctAnswers=this.service.index
     }
 
     ionViewDidLeave(){
-        this.failed = false
+        this.finish = false
     }
 
     async next(answer: IQuizAnswerOption) {
         if(!answer.isCorrect){
             console.log('NEM JÓ')
-            this.failed = true
+            this.finish = true
             return
         }
         if (this.service.activeQuiz?.questions && this.service.index < this.service.activeQuiz.questions.length) {
@@ -42,26 +43,26 @@ export class AnswerChooseComponent implements OnInit{
                 const l = await showLoading()
                 for (const answerElement of this.service.answers) {
                     console.log(answerElement.questionId)
-                    promises.push(new Promise<any>(
-                        () => this.sendData.create(
+                    promises.push(firstValueFrom(this.sendData.create(
                             answerElement.answer,
                             answerElement.quizId,
-                            +(answerElement.quizId + '/' +answerElement.questionId),
+                            answerElement.questionId,
                             answerElement.createdAt,
                             answerElement.om
 
-                        ).pipe(first()).subscribe(res => {
-                            console.log(res)
-                        }))
+                        ))
                     )
                 }
-                //this.sendData.create('asd', '6c53v', 2, new Date(), '7777777').subscribe(res => console.log(res))
                 await Promise.all(promises)
                 l.dismiss().then()
                 console.log('Bent vagyok')
+                this.correctAnswers=this.service.index
+                this.correctAnswers++
+                this.finish=true
                 return
             }
             this.service.index++
+            this.correctAnswers=this.service.index
             await this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
             console.log('Itt van')
         }
