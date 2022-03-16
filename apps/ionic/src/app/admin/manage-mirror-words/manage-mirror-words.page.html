@@ -19,7 +19,7 @@
                     <input #searchInput (input)='filter(searchInput)' pInputText
                            placeholder="{{ 'MIRROR_LIST.SEARCH_BY_TEXT' | translate}}" type='text' maxlength="80" />
                 </span>
-                <p-button (click)='clear(searchInput)' [disabled]='!searchInput.value'
+                <p-button (click)='clear(searchInput)' [disabled]='!searchInput.value' styleClass='p-button-primary'
                         icon='pi pi-{{ NG_ICON.filterSlash }}' label="{{ 'MIRROR_LIST.CLEAR' | translate}}"></p-button>
                 <p-button (click)='openAddDialogue()' styleClass='p-button p-button-success'
                         icon='pi pi-{{ NG_ICON.plusCircle }}' label=''></p-button>
