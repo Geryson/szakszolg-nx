@@ -8,6 +8,7 @@ import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/n
 import { getImageUrl } from '../../../../shared/utils/uri.tools'
 import { RedirectService } from '../../../../shared/services/redirect.service'
 import { pages } from '../../../../shared/utils/pages.const'
+import { Log } from '../../../../shared/utils/log.tools'
 
 @Component({
     selector: 'nx12-puzzle-scaler',
@@ -40,6 +41,8 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
     currentXRemainder?: number
     currentYRemainder?: number
     currentFullColumns?: number
+    failedOrientationLock = false
+    requiredOrientation: 'portrait' | 'landscape' | 'any' = 'any'
 
     @ViewChild('puzzleCropper') public puzzleCropper?: CropperComponent
 
@@ -50,9 +53,7 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
         public readonly translatePipe: TranslatePipe,
         private readonly alertController: AlertController,
         private readonly screenOrientation: ScreenOrientation,
-    ) {
-        platform.ready().then(() => this.lockLandscape())
-    }
+    ) {}
 
     ngOnInit() {
         if (!this.service.activePuzzle) throw 'No active puzzle'
@@ -237,12 +238,16 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
                     ],
                 })
                 await alert.present()
-                this.lockPortrait()
             })
     }
 
     ionViewDidEnter() {
+        this.lockLandscape().then()
         this.platform.backButton.subscribeWithPriority(0, () => this.presentAlertConfirm())
+    }
+
+    ionViewDidLeave() {
+        this.unlockOrientation()
     }
 
     async presentAlertConfirm() {
@@ -274,22 +279,25 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
         this.cropperFace.style.backgroundSize = value + 'px'
     }
 
-    private lockPortrait() {
-        window.screen.orientation.unlock()
-        this.unlockOrientation()
-        window.screen.orientation.lock('portrait').then()
-        this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT).then()
-    }
-
     private lockLandscape() {
-        window.screen.orientation.unlock()
-        this.unlockOrientation()
-        window.screen.orientation.lock('landscape').then()
-        return this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)
+        return this.screenOrientation
+            .lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)
+            .then(() => (this.failedOrientationLock = false))
+            .catch((e) => {
+                console.error('Failed to lock orientation', e)
+                this.failedOrientationLock = true
+            })
     }
 
     private unlockOrientation() {
-        window.screen.orientation.unlock()
-        this.screenOrientation.unlock()
+        try {
+            this.screenOrientation.unlock()
+        } catch (e: any) {
+            Log.info(
+                'PuzzleScalerPage::unlockOrientation',
+                'Failed to unlock orientation. Ignored the following error:',
+                e.getMessage(),
+            )
+        }
     }
 }

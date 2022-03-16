@@ -1,14 +1,14 @@
-<ion-header mode='ios' translucent='true'>
+<ion-header class='text-primary' mode='ios' translucent='true'>
     <div id='yellowLine'></div>
     <ion-toolbar color='secondary'>
         <ion-buttons class='nav-buttons-container' slot='start'>
-            <ion-button (click)='back()' class='nav-button' slot='start'>
-                <ion-icon name='arrow-back'></ion-icon>
+            <ion-button (click)='back()' class='nav-button text-primary' slot='start'>
+                <ion-icon color='primary' name='arrow-back'></ion-icon>
             </ion-button>
         </ion-buttons>
-        <ion-title class='nav-title' text-center>{{ title | translate }}</ion-title>
+        <ion-title class='nav-title' color='primary' text-center>{{ title | translate }}</ion-title>
         <ion-button (click)='onClickLogOut()' *ngIf='logoutButton' class='nav-button exitbtn' routerLink='/home' slot='end'>
-            <ion-icon name='exit'></ion-icon>
+            <ion-icon color='primary' name='exit'></ion-icon>
         </ion-button>
     </ion-toolbar>
 </ion-header>
