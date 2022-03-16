@@ -1,17 +1,4 @@
-<ion-header mode='ios' translucent='true'>
-    <div id='yellowLine'></div>
-    <ion-toolbar color='secondary'>
-        <ion-buttons class='nav-buttons-container' slot='start'>
-            <ion-button class='nav-button' routerLink='{{ link(pages.admin.dashboard) }}' slot='start'>
-                <ion-icon name='arrow-back'></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title class='nav-title' text-center>{{ 'NAVIGATION.USERS' | translate }}</ion-title>
-        <ion-button (click)='onClickLogOut()' class='nav-button exitbtn' routerLink='/home' slot='end'>
-            <ion-icon name='exit'></ion-icon>
-        </ion-button>
-    </ion-toolbar>
-</ion-header>
+<nx12-header title='NAVIGATION.USERS' [logoutButton]='true'>
 
 <ion-content>
     <main>

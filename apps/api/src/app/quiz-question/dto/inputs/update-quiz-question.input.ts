@@ -14,6 +14,9 @@ export class UpdateQuizQuestionInput extends IdInput implements IUpdatedAt {
     @Field({ nullable: true })
     type: string
 
+    @Field({ nullable: true })
+    categoryIndex?: number
+
     @Field(() => [UpdateQuizAnswerOptionInput], { nullable: 'itemsAndList' })
     answers?: IQuizAnswerOption[]
 

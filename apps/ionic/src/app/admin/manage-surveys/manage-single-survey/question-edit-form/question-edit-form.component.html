@@ -1,19 +1,25 @@
 <div class='p-fluid grid p-3 pt-5'>
     <div class='field col-12'>
+
+        <!-- region Question Title input -->
         <div *ngIf='template !== "skill"' class='mb-4'>
             <span class='p-float-label'>
-                <input [(ngModel)]='question.question' [disabled]='template === "skill"' id='title' pInputText
-                       type='text'>
+                <input [(ngModel)]='question.question' [disabled]='template === "skill"' [maxLength]='80' id='title'
+                       pInputText type='text'>
                 <label for='title'>{{ 'MANAGE_QUESTIONS.QUESTION' | translate }}</label>
             </span>
         </div>
+        <!-- endregion Question Title input -->
+
+
+        <!-- region Question Type Chooser -->
         <div *ngIf='template === "custom" || template === "quiz"' class='mb-4'>
             <span class='p-float-label'>
                 <p-dropdown (onChange)='questionTypeChanged($event)' [(ngModel)]='question.type'
                             [autoDisplayFirst]='false'
-                            [disabled]='template !== "custom" && template !== "quiz"'
+                            [disabled]='template !== "custom"'
                             [options]='questionTypes'
-                            [placeholder]='(template !== "custom" && template !== "quiz"
+                            [placeholder]='(template !== "custom"
                                     ? "MANAGE_QUESTIONS.TEMPLATE2." + templateKey
                                     : "FORM_OPERATION.PLEASE_CHOOSE"
                                 ) | translate'
@@ -28,11 +34,23 @@
                             {{ ('MANAGE_QUESTIONS.TYPES.' + question.type.toUpperCase()) | translate }}
                         </div>
                     </ng-template>
-
                 </p-dropdown>
                 <label for='type'>{{ 'MANAGE_QUESTIONS.TYPE' | translate }}</label>
             </span>
         </div>
+        <!-- endregion Question Type Chooser -->
+
+
+        <!-- region Question category input --> <!-- (Only when type is 'rating') -->
+        <div *ngIf='template === "rating"' class='mb-4'>
+            <p-dropdown *ngIf='options.length' [(ngModel)]='question.categoryIndex'
+                        [options]='options'
+                        optionLabel='name' optionValue='value' styleClass='w-100'></p-dropdown>
+        </div>
+        <!-- endregion Question category input -->
+
+
+        <!-- region Operation Buttons -->
         <div class='mb-4'>
                 <span class='p-buttonset'>
                     <p-button (click)='save()' [disabled]='
@@ -49,15 +67,24 @@
                               styleClass='p-button-primary'></p-button>
                 </span>
         </div>
+        <!-- endregion Operation Buttons -->
+
+
+        <!-- region Answer block -->
         <div *ngIf='question.type && !["free", "rating"].includes(question.type)' class='mb-4'>
-            <div *ngIf='question.type !== "true-false"' class='my-4'>
+            <!-- region Answer input -->
+            <div *ngIf='question.type !== "true-false" && !(question.type === "skill" && (question.answers?.length ?? 0) > 1)' class='my-4'>
                 <span class='p-float-label'>
-                    <input #newAnswer (keydown.enter)='addAnswer(newAnswer)' id='newAnswer' pInputText type='text'>
+                    <input #newAnswer (keydown.enter)='addAnswer(newAnswer)' [maxLength]='255' id='newAnswer' pInputText type='text'>
                     <label for='newAnswer'>{{ 'MANAGE_QUESTIONS.NEW_ANSWER' | translate }}</label>
                 </span>
                 <p-button (click)='addAnswer(newAnswer)' [disabled]='question.type === "skill" && (question.answers?.length ?? 0) > 1' icon='pi pi-plus'
                           styleClass='p-button-primary' type='button'></p-button>
             </div>
+            <!-- endregion Answer input -->
+
+
+            <!-- region Answer list -->
             <p-table [value]='question.answers ?? []'>
                 <ng-template pTemplate='header'>
                     <tr>
@@ -97,6 +124,8 @@
                     </tr>
                 </ng-template>
             </p-table>
+            <!-- endregion Answer list -->
         </div>
+        <!-- endregion Answer block -->
     </div>
 </div>

@@ -29,7 +29,7 @@ export class QuizAnswerOption implements IQuizAnswerOption {
     categoryIndex?: number
 
     @Field({ nullable: true })
-    @Prop()
+    @Prop({ type: MongooseSchema.Types.Boolean })
     isCorrect?: boolean
 
     @Field()

@@ -17,32 +17,7 @@ export class QuestionEditFormComponent {
     @Output() submitted = new EventEmitter<IQuizQuestion>()
     questionTypes = ['free', 'choose', 'rating', 'true-false']
     @Input() options: { name: string; value: number }[] = []
-    validator = new Validator<IQuizQuestion>({
-        subjectFactory: () => this.question || {},
-        translationKey: 'MANAGE_QUESTIONS',
-        properties: ['question', 'type', 'answers'],
-        rules: {
-            question: (subject, value) => (value as string).length > 0,
-            type: (subject, value) => this.questionTypes.includes(value as string),
-            answers: (subject, value) => {
-                const answers = value as IQuizAnswerOption[]
-                if (answers.length === 0) return false
-
-                if (this.template === 'quiz') {
-                    return answers.length === 4 && answers.filter((a) => a.isCorrect).length === 1
-                }
-
-                switch (subject.type) {
-                    case 'choose':
-                        return answers.length > 2
-                    case 'skill':
-                        return answers.length === 2
-                }
-
-                return true
-            },
-        },
-    })
+    validator = new Validator<IQuizQuestion>()
     trueFalseAnswer: any
 
     constructor(private readonly translate: TranslatePipe) {
@@ -63,6 +38,35 @@ export class QuestionEditFormComponent {
 
     get templateKey() {
         return this.template.toUpperCase()
+    }
+
+    initValidator() {
+        this.validator.init({
+            subjectFactory: () => this.question || {},
+            translationKey: 'MANAGE_QUESTIONS',
+            properties: ['question', 'type', 'answers'],
+            rules: {
+                question: (subject, value) => (value as string).length > 0,
+                type: (subject, value) => this.questionTypes.includes(value as string),
+                answers: (subject, value) => {
+                    const answers = value as IQuizAnswerOption[]
+                    if (answers.length === 0) return false
+
+                    if (this.template === 'quiz') {
+                        return answers.length === 4 && answers.filter((a) => a.isCorrect).length === 1
+                    }
+
+                    switch (subject.type) {
+                        case 'choose':
+                            return answers.length > 2
+                        case 'skill':
+                            return answers.length === 2
+                    }
+
+                    return true
+                },
+            },
+        })
     }
 
     removeAnswer(ans: IQuizAnswerOption) {

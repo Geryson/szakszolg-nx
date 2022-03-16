@@ -12,6 +12,7 @@ import { TableModule } from 'primeng/table'
 import { InputTextModule } from 'primeng/inputtext'
 import { ButtonModule } from 'primeng/button'
 import { DialogModule } from 'primeng/dialog'
+import { NxSharedModule } from '../../../shared/nx-shared.module'
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { DialogModule } from 'primeng/dialog'
         InputTextModule,
         ButtonModule,
         DialogModule,
+        NxSharedModule,
     ],
     declarations: [ManageMirrorWordsPage],
 })

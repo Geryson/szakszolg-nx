@@ -25,6 +25,10 @@ export class QuizQuestion implements IQuizQuestion {
     @Prop({ type: [MongooseSchema.Types.Mixed] })
     answers?: IQuizAnswerOption[]
 
+    @Field(() => Int, { nullable: true })
+    @Prop()
+    categoryIndex?: number
+
     @Field()
     @Prop()
     createdAt: Date
