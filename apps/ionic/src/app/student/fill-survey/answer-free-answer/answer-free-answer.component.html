@@ -1,7 +1,6 @@
-<div>
+<div class="free">
     <h4>
-        {{service.activeQuiz?.questions?.[service.index]?.question}}
+        {{service.questions[service.index].question}}
     </h4>
-    <textarea pInputTextarea [(ngModel)]="service.answers[service.index].answer"></textarea>
+    <textarea pInputTextarea [(ngModel)]="service.answers[service.index].answer" [autoResize]="true"  ></textarea>
 </div>
-

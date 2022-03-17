@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import {Component, Output, EventEmitter, OnInit} from '@angular/core';
 import {TokenService} from "../../../shared/services/token.service";
 import {Subscription} from "rxjs";
 import {QueryRef} from "apollo-angular";
@@ -18,7 +18,7 @@ import {Log} from "../../../shared/utils/log.tools";
     templateUrl: './enter-token.page.html',
     styleUrls: ['./enter-token.page.scss'],
 })
-export class EnterTokenPage {
+export class EnterTokenPage{
     token = ""
     private sub?: Subscription
     private queryRef?: QueryRef<{ token: Partial<IToken> }, EmptyObject>;
@@ -38,27 +38,26 @@ export class EnterTokenPage {
                 this.toast.add({summary: 'Ez a token nem létezik!', severity: 'error'})
                 return
             }
+            console.log(res)
+
+            this.storage.get(STORAGE_KEY.EDU_ID).then(edu_id => {
+                if (edu_id) {
+                    this.service.activeOM = edu_id
+                    console.log('Bent vagyok')
+                }
+            })
+
             this.service.activeQuiz = deepCopy(res.data.token.quiz as IQuiz)
             this.service.token = this.token
+            this.storage.set(STORAGE_KEY.ACTIVE_QUIZ,this.service.activeQuiz).then()
             this.storage.set(STORAGE_KEY.SURVEY_TOKEN, this.token).then()
-            if(this.service.answers.length !== this.service.activeQuiz.questions.length) {
-                for (const question of this.service.activeQuiz.questions) {
-                    this.service.answers?.push({
-                        _id: null,
-                        createdAt: new Date,
-
-                        quizId: this.service.activeQuiz?._id,
-                        questionId: question._id,
-                        answer: '',
-                        om: this.service.activeOM
-                    })
-                }
-            }
+            this.storage.set(STORAGE_KEY.ACTIVE_QUIZ, this.service.activeQuiz).then()
             //this.storage.set(STORAGE_KEY.SURVEY_INDEX, 0).then(() => this.redirect.to(pages.student.surveyDetails))
             this.redirect.to(pages.student.surveyDetails)
             console.log(this.service.activeQuiz.questions)
         })
     }
+
 
     ionViewDidEnter() {
         /*if (this.service.token){
@@ -66,6 +65,11 @@ export class EnterTokenPage {
             this.send()
             return
         }*/
+        this.storage.get(STORAGE_KEY.EDU_ID).then(om => {
+            if(!om){
+                this.redirect.to(pages.home)
+            }
+        })
 
         this.storage.get(STORAGE_KEY.SURVEY_TOKEN).then(token => {
             if(token){

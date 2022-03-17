@@ -1,0 +1,56 @@
+.buttons {
+    margin: auto;
+    padding: 5%;
+}
+
+.button {
+    margin-top: 2%;
+}
+
+.choose {
+    text-align: center;
+
+}
+
+.grid {
+    display: grid;
+    grid-template:
+        "one"
+        "two";
+}
+.vege{
+    margin-top: -5%;
+}
+.vegeBtn{
+    margin: auto;
+
+}
+h4 {
+    margin-bottom: 3%;
+}
+
+
+.one {
+    grid-area: one;
+    display: inline;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.two {
+    margin-top: 2%;
+    grid-area: two;
+    display: inline;
+    width: 100%;
+}
+
+
+@media (max-height: 384px) {
+    h4 {
+        margin-bottom: 0;
+    }
+    .buttons {
+        margin: 0 auto;
+        padding: 0 5% 3%;
+    }
+}
