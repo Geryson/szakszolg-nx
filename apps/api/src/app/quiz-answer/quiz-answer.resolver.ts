@@ -11,6 +11,7 @@ import { UpdateQuizAnswerInput } from './dto/inputs/update-quiz-answer.input'
 import { DeleteQuizAnswerInput } from './dto/inputs/delete-quiz-answer.input'
 import { Permission, Resource } from '../auth/decorators/permission.decorator'
 import { PermissionGuard } from '../auth/guards/permission-guard.service'
+import { CreateManyQuizAnswersInput } from './dto/inputs/create-many-quiz-answers.input'
 
 @Resolver(() => QuizAnswer)
 @Resource('quiz-answers')
@@ -34,9 +35,7 @@ export class QuizAnswerResolver {
     @Mutation(() => [QuizAnswer], { nullable: true })
     @UseGuards(GqlAuthGuard, PermissionGuard)
     @Permission('create')
-    createManyQuizAnswers(
-        @Args('createQuizAnswerData', { type: () => [CreateQuizAnswerInput] }) data: CreateQuizAnswerInput[],
-    ): Promise<IQuizAnswer[]> {
+    createManyQuizAnswers(@Args('createQuizAnswerData') data: CreateManyQuizAnswersInput): Promise<IQuizAnswer[]> {
         return this.service.createMany(data)
     }
 

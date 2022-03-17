@@ -36,7 +36,7 @@ type Mutation {
     createGroupingItem(createGroupingItemData: CreateGroupingItemInput!): GroupingItem!
     createHangmanWord(createHangmanWordData: CreateHangmanWordInput!): HangmanWord!
     createManyPuzzles(data: PuzzleUrlInput!): [Puzzle]!
-    createManyQuizAnswers(createQuizAnswerData: [CreateQuizAnswerInput!]!): [QuizAnswer!]
+    createManyQuizAnswers(createQuizAnswerData: CreateManyQuizAnswersInput!): [QuizAnswer!]
     createMirrorWord(createMirrorWordData: CreateMirrorWordInput!): MirrorWord!
     createPuzzle(createPuzzleData: CreatePuzzleInput!): Puzzle!
     createQuiz(createQuizData: CreateQuizInput!): Quiz!
@@ -213,6 +213,10 @@ input CreateGroupingItemInput {
 input CreateHangmanWordInput {
     category: String!
     word: String!
+}
+
+input CreateManyQuizAnswersInput {
+    answers: [CreateQuizAnswerInput!]!
 }
 
 input CreateMirrorWordInput {

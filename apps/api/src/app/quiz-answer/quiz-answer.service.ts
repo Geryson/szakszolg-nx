@@ -6,6 +6,7 @@ import { GetQuizAnswersArgs } from './dto/args/get-quiz-answers.args'
 import { GetQuizAnswerArgs } from './dto/args/get-quiz-answer.args'
 import { DeleteQuizAnswerInput } from './dto/inputs/delete-quiz-answer.input'
 import { RepositoryProxyService } from '../../shared/proxies/repository-proxy.service'
+import { CreateManyQuizAnswersInput } from './dto/inputs/create-many-quiz-answers.input'
 
 @Injectable()
 export class QuizAnswerService extends RepositoryProxyService<
@@ -20,7 +21,7 @@ export class QuizAnswerService extends RepositoryProxyService<
         super(repository)
     }
 
-    createMany(data: CreateQuizAnswerInput[]) {
-        return Promise.all(data.map((item) => this.repository.create(item)))
+    createMany(data: CreateManyQuizAnswersInput) {
+        return Promise.all(data.answers.map((item) => this.repository.create(item)))
     }
 }
