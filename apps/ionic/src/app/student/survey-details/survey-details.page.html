@@ -1,11 +1,19 @@
 <nx12-header title="NAVIGATION.SURVEY_DETAILS"></nx12-header>
 
 <ion-content>
-    <p>Kérdőív címe:</p>
-    <h3>{{service.activeQuiz?.title}}</h3>
-    <p>Kérdőív leírása:</p>
-    <h3>{{service.activeQuiz?.description}}</h3>
-    <p *ngIf="service.index > 0">Eddig megválaszolt kérdések:{{service.index}}/{{service.activeQuiz!.questions.length}}</p>
-    <p-button label="Tovább a kérdőív kitöltéséhez" (click)="redirectTo()"></p-button>
-    <p-button (click)="service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')">Cancel</p-button>
+    <div class="container">
+        <div class="content">
+            <h4>Kérdőív címe:</h4>
+            <h5>{{service.activeQuiz?.title}}</h5>
+            <h4>Kérdőív leírása:</h4>
+            <h5>{{service.activeQuiz?.description}}</h5>
+            <p *ngIf="service.index > 0">Eddig megválaszolt kérdések:{{service.index}}
+                /{{service.activeQuiz!.questions.length}}</p>
+            <p-button [style]="{'margin': '2%'}" label="Tovább" (click)="redirectTo()"></p-button>
+            <p-button [style]="{'margin': '2%'}"
+                (click)="service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')">
+                Mégse
+            </p-button>
+        </div>
+    </div>
 </ion-content>

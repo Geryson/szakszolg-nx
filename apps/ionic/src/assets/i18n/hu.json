@@ -2,6 +2,7 @@
     "NAVIGATION":{
         "USER_DATA": "Felhasználói adatok",
         "MENU": "Menü",
+        "ENTER_TOKEN": "Token megadása",
         "USERS": "Felhasználók",
         "QUESTIONNAIRE": "Kérdőív",
         "QUESTIONNAIRE_DESCRIPTION_COMPLETING": "Kérdőív leírás kitöltése",
@@ -26,7 +27,8 @@
         "TRUE_FALSE_FORM": "Igaz-Hamis kérdőív",
         "SKILL_FORM": "Képesség eldöntő kérdőív",
         "ANSWER_CHOOSE":"Tevékenység választó",
-        "CATEGORY_EDITING":"Kategóriák szerkesztése"
+        "CATEGORY_EDITING":"Kategóriák szerkesztése",
+        "SURVEY_DETAILS": "Kérdőív részletei"
     },
 
     "BUTTONS":{
