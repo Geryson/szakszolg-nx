@@ -48,10 +48,9 @@ export class TokenService{
     }
 
     async cancel() {
-        this.answers = this.answers.filter(x=> x.answer!=='')
-        const promises: Promise<any>[] = []
         const l = await showLoading()
         if(this.save){
+            this.answers = this.answers.filter(x=> x.answer!=='')
             await firstValueFrom(this.sendData.create2(this.answers.map(item => omit(item, '_id', 'createdAt'))))
             /*for (const answerElement of this.answers) {
                 console.log(answerElement.questionId)
@@ -79,14 +78,16 @@ export class TokenService{
         await this.storage.remove(STORAGE_KEY.SURVEY_TOKEN).then(() => delete this.token)
         await this.storage.remove(STORAGE_KEY.SURVEY_INDEX).then()
         await this.storage.remove(STORAGE_KEY.SURVEY_ANSWER).then()
+        await this.storage.remove(STORAGE_KEY.ACTIVE_QUIZ).then()
         await this.storage.remove(STORAGE_KEY.SURVEY_QUESTIONS).then()
         await this.storage.remove(STORAGE_KEY.EDU_ID).then()
-        this.redirect.to(pages.student.enterToken)
+
     }
     accept(){
         this.save=true
         this.end = false
         this.cancel().then()
+        this.redirect.to(pages.student.enterToken)
     }
 
     reject(){
@@ -100,6 +101,8 @@ export class TokenService{
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.cancel().then()
+                this.redirect.to(pages.student.enterToken)
+
             },
             reject: (type: any) => {
                 return

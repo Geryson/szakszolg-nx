@@ -8,6 +8,8 @@ import {date} from "joi";
 import {log} from "util";
 import {showLoading} from "../../../../shared/utils/observable.tools";
 import {first, firstValueFrom} from "rxjs";
+import {pages} from "../../../../shared/utils/pages.const";
+import {RedirectService} from "../../../../shared/services/redirect.service";
 
 @Component({
     selector: 'nx12-answer-choose',
@@ -18,7 +20,7 @@ export class AnswerChooseComponent implements OnInit{
     @Input() quizQuestions: IQuizQuestion[] = []
     public finish = false
     correctAnswers=0
-    constructor(public readonly service: TokenService, public readonly storage: StorageService) {
+    constructor(public readonly service: TokenService, public readonly storage: StorageService, private readonly redirect: RedirectService) {
     }
 
     ngOnInit() {
@@ -56,5 +58,10 @@ export class AnswerChooseComponent implements OnInit{
             await this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
             console.log('Itt van')
         }
+    }
+
+    async exit() {
+        await this.service.cancel()
+        this.redirect.to(pages.student.enterToken)
     }
 }
