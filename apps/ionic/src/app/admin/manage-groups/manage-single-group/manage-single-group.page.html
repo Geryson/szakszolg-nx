@@ -13,7 +13,7 @@
                 <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
             </span>
             <span>
-                <button (click)='add(newGroup)' [disabled]='!newGroup.value?.length || item?.groups?.includes(newGroup.value)' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.plus }}' pButton type='button'></button>
+                <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || !item?.groups?.includes(newGroup.value)' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.plus }}' type='button'></p-button>
             </span>
         </div>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
