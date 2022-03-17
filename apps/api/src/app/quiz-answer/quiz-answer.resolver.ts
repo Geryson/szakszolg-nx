@@ -31,6 +31,13 @@ export class QuizAnswerResolver {
         return this.service.findAll(data)
     }
 
+    @Query(() => [QuizAnswer], { nullable: true })
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    @Permission('create')
+    createManyQuizAnswers(@Args('createQuizAnswersData') data: CreateQuizAnswerInput[]): Promise<IQuizAnswer[]> {
+        return this.service.createMany(data)
+    }
+
     @Mutation(() => QuizAnswer)
     @UseGuards(GqlAuthGuard, PermissionGuard)
     @Permission('create')

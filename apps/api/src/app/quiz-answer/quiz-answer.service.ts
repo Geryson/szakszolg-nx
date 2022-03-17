@@ -19,4 +19,8 @@ export class QuizAnswerService extends RepositoryProxyService<
     constructor(repository: QuizAnswerRepository) {
         super(repository)
     }
+
+    createMany(data: CreateQuizAnswerInput[]) {
+        return Promise.all(data.map((item) => this.repository.create(item)))
+    }
 }
