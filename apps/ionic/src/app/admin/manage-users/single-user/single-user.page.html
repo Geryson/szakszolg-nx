@@ -33,7 +33,7 @@
                                     <span class='text-danger'>{{ validationErrors[prop] }}</span>
                                 </div>
                             </div>
-                            <p-button (click)='save(prop)' [disabled]='!!validationErrors[prop]' icon='pi pi-check' type='button'></p-button>
+                            <p-button (click)='save(prop)' [disabled]='!!validationErrors[prop]' styleClass='p-button-success' icon='pi pi-check' type='button'></p-button>
                         </ng-template>
                     </p-inplace>
                 </ion-item>
@@ -48,8 +48,8 @@
         <input [(ngModel)]='user.password' name='password' pInputText type='password' maxlength="80" />
         <div>
             <span class='p-buttonset'>
-                <p-button (click)='savePassword()' class='p-button-success' icon='pi pi-check' label="{{ 'BUTTONS.SAVE' | translate}}" type='button'></p-button>
-                <p-button (click)='cancel()' class='p-button-danger' icon='pi pi-times' label="{{ 'BUTTONS.CANCEL' | translate }}" type='button'></p-button>
+                <p-button (click)='savePassword()' styleClass='p-button-success' icon='pi pi-check' label="{{ 'BUTTONS.SAVE' | translate}}" type='button'></p-button>
+                <p-button (click)='cancel()' styleClass='p-button-danger' icon='pi pi-times' label="{{ 'BUTTONS.CANCEL' | translate }}" type='button'></p-button>
             </span>
         </div>
     </form>

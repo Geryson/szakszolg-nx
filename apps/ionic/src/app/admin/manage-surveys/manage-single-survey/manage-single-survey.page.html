@@ -47,7 +47,7 @@
                                       [disabled]='(survey?.template !== "quiz" && !survey?.categories?.length) || (survey?.template === "skill" && !skillQuestion)'
                                       icon='pi pi-plus'
                                       label='{{ ("MANAGE_SURVEYS.SINGLE." + (survey?.template === "skill" ? "NEW_ANSWER_PAIR" : "NEW_QUESTION")) | translate }}'
-                                      styleClass='p-button-primary' type='button'></p-button>
+                                      styleClass='p-button-success' type='button'></p-button>
                             <div class='text-invalid my-1'>{{ validator.validationErrors['questions'] }}</div>
 
                         </span>
@@ -92,7 +92,7 @@
                         <td>
                             <p-button (click)='editClick(questionObject)' styleClass='p-button-primary wide-button'
                                     icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
-                            <p-button (click)='deleteClick(questionObject)' styleClass='p-button-primary wide-button'
+                            <p-button (click)='deleteClick(questionObject)' styleClass='p-button-danger wide-button'
                                     icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                         </td>
                     </tr>

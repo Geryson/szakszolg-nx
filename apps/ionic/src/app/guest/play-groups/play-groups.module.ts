@@ -8,11 +8,14 @@ import { PlayGroupsPageRoutingModule } from './play-groups-routing.module';
 
 import { PlayGroupsPage } from './play-groups.page';
 import {NxSharedModule} from "../../../shared/nx-shared.module";
-import {DragDropModule} from "primeng/dragdrop";
+//import {DragDropModule} from "primeng/dragdrop";
 import {PanelModule} from "primeng/panel";
 import {TableModule} from "primeng/table";
 import {DialogModule} from "primeng/dialog";
 import {ButtonModule} from "primeng/button";
+import {ListboxModule} from "primeng/listbox";
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
     imports: [
@@ -25,7 +28,10 @@ import {ButtonModule} from "primeng/button";
         PanelModule,
         TableModule,
         DialogModule,
-        ButtonModule
+        ButtonModule,
+        ListboxModule,
+        DragDropModule,
+        ConfirmDialogModule
     ],
   declarations: [PlayGroupsPage]
 })

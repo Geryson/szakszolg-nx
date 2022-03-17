@@ -5,7 +5,7 @@ export interface IQuizAnswer extends IApiResource {
     questionId: number
     answer: string
     om: string
-    token?: string | null
     isCorrect?: boolean | null
+    token?: string | null
     answeredAt?: Date
 }

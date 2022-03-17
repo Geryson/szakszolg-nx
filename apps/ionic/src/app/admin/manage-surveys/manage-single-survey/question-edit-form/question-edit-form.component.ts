@@ -26,11 +26,9 @@ export class QuestionEditFormComponent {
             switch (this.template) {
                 case 'true-false':
                     this.question.type = 'true-false'
-                    this.questionTypeChanged({ value: 'true-false' })
                     break
                 case 'quiz':
                     this.question.type = 'choose'
-                    this.questionTypeChanged({ value: 'choose' })
                     break
             }
         }, 100)
@@ -82,7 +80,7 @@ export class QuestionEditFormComponent {
         this.question.answers.push({
             _id: this.question.answers.length,
             text: newAnswerInput.value,
-            categoryIndex: undefined,
+            categoryIndex: 0,
             isCorrect: false,
             createdAt: new Date(),
         })
@@ -106,7 +104,8 @@ export class QuestionEditFormComponent {
         if (
             !this.question?.question ||
             !this.question.type ||
-            (this.question.type !== 'rating' && this.question.type !== 'free' && !this.question.answers?.length)
+            (this.question.type !== 'rating' && this.question.type !== 'free' && !this.question.answers?.length) ||
+            (this.question.type === 'skill' && this.question.answers?.length !== 2)
         ) {
             this.validator.check()
             return
