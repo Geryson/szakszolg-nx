@@ -24,6 +24,8 @@ export class AnswerChooseComponent implements OnInit{
     }
 
     ngOnInit() {
+        this.service.save=false
+        console.log("ON INIT: "+this.service.save)
         this.correctAnswers=this.service.index
     }
 
@@ -39,14 +41,12 @@ export class AnswerChooseComponent implements OnInit{
                  this.service.answers[this.service.index].isCorrect=answer.isCorrect
             await this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
             if(this.service.activeQuiz.template==='quiz' && !answer.isCorrect){
-                console.log('NEM JÓ')
                 this.finish = true
                 this.service.save=true
                 return
             }
             if (this.service.index === this.service.activeQuiz.questions.length - 1) {
 
-                console.log('Bent vagyok')
                 this.correctAnswers=this.service.index
                 this.correctAnswers++
                 this.service.save=true
@@ -56,12 +56,11 @@ export class AnswerChooseComponent implements OnInit{
             this.service.index++
             this.correctAnswers=this.service.index
             await this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
-            console.log('Itt van')
         }
     }
 
     async exit() {
         await this.service.cancel()
-        this.redirect.to(pages.student.enterToken)
+        this.redirect.to(pages.home)
     }
 }
