@@ -106,7 +106,7 @@
         <p>Elfogytak a szavak, szeretnél újat kezdeni?</p>
         <p>A jó válaszaid száma: {{counter}}</p>
         <button pButton type="button" label="Igen" icon="pi pi-check" class="p-button-lg" (click)="refresh()"></button>
-        <button pButton type="button" label="Nem" icon="pi pi-check" class="p-button-lg" (click)="quit()"></button>
+        <button pButton type="button" label="Nem" icon="pi pi-times" class="p-button-lg" (click)="quit()"></button>
     </p-dialog>
 
     <p-dialog [(visible)]="guessedAnswer" [closable]="false" [modal]="true">
