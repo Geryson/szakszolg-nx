@@ -7,7 +7,7 @@
                 <span class='p-input-icon-left'>
                     <i class='pi pi-search'></i>
                     <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
-                           placeholder="{{ 'SCHOOL_FINDER.BROWSE_ALL' | translate }}" type='text' />
+                           placeholder="{{ 'SCHOOL_FINDER.BROWSE_ALL' | translate }}" [maxLength]="80" type='text' />
                 </span>
                 <!--<span>
                     <button class='p-button-success' icon='pi pi-plus' pButton type='button'></button>

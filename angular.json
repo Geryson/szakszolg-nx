@@ -182,11 +182,27 @@
                         "cmd": "--help"
                     }
                 },
+                "plugins": {
+                    "builder": "@nxtend/capacitor:cap",
+                    "options": {
+                        "cmd": "ls"
+                    },
+                    "configurations": {
+                        "android": {
+                            "cmd": "ls android"
+                        },
+                        "ios": {
+                            "cmd": "ls ios"
+                        }
+                    },
+                    "defaultConfiguration": "android"
+                },
                 "add": {
                     "builder": "@nxtend/capacitor:cap",
                     "options": {
                         "cmd": "add"
                     },
+                    "defaultConfiguration": "android",
                     "configurations": {
                         "ios": {
                             "cmd": "add ios"
@@ -199,8 +215,9 @@
                 "copy": {
                     "builder": "@nxtend/capacitor:cap",
                     "options": {
-                        "cmd": "copy"
+                        "cmd": "copy android"
                     },
+                    "defaultConfiguration": "android",
                     "configurations": {
                         "ios": {
                             "cmd": "copy ios"
@@ -213,8 +230,9 @@
                 "open": {
                     "builder": "@nxtend/capacitor:cap",
                     "options": {
-                        "cmd": "open"
+                        "cmd": "open android"
                     },
+                    "defaultConfiguration": "android",
                     "configurations": {
                         "ios": {
                             "cmd": "open ios"
@@ -229,6 +247,7 @@
                     "options": {
                         "cmd": "run"
                     },
+                    "defaultConfiguration": "android",
                     "configurations": {
                         "ios": {
                             "cmd": "run ios"
@@ -241,8 +260,9 @@
                 "sync": {
                     "builder": "@nxtend/capacitor:cap",
                     "options": {
-                        "cmd": "sync"
+                        "cmd": "sync android"
                     },
+                    "defaultConfiguration": "android",
                     "configurations": {
                         "ios": {
                             "cmd": "sync ios"
@@ -255,8 +275,9 @@
                 "update": {
                     "builder": "@nxtend/capacitor:cap",
                     "options": {
-                        "cmd": "update"
+                        "cmd": "update android"
                     },
+                    "defaultConfiguration": "android",
                     "configurations": {
                         "ios": {
                             "cmd": "update ios"

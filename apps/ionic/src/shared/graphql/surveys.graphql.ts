@@ -58,6 +58,7 @@ export const SURVEYS = {
                         _id
                         text
                         isCorrect
+                        categoryIndex
                     }
                 }
                 createdAt

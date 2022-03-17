@@ -82,7 +82,6 @@ export class ManageSingleSurveyPage {
     }
 
     deleteClick(item: IQuizQuestion) {
-        Log.debug('ManageSingleSurveyPage::deleteClick', 'item', item)
         this.survey!.questions = this.survey!.questions?.filter((question) => question._id !== item._id) // TODO: Add confirmation
     }
 

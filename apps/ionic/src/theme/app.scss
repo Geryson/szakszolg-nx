@@ -1,6 +1,13 @@
+.p-button-danger, .p-button-success {
+  border: 0 !important;
+}
+
+.text-primary {
+    color: var(--ion-color-primary) !important;
+}
+
 .p-button-danger {
     background-color: var(--ion-color-danger) !important;
-    border: 0 !important;
 }
 
 .d-flex {
@@ -144,15 +151,6 @@ input {
     margin: 1% 10% 1% 10%;
     border-color: var(--ion-color-primary);
     padding: 0 10px;
-}
-
-/** Yellow line above the status bar */
-#yellowLine {
-    background: #2ea3f2;
-    width: 100%;
-    height: 5px;
-    padding: 0;
-    margin: 0;
 }
 
 circle {

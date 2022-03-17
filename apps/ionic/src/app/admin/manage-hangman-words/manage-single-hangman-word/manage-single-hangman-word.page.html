@@ -4,14 +4,14 @@
     <div *ngIf='!!word' class="wrapper">
         <div>
             <h4 class="ml-2">{{ 'MANAGE_HANGMAN_WORDS.WORD' | translate }}</h4>
-            <input (click)='check("word")' [(ngModel)]='word!.word' class="sizes p-inputtext" pInputText type='text' />
+            <input (click)='check("word")' [(ngModel)]='word!.word' pInputText type='text' class="sizes p-inputtext" maxlength="255" />
         </div>
         <div>
             <h4 class="ml-2">{{ 'MANAGE_HANGMAN_WORDS.CATEGORY' | translate }}</h4>
             <p-autoComplete (completeMethod)="search($event)" (input)='check("category")' [(ngModel)]="word!.category" [dropdown]='true' [suggestions]="filteredCategories"></p-autoComplete>
         </div>
         <div class="mt-1">
-            <p-button (click)="save()" [disabled]="!word?.word || !word?.category" class="" label='{{ "MANAGE_HANGMAN_WORDS.SAVE" | translate }}'></p-button>
+            <p-button (click)="save()" [disabled]="!word?.word || !word?.category" label='{{ "MANAGE_HANGMAN_WORDS.SAVE" | translate }}' styleClass='p-button-primary'></p-button>
         </div>
     </div>
 </ion-content>

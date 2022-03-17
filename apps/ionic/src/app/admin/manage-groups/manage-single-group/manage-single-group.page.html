@@ -3,19 +3,21 @@
     <div *ngIf='!!item' class='p-fluid grid'>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
         <span class='p-float-label'>
-            <input [(ngModel)]='item.item' id='item' pInputText type='text'>
+            <input [(ngModel)]='item.item' id='item' pInputText type='text' maxlength="80" />
             <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
         </span>
         </div>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
-                 <span class='p-float-label'>
-                    <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' pInputText type='text'>
-                    <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
-                </span>
-            <span><button (click)='add(newGroup)' [disabled]='!newGroup.value?.length || item?.groups?.includes(newGroup.value)' class='p-button-success' icon='pi pi-{{ NG_ICON.plus }}' pButton type='button'></button></span>
+             <span class='p-float-label'>
+                <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' pInputText type='text' maxlength="255" />
+                <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
+            </span>
+            <span>
+                <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || !item?.groups?.includes(newGroup.value)' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.plus }}' type='button'></p-button>
+            </span>
         </div>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
-            <p-table [value]='item.groups ?? []' id='groups'  responsiveLayout="stack">
+            <p-table [value]='item.groups ?? []' id='groups' responsiveLayout="stack">
                 <ng-template pTemplate='header'>
                     <tr>
                     </tr>
@@ -32,9 +34,9 @@
                                 {{group}}
                             </div>
                             <div class='float-end'>
-                                <button (click)='markCorrect(group)' *ngIf='item?.correct !== group' class='p-button-success' icon='pi pi-{{ NG_ICON.check }}' pButton type='button'></button>
-                                <button *ngIf='item?.correct === group' [disabled]='true' class='p-button-primary' label='{{ "MANAGE_GROUPINGS.CORRECT_BUTTON" | translate }}' pButton type='button'></button>
-                                <button (click)='remove(group)' class='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' pButton type='button'></button>
+                                <p-button (click)='markCorrect(group)' *ngIf='item?.correct !== group' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.check }}' type='button'></p-button>
+                                <p-button *ngIf='item?.correct === group' [disabled]='true' styleClass='p-button-primary' label='{{ "MANAGE_GROUPINGS.CORRECT_BUTTON" | translate }}' type='button'></p-button>
+                                <p-button (click)='remove(group)' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                             </div>
                         </td>
                     </tr>
@@ -42,7 +44,9 @@
             </p-table>
         </div>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
-            <span><button (click)='save()' [disabled]='!item?.item?.length || !item?.groups?.length || !item?.correct?.length' class='p-button-primary' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' pButton type='button'></button></span>
+            <span>
+                <p-button (click)='save()' [disabled]='!item?.item?.length || !item?.groups?.length || !item?.correct?.length' styleClass='p-button-primary' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' type='button'></p-button>
+            </span>
         </div>
     </div>
 </ion-content>
