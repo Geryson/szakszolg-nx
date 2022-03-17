@@ -4,7 +4,7 @@ import { QueryRef } from 'apollo-angular'
 import { IGroupingItem } from '@szakszolg-nx/api-interfaces'
 import { Subscription } from 'rxjs'
 import { GroupingItemService } from '../../../shared/services/grouping-item.service'
-import {CdkDragDrop, transferArrayItem} from "@angular/cdk/drag-drop";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {RedirectService} from "../../../shared/services/redirect.service";
 import {pages} from "../../../shared/utils/pages.const";
 import {ConfirmationService} from "primeng/api";
@@ -26,15 +26,13 @@ export class PlayGroupsPage {
     noMoreWords = false
 
     wArray: string[] = []
-    first: string[] = []
-    second: string[] = []
-    third: string[] = []
-    fourth: string[] = []
 
     answerId = -1
     correctId = -1
 
     counter = 0
+
+    private readonly prefix = 'http'
 
     constructor(private readonly service: GroupingItemService, private readonly alert: AlertService,
                 private readonly redirect: RedirectService, private confirmationService: ConfirmationService) {}
@@ -50,6 +48,7 @@ export class PlayGroupsPage {
                 (this.groups = res.data.groupingItem.groups ?? [])
             ),
         )
+
         loading.dismiss().then()
     }
 
@@ -58,13 +57,9 @@ export class PlayGroupsPage {
     }
 
     drop(event: CdkDragDrop<string[]>/*group: string*/) {
-            transferArrayItem(
-                event.previousContainer.data,
-                event.container.data,
-                event.previousIndex,
-                event.currentIndex,
-            );
+        if (event.container.id !== 'cdk-drop-list-0'){
 
+            console.log(event.container.id)
             const length = event.container.id.length
 
             this.answerId = +event.container.id.substring(length-1, length) - 1
@@ -78,12 +73,7 @@ export class PlayGroupsPage {
             else{
                 this.notCorrect = true
             }
-
-            this.wArray = []
-            this.first = []
-            this.second = []
-            this.third = []
-            this.fourth = []
+        }
     }
 
     async nextWord() {
@@ -91,18 +81,15 @@ export class PlayGroupsPage {
         this.previousWords.push(this.word)
 
         const loading = await this.alert.loading('MESSAGE.LOADING')
-        this.wArray = []
         await this.queryRef?.refetch()
 
         while (this.previousWords.includes(this.word)){
             if (tries < 5){
-                this.wArray = []
                 await this.queryRef?.refetch()
                 tries++
             }
             else
             {
-                this.wArray = []
                 this.noMoreWords = true
                 break
             }
@@ -117,7 +104,7 @@ export class PlayGroupsPage {
         this.notCorrect = false
     }
 
-    quit() {
+    duplicates() {
         this.counter = 0
         this.guessedAnswer = false
         this.notCorrect = false
@@ -126,14 +113,11 @@ export class PlayGroupsPage {
         this.answerId = - 1
         this.correctId = - 1
 
-        this.wArray = []
-        this.first = []
-        this.second = []
-        this.third = []
-        this.fourth = []
-
         this.previousWords = []
+    }
 
+    quit() {
+        this.duplicates()
         this.redirect.to(pages.guest.guestRoom)
     }
 
@@ -150,5 +134,17 @@ export class PlayGroupsPage {
             }
 
         });
+    }
+
+    async refresh() {
+        this.duplicates()
+        await this.queryRef?.refetch().then()
+    }
+
+    check(word: string): boolean {
+        if (word.substring(0, this.prefix.length) === this.prefix){
+            return true
+        }
+        return false
     }
 }
