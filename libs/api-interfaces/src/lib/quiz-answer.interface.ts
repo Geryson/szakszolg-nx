@@ -6,5 +6,6 @@ export interface IQuizAnswer extends IApiResource {
     answer: string
     om: string
     isCorrect?: boolean | null
+    token?: string | null
     answeredAt?: Date
 }

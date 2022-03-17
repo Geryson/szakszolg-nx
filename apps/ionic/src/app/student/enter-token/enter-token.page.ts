@@ -49,6 +49,7 @@ export class EnterTokenPage{
 
             this.service.activeQuiz = deepCopy(res.data.token.quiz as IQuiz)
             this.service.token = this.token
+            this.storage.set(STORAGE_KEY.ACTIVE_QUIZ,this.service.activeQuiz).then()
             this.storage.set(STORAGE_KEY.SURVEY_TOKEN, this.token).then()
             this.storage.set(STORAGE_KEY.ACTIVE_QUIZ, this.service.activeQuiz).then()
             //this.storage.set(STORAGE_KEY.SURVEY_INDEX, 0).then(() => this.redirect.to(pages.student.surveyDetails))

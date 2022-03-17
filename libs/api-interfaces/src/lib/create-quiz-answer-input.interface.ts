@@ -1,7 +1,7 @@
 
 export interface ICreateQuizAnswerInput {
     quizId: string
-    token: string | null
+    token?: string | null
     questionId: number
     answer: string
     om: string

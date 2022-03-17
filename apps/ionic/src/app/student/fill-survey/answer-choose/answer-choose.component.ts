@@ -18,7 +18,7 @@ export class AnswerChooseComponent implements OnInit{
     @Input() quizQuestions: IQuizQuestion[] = []
     public finish = false
     correctAnswers=0
-    constructor(public readonly service: TokenService, public readonly storage: StorageService, protected readonly sendData: AnswerService) {
+    constructor(public readonly service: TokenService, public readonly storage: StorageService) {
     }
 
     ngOnInit() {
@@ -27,37 +27,27 @@ export class AnswerChooseComponent implements OnInit{
 
     ionViewDidLeave(){
         this.finish = false
+        this.service.save=false
     }
 
     async next(answer: IQuizAnswerOption) {
-        if(!answer.isCorrect){
-            console.log('NEM JÓ')
-            this.finish = true
-            return
-        }
         if (this.service.activeQuiz?.questions && this.service.index < this.service.activeQuiz.questions.length) {
             this.service.answers[this.service.index].answer = answer.text
+            if(this.service.activeQuiz.template==='quiz')
+                 this.service.answers[this.service.index].isCorrect=answer.isCorrect
             await this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
-            const promises: Promise<any>[] = []
+            if(this.service.activeQuiz.template==='quiz' && !answer.isCorrect){
+                console.log('NEM JÓ')
+                this.finish = true
+                this.service.save=true
+                return
+            }
             if (this.service.index === this.service.activeQuiz.questions.length - 1) {
-                const l = await showLoading()
-                for (const answerElement of this.service.answers) {
-                    console.log(answerElement.questionId)
-                    promises.push(firstValueFrom(this.sendData.create(
-                            answerElement.answer,
-                            answerElement.quizId,
-                            answerElement.questionId,
-                            answerElement.createdAt,
-                            answerElement.om
 
-                        ))
-                    )
-                }
-                await Promise.all(promises)
-                l.dismiss().then()
                 console.log('Bent vagyok')
                 this.correctAnswers=this.service.index
                 this.correctAnswers++
+                this.service.save=true
                 this.finish=true
                 return
             }

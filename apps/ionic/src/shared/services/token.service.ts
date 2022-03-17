@@ -1,30 +1,35 @@
-import { Inject, Injectable } from '@angular/core'
+import {Inject, Injectable, OnDestroy} from '@angular/core'
 import { Apollo, MutationResult } from 'apollo-angular'
-import { Observable } from 'rxjs'
+import {firstValueFrom, Observable} from 'rxjs'
 import { APOLLO_CLIENT } from '../injector.tokens'
 import { TOKENS } from '../graphql/tokens.graphql'
-import {IQuiz, IQuizAnswer, IQuizQuestion, IToken} from "@szakszolg-nx/api-interfaces";
+import {ICreateQuizAnswerInput, IQuiz, IQuizAnswer, IQuizQuestion, IToken} from "@szakszolg-nx/api-interfaces";
 import {STORAGE_KEY} from "../utils/constants";
 import {pages} from "../utils/pages.const";
 import {StorageService} from "./storage.service";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {RedirectService} from "./redirect.service";
+import {showLoading} from "../utils/observable.tools";
+import {AnswerService} from "./answer.service";
+import {omit} from "../utils/object.tools";
 
 @Injectable({
     providedIn: 'root',
 })
-export class TokenService {
+export class TokenService{
     activeQuiz?: IQuiz;
     answers:IQuizAnswer[] = [];
     questions: IQuizQuestion[] = []
     index = 0
-    token?:string // delete this.tokenService.token
+    token?:string
     activeOM = ''
     end = false;
+    save= false;
 
     constructor(@Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo,
                 private readonly storage: StorageService, private confirmationService: ConfirmationService,
-                private messageService: MessageService, private readonly redirect: RedirectService,) {
+                private messageService: MessageService, private readonly redirect: RedirectService,
+                protected readonly sendData: AnswerService) {
     }
 
     create(quizId: string): Observable<MutationResult<{ createToken: { token: string; __typename: 'Token' } }>> {
@@ -43,7 +48,29 @@ export class TokenService {
     }
 
     async cancel() {
+        this.answers = this.answers.filter(x=> x.answer!=='')
+        const promises: Promise<any>[] = []
+        const l = await showLoading()
+        if(this.save){
+            await firstValueFrom(this.sendData.create2(this.answers.map(item => omit(item, '_id', 'createdAt'))))
+            /*for (const answerElement of this.answers) {
+                console.log(answerElement.questionId)
+                promises.push(firstValueFrom(this.sendData.create(
+                        answerElement.answer,
+                        answerElement.quizId,
+                        answerElement.questionId,
+                        answerElement.createdAt,
+                        answerElement.om,
+                        answerElement.isCorrect!,
+                        this.token!
 
+                    ))
+                )
+            }
+            await Promise.all(promises)*/
+
+        }
+        l.dismiss().then()
         this.index = 0
         this.answers = this.answers.map(ans => ({
             ...ans,
@@ -57,6 +84,7 @@ export class TokenService {
         this.redirect.to(pages.student.enterToken)
     }
     accept(){
+        this.save=true
         this.end = false
         this.cancel().then()
     }
@@ -65,7 +93,6 @@ export class TokenService {
         this.end = false
         return
     }
-
     confirm(message: string, header: string) {
         this.confirmationService.confirm({
             message: message,

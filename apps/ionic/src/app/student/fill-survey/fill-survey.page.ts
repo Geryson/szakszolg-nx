@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TokenService} from "../../../shared/services/token.service";
 import {RedirectService} from "../../../shared/services/redirect.service";
 import {pages} from "../../../shared/utils/pages.const";
 import {StorageService} from "../../../shared/services/storage.service";
 import {STORAGE_KEY} from "../../../shared/utils/constants";
+import {IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
 
 @Component({
     selector: 'nx12-fill-survey',
@@ -61,17 +62,27 @@ export class FillSurveyPage implements OnInit{
 
         if(this.service.answers.length !== this.service.questions.length) {
             for (const question of this.service.questions) {
-                this.service.answers?.push({
-                    _id: null,
-                    createdAt: new Date,
-                    answeredAt: new Date,
-                    quizId: this.service.activeQuiz?._id,
-                    questionId: question._id,
-                    answer: '',
-                    om: this.service.activeOM
-                })
+                this.service.answers?.push(this.questionFactory(question, this.service.activeQuiz?.template === 'quiz'))
             }
         }
+    }
+
+    private questionFactory(question: IQuizQuestion, isQuiz = false) {
+        const res: IQuizAnswer = {
+            _id: null,
+            createdAt: new Date,
+            answeredAt: new Date,
+            quizId: this.service.activeQuiz?._id,
+            questionId: question._id,
+            answer: '',
+            token: this.service.token ?? '',
+            om: this.service.activeOM
+        }
+        if(isQuiz) {
+            res.isCorrect =  null
+        }
+
+        return res
     }
 
     log() {
@@ -103,11 +114,11 @@ export class FillSurveyPage implements OnInit{
     }
     ionViewDidLeave(){
         this.service.answers = []
+        this.service.save=false
     }
 
     submit() {
         this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
         this.service.end = true
-        //this.service.answers = []
     }
 }
