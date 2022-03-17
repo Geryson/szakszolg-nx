@@ -22,7 +22,13 @@ async function bootstrap() {
     const globalPrefix = 'api'
     app.setGlobalPrefix(globalPrefix)
     const port = config.get('API_PORT') || 3000
-    app.enableCors()
+    app.enableCors({
+        origin: '*',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        preflightContinue: false,
+        credentials: true,
+        optionsSuccessStatus: 204,
+    })
     app.use(bodyParser.json({ limit: '50mb' }))
     await app.listen(port)
     Logger.log(`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`)
