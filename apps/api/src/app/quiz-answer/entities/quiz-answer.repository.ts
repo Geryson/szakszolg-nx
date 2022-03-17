@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { QuizAnswer, QuizAnswerDocument } from './quiz-answer.entity'
 import { Model } from 'mongoose'
@@ -6,7 +6,7 @@ import { UpdateQuizAnswerInput } from '../dto/inputs/update-quiz-answer.input'
 import { CreateQuizAnswerInput } from '../dto/inputs/create-quiz-answer.input'
 import { GetQuizAnswersArgs } from '../dto/args/get-quiz-answers.args'
 import { GetQuizAnswerArgs } from '../dto/args/get-quiz-answer.args'
-import { IQuiz, IQuizAnswer } from '@szakszolg-nx/api-interfaces'
+import { IQuizAnswer } from '@szakszolg-nx/api-interfaces'
 import { DeleteQuizAnswerInput } from '../dto/inputs/delete-quiz-answer.input'
 import { SimpleRepository } from '../../../shared/proxies/simple.repository'
 import { QuizService } from '../../quiz/quiz.service'
@@ -23,7 +23,7 @@ export class QuizAnswerRepository extends SimpleRepository<
 > {
     constructor(
         @InjectModel(QuizAnswer.name) resourceModel: Model<QuizAnswerDocument>,
-        private readonly quizService: QuizService,
+        //private readonly quizService: QuizService,
     ) {
         super(resourceModel)
     }
@@ -33,7 +33,7 @@ export class QuizAnswerRepository extends SimpleRepository<
             return super.findAll(data)
         }
 
-        return this.model.find({ quizId: data.quizId })
+        return this.model.find(data.token ? { token: data.token } : { quizId: data.quizId })
     }
 
     override async create(data: CreateQuizAnswerInput): Promise<IQuizAnswer> {

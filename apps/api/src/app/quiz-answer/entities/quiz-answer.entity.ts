@@ -16,6 +16,10 @@ export class QuizAnswer implements IQuizAnswer {
     @Prop()
     quizId: string
 
+    @Field({ nullable: true })
+    @Prop({ nullable: true })
+    token?: string | null
+
     @Field(() => Int)
     @Prop()
     questionId: number
