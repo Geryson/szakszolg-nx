@@ -1,6 +1,6 @@
 <nx12-header title="NAVIGATION.HANGMAN_WORDS"></nx12-header>
 <ion-content>
-    <div class="wrapper" *ngIf="selectedCategory">
+    <div *ngIf="selectedCategory" class="wrapper">
 
         <img class="hangman" src="assets/images/hangman/hangman{{counter}}.svg">
 
@@ -10,20 +10,20 @@
         </div>
 
         <div class="l-container justify-content-center">
-            <p-button [style]="{'width': '13%', 'margin': '1%'}" label="{{l}}" *ngFor="let l of letters" (onClick)="checkLetter(l)"  id="{{l}}" [disabled]="selectedLetters.includes(l)"></p-button>
+            <p-button (onClick)="checkLetter(l)" *ngFor="let l of letters" [disabled]="selectedLetters.includes(l)" [style]="{'width': '13%', 'margin': '1%'}"  id="{{l}}" label="{{l}}"></p-button>
         </div>
     </div>
-    <p-dialog [visible]="!selectedCategory" [closable]="false">
+    <p-dialog [closable]="false" [visible]="!selectedCategory">
         <p *ngIf="noMoreWords">Elfogytak a szavak, válassz új kategóriát!</p>
-        <p-listbox [options]="categories ?? []" [(ngModel)]="selectedCategory" (onClick)="showWord()"></p-listbox>
+        <p-listbox (onClick)="showWord()" [(ngModel)]="selectedCategory" [options]="categories ?? []"></p-listbox>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="failed" [closable]="false" [modal]="true">
+    <p-dialog [(visible)]="failed" [closable]="false" [modal]="true" header="">
         <p>Nem sikerült!</p>
-        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
+        <button (click)="nextWord()" class="p-button-lg" icon="pi pi-check" label="Check" pButton type="button"></button>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="success" [closable]="false" [modal]="true">
+    <p-dialog [(visible)]="success" [closable]="false" [modal]="true" header="">
         <p>Siker!</p>
-        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
+        <button (click)="nextWord()" class="p-button-lg" icon="pi pi-check" label="Check" pButton type="button"></button>
     </p-dialog>
 
 </ion-content>

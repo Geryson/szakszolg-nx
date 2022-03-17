@@ -5,6 +5,7 @@
 	"bundledWebRuntime": false,
 	"includePlugins": [
 		"es6-promise-plugin",
-		"cordova-plugin-screen-orientation"
-	],
+		"cordova-plugin-screen-orientation",
+		"cordova.plugins.diagnostic"
+	]
 }

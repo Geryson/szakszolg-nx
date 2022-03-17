@@ -39,6 +39,7 @@ import { SchoolService } from '../shared/services/school.service'
 import { StaticService } from '../shared/services/static.service'
 import { SurveyService } from '../shared/services/survey.service'
 import { UserService } from '../shared/services/user.service'
+import { ExportService } from '../shared/services/export.service'
 
 @NgModule({
     declarations: [AppComponent],
@@ -93,6 +94,7 @@ import { UserService } from '../shared/services/user.service'
         PuzzleService,
         MessageService,
         AlertService,
+        ExportService,
         AuthService,
         GroupingItemService,
         HangmanWordService,

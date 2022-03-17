@@ -83,7 +83,8 @@
         "OFFLINE":"Offline",
         "SHOW":"Mutasd",
         "PREVIEW":"Előnézet",
-        "BACK":"Vissza"
+        "BACK":"Vissza",
+        "EXIT": "Kilépés"
     },
 
     "MESSAGE":{
@@ -281,6 +282,7 @@
         "CATEGORIES": "Kategóriák",
         "SEARCH": "Keresés cím alapján",
         "ID": "Azonosító",
+        "DELETE_CONFIRM": "A kiválasztott kérdőív véglegesen törölve lesz",
         "SINGLE": {
             "QUESTION": "A kérdés",
             "NEW_QUESTION": "Új kérdés felvétele",

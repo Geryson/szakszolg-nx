@@ -10,6 +10,7 @@ export function confirmThenDelete(
     queryRef: { refetch: () => any },
     translationKey: string,
 ) {
+    translationKey = translationKey.toUpperCase()
     const confirmation = APP_INJECTOR.get(ConfirmationService)
     const translate = APP_INJECTOR.get(TranslatePipe)
     const loadingController = APP_INJECTOR.get(LoadingController)
