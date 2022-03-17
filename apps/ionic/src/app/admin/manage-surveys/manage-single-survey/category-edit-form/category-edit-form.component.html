@@ -3,7 +3,7 @@
         <div class='mb-4 d-flex'>
             <div class='p-buttonset mx-auto'>
                 <p-button (click)='save()' [disabled]='!survey.categories?.length' icon='pi pi-save' label='{{ "FORM_OPERATION.SAVE" | translate }}' styleClass='p-button-primary'></p-button>
-                <p-button (click)='cancel()' icon='pi pi-times' label='{{ "FORM_OPERATION.CANCEL" | translate }}' styleClass='p-button-primary'></p-button>
+                <p-button (click)='cancel()' icon='pi pi-times' label='{{ "FORM_OPERATION.CANCEL" | translate }}' styleClass='p-button-danger'></p-button>
             </div>
         </div>
         <div class='mb-4'>
