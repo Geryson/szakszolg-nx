@@ -6,8 +6,8 @@ export class CreateQuizAnswerInput extends GqlInput {
     @Field()
     quizId: string
 
-    @Field()
-    token
+    @Field({ nullable: true })
+    token: string | null
 
     @Field(() => Int)
     questionId: number
