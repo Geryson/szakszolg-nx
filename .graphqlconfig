@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "https://justnop.xyz/graphql",
+        "url": "http://localhost:3000/graphql",
         "headers": {
           "user-agent": "JS GraphQL"
         },
