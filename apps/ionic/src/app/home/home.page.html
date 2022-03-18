@@ -29,14 +29,14 @@
                             shape='round' type='submit'>{{ 'BUTTONS.ENTER' | translate }}</ion-button>
             </div>
         </div>
-        <p-dialog  [visible]="differentEduId" [closable]="false" [modal]="true">
+        <p-dialog  [closable]="false" [modal]="true" [visible]="differentEduId">
             <div class="chooseText">
-                <h3>Különböző EduId</h3>
+                <h3>Különböző Oktatási azonosító</h3>
                 <p>Szeretnéd elmenteni az előző kérdőív válaszait?</p>
             </div>
             <div >
-                <button type="button" pButton icon="pi pi-check" label="Igen" (click)="savePrevAnswers()"></button>
-                <button type="button" pButton icon="pi pi-times" label="Nem" (click)="deleteEduId()"></button>
+                <button (click)="savePrevAnswers()" icon="pi pi-check" label="Igen" pButton type="button"></button>
+                <button (click)="deleteEduId()" icon="pi pi-times" label="Nem" pButton type="button"></button>
             </div>
         </p-dialog>
         <div>
