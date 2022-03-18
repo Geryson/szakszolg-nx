@@ -20,7 +20,7 @@
             <tr>
                 <td>{{word.word}}</td>
                 <td>
-                    <p-button (click)='openEditDialogue(word)' styleClass='p-button-success'
+                    <p-button (click)='openEditDialogue(word)' styleClass='p-button-primary'
                             icon='pi pi-{{ NG_ICON.pencil }}' label=''></p-button>
                     <p-button (click)='deleteWord(word)' styleClass='p-button-danger'
                             icon='pi pi-{{ NG_ICON.trash }}' label=''></p-button>
@@ -30,7 +30,7 @@
     </p-table>
 </ion-content>
 
-<p-dialog [(visible)]='dialog' [draggable]='false' [modal]='true' [resizable]='false' [style]="{maxWidth: '600px'}"
+<p-dialog [(visible)]='dialog' [draggable]='false' [modal]='true' [resizable]='false' [closable]='false' [style]="{maxWidth: '600px'}"
           header="{{ ('MIRROR_LIST.' + dialog?.toUpperCase()) | translate }}" position='bottom'>
     <div class='p-grid'>
         <div class='p-col-12'>

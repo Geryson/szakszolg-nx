@@ -108,6 +108,8 @@ export class TokenService {
         this.confirmationService.confirm({
             message: message,
             header: header,
+            acceptLabel: 'Igen',
+            rejectLabel: 'Nem',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.save = false

@@ -101,6 +101,9 @@ export class FillSurveyPage implements OnInit{
         this.storage.set(STORAGE_KEY.SURVEY_INDEX, this.service.index).then()
         this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
     }
+    confirmation(){
+        this.service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')
+    }
 
     ngOnInit() {
         if(!this.service.activeQuiz)

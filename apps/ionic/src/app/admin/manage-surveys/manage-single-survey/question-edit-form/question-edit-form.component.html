@@ -95,7 +95,7 @@
                     <tr>
                         <td class='d-flex-row'>
                             {{ ans.text }}
-                                <ion-select [(ngModel)]='ans.categoryIndex' placeholder="Semleges">
+                                <ion-select [(ngModel)]='ans.categoryIndex' placeholder="Kérem válasszon">
                                     <ion-select-option *ngFor='let option of options' [value]="option.value">{{ option.name }}</ion-select-option>
                                 </ion-select>
                         </td>

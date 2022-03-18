@@ -9,9 +9,6 @@
                     <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
                            placeholder="{{ 'SCHOOL_FINDER.BROWSE_ALL' | translate }}" [maxLength]="80" type='text' />
                 </span>
-                <!--<span>
-                    <button class='p-button-success' icon='pi pi-plus' pButton type='button'></button>
-                </span>-->
             </div>
         </ng-template>
         <ng-template pTemplate='header'>
@@ -30,12 +27,6 @@
                 <td><span class='p-column-title'>{{ 'SCHOOL_FINDER.ADDRESS' | translate }}</span> {{ schoolObject.address }}</td>
                 <td><span class='p-column-title'>{{ 'SCHOOL_FINDER.COUNTY' | translate }}</span> {{ schoolObject.county }}</td>
                 <td><span class='p-column-title'>{{ 'SCHOOL_FINDER.TYPES' | translate }}</span> {{ schoolObject.types | join:', ' }}</td>
-                <!--<td><span class='p-column-title'>{{ 'MANAGE_HANGMAN_WORDS.ACTIONS' | translate }}</span>
-                    <span class='p-buttonset'>
-                        <button class='p-button-primary' pButton type='button'></button>
-                        <button class='p-button-danger' pButton type='button'></button>
-                    </span>
-                </td>-->
             </tr>
         </ng-template>
     </p-table>

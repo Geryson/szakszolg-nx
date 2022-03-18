@@ -50,7 +50,7 @@
 </ion-content>
 
 <p-dialog [(visible)]='tokenDialog' [draggable]='true' [modal]='true' [resizable]='false' [responsive]='true'
-          header='MANAGE_SURVEYS.CREATE_TOKEN'>
+          header="{{'MANAGE_SURVEYS.CREATE_TOKEN' | translate}}">
     <div class='p-grid'>
         <div class='p-col-12'>
             <h5>{{ generatedToken.token }}</h5>

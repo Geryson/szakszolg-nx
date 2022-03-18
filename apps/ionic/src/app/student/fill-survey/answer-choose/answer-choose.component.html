@@ -27,11 +27,15 @@
                 <p-button  [style]="{'width': '25%', 'min-height': '3rem', 'margin-left': '1%'}" (click)="next(service.questions[service.index].answers![3])" label="{{service.questions[service.index].answers![3].text}}"></p-button>
         </div>
     </div>
+
     <p-dialog *ngIf="service.activeQuiz!.template==='quiz'" [visible]="finish" [style]="{width: '50vw'}" [closable]="false" [modal]="true">
         <div>
             <h1>Játék vége!</h1>
         </div>
-        <div >
+        <h4>
+            Jó válaszok száma: {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
+        </h4>
+        <div class="vegeBtn">
             <button type="button" pButton icon="pi pi-home" label="Kilépés" (click)="exit()"></button>
         </div>
     </p-dialog>
