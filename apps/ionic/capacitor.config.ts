@@ -5,7 +5,12 @@ const config: CapacitorConfig = {
     appName: 'ionic',
     webDir: '../../dist/apps/ionic',
     bundledWebRuntime: false,
-    includePlugins: ['es6-promise-plugin', 'cordova-plugin-screen-orientation'],
+    includePlugins: [
+        'es6-promise-plugin',
+        'cordova-plugin-screen-orientation',
+        'cordova.plugins.diagnostic',
+        'cordova-plugin-file',
+    ],
 }
 
 export default config

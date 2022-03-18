@@ -1,36 +1,39 @@
-import {Inject, Injectable, OnDestroy} from '@angular/core'
+import { Inject, Injectable, OnDestroy } from '@angular/core'
 import { Apollo, MutationResult } from 'apollo-angular'
-import {firstValueFrom, Observable} from 'rxjs'
+import { firstValueFrom, Observable } from 'rxjs'
 import { APOLLO_CLIENT } from '../injector.tokens'
 import { TOKENS } from '../graphql/tokens.graphql'
-import {ICreateQuizAnswerInput, IQuiz, IQuizAnswer, IQuizQuestion, IToken} from "@szakszolg-nx/api-interfaces";
-import {STORAGE_KEY} from "../utils/constants";
-import {pages} from "../utils/pages.const";
-import {StorageService} from "./storage.service";
-import {ConfirmationService, MessageService} from "primeng/api";
-import {RedirectService} from "./redirect.service";
-import {showLoading} from "../utils/observable.tools";
-import {AnswerService} from "./answer.service";
-import {omit} from "../utils/object.tools";
+import { ICreateQuizAnswerInput, IQuiz, IQuizAnswer, IQuizQuestion, IToken } from '@szakszolg-nx/api-interfaces'
+import { STORAGE_KEY } from '../utils/constants'
+import { pages } from '../utils/pages.const'
+import { StorageService } from './storage.service'
+import { ConfirmationService, MessageService } from 'primeng/api'
+import { RedirectService } from './redirect.service'
+import { presentLoading } from '../utils/observable.tools'
+import { AnswerService } from './answer.service'
+import { omit } from '../utils/object.tools'
 
 @Injectable({
     providedIn: 'root',
 })
-export class TokenService{
-    activeQuiz?: IQuiz;
-    answers:IQuizAnswer[] = [];
+export class TokenService {
+    activeQuiz?: IQuiz
+    answers: IQuizAnswer[] = []
     questions: IQuizQuestion[] = []
     index = 0
-    token?:string
+    token?: string
     activeOM = ''
-    end = false;
-    save= false;
+    end = false
+    save = false
 
-    constructor(@Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo,
-                private readonly storage: StorageService, private confirmationService: ConfirmationService,
-                private messageService: MessageService, private readonly redirect: RedirectService,
-                protected readonly sendData: AnswerService) {
-    }
+    constructor(
+        @Inject(APOLLO_CLIENT) private readonly apolloClient: Apollo,
+        private readonly storage: StorageService,
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService,
+        private readonly redirect: RedirectService,
+        protected readonly sendData: AnswerService,
+    ) {}
 
     create(quizId: string): Observable<MutationResult<{ createToken: { token: string; __typename: 'Token' } }>> {
         return this.apolloClient.mutate<{ createToken: { token: string; __typename: 'Token' } }>({
@@ -40,10 +43,10 @@ export class TokenService{
             },
         })
     }
-    read(token: string){
-        return this.apolloClient.watchQuery<{token: Partial<IToken>}>({
+    read(token: string) {
+        return this.apolloClient.watchQuery<{ token: Partial<IToken> }>({
             query: TOKENS.READ,
-            variables: {token}
+            variables: { token },
         })
     }
 
@@ -69,13 +72,12 @@ export class TokenService{
                 )
             }
             await Promise.all(promises)*/
-
         }
         l.dismiss().then()
         this.index = 0
-        this.answers = this.answers.map(ans => ({
+        this.answers = this.answers.map((ans) => ({
             ...ans,
-            answer: ''
+            answer: '',
         }))
         await this.clearStorage()
     }
@@ -96,7 +98,7 @@ export class TokenService{
         this.redirect.to(pages.home)
     }
 
-    reject(){
+    reject() {
         this.end = false
         return
     }

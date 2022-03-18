@@ -505,6 +505,20 @@
   dependencies:
     "@types/cordova" latest
 
+"@awesome-cordova-plugins/diagnostic@^5.40.0":
+  version "5.40.0"
+  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/diagnostic/-/diagnostic-5.40.0.tgz#435ade6f73f88f979f15fed3e7ddbd40999a3d70"
+  integrity sha512-7ogxaKhD8nA/UTnvbEFg4zaYZg6Xr4du5khUMbjH49vrx/yQPH2YUQG1Jd2GN5GCuEyFiX+UccgsKgLhSC3kMA==
+  dependencies:
+    "@types/cordova" latest
+
+"@awesome-cordova-plugins/file@^5.40.0":
+  version "5.40.0"
+  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/file/-/file-5.40.0.tgz#69c5157cd09e8f3881cda9bd60fb303ecc9dd866"
+  integrity sha512-6a/RedTKZ0mJl6Mb54YYivNRg0RWajadfppwRSHsgvkTb0j5/CPZzNswrfD+8TZ8djt5IOcz7MjV/D6ih5SPEA==
+  dependencies:
+    "@types/cordova" latest
+
 "@awesome-cordova-plugins/screen-orientation@^5.40.0":
   version "5.40.0"
   resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/screen-orientation/-/screen-orientation-5.40.0.tgz#4ba308b83dc718a1aa642df6e0b297844d924d11"
@@ -5676,10 +5690,24 @@ copy-webpack-plugin@^9.0.1:
     schema-utils "^3.1.1"
     serialize-javascript "^6.0.0"
 
+cordova-plugin-file@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-6.0.2.tgz#f3911479f8357e9aacb5576674f8d95b31a1fb20"
+  integrity sha512-m7cughw327CjONN/qjzsTpSesLaeybksQh420/gRuSXJX5Zt9NfgsSbqqKDon6jnQ9Mm7h7imgyO2uJ34XMBtA==
+
 cordova-plugin-screen-orientation@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-screen-orientation/-/cordova-plugin-screen-orientation-3.0.2.tgz#81290a933cfe84d35482cfcb251c931cc7b71931"
   integrity sha512-2w6CMC+HGvbhogJetalwGurL2Fx8DQCCPy3wlSZHN1/W7WoQ5n9ujVozcoKrY4VaagK6bxrPFih+ElkO8Uqfzg==
+
+cordova.plugins.diagnostic@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/cordova.plugins.diagnostic/-/cordova.plugins.diagnostic-6.1.1.tgz#7dbd13a6b9b2af13701c009888441d36895f57f4"
+  integrity sha512-JEc7MEPNDDrLb4RGmIwxoKIQ1AVRbh7OuDI8MTsdRqKFA/fQgdF3tK54uWbICUYBx9bQ0YY4FqNmkO0zkDyx5g==
+  dependencies:
+    colors "1.4.0"
+    elementtree "^0.1.6"
+    minimist "1.2.0"
 
 core-js-compat@^3.20.2, core-js-compat@^3.21.0:
   version "3.21.1"
@@ -6412,7 +6440,7 @@ electron-to-chromium@^1.4.71:
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.71.tgz#17056914465da0890ce00351a3b946fd4cd51ff6"
   integrity sha512-Hk61vXXKRb2cd3znPE9F+2pLWdIOmP7GjiTj45y6L3W/lO+hSnUSUhq+6lEaERWBdZOHbk2s3YV5c9xVl3boVw==
 
-elementtree@^0.1.7:
+elementtree@^0.1.6, elementtree@^0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/elementtree/-/elementtree-0.1.7.tgz#9ac91be6e52fb6e6244c4e54a4ac3ed8ae8e29c0"
   integrity sha1-mskb5uUvtuYkTE5UpKw+2K6OKcA=
@@ -10112,6 +10140,11 @@ minimist-options@4.1.0:
     arrify "^1.0.1"
     is-plain-obj "^1.1.0"
     kind-of "^6.0.3"
+
+minimist@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
+  integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
 
 minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.5:
   version "1.2.5"

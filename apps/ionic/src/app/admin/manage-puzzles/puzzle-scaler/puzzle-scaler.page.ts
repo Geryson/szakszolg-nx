@@ -279,6 +279,11 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
         this.cropperFace.style.backgroundSize = value + 'px'
     }
 
+    exit() {
+        this.unlockOrientation()
+        this.redirect.to(pages.admin.puzzleImages)
+    }
+
     private lockLandscape() {
         return this.screenOrientation
             .lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)

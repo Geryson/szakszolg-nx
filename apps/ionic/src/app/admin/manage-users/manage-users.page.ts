@@ -9,6 +9,7 @@ import { NG_ICON } from '../../../shared/utils/prime-icons.class'
 import { confirmThenDelete } from '../../../shared/utils/observable.tools'
 import { AuthService } from '../../../shared/services/auth.service'
 import { RedirectService } from '../../../shared/services/redirect.service'
+import { Log } from '../../../shared/utils/log.tools'
 
 @Component({
     selector: 'nx12-manage-users',

@@ -9,3 +9,9 @@ export interface IQuizAnswer extends IApiResource {
     token?: string | null
     answeredAt?: Date
 }
+
+export interface IExportableSurveyAnswer {
+    om: string
+    questionId: number
+    answer: string
+}
