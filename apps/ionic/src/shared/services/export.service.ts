@@ -80,7 +80,7 @@ export class ExportService {
                 },
             )
             Log.debug('ExportService.exportFormToFile', 'Write OK', writeResult)
-            presentAlert('MESSAGE.FORM_CSV_EXPORT_DONE', 'HEADER.HEUREKA').then()
+            presentAlert('MESSAGE.FORM_CSV_EXPORT_DONE', 'HEADER.EUREKA').then()
         } catch (e) {
             Log.error('ExportService::exportFormToFile', 'Export failed:', e)
             presentAlert('MESSAGE.FORM_CSV_EXPORT_FAILED', 'HEADER.ERROR').then()
@@ -90,7 +90,7 @@ export class ExportService {
     }
 
     private generateCsv(answers: IExportableSurveyAnswer[]): string {
-        let result = `${this.headers.join(this.csvDelimiter)}${this.csvNewLine}`
+        let result = `${this.headers.map((h) => h.label).join(this.csvDelimiter)}${this.csvNewLine}`
         for (const answer of answers) {
             result +=
                 this.headers.map((header) => this.csvEscape(answer[header.key])).join(this.csvDelimiter) +
