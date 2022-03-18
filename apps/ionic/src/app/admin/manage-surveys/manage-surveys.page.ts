@@ -6,6 +6,8 @@ import { SurveyService } from '../../../shared/services/survey.service'
 import { TokenService } from '../../../shared/services/token.service'
 import { first } from 'rxjs'
 import { ExportService } from '../../../shared/services/export.service'
+import { Log } from '../../../shared/utils/log.tools'
+import { Clipboard } from '@awesome-cordova-plugins/clipboard/ngx'
 
 @Component({
     selector: 'nx12-manage-surveys',
@@ -23,6 +25,7 @@ export class ManageSurveysPage extends CrudPageClass<IQuiz, { quizzes: Partial<I
         protected readonly resourceService: SurveyService,
         private readonly tokenService: TokenService,
         private readonly exportService: ExportService,
+        private readonly clipboard: Clipboard,
     ) {
         super()
     }
@@ -52,7 +55,18 @@ export class ManageSurveysPage extends CrudPageClass<IQuiz, { quizzes: Partial<I
     }
 
     async copyToken() {
-        await navigator.clipboard.writeText(this.generatedToken.token ?? '')
+        if (!this.generatedToken.token) {
+            Log.error('ManageSurveysPage::copyToken', 'No token to copy')
+            return
+        }
+        try {
+            await this.clipboard.copy(this.generatedToken.token)
+        } catch (e) {
+            Log.warn('ManageSurveysPage::copyToken', 'Error copying token to clipboard', e)
+            Log.info('ManageSurveysPage::copyToken', 'Trying with navigator clipboard')
+            await navigator.clipboard.writeText(this.generatedToken.token)
+        }
+
         this.copied = true
         setTimeout(() => {
             this.copied = false
