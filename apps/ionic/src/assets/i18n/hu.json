@@ -281,6 +281,9 @@
         "CATEGORIES": "Kategóriák",
         "SEARCH": "Keresés cím alapján",
         "ID": "Azonosító",
+        "DELETE_CONFIRM": "Biztosan törölni szeretnél?",
+        "DELETED": "Siker",
+        "DELETED_DETAIL": "A törlés sikeresen megtörtént.",
         "SINGLE": {
             "QUESTION": "A kérdés",
             "NEW_QUESTION": "Új kérdés felvétele",
