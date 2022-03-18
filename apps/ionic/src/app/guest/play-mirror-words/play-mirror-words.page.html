@@ -8,15 +8,15 @@
         <label>Próbálkozások száma: {{ counter }}</label>
         <label>Jó válaszok száma: {{ correctAnswers }}</label>
     </div>
-    <p-dialog header="Ügyes" [(visible)]="found" [closable]="false">
+    <p-dialog header="Ügyes" [(visible)]="found" [closable]="false" [modal]="true">
         <p>Siker, eltaláltad!</p>
         <button pButton type="button" autofocus  styleClass="p-button-text" icon="pi pi-check" label="Ok" (click)="nextWord()"></button>
     </p-dialog>
-    <p-dialog header="Nem sikerült"  [(visible)]="mistake" [closable]="false">
+    <p-dialog header="Nem sikerült"  [(visible)]="mistake" [closable]="false" [modal]="true">
         <p>Nem talált!</p>
         <button pButton type="button" autofocus  label="Ok" icon="pi pi-check" class="p-button-lg" (click)="mistake = false" ></button>
     </p-dialog>
-    <p-dialog header="Vége a játéknak!" [(visible)]="end" [closable]="false">
+    <p-dialog header="Vége a játéknak!" [(visible)]="end" [closable]="false" [modal]="true">
         <p>A helyes válasz: {{answer}}</p>
         <button pButton type="button" autofocus  label="Ok" icon="pi pi-check" class="p-button-lg" (click)="newGame()"></button>
     </p-dialog>
