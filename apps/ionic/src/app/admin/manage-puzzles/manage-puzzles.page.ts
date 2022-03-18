@@ -9,7 +9,7 @@ import { PuzzleService } from '../../../shared/services/puzzle.service'
 import { QueryRef } from 'apollo-angular'
 import { deepCopy } from '../../../shared/utils/object.tools'
 import { firstValueFrom, Subscription } from 'rxjs'
-import { showLoading } from '../../../shared/utils/observable.tools'
+import { presentLoading } from '../../../shared/utils/observable.tools'
 import { RedirectService } from '../../../shared/services/redirect.service'
 
 @Component({
@@ -73,7 +73,7 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
     }
 
     async destroy(item: Partial<IPuzzle>) {
-        const loading = await showLoading()
+        const loading = await presentLoading()
         firstValueFrom(this.service.destroy(item._id)).then(async () => {
             await this.queryRef?.refetch()
             loading.dismiss().then()

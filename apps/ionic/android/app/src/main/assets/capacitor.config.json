@@ -6,6 +6,7 @@
 	"includePlugins": [
 		"es6-promise-plugin",
 		"cordova-plugin-screen-orientation",
-		"cordova.plugins.diagnostic"
+		"cordova.plugins.diagnostic",
+		"cordova-plugin-file"
 	]
 }

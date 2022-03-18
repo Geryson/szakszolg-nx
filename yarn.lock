@@ -512,6 +512,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@awesome-cordova-plugins/file@^5.40.0":
+  version "5.40.0"
+  resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/file/-/file-5.40.0.tgz#69c5157cd09e8f3881cda9bd60fb303ecc9dd866"
+  integrity sha512-6a/RedTKZ0mJl6Mb54YYivNRg0RWajadfppwRSHsgvkTb0j5/CPZzNswrfD+8TZ8djt5IOcz7MjV/D6ih5SPEA==
+  dependencies:
+    "@types/cordova" latest
+
 "@awesome-cordova-plugins/screen-orientation@^5.40.0":
   version "5.40.0"
   resolved "https://registry.yarnpkg.com/@awesome-cordova-plugins/screen-orientation/-/screen-orientation-5.40.0.tgz#4ba308b83dc718a1aa642df6e0b297844d924d11"
@@ -5682,6 +5689,11 @@ copy-webpack-plugin@^9.0.1:
     normalize-path "^3.0.0"
     schema-utils "^3.1.1"
     serialize-javascript "^6.0.0"
+
+cordova-plugin-file@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-file/-/cordova-plugin-file-6.0.2.tgz#f3911479f8357e9aacb5576674f8d95b31a1fb20"
+  integrity sha512-m7cughw327CjONN/qjzsTpSesLaeybksQh420/gRuSXJX5Zt9NfgsSbqqKDon6jnQ9Mm7h7imgyO2uJ34XMBtA==
 
 cordova-plugin-screen-orientation@^3.0.2:
   version "3.0.2"
