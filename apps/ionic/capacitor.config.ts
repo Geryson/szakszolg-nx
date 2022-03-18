@@ -10,6 +10,7 @@ const config: CapacitorConfig = {
         'cordova-plugin-screen-orientation',
         'cordova.plugins.diagnostic',
         'cordova-plugin-file',
+        'cordova-clipboard',
     ],
 }
 

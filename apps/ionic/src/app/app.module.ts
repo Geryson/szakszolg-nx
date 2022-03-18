@@ -42,6 +42,7 @@ import { UserService } from '../shared/services/user.service'
 import { ExportService } from '../shared/services/export.service'
 import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx'
 import { File } from '@awesome-cordova-plugins/file/ngx'
+import { Clipboard } from '@awesome-cordova-plugins/clipboard/ngx'
 
 @NgModule({
     declarations: [AppComponent],
@@ -99,6 +100,7 @@ import { File } from '@awesome-cordova-plugins/file/ngx'
         ExportService,
         AuthService,
         Diagnostic,
+        Clipboard,
         File,
         GroupingItemService,
         HangmanWordService,
