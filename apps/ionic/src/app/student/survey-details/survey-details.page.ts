@@ -11,6 +11,7 @@ import {StorageService} from "../../../shared/services/storage.service";
     styleUrls: ['./survey-details.page.scss'],
 })
 export class SurveyDetailsPage implements OnInit {
+    pages=pages
 
     constructor(public readonly service: TokenService, public readonly redirect: RedirectService, private readonly storage: StorageService) {
     }

@@ -49,7 +49,9 @@ export class TokenService{
 
     async cancel() {
         const l = await showLoading()
+        console.log("SAVE ELŐTT: "+ this.save)
         if(this.save){
+            console.log('SAVING')
             this.answers = this.answers.filter(x=> x.answer!=='')
             await firstValueFrom(this.sendData.create2(this.answers.map(item => omit(item, '_id', 'createdAt'))))
             /*for (const answerElement of this.answers) {
@@ -75,37 +77,41 @@ export class TokenService{
             ...ans,
             answer: ''
         }))
-        await this.storage.remove(STORAGE_KEY.SURVEY_TOKEN).then(() => delete this.token)
-        await this.storage.remove(STORAGE_KEY.SURVEY_INDEX).then()
-        await this.storage.remove(STORAGE_KEY.SURVEY_ANSWER).then()
-        await this.storage.remove(STORAGE_KEY.ACTIVE_QUIZ).then()
-        await this.storage.remove(STORAGE_KEY.SURVEY_QUESTIONS).then()
-        await this.storage.remove(STORAGE_KEY.EDU_ID).then()
-
+        await this.clearStorage()
     }
-    accept(){
+    clearStorage(){
+        this.answers=[]
+        this.questions=[]
+        this.storage.remove(STORAGE_KEY.SURVEY_TOKEN).then(() => {delete this.token})
+        this.storage.remove(STORAGE_KEY.SURVEY_INDEX).then()
+        this.storage.remove(STORAGE_KEY.SURVEY_ANSWER).then()
+        this.storage.remove(STORAGE_KEY.ACTIVE_QUIZ).then()
+        this.storage.remove(STORAGE_KEY.SURVEY_QUESTIONS).then()
+        this.storage.remove(STORAGE_KEY.EDU_ID).then()
+    }
+    async accept(){
         this.save=true
         this.end = false
-        this.cancel().then()
-        this.redirect.to(pages.student.enterToken)
+        await this.cancel().then()
+        this.redirect.to(pages.home)
     }
 
     reject(){
         this.end = false
         return
     }
-    confirm(message: string, header: string) {
+     confirm(message: string, header: string) {
         this.confirmationService.confirm({
             message: message,
             header: header,
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
+                this.save=false
                 this.cancel().then()
-                this.redirect.to(pages.student.enterToken)
-
+                this.redirect.to(pages.home)
             },
             reject: (type: any) => {
-                return
+                this.reject()
             }
 
         });
