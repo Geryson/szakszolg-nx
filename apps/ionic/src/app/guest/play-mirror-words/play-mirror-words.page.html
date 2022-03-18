@@ -1,7 +1,7 @@
 <nx12-header title="NAVIGATION.MIRROR_WORDS"></nx12-header>
 
 <ion-content fullscreen="true">
-    <div class="mainContainer">
+    <div [hidden]="loading" class="mainContainer">
         <label class="noselect label margins" [ngClass]="{'flipV' : value===1, 'flipH': value===0}">{{ word }}</label>
         <input type="text" class="p-inputtext-lg margins" pInputText [(ngModel)]="inputValue" (keydown.enter)="check()"/>
         <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg margins" (click)="check()"></button>
@@ -12,7 +12,7 @@
         <p>Siker, eltaláltad!</p>
         <button pButton type="button" autofocus  styleClass="p-button-text" icon="pi pi-check" label="Ok" (click)="nextWord()"></button>
     </p-dialog>
-    <p-dialog header="sampletext"  [(visible)]="mistake" [closable]="false">
+    <p-dialog header="Nem sikerült"  [(visible)]="mistake" [closable]="false">
         <p>Nem talált!</p>
         <button pButton type="button" autofocus  label="Ok" icon="pi pi-check" class="p-button-lg" (click)="mistake = false" ></button>
     </p-dialog>

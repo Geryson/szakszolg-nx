@@ -12,7 +12,7 @@ import { AlertService } from '../../../shared/services/alert.service'
 })
 export class PlayMirrorWordsPage {
     inputValue?: string
-    word?: string
+    word!: string
     counter = 5
     correctAnswers = 0
     value: number | null = null
@@ -22,6 +22,10 @@ export class PlayMirrorWordsPage {
     end = false
     private queryRef?: QueryRef<{ mirrorWord: Partial<IMirrorWord> }>
     private sub?: Subscription
+    previousWords: string[] = []
+    noMoreWords = false
+
+    loading = false
 
     constructor(private readonly service: MirrorWordService, private readonly alert: AlertService) {}
 
@@ -48,8 +52,26 @@ export class PlayMirrorWordsPage {
         }
     }
     async nextWord() {
+        this.loading = true
+        let tries = 0
+
+        this.previousWords.push(this.word)
         const loading = await this.alert.loading('MESSAGE.LOADING')
+
         await this.queryRef?.refetch()
+        while (this.previousWords.includes(this.word)){
+            if (tries < 5){
+                await this.queryRef?.refetch()
+                tries++
+            }
+            else
+            {
+                this.noMoreWords = true
+                break
+            }
+        }
+
+        this.loading = false
         loading.dismiss().then()
         this.end = false
         this.found = false
