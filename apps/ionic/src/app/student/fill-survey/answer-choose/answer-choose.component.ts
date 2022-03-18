@@ -51,6 +51,7 @@ export class AnswerChooseComponent implements OnInit{
                 this.correctAnswers++
                 this.service.save=true
                 this.finish=true
+                this.service.end =  true
                 return
             }
             this.service.index++
