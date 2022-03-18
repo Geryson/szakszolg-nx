@@ -31,7 +31,7 @@
 </ion-content>
 
 <p-dialog [(visible)]='dialog' [draggable]='false' [modal]='true' [resizable]='false' [style]="{maxWidth: '600px'}"
-          header='MIRROR_LIST'>
+          header="{{ ('MIRROR_LIST.' + dialog?.toUpperCase()) | translate }}" position='bottom'>
     <div class='p-grid'>
         <div class='p-col-12'>
             <input [(ngModel)]='wordUnderEdit' [placeholder]="'MIRROR_LIST.EXAMPLE' | translate" [required]='true' name='word'
