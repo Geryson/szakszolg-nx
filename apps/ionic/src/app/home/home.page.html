@@ -30,10 +30,14 @@
             </div>
         </div>
         <p-dialog  [visible]="differentEduId" [closable]="false" [modal]="true">
-            <h3>Különböző EduId</h3>
-            <p>Szeretnéd elmenteni az előző kérdőív válaszait?</p>
-            <button type="button" pButton icon="pi pi-check" label="Igen" (click)="savePrevAnswers()"></button>
-            <button type="button" pButton icon="pi pi-times" label="Nem" (click)="deleteEduId()"></button>
+            <div class="chooseText">
+                <h3>Különböző EduId</h3>
+                <p>Szeretnéd elmenteni az előző kérdőív válaszait?</p>
+            </div>
+            <div >
+                <button type="button" pButton icon="pi pi-check" label="Igen" (click)="savePrevAnswers()"></button>
+                <button type="button" pButton icon="pi pi-times" label="Nem" (click)="deleteEduId()"></button>
+            </div>
         </p-dialog>
         <div>
             <div class="bottomContainer">

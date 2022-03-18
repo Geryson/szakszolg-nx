@@ -10,7 +10,7 @@ import { NavController } from '@ionic/angular'
 import { SurveyService } from '../../../../shared/services/survey.service'
 import { areEqual, deepCopy, omit } from '../../../../shared/utils/object.tools'
 import { Log } from '../../../../shared/utils/log.tools'
-import { showLoading } from '../../../../shared/utils/observable.tools'
+import { presentLoading } from '../../../../shared/utils/observable.tools'
 import { translate, Validator } from '../../../../shared/utils/translation.tools'
 
 @Component({
@@ -144,6 +144,11 @@ export class ManageSingleSurveyPage {
         this.validator?.check('categories')
     }
 
+    skillQuestionChanged() {
+        this.validator.check('skillQuestion').then()
+        this.survey?.questions?.forEach((q) => (q.question = this.skillQuestion))
+    }
+
     private getNewQuestion() {
         return {
             _id: this.getNextId(),
@@ -190,7 +195,7 @@ export class ManageSingleSurveyPage {
     }
 
     private async create() {
-        const l = await showLoading()
+        const l = await presentLoading()
         this.surveyService
             .add(this.survey!)
             .pipe(first())
@@ -198,7 +203,7 @@ export class ManageSingleSurveyPage {
     }
 
     private async update() {
-        const l = await showLoading()
+        const l = await presentLoading()
         this.surveyService
             .edit(this.survey!._id, omit(this.survey!, '_id'))
             .pipe(first())

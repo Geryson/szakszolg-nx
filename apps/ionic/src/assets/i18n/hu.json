@@ -83,7 +83,8 @@
         "OFFLINE":"Offline",
         "SHOW":"Mutasd",
         "PREVIEW":"Előnézet",
-        "BACK":"Vissza"
+        "BACK":"Vissza",
+        "EXIT": "Kilépés"
     },
 
     "MESSAGE":{

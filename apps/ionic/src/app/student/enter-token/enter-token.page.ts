@@ -43,7 +43,6 @@ export class EnterTokenPage{
             this.storage.get(STORAGE_KEY.EDU_ID).then(edu_id => {
                 if (edu_id) {
                     this.service.activeOM = edu_id
-                    console.log('Bent vagyok')
                 }
             })
 
@@ -54,17 +53,11 @@ export class EnterTokenPage{
             this.storage.set(STORAGE_KEY.ACTIVE_QUIZ, this.service.activeQuiz).then()
             //this.storage.set(STORAGE_KEY.SURVEY_INDEX, 0).then(() => this.redirect.to(pages.student.surveyDetails))
             this.redirect.to(pages.student.surveyDetails)
-            console.log(this.service.activeQuiz.questions)
         })
     }
 
 
     ionViewDidEnter() {
-        /*if (this.service.token){
-            this.token = this.service.token
-            this.send()
-            return
-        }*/
         this.storage.get(STORAGE_KEY.EDU_ID).then(om => {
             if(!om){
                 this.redirect.to(pages.home)
@@ -80,7 +73,6 @@ export class EnterTokenPage{
                 this.service.index = 0
             }
         })
-
         this.storage.get(STORAGE_KEY.SURVEY_INDEX).then(index => {
             if (!index) {
                 return;

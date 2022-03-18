@@ -46,6 +46,7 @@ export class FillSurveyPage implements OnInit{
         await this.storage.get(STORAGE_KEY.EDU_ID).then(edu_id => {
             if (edu_id) {
                 this.service.activeOM = edu_id
+
             }
         })
 
@@ -68,6 +69,7 @@ export class FillSurveyPage implements OnInit{
     }
 
     private questionFactory(question: IQuizQuestion, isQuiz = false) {
+        console.log(this.service.activeOM)
         const res: IQuizAnswer = {
             _id: null,
             createdAt: new Date,

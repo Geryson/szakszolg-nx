@@ -2,7 +2,15 @@ import { gql } from 'apollo-angular'
 
 export const ANSWERS = {
     ADD: gql`
-        mutation ($answer: String!, $quizId: String!, $questionId: Int!, $answeredAt: DateTime!, $om: String!, $isCorrect : Boolean, $token : String!) {
+        mutation (
+            $answer: String!
+            $quizId: String!
+            $questionId: Int!
+            $answeredAt: DateTime!
+            $om: String!
+            $isCorrect: Boolean
+            $token: String!
+        ) {
             createQuizAnswer(
                 createQuizAnswerData: {
                     answer: $answer
@@ -18,9 +26,23 @@ export const ANSWERS = {
             }
         }
     `,
-    ADD2:gql`
-        mutation($answers: [CreateQuizAnswerInput!]!) {
-            createManyQuizAnswers(createQuizAnswerData: {answers: $answers}) {_id}
+    ADD2: gql`
+        mutation ($answers: [CreateQuizAnswerInput!]!) {
+            createManyQuizAnswers(createQuizAnswerData: { answers: $answers }) {
+                _id
+            }
         }
-    `
+    `,
+    READ: gql`
+        query ($quizId: String!) {
+            quiz(id: $quizId) {
+                title
+            }
+            quizAnswers(quizId: $quizId) {
+                om
+                questionId
+                answer
+            }
+        }
+    `,
 }

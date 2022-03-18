@@ -26,10 +26,9 @@ export class HomePage implements OnInit {
     ngOnInit() {
         console.log(this.service.answers)
     }
-    ionViewDidLeave(){
-        this.service.save=false
+    ionViewDidEnter(){
+        this.eduId=''
     }
-
     async eduIdIsDifferent(){
         await this.storage.get(STORAGE_KEY.EDU_ID).then(om => {
             if(om)
@@ -56,27 +55,28 @@ export class HomePage implements OnInit {
         if (this.eduIdIsValid()) {
             this.storage.set(STORAGE_KEY.EDU_ID, this.eduId).then()
             this.redirect.to(pages.student.enterToken)
+
         } else {
             this.alert.show('ERROR_OM', ['AGAIN']).then()
         }
     }
 
-     async deleteEduId() {
-         await this.storage.remove(STORAGE_KEY.EDU_ID).then()
+     deleteEduId() {
+         this.storage.set(STORAGE_KEY.EDU_ID, this.eduId).then()
+         this.service.clearStorage()
          this.prevEduId=''
          this.differentEduId=false
-         await this.saveEduId()
          this.redirect.to(pages.student.enterToken)
     }
 
     async savePrevAnswers() {
-        this.service.answers=[]
-        this.storage.get(STORAGE_KEY.SURVEY_ANSWER).then(ans=>{
-            if(ans){this.service.answers=ans}
+        await this.storage.get(STORAGE_KEY.SURVEY_ANSWER).then(ans=>{
+            if(ans){
+                this.service.save=true
+                this.service.answers=ans
+            }
         })
-        await this.deleteEduId()
-        this.service.save=true
         await this.service.cancel()
-        this.saveEduId()
+        this.deleteEduId()
     }
 }

@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular'
 import { IUser } from '@szakszolg-nx/api-interfaces'
 import { APOLLO_CLIENT } from '../injector.tokens'
 import { USERS } from '../graphql/users.graphql'
+import { Log } from '../utils/log.tools'
 
 @Injectable({
     providedIn: 'root',
