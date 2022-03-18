@@ -80,6 +80,8 @@ export class TokenService{
         await this.clearStorage()
     }
     clearStorage(){
+        this.answers=[]
+        this.questions=[]
         this.storage.remove(STORAGE_KEY.SURVEY_TOKEN).then(() => {delete this.token})
         this.storage.remove(STORAGE_KEY.SURVEY_INDEX).then()
         this.storage.remove(STORAGE_KEY.SURVEY_ANSWER).then()
