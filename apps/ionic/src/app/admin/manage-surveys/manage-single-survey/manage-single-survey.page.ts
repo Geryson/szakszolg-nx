@@ -144,6 +144,11 @@ export class ManageSingleSurveyPage {
         this.validator?.check('categories')
     }
 
+    skillQuestionChanged() {
+        this.validator.check('skillQuestion').then()
+        this.survey?.questions?.forEach((q) => (q.question = this.skillQuestion))
+    }
+
     private getNewQuestion() {
         return {
             _id: this.getNextId(),
