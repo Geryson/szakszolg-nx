@@ -17,13 +17,13 @@
         <p *ngIf="noMoreWords">Elfogytak a szavak, válassz új kategóriát!</p>
         <p-listbox [options]="categories ?? []" [(ngModel)]="selectedCategory" (onClick)="showWord()"></p-listbox>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="failed" [closable]="false" [modal]="true">
+    <p-dialog header="Játék vége!" [(visible)]="failed" [closable]="false" [modal]="true">
         <p>Nem sikerült!</p>
-        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
+        <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
-    <p-dialog header="sampletext" [(visible)]="success" [closable]="false" [modal]="true">
+    <p-dialog header="Játék vége!" [(visible)]="success" [closable]="false" [modal]="true">
         <p>Siker!</p>
-        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
+        <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
 
 </ion-content>

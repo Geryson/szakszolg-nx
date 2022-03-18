@@ -539,6 +539,7 @@
 
     "SCHOOL_FINDER":{
         "INSTITUTE_NAME": "Intézménynév",
+        "BROWSE_ALL": "Keresés",
         "COUNTY": "Megye",
         "ADDRESS": "Cím",
         "OM":"OM",
