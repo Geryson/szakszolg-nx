@@ -3,7 +3,7 @@
 <ion-content fullscreen="true">
     <div class="mainContainer">
         <label class="noselect label margins" [ngClass]="{'flipV' : value===1, 'flipH': value===0}">{{ word }}</label>
-        <input type="text" class="p-inputtext-lg margins"  placeholder="MirrorWord" pInputText [(ngModel)]="inputValue" (keydown.enter)="check()"/>
+        <input type="text" class="p-inputtext-lg margins" pInputText [(ngModel)]="inputValue" (keydown.enter)="check()"/>
         <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg margins" (click)="check()"></button>
         <label>Próbálkozások száma: {{ counter }}</label>
         <label>Jó válaszok száma: {{ correctAnswers }}</label>
