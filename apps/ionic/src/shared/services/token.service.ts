@@ -51,12 +51,12 @@ export class TokenService {
     }
 
     async cancel() {
-        const l = await showLoading()
-        console.log("SAVE ELŐTT: "+ this.save)
-        if(this.save){
+        const l = await presentLoading()
+        console.log('SAVE ELŐTT: ' + this.save)
+        if (this.save) {
             console.log('SAVING')
-            this.answers = this.answers.filter(x=> x.answer!=='')
-            await firstValueFrom(this.sendData.create2(this.answers.map(item => omit(item, '_id', 'createdAt'))))
+            this.answers = this.answers.filter((x) => x.answer !== '')
+            await firstValueFrom(this.sendData.create2(this.answers.map((item) => omit(item, '_id', 'createdAt'))))
             /*for (const answerElement of this.answers) {
                 console.log(answerElement.questionId)
                 promises.push(firstValueFrom(this.sendData.create(
@@ -81,18 +81,20 @@ export class TokenService {
         }))
         await this.clearStorage()
     }
-    clearStorage(){
-        this.answers=[]
-        this.questions=[]
-        this.storage.remove(STORAGE_KEY.SURVEY_TOKEN).then(() => {delete this.token})
+    clearStorage() {
+        this.answers = []
+        this.questions = []
+        this.storage.remove(STORAGE_KEY.SURVEY_TOKEN).then(() => {
+            delete this.token
+        })
         this.storage.remove(STORAGE_KEY.SURVEY_INDEX).then()
         this.storage.remove(STORAGE_KEY.SURVEY_ANSWER).then()
         this.storage.remove(STORAGE_KEY.ACTIVE_QUIZ).then()
         this.storage.remove(STORAGE_KEY.SURVEY_QUESTIONS).then()
         this.storage.remove(STORAGE_KEY.EDU_ID).then()
     }
-    async accept(){
-        this.save=true
+    async accept() {
+        this.save = true
         this.end = false
         await this.cancel().then()
         this.redirect.to(pages.home)
@@ -102,20 +104,19 @@ export class TokenService {
         this.end = false
         return
     }
-     confirm(message: string, header: string) {
+    confirm(message: string, header: string) {
         this.confirmationService.confirm({
             message: message,
             header: header,
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.save=false
+                this.save = false
                 this.cancel().then()
                 this.redirect.to(pages.home)
             },
             reject: (type: any) => {
                 this.reject()
-            }
-
-        });
+            },
+        })
     }
 }
