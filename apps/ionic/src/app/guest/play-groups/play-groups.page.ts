@@ -18,6 +18,8 @@ export class PlayGroupsPage {
     correct?: string | undefined
     groups!: string[]
     word!: string
+    loading = false
+
     guessedAnswer?: boolean
     notCorrect?: boolean
     private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }>
@@ -41,12 +43,15 @@ export class PlayGroupsPage {
         const loading = await this.alert.loading('MESSAGE.LOADING')
         this.queryRef = this.service.random()
         this.sub = this.queryRef.valueChanges.subscribe(
-            (res) => (
-                (this.wArray = [] ,this.word = res.data.groupingItem.item ?? '!'),
-                (console.log(this.word), this.wArray.push(this.word)),
-                (this.correct = res.data.groupingItem.correct ?? '!', console.log('correct: '+this.correct)),
-                (this.groups = res.data.groupingItem.groups ?? [])
-            ),
+            (res) => {
+                this.wArray = []
+                this.word = res.data.groupingItem.item ?? '!'
+                console.log(this.word)
+                this.wArray.push(this.word)
+                this.correct = res.data.groupingItem.correct ?? '!'
+                console.log('correct: ' + this.correct)
+                this.groups = res.data.groupingItem.groups ?? []
+            }
         )
 
         loading.dismiss().then()
@@ -77,6 +82,7 @@ export class PlayGroupsPage {
     }
 
     async nextWord() {
+        this.loading = true
         let tries = 0
         this.previousWords.push(this.word)
 
@@ -94,6 +100,7 @@ export class PlayGroupsPage {
                 break
             }
         }
+        this.loading = false
 
         this.answerId = - 1
         this.correctId = - 1

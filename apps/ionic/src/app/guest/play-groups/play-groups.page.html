@@ -1,7 +1,7 @@
 <nx12-header title="NAVIGATION.GROUPING_ITEMS"></nx12-header>
 
 <ion-content>
-    <div class="container">
+    <div class="container" [hidden]="loading">
         <div class="groups example-boundary" *ngIf="groups" cdkDropListGroup>
             <div class="example-container word ">
                 <div
