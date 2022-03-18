@@ -277,6 +277,7 @@
     },
     "MANAGE_SURVEYS": {
         "TITLE": "Kérdőívek kezelése",
+        "CREATE_TOKEN": "Token létrehozása",
         "DESCRIPTION": "Leírás",
         "CATEGORIES": "Kategóriák",
         "SEARCH": "Keresés cím alapján",
