@@ -32,6 +32,9 @@
         <div class="vege">
             <h1>Játék vége!</h1>
         </div>
+        <h4>
+            Jó válaszok száma: {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
+        </h4>
         <div class="vegeBtn">
             <button type="button" pButton icon="pi pi-home" label="Kilépés" (click)="exit()"></button>
         </div>

@@ -24,7 +24,7 @@
         </div>
         <p-button [style]="{'min-width': '30%', 'margin-top': '2%'}"  (click)="confirmation()" label="Kilép"></p-button>
     </div>
-    <p-dialog [visible]="service.end" [style]="{width: '98vw'}" [closable]="false" [modal]="true">
+    <p-dialog *ngIf="service.activeQuiz!.template !== 'quiz'" [visible]="service.end" [style]="{width: '98vw'}" [closable]="false" [modal]="true">
         <ng-template pTemplate="header">
             <h3>A kérdések végére értél, elküldöd a válaszaidat?</h3>
         </ng-template>
