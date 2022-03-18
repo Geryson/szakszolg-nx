@@ -38,10 +38,9 @@ export function confirmThenDelete(
 
 export async function presentConfirmation(message: string, header: string = ''): Promise<boolean> {
     const confirmation = APP_INJECTOR.get(ConfirmationService)
-    await Promise.all([
-        async () => (message = await translate(message)),
-        async () => (header = header === '' ? '' : await translate(header)),
-    ])
+    message = await translate(message)
+    header = header === '' ? '' : await translate(header)
+
     return new Promise((resolve) => {
         confirmation.confirm({
             message,
@@ -55,11 +54,8 @@ export async function presentConfirmation(message: string, header: string = ''):
 
 export async function presentAlert(message: string, header: string = ''): Promise<void> {
     const alert = APP_INJECTOR.get(AlertController)
-
-    await Promise.all([
-        async () => (message = await translate(message)),
-        async () => (header = header === '' ? '' : await translate(header)),
-    ])
+    message = await translate(message)
+    header = header === '' ? '' : await translate(header)
 
     return new Promise((resolve) => {
         alert

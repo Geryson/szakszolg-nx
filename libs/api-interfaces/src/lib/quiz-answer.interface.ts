@@ -10,7 +10,7 @@ export interface IQuizAnswer extends IApiResource {
     answeredAt?: Date
 }
 
-export interface IExportableQuizAnswer {
+export interface IExportableSurveyAnswer {
     om: string
     questionId: number
     answer: string

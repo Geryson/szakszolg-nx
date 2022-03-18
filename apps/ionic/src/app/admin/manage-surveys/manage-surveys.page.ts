@@ -5,6 +5,7 @@ import { pages } from '../../../shared/utils/pages.const'
 import { SurveyService } from '../../../shared/services/survey.service'
 import { TokenService } from '../../../shared/services/token.service'
 import { first } from 'rxjs'
+import { ExportService } from '../../../shared/services/export.service'
 
 @Component({
     selector: 'nx12-manage-surveys',
@@ -18,7 +19,11 @@ export class ManageSurveysPage extends CrudPageClass<IQuiz, { quizzes: Partial<I
     protected editPage = pages.admin.surveysManagement
     protected resourceName = RESOURCES.SURVEYS
 
-    constructor(protected readonly resourceService: SurveyService, private readonly tokenService: TokenService) {
+    constructor(
+        protected readonly resourceService: SurveyService,
+        private readonly tokenService: TokenService,
+        private readonly exportService: ExportService,
+    ) {
         super()
     }
 
@@ -52,5 +57,9 @@ export class ManageSurveysPage extends CrudPageClass<IQuiz, { quizzes: Partial<I
         setTimeout(() => {
             this.copied = false
         }, 2000)
+    }
+
+    exportClick(item: Partial<IQuiz>) {
+        this.exportService.exportSurvey(item).then()
     }
 }

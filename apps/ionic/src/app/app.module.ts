@@ -40,6 +40,8 @@ import { StaticService } from '../shared/services/static.service'
 import { SurveyService } from '../shared/services/survey.service'
 import { UserService } from '../shared/services/user.service'
 import { ExportService } from '../shared/services/export.service'
+import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx'
+import { File } from '@awesome-cordova-plugins/file/ngx'
 
 @NgModule({
     declarations: [AppComponent],
@@ -96,6 +98,8 @@ import { ExportService } from '../shared/services/export.service'
         AlertService,
         ExportService,
         AuthService,
+        Diagnostic,
+        File,
         GroupingItemService,
         HangmanWordService,
         MirrorWordService,

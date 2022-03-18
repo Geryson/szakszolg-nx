@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core'
-import { IExportableQuizAnswer, IQuiz } from '@szakszolg-nx/api-interfaces'
+import { IExportableSurveyAnswer, IQuiz } from '@szakszolg-nx/api-interfaces'
 import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx'
 import { File } from '@awesome-cordova-plugins/file/ngx'
 import { APOLLO_CLIENT } from '../injector.tokens'
@@ -13,7 +13,7 @@ import { Log } from '../utils/log.tools'
     providedIn: 'root',
 })
 export class ExportService {
-    private readonly headers: { key: keyof IExportableQuizAnswer; label: string }[] = [
+    private readonly headers: { key: keyof IExportableSurveyAnswer; label: string }[] = [
         { key: 'om', label: 'oktatasi_azonosito' },
         { key: 'questionId', label: 'kerdes_sorszam' },
         { key: 'answer', label: 'valasz' },
@@ -40,14 +40,14 @@ export class ExportService {
     }
 
     getAnswers(quizId: string) {
-        return this.apolloClient.query<{ quizAnswers: IExportableQuizAnswer[]; quiz: { title: string } }>({
+        return this.apolloClient.query<{ quizAnswers: IExportableSurveyAnswer[]; quiz: { title: string } }>({
             query: ANSWERS.READ,
             variables: { quizId },
             fetchPolicy: 'no-cache',
         })
     }
 
-    async exportForm(survey: IQuiz) {
+    async exportSurvey(survey: Partial<IQuiz>) {
         const confirm = await presentConfirmation('MESSAGE.FORM_CSV_EXPORT_CONFIRM', 'HEADER.CONFIRM')
         if (!confirm) return
 
@@ -60,23 +60,25 @@ export class ExportService {
                 break
             case this.diagnostic.permissionStatus.GRANTED:
                 this.loadingDialog = await presentLoading()
-                await this.exportFormToFile((await firstValueFrom(this.getAnswers(survey._id))).data)
+                await this.exportSurveyToFile((await firstValueFrom(this.getAnswers(survey._id))).data)
                 break
         }
     }
 
-    private async exportFormToFile(queryResult: { quizAnswers: IExportableQuizAnswer[]; quiz: { title: string } }) {
-        const csv = this.generateCsv(queryResult.quizAnswers)
-        const fileName = ExportService.generateFileName(queryResult.quiz.title)
-        const blob = new Blob([csv])
+    private async exportSurveyToFile(queryResult: { quizAnswers: IExportableSurveyAnswer[]; quiz: { title: string } }) {
         // const externalPath =
         //     this.file.externalRootDirectory !== null && this.file.externalRootDirectory.length > 0
         //         ? this.file.externalRootDirectory
         //         : this.file.externalApplicationStorageDirectory.split('/Android')[0]
         try {
-            const writeResult = await this.file.writeFile('file:///storage/emulated/0', fileName, blob, {
-                replace: true,
-            })
+            const writeResult = await this.file.writeFile(
+                'file:///storage/emulated/0',
+                ExportService.generateFileName(queryResult.quiz.title),
+                new Blob([this.generateCsv(queryResult.quizAnswers)]),
+                {
+                    replace: true,
+                },
+            )
             Log.debug('ExportService.exportFormToFile', 'Write OK', writeResult)
             presentAlert('MESSAGE.FORM_CSV_EXPORT_DONE', 'HEADER.HEUREKA').then()
         } catch (e) {
@@ -87,7 +89,7 @@ export class ExportService {
         }
     }
 
-    private generateCsv(answers: IExportableQuizAnswer[]): string {
+    private generateCsv(answers: IExportableSurveyAnswer[]): string {
         let result = `${this.headers.join(this.csvDelimiter)}${this.csvNewLine}`
         for (const answer of answers) {
             result +=
