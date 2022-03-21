@@ -25,6 +25,24 @@ export class QuestionEditFormComponent {
             Log.debug('QuestionEditFormComponent::constructor()', 'template', this.template)
             switch (this.template) {
                 case 'true-false':
+                    if(this.question.answers!.length < 1){
+                        console.log('Bement')
+                        this.question.answers!.push({
+                            _id: this.question.answers!.length,
+                            text: 'Igaz',
+                            categoryIndex: 0,
+                            isCorrect: false,
+                            createdAt: new Date(),
+                        })
+
+                        this.question.answers!.push({
+                            _id: this.question.answers!.length,
+                            text: 'Hamis',
+                            categoryIndex: 0,
+                            isCorrect: false,
+                            createdAt: new Date(),
+                        })
+                    }
                     this.question.type = 'true-false'
                     break
                 case 'quiz':
