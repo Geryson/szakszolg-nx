@@ -19,4 +19,5 @@ export function getImageName(file: string) {
         .replace(/uploads/g, '')
         .replace(/\/\//g, '/')
         .replace(/--.+\./g, '.')
+        .replace(/\.jpg/g, '')
 }

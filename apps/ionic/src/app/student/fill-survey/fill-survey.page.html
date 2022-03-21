@@ -16,27 +16,27 @@
     </div>
     <div class="buttons">
         <div *ngIf="service.activeQuiz!.template !== 'quiz'">
-            <p-button [disabled]="service.index === 0" [style]="{'min-width': '30%'}" (click)="back()" label="Vissza" ></p-button>
-            <p-button  [style]="{'min-width': '30%'}" *ngIf="service.index !== service.questions.length - 1"
-                       (click)="next()" label="Következő"></p-button>
-            <p-button [style]="{'min-width': '30%'}" *ngIf="service.index === service.questions.length - 1"
-                      (click)="submit()" label="Elküld"></p-button>
+            <p-button (click)="back()" [disabled]="service.index === 0" [style]="{'min-width': '30%'}" label="Vissza" ></p-button>
+            <p-button  (click)="next()" *ngIf="service.index !== service.questions.length - 1"
+                       [style]="{'min-width': '30%'}" label="Következő"></p-button>
+            <p-button (click)="submit()" *ngIf="service.index === service.questions.length - 1"
+                      [style]="{'min-width': '30%'}" label="Elküld"></p-button>
         </div>
-        <p-button [style]="{'min-width': '30%', 'margin-top': '2%'}"  (click)="confirmation()" label="Kilép"></p-button>
+        <p-button (click)="confirmation()"  [style]="{'min-width': '30%', 'margin-top': '2%'}" label="Kilép"></p-button>
     </div>
-    <p-dialog *ngIf="service.activeQuiz!.template !== 'quiz'" [visible]="service.end" [style]="{width: '98vw'}" [closable]="false" [modal]="true">
+    <p-dialog *ngIf="service.activeQuiz!.template !== 'quiz'" [closable]="false" [modal]="true" [style]="{width: '98vw'}" [visible]="service.end">
         <ng-template pTemplate="header">
             <h3>A kérdések végére értél, elküldöd a válaszaidat?</h3>
         </ng-template>
         <ng-template pTemplate="body">
-            <div>
-                <p *ngFor="let a of service.answers; index as i"><b>{{i+1}}.</b>
-                    <b>Válasz:</b> {{a.answer === '' ? 'nincs megadva':a.answer}}</p>
-            </div>
+<!--            <div>-->
+<!--                <p *ngFor="let a of service.answers; index as i"><b>{{i+1}}.</b>-->
+<!--                    <b>Válasz:</b> {{a.answer === '' ? 'nincs megadva':a.answer}}</p>-->
+<!--            </div>-->
         </ng-template>
         <ng-template pTemplate="footer">
-            <button type="button" pButton icon="pi pi-times" label="Nem" (click)="service.reject()"></button>
-            <button type="button" pButton icon="pi pi-check" label="Igen" (click)="service.accept()"></button>
+            <button (click)="service.reject()" icon="pi pi-times" label="Nem" pButton type="button"></button>
+            <button (click)="service.accept()" icon="pi pi-check" label="Igen" pButton type="button"></button>
         </ng-template>
     </p-dialog>
 </ion-content>
