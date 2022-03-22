@@ -50,6 +50,8 @@ export class ManageSingleSurveyPage {
     }
 
     save() {
+        if(!this.validator.valid || this.isValid())
+            return
         if (!this.validator?.valid) {
             this.validator?.check()
             return
@@ -246,5 +248,11 @@ export class ManageSingleSurveyPage {
                 skillQuestion: (survey, skillQuestion) => survey.template !== 'skill' || !!skillQuestion,
             },
         })
+    }
+
+    isValid() {
+        return (!this.survey!.title || !this.survey!.description
+            || this.survey!.questions!.length<1 || this.survey!.template !== 'quiz'
+            && this.survey!.categories!.length < 1)
     }
 }
