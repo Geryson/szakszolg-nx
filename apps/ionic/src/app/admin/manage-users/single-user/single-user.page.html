@@ -5,38 +5,25 @@
         <ion-card-content>
             <ion-list *ngIf='!!user'>
                 <ion-item *ngFor="let prop of ['_id', 'username', 'email', 'om']">
-                    <p-inplace (onActivate)='editing[prop] = true' (onDeactivate)='cancel(prop)'
-                               [active]='editing[prop]' [closable]='true' [disabled]="prop === '_id'"
-                               [ngStyle]="{display: 'inline'}">
-                        <ng-template pTemplate='display'>
-                            <div class='inline-flex align-items-center'>
-                                <span><b>{{ ('USER_EDIT.' + prop) | translate }}:</b> </span>
-                                <span class='ml-3'> {{ originalUser[prop] }}</span>
-                                <span *ngIf="prop !== '_id'" class='pi pi-{{ NG_ICON.pencil }}'
-                                      style='vertical-align: middle'></span>
-                            </div>
-                        </ng-template>
-                        <ng-template pTemplate='content'>
-                            <div class='inline-flex mb-2 align-items-center'>
-                                <div class='field col-12 md:col-4'>
-                                        <span class='p-float-label'>
-                                            <input (input)='check(prop)' [(ngModel)]='user[prop]'
-                                                   id='input-text-{{ prop }}' pInputText
-                                                   type='text' maxlength="80" />
-                                            <label
-                                                for='input-text-{{prop}}'>{{('USER_EDIT.' + prop) | translate}}</label>
-                                        </span>
-                                </div>
-                            </div>
-                            <div *ngIf='!!validationErrors[prop]' class='inline-flex mb-2 align-items-center'>
-                                <div class='field col-12 md:col-4'>
-                                    <span class='text-danger'>{{ validationErrors[prop] }}</span>
-                                </div>
-                            </div>
-                            <p-button (click)='save(prop)' [disabled]='!!validationErrors[prop]' styleClass='p-button-success' icon='pi pi-check' type='button'></p-button>
-                        </ng-template>
-                    </p-inplace>
+
+                    <div class='inline-flex align-items-center'>
+                        <span><b>{{ ('USER_EDIT.' + prop) | translate }}:</b> </span>
+                    </div>
+
+                    <div class='col-12 md:col-4'>
+                        <input (input)='check(prop)' [(ngModel)]='user[prop]'
+                               id='input-text-{{ prop }}' pInputText
+                               type='text' maxlength="80" />
+                    </div>
+
+                    <div *ngIf='!!validationErrors[prop]' class='inline-flex mb-2 align-items-center'>
+                        <div class='field col-12 md:col-4'>
+                            <span class='text-danger'>{{ validationErrors[prop] }}</span>
+                        </div>
+                    </div>
+
                 </ion-item>
+                <p-button (click)="save(['_id', 'username', 'email', 'om'])" styleClass='p-button-success' icon='pi pi-check' type='button'></p-button>
             </ion-list>
         </ion-card-content>
     </ion-card>
