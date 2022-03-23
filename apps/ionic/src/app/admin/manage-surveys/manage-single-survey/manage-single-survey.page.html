@@ -34,7 +34,7 @@
                     <div class='text-invalid my-1'>{{ validator.validationErrors['categories'] }}</div>
                 </div>
             <div class='nx-sticky'>
-                <p-button (click)='save()' [disabled]='!validator.valid' icon='pi pi-{{ NG_ICON.save }}'
+                <p-button (click)='save()' [disabled]="!validator.valid || isValid()" icon='pi pi-{{ NG_ICON.save }}'
                           label='{{"FORM_OPERATION.SAVE" | translate}}' styleClass='p-button-primary'></p-button>
             </div>
         </div>

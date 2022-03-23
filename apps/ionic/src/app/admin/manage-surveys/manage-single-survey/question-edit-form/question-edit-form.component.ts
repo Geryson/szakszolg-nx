@@ -25,6 +25,7 @@ export class QuestionEditFormComponent {
             Log.debug('QuestionEditFormComponent::constructor()', 'template', this.template)
             switch (this.template) {
                 case 'true-false':
+                    this.FixForTrueFalse();
                     this.question.type = 'true-false'
                     break
                 case 'quiz':
@@ -32,6 +33,28 @@ export class QuestionEditFormComponent {
                     break
             }
         }, 100)
+    }
+
+    private FixForTrueFalse() {
+        if(!this.question.answers) return
+
+        if (this.question.answers.length < 1) {
+            this.question.answers.push({
+                _id: this.question.answers.length,
+                text: 'Igaz',
+                categoryIndex: 0,
+                isCorrect: false,
+                createdAt: new Date(),
+            })
+
+            this.question.answers.push({
+                _id: this.question.answers.length,
+                text: 'Hamis',
+                categoryIndex: 0,
+                isCorrect: false,
+                createdAt: new Date(),
+            })
+        }
     }
 
     get templateKey() {
