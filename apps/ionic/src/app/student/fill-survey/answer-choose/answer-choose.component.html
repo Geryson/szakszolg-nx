@@ -16,15 +16,15 @@
 
     <div class="grid" *ngIf="service.activeQuiz!.template === 'quiz'">
         <div class="one">
-                <p-button  [style]="{'width': '25%', 'min-height': '3rem', 'margin-right': '1%'}" (click)="next(service.questions[service.index].answers![0])" label="{{service.questions[service.index].answers![0].text}}"></p-button>
+                <p-button  [style]="{'width': '42%', 'min-height': '3rem', 'margin-right': '1%', 'padding': '1%'}" (click)="next(service.questions[service.index].answers![0])" label="{{service.questions[service.index].answers![0].text}}"></p-button>
 
-                <p-button  [style]="{'width': '25%', 'min-height': '3rem', 'margin-left': '1%'}" (click)="next(service.questions[service.index].answers![1])" label="{{service.questions[service.index].answers![1].text}}"></p-button>
+                <p-button  [style]="{'width': '42%', 'min-height': '3rem', 'margin-left': '1%', 'padding': '1%'}" (click)="next(service.questions[service.index].answers![1])" label="{{service.questions[service.index].answers![1].text}}"></p-button>
         </div>
 
         <div class="two">
-                <p-button  [style]="{'width': '25%', 'min-height': '3rem', 'margin-right': '1%'}" (click)="next(service.questions[service.index].answers![2])" label="{{service.questions[service.index].answers![2].text}}"></p-button>
+                <p-button  [style]="{'width': '42%', 'min-height': '3rem', 'margin-right': '1%', 'padding': '1%'}" (click)="next(service.questions[service.index].answers![2])" label="{{service.questions[service.index].answers![2].text}}"></p-button>
 
-                <p-button  [style]="{'width': '25%', 'min-height': '3rem', 'margin-left': '1%'}" (click)="next(service.questions[service.index].answers![3])" label="{{service.questions[service.index].answers![3].text}}"></p-button>
+                <p-button  [style]="{'width': '42%', 'min-height': '3rem', 'margin-left': '1%', 'padding': '1%'}" (click)="next(service.questions[service.index].answers![3])" label="{{service.questions[service.index].answers![3].text}}"></p-button>
         </div>
     </div>
 
