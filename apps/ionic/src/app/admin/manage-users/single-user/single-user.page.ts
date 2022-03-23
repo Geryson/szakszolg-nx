@@ -29,7 +29,7 @@ export class SingleUserPage implements OnInit {
     password = ''
     passwordDialog = false
     dialogCallback: (() => void) | null = null
-    private queryRef?: QueryRef<{ user: Partial<IUser> }>
+    private queryRef?: QueryRef<any>
     private loading = false
 
     constructor(
@@ -43,10 +43,15 @@ export class SingleUserPage implements OnInit {
     async ngOnInit() {
         this.loading = true
         const params = await firstValueFrom(this.activatedRoute.params)
-        this.queryRef = this.userService.read(params.id)
+        this.queryRef = params.id === 'me' ? this.userService.profile() : this.userService.read(params.id)
         this.queryRef.valueChanges.subscribe(({ data }) => {
-            this.user = { ...data.user }
-            this.originalUser = { ...data.user }
+            if(data.user) {
+                this.user = { ...data.user }
+                this.originalUser = { ...data.user }
+            } else {
+                this.user = {...data.profile}
+                this.originalUser = {...data.profile}
+            }
             this.loading = false
         })
     }
