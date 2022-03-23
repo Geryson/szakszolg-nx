@@ -91,6 +91,7 @@ type Query {
     hangmanWords(category: String, ids: [String!]): [HangmanWord]!
     mirrorWord(id: String): MirrorWord
     mirrorWords(ids: [String!]): [MirrorWord]!
+    profile: User
     puzzle(id: String!): Puzzle
     puzzles(ids: [String!]): [Puzzle]!
     quiz(id: String!): Quiz

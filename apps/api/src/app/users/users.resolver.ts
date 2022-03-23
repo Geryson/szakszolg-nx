@@ -11,6 +11,7 @@ import { GqlAuthGuard } from '../auth/guards/gql-auth.guard'
 import { IUser } from '@szakszolg-nx/api-interfaces'
 import { Permission, Resource } from '../auth/decorators/permission.decorator'
 import { PermissionGuard } from '../auth/guards/permission-guard.service'
+import { CurrentUser } from '../auth/decorators/current-user.decorator'
 
 @Resolver(() => User)
 @Resource('users')
@@ -22,6 +23,12 @@ export class UsersResolver {
     @Permission('read')
     user(@Args() data: GetUserArgs): Promise<IUser> {
         return this.usersService.findOne(data)
+    }
+
+    @Query(() => User, { nullable: true })
+    @UseGuards(GqlAuthGuard, PermissionGuard)
+    profile(@CurrentUser() user: IUser): Promise<IUser> {
+        return this.usersService.findOne({ id: user._id })
     }
 
     @Query(() => [User], { nullable: 'items' })
