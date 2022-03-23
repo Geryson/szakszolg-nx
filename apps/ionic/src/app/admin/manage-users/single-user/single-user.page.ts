@@ -12,6 +12,8 @@ import { firstValueFrom } from 'rxjs'
 import { AuthService } from '../../../../shared/services/auth.service'
 import { omit } from '../../../../shared/utils/object.tools'
 import { Log } from '../../../../shared/utils/log.tools'
+import {STORAGE_KEY} from "../../../../shared/utils/constants";
+import {StorageService} from "../../../../shared/services/storage.service";
 
 @Component({
     selector: 'nx12-single-user',
@@ -38,9 +40,10 @@ export class SingleUserPage implements OnInit {
         private readonly userService: UserService,
         private readonly confirmation: ConfirmationService,
         private readonly translate: TranslatePipe,
+        private readonly storage: StorageService
     ) {}
 
-    async ngOnInit() {
+    async enter(){
         this.loading = true
         const params = await firstValueFrom(this.activatedRoute.params)
         this.queryRef = params.id === 'me' ? this.userService.profile() : this.userService.read(params.id)
@@ -51,14 +54,23 @@ export class SingleUserPage implements OnInit {
             } else {
                 this.user = {...data.profile}
                 this.originalUser = {...data.profile}
+                console.log(this.user)
             }
             this.loading = false
         })
+        console.log(this.user)
+    }
+
+    ngOnInit() {
+        this.enter().then()
+    }
+
+    ionViewDidEnter() {
+        this.enter().then()
     }
 
     async save(props: string[]) {
         for (const prop in props){
-            console.log('Idáig elért')
             console.log(this.user.password)
             this.loading = true
             if (this.user.password) {
@@ -73,7 +85,6 @@ export class SingleUserPage implements OnInit {
     }
 
     saveLogic(prop: string) {
-        console.log('Bement')
         this.editing[prop] = false
         this.validationErrors[prop] = ''
         this.userService.edit(this.user!._id, omit(this.user!, '_id')).subscribe(() => {

@@ -37,17 +37,17 @@ export const USERS = {
 
     PROFILE: gql`
         query {
-         profile {
-        _id
-        username
-        email
-        om
-        roles {
-            name
-            permissions
+             profile {
+                _id
+                username
+                email
+                om
+                roles {
+                    name
+                    permissions
+                }
+            }
         }
-    }
-}
     `,
 
     EDIT: gql`
