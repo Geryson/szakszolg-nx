@@ -8,9 +8,10 @@
 
                     <div class='inline-flex align-items-center'>
                         <span><b>{{ ('USER_EDIT.' + prop) | translate }}:</b> </span>
+                        <span *ngIf="prop === '_id'" class='ml-3'> {{ originalUser[prop] }}</span>
                     </div>
 
-                    <div class='col-12 md:col-4'>
+                    <div *ngIf="prop !== '_id'" class='col-12 md:col-4'>
                         <input (input)='check(prop)' [(ngModel)]='user[prop]'
                                id='input-text-{{ prop }}' pInputText
                                type='text' maxlength="80" />
@@ -23,7 +24,7 @@
                     </div>
 
                 </ion-item>
-                <p-button (click)="save(['_id', 'username', 'email', 'om'])" styleClass='p-button-success' icon='pi pi-check' type='button'></p-button>
+                <p-button (click)="save(['_id', 'username', 'email', 'om'])" styleClass='p-button-success' icon='pi pi-check' type='button' label="Mentés"></p-button>
             </ion-list>
         </ion-card-content>
     </ion-card>
