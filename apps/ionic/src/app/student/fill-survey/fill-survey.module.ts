@@ -13,6 +13,8 @@ import {ButtonModule} from "primeng/button";
 import {AnswerRatingComponent} from "./answer-rating/answer-rating.component";
 import {RadioButtonModule} from "primeng/radiobutton";
 import {NxSharedModule} from "../../../shared/nx-shared.module";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import {NxSharedModule} from "../../../shared/nx-shared.module";
         ButtonModule,
         RadioButtonModule,
         NxSharedModule,
+        ConfirmDialogModule,
+        DialogModule,
     ],
     declarations: [FillSurveyPage, AnswerTrueFalseComponent, AnswerRatingComponent]
 })

@@ -93,14 +93,13 @@
                 </ng-template>
                 <ng-template let-ans pTemplate='body'>
                     <tr>
-                        <td>
+                        <td class='d-flex-row'>
                             {{ ans.text }}
-                            <p-dropdown *ngIf='options.length' [(ngModel)]='ans.categoryIndex'
-                                        [options]='options'
-                                        optionLabel='name' optionValue='value' styleClass='w-100'></p-dropdown>
+                                <ion-select [(ngModel)]='ans.categoryIndex' placeholder="Kérem válasszon">
+                                    <ion-select-option *ngFor='let option of options' [value]="option.value">{{ option.name }}</ion-select-option>
+                                </ion-select>
                         </td>
                         <td>
-                            <span class='p-buttonset'>
                                 <p-button (click)='markAsCorrect(ans)'
                                           *ngIf='template === "quiz" && !ans.isCorrect'
                                           label='{{ "MANAGE_QUESTIONS.NOT_SOLUTION" | translate }}'
@@ -111,7 +110,6 @@
                                           styleClass='p-button-success'></p-button>
                                 <p-button (click)='removeAnswer(ans)' *ngIf='question.type === "choose"' icon='pi pi-trash'
                                           styleClass='p-button-danger'></p-button>
-                            </span>
                         </td>
                     </tr>
                 </ng-template>

@@ -51,22 +51,30 @@ export class SingleUserPage implements OnInit {
         })
     }
 
-    async save(prop: string) {
-        this.loading = true
-        if (this.user.password) {
-            this.saveLogic(prop)
-            return
+    async save(props: string[]) {
+        for (const prop in props){
+            console.log('Idáig elért')
+            console.log(this.user.password)
+            this.loading = true
+            if (this.user.password) {
+
+                this.saveLogic(prop)
+                return
+            }
+            this.passwordDialog = true
+            this.dialogCallback = () => this.saveLogic(prop)
         }
-        this.passwordDialog = true
-        this.dialogCallback = () => this.saveLogic(prop)
+
     }
 
     saveLogic(prop: string) {
+        console.log('Bement')
         this.editing[prop] = false
         this.validationErrors[prop] = ''
         this.userService.edit(this.user!._id, omit(this.user!, '_id')).subscribe(() => {
             Log.debug('SingleUserPage::save->subscribe', 'User updated', this.user)
             this.originalUser = { ...this.user }
+            console.log(this.originalUser)
             this.loading = false
         })
     }

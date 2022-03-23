@@ -1,14 +1,42 @@
-<div>
-    <h4>
-        {{service.activeQuiz?.questions?.[service.index]?.question}}
+<div *ngIf="service.answers.length" class="choose">
+    <h3>
+        {{service.questions[service.index].question}}
+    </h3>
+    <h4 *ngIf="service.activeQuiz!.template==='quiz'">
+        Jó válaszok száma: {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
     </h4>
 
-    <div *ngFor="let item of service.activeQuiz!.questions[service.index].answers">
-        <div>
-            <p-button (click)="next(item)" label="{{item}}"></p-button>
+    <div *ngIf="service.activeQuiz!.template !== 'quiz'" class="buttons">
+        <div *ngFor="let item of service.questions[service.index].answers"  class="button">
+            <div>
+                <p-button [style]="{'width': '75%', 'min-height': '5rem'}" (click)="next(item)" label="{{item.text}}"></p-button>
+            </div>
         </div>
     </div>
 
+    <div class="grid" *ngIf="service.activeQuiz!.template === 'quiz'">
+        <div class="one">
+                <p-button  [style]="{'width': '42%', 'min-height': '3rem', 'margin-right': '1%', 'padding': '1%'}" (click)="next(service.questions[service.index].answers![0])" label="{{service.questions[service.index].answers![0].text}}"></p-button>
 
+                <p-button  [style]="{'width': '42%', 'min-height': '3rem', 'margin-left': '1%', 'padding': '1%'}" (click)="next(service.questions[service.index].answers![1])" label="{{service.questions[service.index].answers![1].text}}"></p-button>
+        </div>
+
+        <div class="two">
+                <p-button  [style]="{'width': '42%', 'min-height': '3rem', 'margin-right': '1%', 'padding': '1%'}" (click)="next(service.questions[service.index].answers![2])" label="{{service.questions[service.index].answers![2].text}}"></p-button>
+
+                <p-button  [style]="{'width': '42%', 'min-height': '3rem', 'margin-left': '1%', 'padding': '1%'}" (click)="next(service.questions[service.index].answers![3])" label="{{service.questions[service.index].answers![3].text}}"></p-button>
+        </div>
+    </div>
+
+    <p-dialog *ngIf="service.activeQuiz!.template==='quiz'" [visible]="finish" [style]="{width: '50vw'}" [closable]="false" [modal]="true">
+        <div>
+            <h1>Játék vége!</h1>
+        </div>
+        <h4>
+            Jó válaszok száma: {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
+        </h4>
+        <div class="vegeBtn">
+            <button type="button" pButton icon="pi pi-home" label="Kilépés" (click)="exit()"></button>
+        </div>
+    </p-dialog>
 </div>
-

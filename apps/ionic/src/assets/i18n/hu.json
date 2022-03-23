@@ -2,6 +2,7 @@
     "NAVIGATION":{
         "USER_DATA": "Felhasználói adatok",
         "MENU": "Menü",
+        "ENTER_TOKEN": "Token megadása",
         "USERS": "Felhasználók",
         "QUESTIONNAIRE": "Kérdőív",
         "QUESTIONNAIRE_DESCRIPTION_COMPLETING": "Kérdőív leírás kitöltése",
@@ -26,7 +27,8 @@
         "TRUE_FALSE_FORM": "Igaz-Hamis kérdőív",
         "SKILL_FORM": "Képesség eldöntő kérdőív",
         "ANSWER_CHOOSE":"Tevékenység választó",
-        "CATEGORY_EDITING":"Kategóriák szerkesztése"
+        "CATEGORY_EDITING":"Kategóriák szerkesztése",
+        "SURVEY_DETAILS": "Kérdőív részletei"
     },
 
     "BUTTONS":{
@@ -81,7 +83,8 @@
         "OFFLINE":"Offline",
         "SHOW":"Mutasd",
         "PREVIEW":"Előnézet",
-        "BACK":"Vissza"
+        "BACK":"Vissza",
+        "EXIT": "Kilépés"
     },
 
     "MESSAGE":{
@@ -275,10 +278,14 @@
     },
     "MANAGE_SURVEYS": {
         "TITLE": "Kérdőívek kezelése",
+        "CREATE_TOKEN": "Token létrehozása",
         "DESCRIPTION": "Leírás",
         "CATEGORIES": "Kategóriák",
         "SEARCH": "Keresés cím alapján",
         "ID": "Azonosító",
+        "DELETE_CONFIRM": "Biztosan törölni szeretnél?",
+        "DELETED": "Siker",
+        "DELETED_DETAIL": "A törlés sikeresen megtörtént.",
         "SINGLE": {
             "QUESTION": "A kérdés",
             "NEW_QUESTION": "Új kérdés felvétele",
@@ -290,7 +297,7 @@
             "ERROR": {
                 "TITLE": "A cím kitöltése kötelező",
                 "DESCRIPTION": "A leírás kitöltése kötelező",
-                "QUESTIONS": "Nincsennek elemek megadva",
+                "QUESTIONS": "Nincsenek elemek megadva",
                 "SKILLQUESTION": "Nincs megadva kérdés",
                 "CATEGORIES": "Nincs kategória megadva"
             }
@@ -305,16 +312,16 @@
         "TYPE": "Típus",
         "IS_SOLUTION": "Megoldás",
         "NOT_SOLUTION": "Nem megoldás",
-        "NO_ANSWERS": "Nincsennek válaszok megadva",
-        "NO_ITEMS": "Nincsennek megjeleníthető elemek",
+        "NO_ANSWERS": "Nincsenek válaszok megadva",
+        "NO_ITEMS": "Nincsenek megjeleníthető elemek",
         "NEW_ANSWER": "Új válasz...",
         "CATEGORIES": "Kategóriák",
         "ERRORS": {
             "QUESTION_EMPTY": "A kérdés szövegét kötelező kitölteni",
             "ANSWER_EMPTY": "A válasz szövegét kötelező kitölteni",
-            "NO_ANSWERS": "Nincsennek válaszok megadva",
+            "NO_ANSWERS": "Nincsenek válaszok megadva",
             "NO_CORRECT_ANSWER": "Nincs válasz megfejtésnek jelölve",
-            "NO_CATEGORIES": "Nincsennek kategóriák megadva"
+            "NO_CATEGORIES": "Nincsenek kategóriák megadva"
         },
         "TYPES": {
             "FREE": "Szabad válasz",
@@ -339,6 +346,12 @@
         }
     },
 
+    "MANAGE_GROUPING_WORDS": {
+        "DELETE_CONFIRM": "Biztosan törölni szeretné ezt az elemet?",
+        "DELETED": "Siker",
+        "DELETED_DETAIL": "A törlés sikeresen megtörtént."
+    },
+
     "MANAGE_GROUPINGS": {
         "SEARCH": "Keresés szó alapján",
         "SAVE": "Mentés",
@@ -347,7 +360,7 @@
         "CORRECT": "Helyes",
         "ACTIONS": "Műveletek",
         "NEW_GROUP": "Új válasz lehetőség",
-        "NO_GROUPS": "Még nincsennek csoportok felvéve",
+        "NO_GROUPS": "Még nincsenek csoportok felvéve",
         "CORRECT_BUTTON": "Megoldás",
         "MARKED_CORRECT": "Megjelölve megoldásnak"
     },
@@ -359,13 +372,14 @@
         "NOTHING": "semleges",
         "COPY": "Másolás",
         "COPIED": "Másolva",
-        "NO_ITEMS": "Nincsennek megjeleníthető elemek",
+        "NO_ITEMS": "Nincsenek megjeleníthető elemek",
         "ACTIONS": "Műveletek",
         "PLEASE_CHOOSE": "Kérem válasszon",
         "SUCCESS": "Siker",
         "SUCCESS_DETAIL": "A változatások el lettek mentve.",
         "SAVE": "Mentés",
-        "CANCEL": "Mégsem"
+        "CANCEL": "Mégsem",
+        "UPLOAD": "Feltöltés"
     },
 
     "MANAGE_USERS":{
@@ -534,6 +548,7 @@
 
     "SCHOOL_FINDER":{
         "INSTITUTE_NAME": "Intézménynév",
+        "BROWSE_ALL": "Keresés",
         "COUNTY": "Megye",
         "ADDRESS": "Cím",
         "OM":"OM",

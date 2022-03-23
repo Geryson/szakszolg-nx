@@ -54,7 +54,7 @@ export abstract class CrudPageClass<T extends IApiResource, TQueryRef> implement
     }
 
     deleteClick(obj: T) {
-        confirmThenDelete(obj._id, this.resourceService, this.queryRef!, `MANAGE_${this.resourceName}`)
+        confirmThenDelete(obj._id, this.resourceService, this.queryRef!, `MANAGE_${this.resourceName.replace(/-/g,'_').toUpperCase()}`)
     }
 
     addClick() {

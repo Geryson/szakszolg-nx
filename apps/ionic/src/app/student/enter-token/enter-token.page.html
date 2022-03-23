@@ -1,7 +1,11 @@
 <nx12-header title="NAVIGATION.ENTER_TOKEN"></nx12-header>
 
 <ion-content>
-    <h3>Adj meg egy token-t</h3>
-    <input type="text" [(ngModel)]="token" (keydown.enter)="send()">
-    <p-button label="Elküld" (click)="send()"></p-button>
+    <div class="token-page">
+        <h3>Adj meg egy token-t</h3>
+        <input type="text" [(ngModel)]="token" [maxLength]="6" (keydown.enter)="send()">
+        <div class="button">
+            <p-button label="Elküld" (click)="send()"></p-button>
+        </div>
+    </div>
 </ion-content>

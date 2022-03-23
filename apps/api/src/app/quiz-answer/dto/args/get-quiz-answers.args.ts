@@ -10,4 +10,7 @@ export class GetQuizAnswersArgs extends IdArrayArg {
 
     @Field({ nullable: true })
     quizId?: string
+
+    @Field({ nullable: true })
+    token?: string
 }

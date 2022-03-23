@@ -1,25 +1,42 @@
-<nx12-header title="ASD"></nx12-header>
-<ion-content>
+<nx12-header title="NAVIGATION.QF"></nx12-header>
+<ion-content class="fill-survey">
     <div *ngIf="service.activeQuiz!.template !== 'quiz'">
-        <div *ngIf="service.questions.length > 0">
+        <div *ngIf="service.questions.length && service.answers.length">
             <div [ngSwitch]="service.questions![service.index].type" >
                 <nx12-answer-rating *ngSwitchCase="'rating'"></nx12-answer-rating>
-                <nx12-answer-true-false *ngSwitchCase="'true-false'"></nx12-answer-true-false>
+                <nx12-answer-choose *ngSwitchCase="'true-false'"></nx12-answer-choose>
                 <nx12-answer-choose *ngSwitchCase="'choose'"></nx12-answer-choose>
+                <nx12-answer-choose *ngSwitchCase="'skill'"></nx12-answer-choose>
                 <nx12-answer-free-answer *ngSwitchCase="'free'"></nx12-answer-free-answer>
             </div>
-            <div *ngIf="service.questions![service.index].type === 'rating' ||
-            service.questions![service.index].type === 'free'">
-                <p-button [disabled]="!service.answers[service.index].answer" (click)="next()" label="Következő"></p-button>
-            </div>
-
-
         </div>
     </div>
     <div *ngIf="service.activeQuiz!.template === 'quiz'">
         <nx12-answer-choose></nx12-answer-choose>
     </div>
-    <p-button (click)="back()" label="Vissza"></p-button>
-    <p-button (click)="service.confirm()" label="Kilép"></p-button>
-
+    <div class="buttons">
+        <div *ngIf="service.activeQuiz!.template !== 'quiz'">
+            <p-button (click)="back()" [disabled]="service.index === 0" [style]="{'min-width': '30%'}" label="Vissza" ></p-button>
+            <p-button  (click)="next()" *ngIf="service.index !== service.questions.length - 1"
+                       [style]="{'min-width': '30%'}" label="Következő"></p-button>
+            <p-button (click)="submit()" *ngIf="service.index === service.questions.length - 1"
+                      [style]="{'min-width': '30%'}" label="Elküld"></p-button>
+        </div>
+        <p-button (click)="confirmation()"  [style]="{'min-width': '30%', 'margin-top': '2%'}" label="Kilép"></p-button>
+    </div>
+    <p-dialog *ngIf="service.activeQuiz!.template !== 'quiz'" [closable]="false" [modal]="true" [style]="{width: '98vw'}" [visible]="service.end">
+        <ng-template pTemplate="header">
+            <h3>A kérdések végére értél, elküldöd a válaszaidat?</h3>
+        </ng-template>
+        <ng-template pTemplate="body">
+<!--            <div>-->
+<!--                <p *ngFor="let a of service.answers; index as i"><b>{{i+1}}.</b>-->
+<!--                    <b>Válasz:</b> {{a.answer === '' ? 'nincs megadva':a.answer}}</p>-->
+<!--            </div>-->
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <button (click)="service.reject()" icon="pi pi-times" label="Nem" pButton type="button"></button>
+            <button (click)="service.accept()" icon="pi pi-check" label="Igen" pButton type="button"></button>
+        </ng-template>
+    </p-dialog>
 </ion-content>

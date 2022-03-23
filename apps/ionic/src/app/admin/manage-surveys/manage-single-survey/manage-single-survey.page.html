@@ -5,7 +5,7 @@
         <div class='field col-12'>
             <div class='my-4'>
                 <span class='p-float-label'>
-                    <input (input)='validator.check("title")' [(ngModel)]='survey!.title' id='title' pInputText type='text' maxlength="80">
+                    <input (input)='validator.check("title")' [(ngModel)]='survey!.title' id='title' maxlength="80" pInputText type='text'>
                     <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.TITLE' | translate }}</label>
                 </span>
                 <div class='text-invalid my-1'>{{ validator.validationErrors['title'] }}</div>
@@ -13,15 +13,15 @@
             <div class='mb-4'>
                 <span class='p-float-label'>
                     <textarea (input)='validator.check("description")' [(ngModel)]='survey!.description' cols='50'
-                              id='description' pInputTextarea
-                              rows='3' maxlength="255"></textarea>
+                              id='description' maxlength="255"
+                              pInputTextarea rows='3'></textarea>
                     <label for='description'>{{ 'MANAGE_SURVEYS.SINGLE.DESCRIPTION' | translate }}</label>
                 </span>
                 <div class='text-invalid my-1'>{{ validator.validationErrors['description'] }}</div>
             </div>
                 <div *ngIf='survey?.template === "skill"' class='mb-4'>
                     <span class='p-float-label'>
-                        <input (input)='validator.check("skillQuestion")' [(ngModel)]='skillQuestion' [maxLength]='255' id='questionText' pInputText
+                        <input (input)='skillQuestionChanged()' [(ngModel)]='skillQuestion' [maxLength]='255' id='questionText' pInputText
                                type='text'>
                         <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.QUESTION' | translate }}</label>
                     </span>
@@ -34,7 +34,7 @@
                     <div class='text-invalid my-1'>{{ validator.validationErrors['categories'] }}</div>
                 </div>
             <div class='nx-sticky'>
-                <p-button (click)='save()' [disabled]='!validator.valid' icon='pi pi-{{ NG_ICON.save }}'
+                <p-button (click)='save()' [disabled]="!validator.valid || isValid()" icon='pi pi-{{ NG_ICON.save }}'
                           label='{{"FORM_OPERATION.SAVE" | translate}}' styleClass='p-button-primary'></p-button>
             </div>
         </div>
@@ -114,12 +114,12 @@
           header="{{ 'MANAGE_QUESTIONS.TEMPLATE1.HEADER' | translate }}">
     <p>{{ 'MANAGE_QUESTIONS.TEMPLATE1.DESCRIPTION' | translate }}</p>
     <div class='button-ladder'>
-        <p-button (click)='templateChosen("template/")' styleClass='p-button-primary'
-                label='{{ "MANAGE_QUESTIONS.TEMPLATE1.EVALUABLE" | translate}}' type='button'></p-button><br>
-        <p-button (click)='templateChosen("custom")' styleClass='p-button-primary'
-                label='{{ "MANAGE_QUESTIONS.TEMPLATE1.CUSTOM" | translate}}' type='button'></p-button><br>
-        <p-button (click)='templateChoosingCancelled()' styleClass='p-button-danger'
-                label='{{ "FORM_OPERATION.CANCEL" | translate}}' type='button'></p-button>
+        <p-button (click)='templateChosen("template/")' label='{{ "MANAGE_QUESTIONS.TEMPLATE1.EVALUABLE" | translate}}'
+                styleClass='p-button-primary' type='button'></p-button><br>
+        <p-button (click)='templateChosen("custom")' label='{{ "MANAGE_QUESTIONS.TEMPLATE1.CUSTOM" | translate}}'
+                styleClass='p-button-primary' type='button'></p-button><br>
+        <p-button (click)='templateChoosingCancelled()' label='{{ "FORM_OPERATION.CANCEL" | translate}}'
+                styleClass='p-button-danger' type='button'></p-button>
     </div>
 </p-dialog>
 
@@ -127,16 +127,16 @@
           header="{{ 'MANAGE_QUESTIONS.TEMPLATE2.HEADER' | translate }}">
     <p>{{ 'MANAGE_QUESTIONS.TEMPLATE2.DESCRIPTION' | translate }}</p>
     <div class='button-ladder'>
-        <p-button (click)='templateChosen("rating")' styleClass='p-button-primary'
-                label='{{ "MANAGE_QUESTIONS.TEMPLATE2.RATING" | translate}}' type='button'></p-button> <br>
-        <p-button (click)='templateChosen("true-false")' styleClass='p-button-primary'
-                label='{{ "MANAGE_QUESTIONS.TEMPLATE2.TRUE-FALSE" | translate}}' type='button'></p-button><br>
-        <p-button (click)='templateChosen("skill")' styleClass='p-button-primary'
-                label='{{ "MANAGE_QUESTIONS.TEMPLATE2.SKILL" | translate}}' type='button'></p-button><br>
-        <p-button (click)='templateChosen("quiz")' styleClass='p-button-primary'
-                label='{{ "MANAGE_QUESTIONS.TEMPLATE2.QUIZ" | translate}}' type='button'></p-button><br>
-        <p-button (click)='templateChoosingCancelled(true)' styleClass='p-button-danger'
-                label='{{ "FORM_OPERATION.CANCEL" | translate}}' type='button'></p-button>
+        <p-button (click)='templateChosen("rating")' label='{{ "MANAGE_QUESTIONS.TEMPLATE2.RATING" | translate}}'
+                styleClass='p-button-primary' type='button'></p-button> <br>
+        <p-button (click)='templateChosen("true-false")' label='{{ "MANAGE_QUESTIONS.TEMPLATE2.TRUE-FALSE" | translate}}'
+                styleClass='p-button-primary' type='button'></p-button><br>
+        <p-button (click)='templateChosen("skill")' label='{{ "MANAGE_QUESTIONS.TEMPLATE2.SKILL" | translate}}'
+                styleClass='p-button-primary' type='button'></p-button><br>
+        <p-button (click)='templateChosen("quiz")' label='{{ "MANAGE_QUESTIONS.TEMPLATE2.QUIZ" | translate}}'
+                styleClass='p-button-primary' type='button'></p-button><br>
+        <p-button (click)='templateChoosingCancelled(true)' label='{{ "FORM_OPERATION.CANCEL" | translate}}'
+                styleClass='p-button-danger' type='button'></p-button>
     </div>
 </p-dialog>
 

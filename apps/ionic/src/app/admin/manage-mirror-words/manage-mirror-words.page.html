@@ -5,10 +5,10 @@
     <p-table #dt1 [value]='(filteredMirrorWords$ | async)!' responsiveLayout='scroll' styleClass='p-datatable-striped'>
         <ng-template pTemplate='caption'>
             <div class='flex'>
-                <span class='p-input-icon-left ml-auto'>
+                <span class='p-input-icon-left ml-auto mr-2'>
                     <i class='pi pi-search'></i>
-                    <input #searchInput (input)='filter(searchInput)' pInputText
-                           placeholder="{{ 'MIRROR_LIST.SEARCH_BY_TEXT' | translate}}" type='text' maxlength="80" />
+                    <input #searchInput (input)='filter(searchInput)' maxlength="80"
+                           pInputText placeholder="{{ 'MIRROR_LIST.SEARCH_BY_TEXT' | translate}}" type='text' />
                 </span>
                 <p-button (click)='clear(searchInput)' [disabled]='!searchInput.value' styleClass='p-button-primary'
                         icon='pi pi-{{ NG_ICON.filterSlash }}' label="{{ 'MIRROR_LIST.CLEAR' | translate}}"></p-button>
@@ -30,7 +30,7 @@
     </p-table>
 </ion-content>
 
-<p-dialog [(visible)]='dialog' [draggable]='false' [modal]='true' [resizable]='false' [style]="{maxWidth: '600px'}"
+<p-dialog [(visible)]='dialog' [closable]='false' [draggable]='false' [modal]='true' [resizable]='false' [style]="{maxWidth: '600px'}"
           header="{{ ('MIRROR_LIST.' + dialog?.toUpperCase()) | translate }}" position='bottom'>
     <div class='p-grid'>
         <div class='p-col-12'>

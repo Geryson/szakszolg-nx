@@ -54,9 +54,12 @@ export const SURVEYS = {
                     _id
                     question
                     type
+                    categoryIndex
                     answers {
                         _id
                         text
+                        isCorrect
+                        categoryIndex
                     }
                 }
                 createdAt
