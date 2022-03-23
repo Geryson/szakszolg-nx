@@ -13,7 +13,7 @@ export class PermissionGuard implements CanActivate {
             context.getHandler(),
         ])
         const requiredAbilities = this.reflector.get<string[]>('abilities', context.getHandler())
-        if (requiredAbilities?.length == 0 && requiredResource?.length == 0) return true
+        if (!requiredAbilities?.length || !requiredResource?.length) return true
         const required = `${requiredAbilities[0]}::${requiredResource[0]}`
         let user: IUser
         if (context.getType() === 'http') user = context.switchToHttp().getRequest().user

@@ -33,6 +33,7 @@ export class AuthService {
     async verify(token: string) {
         const decoded = this.jwtService.verify(token, { secret: this.configService.get('JWT_SECRET')! })
         const user = await this.userService.findOne({ email: decoded.email })
+
         if (!user) throw new Error('User not found')
         return user
     }
