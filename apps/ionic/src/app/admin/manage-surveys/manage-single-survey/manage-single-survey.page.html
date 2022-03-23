@@ -90,10 +90,10 @@
                             {{ ('MANAGE_QUESTIONS.TYPES.' + questionObject.type.toUpperCase()) | translate }}
                         </td>
                         <td>
-                            <p-button (click)='editClick(questionObject)' icon='pi pi-{{ NG_ICON.pencil }}'
-                                    styleClass='p-button-primary wide-button' type='button'></p-button>
-                            <p-button (click)='deleteClick(questionObject)' icon='pi pi-{{ NG_ICON.trash }}'
-                                    styleClass='p-button-danger wide-button' type='button'></p-button>
+                            <p-button (click)='editClick(questionObject)' styleClass='p-button-primary wide-button'
+                                    icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                            <p-button (click)='deleteClick(questionObject)' styleClass='p-button-danger wide-button'
+                                    icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                         </td>
                     </tr>
                 </ng-template>

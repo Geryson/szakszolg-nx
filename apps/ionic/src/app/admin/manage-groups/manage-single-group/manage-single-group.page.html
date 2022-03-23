@@ -9,6 +9,11 @@
         </div>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
              <span class='p-float-label'>
+                <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' pInputText type='text' maxlength="255" />
+                <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
+            </span>
+            <span>
+                <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || !item?.groups?.includes(newGroup.value)' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.plus }}' type='button'></p-button>
                 <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' maxlength="255" pInputText type='text' />
                 <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
             </span>
@@ -34,9 +39,9 @@
                                 {{group}}
                             </div>
                             <div class='float-end'>
-                                <p-button (click)='markCorrect(group)' *ngIf='item?.correct !== group' icon='pi pi-{{ NG_ICON.check }}' styleClass='p-button-success mr-2' type='button'></p-button>
-                                <p-button *ngIf='item?.correct === group' [disabled]='true' [style]='{width: "150px"}' label='{{ "MANAGE_GROUPINGS.CORRECT_BUTTON" | translate }}' styleClass='p-button-primary mr-2 max-w-150' type='button'></p-button>
-                                <p-button (click)='remove(group)' icon='pi pi-{{ NG_ICON.trash }}' styleClass='p-button-danger' type='button'></p-button>
+                                <p-button (click)='markCorrect(group)' *ngIf='item?.correct !== group' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.check }}' type='button'></p-button>
+                                <p-button *ngIf='item?.correct === group' [disabled]='true' styleClass='p-button-primary' label='{{ "MANAGE_GROUPINGS.CORRECT_BUTTON" | translate }}' type='button'></p-button>
+                                <p-button (click)='remove(group)' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                             </div>
                         </td>
                     </tr>
