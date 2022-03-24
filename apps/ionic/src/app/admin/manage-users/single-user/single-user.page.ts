@@ -33,6 +33,8 @@ export class SingleUserPage implements OnInit {
     dialogCallback: (() => void) | null = null
     private queryRef?: QueryRef<any>
     private loading = false
+    activeUser = ''
+
 
     constructor(
         private readonly authService: AuthService,
@@ -40,12 +42,12 @@ export class SingleUserPage implements OnInit {
         private readonly userService: UserService,
         private readonly confirmation: ConfirmationService,
         private readonly translate: TranslatePipe,
-        private readonly storage: StorageService
     ) {}
 
     async enter(){
         this.loading = true
         const params = await firstValueFrom(this.activatedRoute.params)
+        this.activeUser = params.id
         this.queryRef = params.id === 'me' ? this.userService.profile() : this.userService.read(params.id)
         this.queryRef.valueChanges.subscribe(({ data }) => {
             if(data.user) {
@@ -105,6 +107,10 @@ export class SingleUserPage implements OnInit {
     }
 
     check(prop: string) {
+        if (prop === 'newPasswordConfirm')
+        {
+            return
+        }
         const validation = validations[prop](this.user![prop], prop)
         setTimeout(() => {
             if (!validation) this.validationErrors[prop] = this.translate.transform(`USER_EDIT.ERROR.${prop}`)
@@ -133,5 +139,6 @@ const validations: { [key: string]: (value: string, attribute: string) => boolea
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             ),
     newPassword: (value, __) => value.length > 3 && !!value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
+    //newPasswordConfirm: (value, __) => this.newPassword().length > 0 ? value === this.newPassword() : false,
     om: (value, __) => !!value.match(/^7[0-9]{10}$/),
 }
