@@ -4,20 +4,20 @@
     <div [hidden]="loading" class="mainContainer">
         <label [ngClass]="{'flipV' : value===1, 'flipH': value===0}" class="noselect label margins">{{ word }}</label>
         <input (keydown.enter)="check()" [(ngModel)]="inputValue" [maxLength]="80" class="p-inputtext-lg margins" pInputText type="text"/>
-        <p-button (click)="check()" styleClass="p-button-lg margins" icon="pi pi-check" label="Ellenőrzés" type="button"></p-button>
+        <button (click)="check()" class="p-button-lg margins" icon="pi pi-check" label="Ellenőrzés" pButton type="button"></button>
         <label>Próbálkozások száma: {{ counter }}</label>
         <label>Jó válaszok száma: {{ correctAnswers }}</label>
     </div>
-    <p-dialog [(visible)]="found" [closable]="false" [modal]='true' header="Ügyes">
+    <p-dialog header="Ügyes" [(visible)]="found" [closable]="false" [modal]="true">
         <p>Siker, eltaláltad!</p>
-        <button (click)="nextWord()" autofocus icon="pi pi-check" label="Ok" styleClass="p-button-text" pButton type="button"></button>
+        <button (click)="nextWord()" autofocus icon="pi pi-check"  label="Ok" pButton styleClass="p-button-text" type="button"></button>
     </p-dialog>
-    <p-dialog [(visible)]="mistake" [closable]="false" [modal]='true' header="Nem sikerült">
+    <p-dialog header="Nem sikerült"  [(visible)]="mistake" [closable]="false" [modal]="true">
         <p>Nem talált!</p>
-        <button (click)="mistake = false" autofocus styleClass="p-button-lg" icon="pi pi-check" label="Ok" pButton type="button"></button>
+        <button (click)="mistake = false" autofocus class="p-button-lg"  icon="pi pi-check" label="Ok" pButton type="button" ></button>
     </p-dialog>
-    <p-dialog [(visible)]="end" [closable]="false" [modal]='true' header="Vége a játéknak!">
+    <p-dialog header="Vége a játéknak!" [(visible)]="end" [closable]="false" [modal]="true">
         <p>A helyes válasz: {{answer}}</p>
-        <button (click)="newGame()" autofocus styleClass="p-button-lg" icon="pi pi-check" label="Ok" pButton type="button"></button>
+        <button (click)="newGame()" autofocus class="p-button-lg"  icon="pi pi-check" label="Ok" pButton type="button"></button>
     </p-dialog>
 </ion-content>
