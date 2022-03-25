@@ -7,17 +7,24 @@
                 <div *ngIf="activeUser === 'me'">
                     <ion-item *ngFor="let prop of ['_id', 'username', 'email', 'om', 'newPassword', 'newPasswordConfirm']">
                         <div class='inline-flex align-items-center'>
-                            <span ><b>{{ ('USER_EDIT.' + prop) | translate }}:</b> </span>
                             <span *ngIf="prop === '_id'" class='ml-3'> {{ originalUser[prop] }}</span>
                         </div>
-                        <div *ngIf="prop !== '_id'" class='col-12 md:col-4'>
-                            <input (input)='check(prop)' [(ngModel)]='user[prop]'
-                                   id='input-text-{{ prop }}' pInputText
-                                   type='text' maxlength="80" />
+
+                        <div *ngIf="prop !== '_id'" class="mb-2 align-items-center">
+                            <div  class='field col-12 md:col-4 '>
+                            <span  class='p-float-label'>
+                                <input (input)='check(prop)' [(ngModel)]='user[prop]'
+                                       class="data"
+                                       id='input-text-{{ prop }}' pInputText
+                                       type='text' maxlength="80" />
+                                <label for='input-text-{{ prop }}'>{{ ('USER_EDIT.' + prop) | translate }}</label>
+                            </span>
+                            </div>
                         </div>
-                        <div *ngIf='!!validationErrors[prop]' class='inline-flex mb-2 align-items-center'>
+
+                        <div *ngIf='!!validationErrors[prop]' class='mb-2 align-items-center'>
                             <div class='field col-12 md:col-4'>
-                                <span class='text-danger'>{{ validationErrors[prop] }}</span>
+                                <span class='validation-error'>{{ validationErrors[prop] }}</span>
                             </div>
                         </div>
                     </ion-item>
@@ -26,17 +33,24 @@
                 <div *ngIf="activeUser !== 'me'">
                     <ion-item *ngFor="let prop of ['_id', 'username', 'email', 'om']">
                         <div class='inline-flex align-items-center'>
-                            <span ><b>{{ ('USER_EDIT.' + prop) | translate }}:</b> </span>
                             <span *ngIf="prop === '_id'" class='ml-3'> {{ originalUser[prop] }}</span>
                         </div>
-                        <div *ngIf="prop !== '_id'" class='col-12 md:col-4'>
-                            <input (input)='check(prop)' [(ngModel)]='user[prop]'
-                                   id='input-text-{{ prop }}' pInputText
-                                   type='text' maxlength="80" />
+
+                        <div *ngIf="prop !== '_id'" class="mb-2 align-items-center">
+                            <div  class='field col-12 md:col-4 '>
+                            <span  class='p-float-label'>
+                                <input (input)='check(prop)' [(ngModel)]='user[prop]'
+                                       class="data"
+                                       id='input-text-{{ prop }}' pInputText
+                                       type='text' maxlength="80" />
+                                <label for='input-text-{{ prop }}'>{{ ('USER_EDIT.' + prop) | translate }}</label>
+                            </span>
+                            </div>
                         </div>
-                        <div *ngIf='!!validationErrors[prop]' class='inline-flex mb-2 align-items-center'>
+
+                        <div *ngIf='!!validationErrors[prop]' class='mb-2 align-items-center'>
                             <div class='field col-12 md:col-4'>
-                                <span class='text-danger'>{{ validationErrors[prop] }}</span>
+                                <span class='validation-error'>{{ validationErrors[prop] }}</span>
                             </div>
                         </div>
                     </ion-item>
