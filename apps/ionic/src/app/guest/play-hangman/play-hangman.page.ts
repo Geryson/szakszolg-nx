@@ -63,7 +63,6 @@ export class PlayHangmanPage {
         this.sub2 = this.queryRef2.valueChanges
             .subscribe((res) => {
                     this.word = res.data.hangmanWord.word ?? ''
-                    console.log(this.word)
                     this.replaced = this.word.replace(/[A-Za-zŐőÚúÖöÜüÓóŰűÁáÉéÍí]/g, '_').split('')
                 }
             )

@@ -18,7 +18,6 @@ export class SurveyDetailsPage implements OnInit {
 
     ngOnInit() {
         this.storage.get(STORAGE_KEY.ACTIVE_QUIZ).then(aq => {
-            console.log('STORAGE-ben van')
             this.service.activeQuiz = aq
         })
     }

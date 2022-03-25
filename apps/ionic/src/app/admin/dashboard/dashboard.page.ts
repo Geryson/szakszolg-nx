@@ -31,7 +31,6 @@ export class DashboardPage {
         /*const user = await this.authService.user
         this.user = user
         console.log(user)*/
-        console.log(this.user)
         if (!this.user) {
             return
         }

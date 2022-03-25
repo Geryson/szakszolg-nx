@@ -100,7 +100,6 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
     }
 
     private async checkPermissions() {
-        console.log(this.user)
         if (!this.user) {
             return
         }

@@ -69,7 +69,6 @@ export class FillSurveyPage implements OnInit{
     }
 
     private questionFactory(question: IQuizQuestion, isQuiz = false) {
-        console.log(this.service.activeOM)
         const res: IQuizAnswer = {
             _id: null,
             createdAt: new Date,
@@ -87,13 +86,8 @@ export class FillSurveyPage implements OnInit{
         return res
     }
 
-    log() {
-        console.log(this.service.answers)
-    }
-
     async next() {
         if (this.service.index >= this.service.questions.length - 1) {
-            console.log('oh shit')
             return
         }
 

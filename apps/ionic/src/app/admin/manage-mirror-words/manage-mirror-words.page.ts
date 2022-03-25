@@ -102,7 +102,6 @@ export class ManageMirrorWordsPage implements OnInit, OnDestroy {
     }
 
     private async checkPermissions() {
-        console.log(this.user)
         if (!this.user) {
             return
         }
