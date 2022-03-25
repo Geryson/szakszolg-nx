@@ -11,12 +11,15 @@ import { APOLLO_CLIENT, STORAGE_SERVICE } from '../injector.tokens'
 import { api } from '../utils/uri.tools'
 import { PROFILE } from '../graphql/profile.graphql'
 import { APP_INJECTOR } from '../../app/app.module'
+import {USERS} from "../graphql/users.graphql";
+import {RedirectService} from "./redirect.service";
+import {pages} from "../utils/pages.const";
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private readonly http: HttpClient) {}
+    constructor(private readonly http: HttpClient, private readonly redirect: RedirectService) {}
 
     // region Properties
 
@@ -87,6 +90,8 @@ export class AuthService {
         this._tokenObject.next(null)
         this.storage.remove(STORAGE_KEY.ACCESS_TOKEN).then()
         this.storage.remove(STORAGE_KEY.TOKEN_OBJECT).then()
+        this.storage.remove(STORAGE_KEY.PROFILE).then()
+        this.redirect.to(pages.home)
     }
 
     async check() {
@@ -122,13 +127,13 @@ export class AuthService {
 
     private loadProfile(email: string) {
         APP_INJECTOR.get<Apollo>(APOLLO_CLIENT)
-            .query<{ user: IUser }>({
-                query: PROFILE.READ,
-                variables: { email },
+            .query<{ profile: IUser }>({
+                query: USERS.PROFILE,
+                fetchPolicy: 'no-cache'
             })
             .subscribe((res) => {
                 Log.debug('AuthService::loadProfile', 'result', res)
-                this.storage.set(STORAGE_KEY.PROFILE, res.data.user).then()
+                this.storage.set(STORAGE_KEY.PROFILE, res.data.profile).then()
             })
     }
 

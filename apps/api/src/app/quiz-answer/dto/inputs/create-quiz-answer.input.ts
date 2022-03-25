@@ -6,6 +6,9 @@ export class CreateQuizAnswerInput extends GqlInput {
     @Field()
     quizId: string
 
+    @Field({ nullable: true })
+    token: string | null
+
     @Field(() => Int)
     questionId: number
 
@@ -18,5 +21,6 @@ export class CreateQuizAnswerInput extends GqlInput {
     @Field()
     answeredAt?: Date
 
+    @Field({ nullable: true })
     isCorrect?: boolean | null
 }

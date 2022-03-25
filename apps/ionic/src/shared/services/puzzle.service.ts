@@ -31,6 +31,7 @@ export class PuzzleService {
         return this.apolloClient.watchQuery<{ puzzle: Partial<IPuzzle> }>({
             query: PUZZLES.READ,
             variables: { id },
+            fetchPolicy: 'no-cache',
         })
     }
 

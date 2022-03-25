@@ -11,7 +11,7 @@
                         <i class="pi pi-search"></i>
                         <input #search (input)="dv.filter(search.value)" pInputText placeholder="{{ 'PUZZLE_MANAGEMENT.SEARCH' | translate }}" type="search">
                     </span>
-                    <p-button icon='pi pi-plus' label="{{ 'PUZZLE_MANAGEMENT.ADD_PICTURE' | translate }}" routerLink='new' styleClass="p-button-success"></p-button>
+                    <p-button *ngIf="canAddPuzzle" icon='pi pi-plus' label="{{ 'PUZZLE_MANAGEMENT.ADD_PICTURE' | translate }}" routerLink='new' styleClass="p-button-success"></p-button>
                     <span class='d-none d-md-inline'><p-dataViewLayoutOptions></p-dataViewLayoutOptions></span>
                 </div>
             </ng-template>
@@ -21,7 +21,7 @@
 
                         <img [alt]="item.url" [src]="getImageUrl(item.url)"/>
                         <div class="product-list-detail">
-                            <div class="product-name">{{getImageName(item.url)}}</div>
+                            <div class="product-name">{{getImageName(item.url)}}<br><i *ngIf='!item.columns' class="pi pi-exclamation-triangle text-warning" style="font-size: 1.25rem"></i></div>
                             <div class="product-description">{{item.createdAt | date:(('SHARED.DATE_FORMAT' | translate))}}</div>
                         </div>
                         <div class="product-list-action align-content-end">
@@ -29,9 +29,9 @@
 <!--                                <span class="product-price">{{item.size/1000}}KB</span>-->
                             </div>
                             <div style='align-content: end'>
-                                <p-button (onClick)='destroy(item)' icon="pi pi-trash" label='{{ "PUZZLE_MANAGEMENT.REMOVE" | translate }}' styleClass='p-button-danger'></p-button>
+                                <p-button *ngIf="canDeletePuzzle" (onClick)='destroy(item)' icon="pi pi-trash" label='{{ "PUZZLE_MANAGEMENT.REMOVE" | translate }}' styleClass='p-button-danger'></p-button>
                                 <br>
-                                <p-button (onClick)='navigateToScaler(item)' icon="pi pi-window-minimize" label='{{ "PUZZLE_MANAGEMENT.SCALE" | translate }}' styleClass='p-button-warning'></p-button>
+                                <p-button *ngIf="canEditPuzzle" (onClick)='navigateToScaler(item)' icon="pi pi-window-minimize" label='{{ "PUZZLE_MANAGEMENT.SCALE" | translate }}' styleClass='p-button-warning'></p-button>
                             </div>
                         </div>
                     </div>

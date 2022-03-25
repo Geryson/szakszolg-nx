@@ -1,23 +1,23 @@
 <nx12-header title="NAVIGATION.MIRROR_WORDS"></nx12-header>
 
 <ion-content fullscreen="true">
-    <div class="mainContainer">
-        <label class="noselect label margins" [ngClass]="{'flipV' : value===1, 'flipH': value===0}">{{ word }}</label>
-        <input type="text" class="p-inputtext-lg margins"  placeholder="MirrorWord" pInputText [(ngModel)]="inputValue" (keydown.enter)="check()"/>
-        <button pButton type="button" label="Check" icon="pi pi-check" class="p-button-lg margins" (click)="check()"></button>
+    <div [hidden]="loading" class="mainContainer">
+        <label [ngClass]="{'flipV' : value===1, 'flipH': value===0}" class="noselect label margins">{{ word }}</label>
+        <input (keydown.enter)="check()" [(ngModel)]="inputValue" class="p-inputtext-lg margins" pInputText type="text"/>
+        <button (click)="check()" class="p-button-lg margins" icon="pi pi-check" label="Ellenőrzés" pButton type="button"></button>
         <label>Próbálkozások száma: {{ counter }}</label>
         <label>Jó válaszok száma: {{ correctAnswers }}</label>
     </div>
-    <p-dialog header="Ügyes" [(visible)]="found" [closable]="false">
+    <p-dialog header="Ügyes" [(visible)]="found" [closable]="false" [modal]="true">
         <p>Siker, eltaláltad!</p>
-        <button pButton type="button" autofocus  styleClass="p-button-text" icon="pi pi-check" label="Ok" (click)="nextWord()"></button>
+        <button (click)="nextWord()" autofocus icon="pi pi-check"  label="Ok" pButton styleClass="p-button-text" type="button"></button>
     </p-dialog>
-    <p-dialog header="sampletext"  [(visible)]="mistake" [closable]="false">
+    <p-dialog header="Nem sikerült"  [(visible)]="mistake" [closable]="false" [modal]="true">
         <p>Nem talált!</p>
-        <button pButton type="button" autofocus  label="Ok" icon="pi pi-check" class="p-button-lg" (click)="mistake = false" ></button>
+        <button (click)="mistake = false" autofocus class="p-button-lg"  icon="pi pi-check" label="Ok" pButton type="button" ></button>
     </p-dialog>
-    <p-dialog header="Vége a játéknak!" [(visible)]="end" [closable]="false">
+    <p-dialog header="Vége a játéknak!" [(visible)]="end" [closable]="false" [modal]="true">
         <p>A helyes válasz: {{answer}}</p>
-        <button pButton type="button" autofocus  label="Ok" icon="pi pi-check" class="p-button-lg" (click)="newGame()"></button>
+        <button (click)="newGame()" autofocus class="p-button-lg"  icon="pi pi-check" label="Ok" pButton type="button"></button>
     </p-dialog>
 </ion-content>

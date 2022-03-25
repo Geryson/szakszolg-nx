@@ -39,6 +39,10 @@ import { SchoolService } from '../shared/services/school.service'
 import { StaticService } from '../shared/services/static.service'
 import { SurveyService } from '../shared/services/survey.service'
 import { UserService } from '../shared/services/user.service'
+import { ExportService } from '../shared/services/export.service'
+import { Diagnostic } from '@awesome-cordova-plugins/diagnostic/ngx'
+import { File } from '@awesome-cordova-plugins/file/ngx'
+import { Clipboard } from '@awesome-cordova-plugins/clipboard/ngx'
 
 @NgModule({
     declarations: [AppComponent],
@@ -93,7 +97,11 @@ import { UserService } from '../shared/services/user.service'
         PuzzleService,
         MessageService,
         AlertService,
+        ExportService,
         AuthService,
+        Diagnostic,
+        Clipboard,
+        File,
         GroupingItemService,
         HangmanWordService,
         MirrorWordService,

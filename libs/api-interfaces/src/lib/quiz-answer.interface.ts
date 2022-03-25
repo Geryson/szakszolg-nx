@@ -6,5 +6,12 @@ export interface IQuizAnswer extends IApiResource {
     answer: string
     om: string
     isCorrect?: boolean | null
+    token?: string | null
     answeredAt?: Date
+}
+
+export interface IExportableSurveyAnswer {
+    om: string
+    questionId: number
+    answer: string
 }

@@ -36,6 +36,7 @@ type Mutation {
     createGroupingItem(createGroupingItemData: CreateGroupingItemInput!): GroupingItem!
     createHangmanWord(createHangmanWordData: CreateHangmanWordInput!): HangmanWord!
     createManyPuzzles(data: PuzzleUrlInput!): [Puzzle]!
+    createManyQuizAnswers(createQuizAnswerData: CreateManyQuizAnswersInput!): [QuizAnswer!]
     createMirrorWord(createMirrorWordData: CreateMirrorWordInput!): MirrorWord!
     createPuzzle(createPuzzleData: CreatePuzzleInput!): Puzzle!
     createQuiz(createQuizData: CreateQuizInput!): Quiz!
@@ -90,13 +91,14 @@ type Query {
     hangmanWords(category: String, ids: [String!]): [HangmanWord]!
     mirrorWord(id: String): MirrorWord
     mirrorWords(ids: [String!]): [MirrorWord]!
+    profile: User
     puzzle(id: String!): Puzzle
     puzzles(ids: [String!]): [Puzzle]!
     quiz(id: String!): Quiz
     quizAnswer(id: String!): QuizAnswer
     quizAnswerOption(id: String!): QuizAnswerOption
     quizAnswerOptions(ids: [String!]): [QuizAnswerOption]!
-    quizAnswers(ids: [String!], quizId: String): [QuizAnswer]!
+    quizAnswers(ids: [String!], quizId: String, token: String): [QuizAnswer]!
     quizzes(category: String, ids: [String!]): [Quiz]!
     role(id: String!): Role
     roles(ids: [String!]): [Role]!
@@ -132,11 +134,12 @@ type QuizAnswer {
     om: String!
     questionId: Int!
     quizId: String!
+    token: String
     updatedAt: DateTime!
 }
 
 type QuizAnswerOption {
-    _id: String!
+    _id: Int!
     categoryIndex: Float
     createdAt: DateTime!
     deletedAt: DateTime
@@ -146,8 +149,9 @@ type QuizAnswerOption {
 }
 
 type QuizQuestion {
-    _id: String!
+    _id: Int!
     answers: [QuizAnswerOption]
+    categoryIndex: Int
     createdAt: DateTime!
     deletedAt: DateTime
     question: String!
@@ -212,6 +216,10 @@ input CreateHangmanWordInput {
     word: String!
 }
 
+input CreateManyQuizAnswersInput {
+    answers: [CreateQuizAnswerInput!]!
+}
+
 input CreateMirrorWordInput {
     word: String!
 }
@@ -229,12 +237,15 @@ input CreatePuzzleInput {
 input CreateQuizAnswerInput {
     answer: String!
     answeredAt: DateTime!
+    isCorrect: Boolean
     om: String!
     questionId: Int!
     quizId: String!
+    token: String
 }
 
 input CreateQuizAnswerOptionInput {
+    _id: Float
     categoryIndex: Float
     isCorrect: Boolean
     text: String!
@@ -249,7 +260,9 @@ input CreateQuizInput {
 }
 
 input CreateQuizQuestionInput {
+    _id: Float!
     answers: [CreateQuizAnswerOptionInput]
+    categoryIndex: Float
     question: String!
     type: String!
 }
@@ -369,8 +382,8 @@ input UpdateQuizAnswerInput {
 }
 
 input UpdateQuizAnswerOptionInput {
+    _id: Float
     categoryIndex: Float
-    id: String!
     isCorrect: Boolean
     text: String
 }
@@ -384,8 +397,9 @@ input UpdateQuizInput {
 }
 
 input UpdateQuizQuestionInput {
+    _id: Float
     answers: [UpdateQuizAnswerOptionInput]
-    id: String!
+    categoryIndex: Float
     question: String
     type: String
 }

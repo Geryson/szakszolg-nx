@@ -10,7 +10,7 @@ import { NavController } from '@ionic/angular'
 import { SurveyService } from '../../../../shared/services/survey.service'
 import { areEqual, deepCopy, omit } from '../../../../shared/utils/object.tools'
 import { Log } from '../../../../shared/utils/log.tools'
-import { showLoading } from '../../../../shared/utils/observable.tools'
+import { presentLoading } from '../../../../shared/utils/observable.tools'
 import { translate, Validator } from '../../../../shared/utils/translation.tools'
 
 @Component({
@@ -50,6 +50,8 @@ export class ManageSingleSurveyPage {
     }
 
     save() {
+        if(!this.validator.valid || this.isValid())
+            return
         if (!this.validator?.valid) {
             this.validator?.check()
             return
@@ -82,7 +84,6 @@ export class ManageSingleSurveyPage {
     }
 
     deleteClick(item: IQuizQuestion) {
-        Log.debug('ManageSingleSurveyPage::deleteClick', 'item', item)
         this.survey!.questions = this.survey!.questions?.filter((question) => question._id !== item._id) // TODO: Add confirmation
     }
 
@@ -145,6 +146,11 @@ export class ManageSingleSurveyPage {
         this.validator?.check('categories')
     }
 
+    skillQuestionChanged() {
+        this.validator.check('skillQuestion').then()
+        this.survey?.questions?.forEach((q) => (q.question = this.skillQuestion))
+    }
+
     private getNewQuestion() {
         return {
             _id: this.getNextId(),
@@ -191,7 +197,7 @@ export class ManageSingleSurveyPage {
     }
 
     private async create() {
-        const l = await showLoading()
+        const l = await presentLoading()
         this.surveyService
             .add(this.survey!)
             .pipe(first())
@@ -199,7 +205,7 @@ export class ManageSingleSurveyPage {
     }
 
     private async update() {
-        const l = await showLoading()
+        const l = await presentLoading()
         this.surveyService
             .edit(this.survey!._id, omit(this.survey!, '_id'))
             .pipe(first())
@@ -242,5 +248,11 @@ export class ManageSingleSurveyPage {
                 skillQuestion: (survey, skillQuestion) => survey.template !== 'skill' || !!skillQuestion,
             },
         })
+    }
+
+    isValid() {
+        return (!this.survey!.title || !this.survey!.description
+            || this.survey!.questions!.length<1 || this.survey!.template !== 'quiz'
+            && this.survey!.categories!.length < 1)
     }
 }
