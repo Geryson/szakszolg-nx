@@ -87,6 +87,7 @@ export class SingleUserPage implements OnInit {
     }
 
     saveLogic(prop: string) {
+        console.log('Bement')
         this.editing[prop] = false
         this.validationErrors[prop] = ''
         this.userService.edit(this.user!._id, omit(this.user!, '_id')).subscribe(() => {
