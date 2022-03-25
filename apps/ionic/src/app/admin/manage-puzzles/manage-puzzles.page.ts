@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { IPuzzle } from '@szakszolg-nx/api-interfaces'
+import {ABILITIES, check, IPuzzle, IUser, RESOURCES} from '@szakszolg-nx/api-interfaces'
 import { ConfirmationService, SelectItem } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { NG_ICON } from '../../../shared/utils/prime-icons.class'
@@ -11,6 +11,7 @@ import { deepCopy } from '../../../shared/utils/object.tools'
 import { firstValueFrom, Subscription } from 'rxjs'
 import { presentLoading } from '../../../shared/utils/observable.tools'
 import { RedirectService } from '../../../shared/services/redirect.service'
+import {AuthService} from "../../../shared/services/auth.service";
 
 @Component({
     selector: 'nx12-manage-puzzles',
@@ -31,11 +32,18 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
     private queryRef?: QueryRef<{ puzzles: Partial<IPuzzle>[] }>
     private sub?: Subscription
 
+    canDeletePuzzle = false
+    canEditPuzzle = false
+    canAddPuzzle = false
+
+    user: Partial<IUser> | null = null
+
     constructor(
         private readonly service: PuzzleService,
         private readonly translate: TranslatePipe,
         private readonly redirect: RedirectService,
         private readonly confirm: ConfirmationService,
+        private readonly authService: AuthService
     ) {
         setTimeout(() => {
             ;[
@@ -56,7 +64,9 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
         })
     }
 
-    ionViewDidEnter() {
+    async ionViewDidEnter() {
+        this.user = await this.authService.user
+        this.checkPermissions().then()
         this.queryRef?.refetch().then()
     }
 
@@ -87,5 +97,15 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
     navigateToScaler(item: IPuzzle) {
         this.service.activePuzzle = deepCopy(item)
         this.redirect.to(`${pages.admin.puzzleImages}/scaler`)
+    }
+
+    private async checkPermissions() {
+        console.log(this.user)
+        if (!this.user) {
+            return
+        }
+        this.canAddPuzzle = check(this.user as IUser, { resource: RESOURCES.PUZZLES, ability: ABILITIES.ADD })
+        this.canEditPuzzle = check(this.user as IUser, { resource: RESOURCES.PUZZLES, ability: ABILITIES.EDIT })
+        this.canDeletePuzzle = check(this.user as IUser, { resource: RESOURCES.PUZZLES, ability: ABILITIES.DELETE })
     }
 }

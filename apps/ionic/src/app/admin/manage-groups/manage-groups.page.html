@@ -10,7 +10,7 @@
                            placeholder="{{ 'MANAGE_GROUPINGS.SEARCH' | translate }}" type='text' maxlength="80" />
                 </span>
                 <span>
-                    <p-button (click)='addClick()' styleClass='p-button-success' icon='pi pi-plus' type='button'></p-button>
+                    <p-button *ngIf="userCanAdd" (click)='addClick()' styleClass='p-button-success' icon='pi pi-plus' type='button'></p-button>
                 </span>
             </div>
         </ng-template>

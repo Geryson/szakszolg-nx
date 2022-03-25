@@ -12,7 +12,7 @@
                 </span>
                 <p-button (click)='clear(searchInput)' [disabled]='!searchInput.value' styleClass='p-button-primary'
                         icon='pi pi-{{ NG_ICON.filterSlash }}' label="{{ 'MIRROR_LIST.CLEAR' | translate}}"></p-button>
-                <p-button (click)='openAddDialogue()' styleClass='p-button-success'
+                <p-button *ngIf="canAddWord" (click)='openAddDialogue()' styleClass='p-button-success'
                         icon='pi pi-{{ NG_ICON.plusCircle }}' label=''></p-button>
             </div>
         </ng-template>
@@ -20,9 +20,9 @@
             <tr>
                 <td>{{word.word}}</td>
                 <td>
-                    <p-button (click)='openEditDialogue(word)' styleClass='p-button-primary'
+                    <p-button *ngIf="canEditWord" (click)='openEditDialogue(word)' styleClass='p-button-primary'
                             icon='pi pi-{{ NG_ICON.pencil }}' label=''></p-button>
-                    <p-button (click)='deleteWord(word)' styleClass='p-button-danger'
+                    <p-button *ngIf="canDeleteWord" (click)='deleteWord(word)' styleClass='p-button-danger'
                             icon='pi pi-{{ NG_ICON.trash }}' label=''></p-button>
                 </td>
             </tr>
