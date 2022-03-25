@@ -2,7 +2,7 @@
 
 <ion-content fullscreen="true">
       <div class="mainContainer">
-        <ion-button routerLink="{{ link(pages.admin.users + '/' + this.user?._id) }}" shape="round navBtn">{{ 'ADMIN_NAV.OWN_USER_MANAGEMENT' | translate }}</ion-button>
+        <ion-button routerLink="{{ link(pages.admin.users + '/me') }}" shape="round navBtn">{{ 'ADMIN_NAV.OWN_USER_MANAGEMENT' | translate }}</ion-button>
         <ion-button *ngIf="canManageUsers" routerLink="{{ link(pages.admin.users) }}" shape="round navBtn">{{ 'ADMIN_NAV.USERS_MANAGEMENT' | translate }}</ion-button>
 <!--        <ion-button *ngIf="canManageRoles" routerLink="{{ link(pages.admin.roles) }}" shape="round navBtn">{{ 'ADMIN_NAV.ROLE_RIGHTS' | translate }}</ion-button>-->
         <ion-button routerLink="{{ link(pages.admin.surveysManagement) }}" shape="round navBtn">{{ 'ADMIN_NAV.FORM_MANAGEMENT' | translate }}</ion-button>

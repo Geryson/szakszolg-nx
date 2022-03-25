@@ -12,7 +12,7 @@
                            pInputText placeholder="{{ 'MANAGE_SURVEYS.SEARCH' | translate }}" type='text' />
                 </span>
                 <span>
-                    <p-button (click)='addClick()' icon='pi pi-plus' styleClass='p-button-success' type='button'></p-button>
+                    <p-button *ngIf="userCanAdd" (click)='addClick()' icon='pi pi-plus' styleClass='p-button-success' type='button'></p-button>
                 </span>
             </div>
         </ng-template>

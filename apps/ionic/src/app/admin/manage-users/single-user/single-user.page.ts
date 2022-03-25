@@ -12,6 +12,8 @@ import { firstValueFrom } from 'rxjs'
 import { AuthService } from '../../../../shared/services/auth.service'
 import { omit } from '../../../../shared/utils/object.tools'
 import { Log } from '../../../../shared/utils/log.tools'
+import {STORAGE_KEY} from "../../../../shared/utils/constants";
+import {StorageService} from "../../../../shared/services/storage.service";
 
 @Component({
     selector: 'nx12-single-user',
@@ -29,8 +31,10 @@ export class SingleUserPage implements OnInit {
     password = ''
     passwordDialog = false
     dialogCallback: (() => void) | null = null
-    private queryRef?: QueryRef<{ user: Partial<IUser> }>
+    private queryRef?: QueryRef<any>
     private loading = false
+    activeUser = ''
+
 
     constructor(
         private readonly authService: AuthService,
@@ -40,20 +44,35 @@ export class SingleUserPage implements OnInit {
         private readonly translate: TranslatePipe,
     ) {}
 
-    async ngOnInit() {
+    async enter(){
         this.loading = true
         const params = await firstValueFrom(this.activatedRoute.params)
-        this.queryRef = this.userService.read(params.id)
+        this.activeUser = params.id
+        this.queryRef = params.id === 'me' ? this.userService.profile() : this.userService.read(params.id)
         this.queryRef.valueChanges.subscribe(({ data }) => {
-            this.user = { ...data.user }
-            this.originalUser = { ...data.user }
+            if(data.user) {
+                this.user = { ...data.user }
+                this.originalUser = { ...data.user }
+            } else {
+                this.user = {...data.profile}
+                this.originalUser = {...data.profile}
+                console.log(this.user)
+            }
             this.loading = false
         })
+        console.log(this.user)
+    }
+
+    ngOnInit() {
+        this.enter().then()
+    }
+
+    ionViewDidEnter() {
+        this.enter().then()
     }
 
     async save(props: string[]) {
         for (const prop in props){
-            console.log('Idáig elért')
             console.log(this.user.password)
             this.loading = true
             if (this.user.password) {
@@ -89,6 +108,10 @@ export class SingleUserPage implements OnInit {
     }
 
     check(prop: string) {
+        if (prop === 'newPasswordConfirm')
+        {
+            return
+        }
         const validation = validations[prop](this.user![prop], prop)
         setTimeout(() => {
             if (!validation) this.validationErrors[prop] = this.translate.transform(`USER_EDIT.ERROR.${prop}`)
@@ -117,5 +140,6 @@ const validations: { [key: string]: (value: string, attribute: string) => boolea
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             ),
     newPassword: (value, __) => value.length > 3 && !!value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
+    //newPasswordConfirm: (value, __) => this.newPassword().length > 0 ? value === this.newPassword() : false,
     om: (value, __) => !!value.match(/^7[0-9]{10}$/),
 }

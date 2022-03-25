@@ -48,10 +48,6 @@
     ;
 }
 
-.box {
-    height: 100%;
-}
-
 .one {
     grid-area: one;
 }
@@ -71,7 +67,10 @@
 .word {
     grid-area: word;
     min-height: 5rem;
-    height: 100%;
+}
+
+.visible {
+    visibility: hidden;
 }
 
 .quit {
@@ -85,10 +84,10 @@
 }
 
 .red{
-    background: red !important;
+    background: tomato !important;
 }
 .green{
-    background: green !important;
+    background: lawngreen !important;
 }
 
 .example-container {
@@ -111,6 +110,16 @@
 .example-box {
     width: 70%;
     margin: 10% auto 10%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
+    cursor: move;
+}
+
+.example-item {
+    width: 70%;
+    margin: 10% auto 10%;
     border: solid 1px #ccc;
     background: white;
     border-radius: 4px;
@@ -119,9 +128,7 @@
     justify-content: center;
     padding: 2% 0;
     cursor: move;
-}
 
-.example-boundary {
 }
 
 ion-content {

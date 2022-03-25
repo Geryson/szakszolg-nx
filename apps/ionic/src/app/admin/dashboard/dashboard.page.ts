@@ -8,7 +8,7 @@ import { AuthService } from '../../../shared/services/auth.service'
     templateUrl: './dashboard.page.html',
     styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage {
     canManageUsers = false
     canManageRoles = false
 
@@ -18,7 +18,8 @@ export class DashboardPage implements OnInit {
 
     constructor(private readonly authService: AuthService) {}
 
-    ngOnInit() {
+    async ionViewDidEnter() {
+        this.user = await this.authService.user
         this.checkPermissions().then()
     }
 
@@ -27,12 +28,14 @@ export class DashboardPage implements OnInit {
     }
 
     private async checkPermissions() {
-        const user = await this.authService.user
+        /*const user = await this.authService.user
         this.user = user
-        if (!user) {
+        console.log(user)*/
+        console.log(this.user)
+        if (!this.user) {
             return
         }
-        this.canManageUsers = check(user as IUser, { resource: RESOURCES.USERS, ability: ABILITIES.EDIT })
-        this.canManageRoles = check(user as IUser, { resource: RESOURCES.ROLES, ability: ABILITIES.EDIT })
+        this.canManageUsers = check(this.user as IUser, { resource: RESOURCES.USERS, ability: ABILITIES.EDIT })
+        this.canManageRoles = check(this.user as IUser, { resource: RESOURCES.ROLES, ability: ABILITIES.EDIT })
     }
 }

@@ -40,4 +40,11 @@ export class UserService {
             variables: { id },
         })
     }
+
+    profile() {
+        return this.apolloClient.watchQuery<{ profile: Partial<IUser> }>({
+            query: USERS.PROFILE,
+            fetchPolicy: 'no-cache'
+        })
+    }
 }
