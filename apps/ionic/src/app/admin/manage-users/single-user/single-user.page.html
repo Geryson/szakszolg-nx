@@ -15,7 +15,8 @@
                                 <span  class='p-float-label'>
                                     <input (input)='check(prop)' [(ngModel)]='user[prop]'
                                            id='input-text-{{ prop }}' pInputText
-                                           type='text' maxlength="80" />
+                                           type="{{prop === 'newPassword' || prop === 'newPasswordConfirm' ? 'password' : 'text'}}"
+                                           maxlength="80" />
                                     <label for='input-text-{{ prop }}'>{{ ('USER_EDIT.' + prop) | translate }}</label>
                                 </span>
                                 <div *ngIf='!!validationErrors[prop]'>
