@@ -46,10 +46,8 @@ export class PlayGroupsPage {
             (res) => {
                 this.wArray = []
                 this.word = res.data.groupingItem.item ?? '!'
-                console.log(this.word)
                 this.wArray.push(this.word)
                 this.correct = res.data.groupingItem.correct ?? '!'
-                console.log('correct: ' + this.correct)
                 this.groups = res.data.groupingItem.groups ?? []
             }
         )
@@ -62,10 +60,8 @@ export class PlayGroupsPage {
     }
 
     drop(event: CdkDragDrop<string[]>/*group: string*/) {
-        console.log(event.container.id)
         if (event.container.id !== 'cdk-drop-list-0'){
 
-            console.log(event.container.id)
             const length = event.container.id.length
 
             this.answerId = +event.container.id.substring(length-1, length) - 1
@@ -106,7 +102,6 @@ export class PlayGroupsPage {
         this.answerId = - 1
         this.correctId = - 1
 
-        console.log(this.previousWords)
         loading.dismiss().then()
         this.guessedAnswer = false
         this.notCorrect = false

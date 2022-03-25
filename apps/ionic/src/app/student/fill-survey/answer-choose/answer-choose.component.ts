@@ -28,7 +28,6 @@ export class AnswerChooseComponent implements OnInit {
 
     ngOnInit() {
         this.service.save=false
-        console.log("ON INIT: "+this.service.save)
         this.correctAnswers=this.service.index
     }
 

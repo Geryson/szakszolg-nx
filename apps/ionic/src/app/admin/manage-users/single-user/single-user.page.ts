@@ -56,11 +56,9 @@ export class SingleUserPage implements OnInit {
             } else {
                 this.user = {...data.profile}
                 this.originalUser = {...data.profile}
-                console.log(this.user)
             }
             this.loading = false
         })
-        console.log(this.user)
     }
 
     ngOnInit() {
@@ -73,7 +71,6 @@ export class SingleUserPage implements OnInit {
 
     async save(props: string[]) {
         for (const prop in props){
-            console.log(this.user.password)
             this.loading = true
             if (this.user.password) {
 
@@ -87,13 +84,11 @@ export class SingleUserPage implements OnInit {
     }
 
     saveLogic(prop: string) {
-        console.log('Bement')
         this.editing[prop] = false
         this.validationErrors[prop] = ''
         this.userService.edit(this.user!._id, omit(this.user!, '_id')).subscribe(() => {
             Log.debug('SingleUserPage::save->subscribe', 'User updated', this.user)
             this.originalUser = { ...this.user }
-            console.log(this.originalUser)
             this.loading = false
         })
     }

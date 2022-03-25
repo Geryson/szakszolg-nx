@@ -38,7 +38,6 @@ export class EnterTokenPage{
                 this.toast.add({summary: 'Ez a token nem létezik!', severity: 'error'})
                 return
             }
-            console.log(res)
 
             this.storage.get(STORAGE_KEY.EDU_ID).then(edu_id => {
                 if (edu_id) {
