@@ -62,6 +62,7 @@ export class PlayGroupsPage {
     }
 
     drop(event: CdkDragDrop<string[]>/*group: string*/) {
+        console.log(event.container.id)
         if (event.container.id !== 'cdk-drop-list-0'){
 
             console.log(event.container.id)
