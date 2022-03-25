@@ -10,7 +10,7 @@
                            placeholder="{{ 'MANAGE_GROUPINGS.SEARCH' | translate }}" type='text' maxlength="80" />
                 </span>
                 <span>
-                    <p-button (click)='addClick()' styleClass='p-button-success' icon='pi pi-plus' type='button'></p-button>
+                    <p-button *ngIf="userCanAdd" (click)='addClick()' styleClass='p-button-success' icon='pi pi-plus' type='button'></p-button>
                 </span>
             </div>
         </ng-template>
@@ -25,7 +25,7 @@
         <ng-template let-itemObject pTemplate='body'>
             <tr>
                 <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</span> {{ itemObject.item }}</td>
-                <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}</span> {{ itemObject.groups | join:', ' }}</td>
+                <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}</span> {{ itemObject.groups | join:', ' }}</td>
                 <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.CORRECT' | translate }}</span> {{ itemObject.correct }}</td>
                 <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.ACTIONS' | translate }}</span>
                     <span class='p-buttonset'>

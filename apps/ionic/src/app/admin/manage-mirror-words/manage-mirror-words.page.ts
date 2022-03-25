@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { MirrorWordService } from '../../../shared/services/mirror-word.service'
-import { IMirrorWord } from '@szakszolg-nx/api-interfaces'
+import {ABILITIES, check, IMirrorWord, IUser, RESOURCES} from '@szakszolg-nx/api-interfaces'
 import { BehaviorSubject, firstValueFrom, Subscription } from 'rxjs'
 import { NG_ICON } from '../../../shared/utils/prime-icons.class'
 import { EmptyObject } from 'apollo-angular/build/types'
 import { QueryRef } from 'apollo-angular'
 import { link, pages } from '../../../shared/utils/pages.const'
+import {AuthService} from "../../../shared/services/auth.service";
 
 @Component({
     selector: 'nx12-manage-mirror-words',
@@ -27,9 +28,16 @@ export class ManageMirrorWordsPage implements OnInit, OnDestroy {
     private queryRef?: QueryRef<{ mirrorWords: Partial<IMirrorWord>[] }, EmptyObject>
     private subscription?: Subscription
 
-    constructor(private readonly mirrorWordService: MirrorWordService) {}
+    canAddWord = false
+    canDeleteWord = false
+    canEditWord = false
+    user: Partial<IUser> | null = null
 
-    ngOnInit() {
+    constructor(private readonly mirrorWordService: MirrorWordService, private readonly authService: AuthService) {}
+
+    async ngOnInit() {
+        this.user = await this.authService.user
+        this.checkPermissions().then()
         this.loading = true
         this.queryRef = this.mirrorWordService.browse()
         this.subscription = this.queryRef.valueChanges.subscribe((res) => {
@@ -91,5 +99,15 @@ export class ManageMirrorWordsPage implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription?.unsubscribe()
+    }
+
+    private async checkPermissions() {
+        console.log(this.user)
+        if (!this.user) {
+            return
+        }
+        this.canAddWord= check(this.user as IUser, { resource: RESOURCES.GROUPING_WORDS, ability: ABILITIES.ADD })
+        this.canDeleteWord= check(this.user as IUser, { resource: RESOURCES.GROUPING_WORDS, ability: ABILITIES.DELETE })
+        this.canEditWord= check(this.user as IUser, { resource: RESOURCES.GROUPING_WORDS, ability: ABILITIES.EDIT })
     }
 }

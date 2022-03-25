@@ -22,6 +22,7 @@ export abstract class CrudPageClass<T extends IApiResource, TQueryRef> implement
     values: Partial<T>[] = []
     userCanEdit = false
     userCanDelete = false
+    userCanAdd = false
     protected abstract resourceService: IResourceService<T, TQueryRef, any>
     protected abstract editPage: string
     protected abstract resourceName: string
@@ -54,7 +55,7 @@ export abstract class CrudPageClass<T extends IApiResource, TQueryRef> implement
     }
 
     deleteClick(obj: T) {
-        confirmThenDelete(obj._id, this.resourceService, this.queryRef!, `MANAGE_${this.resourceName}`)
+        confirmThenDelete(obj._id, this.resourceService, this.queryRef!, `MANAGE_${this.resourceName.replace(/-/g,'_').toUpperCase()}`)
     }
 
     addClick() {
@@ -65,6 +66,7 @@ export abstract class CrudPageClass<T extends IApiResource, TQueryRef> implement
         const user = await this.authService.user
         this.userCanEdit = check(user as IUser, { resource: this.resourceName, ability: ABILITIES.EDIT })
         this.userCanDelete = check(user as IUser, { resource: this.resourceName, ability: ABILITIES.DELETE })
+        this.userCanAdd = check(user as IUser, { resource: this.resourceName, ability: ABILITIES.ADD })
     }
 
     private init() {

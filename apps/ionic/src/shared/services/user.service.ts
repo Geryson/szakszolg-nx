@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular'
 import { IUser } from '@szakszolg-nx/api-interfaces'
 import { APOLLO_CLIENT } from '../injector.tokens'
 import { USERS } from '../graphql/users.graphql'
+import { Log } from '../utils/log.tools'
 
 @Injectable({
     providedIn: 'root',
@@ -37,6 +38,13 @@ export class UserService {
         return this.apolloClient.mutate<{ user: Partial<Omit<IUser, '_id'>> }>({
             mutation: USERS.DESTROY,
             variables: { id },
+        })
+    }
+
+    profile() {
+        return this.apolloClient.watchQuery<{ profile: Partial<IUser> }>({
+            query: USERS.PROFILE,
+            fetchPolicy: 'no-cache'
         })
     }
 }

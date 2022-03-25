@@ -3,7 +3,7 @@
     <div *ngIf='!!item' class='p-fluid grid'>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
         <span class='p-float-label'>
-            <input [(ngModel)]='item.item' id='item' pInputText type='text' maxlength="80" />
+            <input [(ngModel)]='item.item' id='item' maxlength="80" pInputText type='text' />
             <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
         </span>
         </div>
@@ -14,6 +14,11 @@
             </span>
             <span>
                 <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || !item?.groups?.includes(newGroup.value)' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.plus }}' type='button'></p-button>
+                <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' maxlength="255" pInputText type='text' />
+                <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
+            </span>
+            <span>
+                <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || !item?.groups?.includes(newGroup.value)' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success' type='button'></p-button>
             </span>
         </div>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
@@ -45,7 +50,7 @@
         </div>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
             <span>
-                <p-button (click)='save()' [disabled]='!item?.item?.length || !item?.groups?.length || !item?.correct?.length' styleClass='p-button-primary' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' type='button'></p-button>
+                <p-button (click)='save()' [disabled]='!item?.item?.length || !item?.groups?.length || !item?.correct?.length' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
             </span>
         </div>
     </div>

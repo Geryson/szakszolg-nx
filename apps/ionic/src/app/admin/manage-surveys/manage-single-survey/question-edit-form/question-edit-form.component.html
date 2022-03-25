@@ -63,7 +63,7 @@
                     ' icon='pi pi-save' label='{{ "FORM_OPERATION.SAVE" | translate }}'
                               styleClass='p-button-primary'></p-button>
                     <p-button (click)='cancel()' icon='pi pi-times' label='{{ "FORM_OPERATION.CANCEL" | translate }}'
-                              styleClass='p-button-primary'></p-button>
+                              styleClass='p-button-danger'></p-button>
                 </span>
         </div>
         <!-- endregion Operation Buttons -->
@@ -78,7 +78,7 @@
                     <label for='newAnswer'>{{ 'MANAGE_QUESTIONS.NEW_ANSWER' | translate }}</label>
                 </span>
                 <p-button (click)='addAnswer(newAnswer)' [disabled]='question.type === "skill" && (question.answers?.length ?? 0) > 1' icon='pi pi-plus'
-                          styleClass='p-button-primary' type='button'></p-button>
+                          styleClass='p-button-success' type='button'></p-button>
             </div>
             <!-- endregion Answer input -->
 
@@ -93,14 +93,13 @@
                 </ng-template>
                 <ng-template let-ans pTemplate='body'>
                     <tr>
-                        <td>
+                        <td class='d-flex-row'>
                             {{ ans.text }}
-                            <p-dropdown *ngIf='options.length' [(ngModel)]='ans.categoryIndex'
-                                        [options]='options'
-                                        optionLabel='name' optionValue='value' styleClass='w-100'></p-dropdown>
+                                <ion-select [(ngModel)]='ans.categoryIndex' placeholder="Kérem válasszon">
+                                    <ion-select-option *ngFor='let option of options' [value]="option.value">{{ option.name }}</ion-select-option>
+                                </ion-select>
                         </td>
                         <td>
-                            <span class='p-buttonset'>
                                 <p-button (click)='markAsCorrect(ans)'
                                           *ngIf='template === "quiz" && !ans.isCorrect'
                                           label='{{ "MANAGE_QUESTIONS.NOT_SOLUTION" | translate }}'
@@ -110,8 +109,7 @@
                                           label='{{ "MANAGE_QUESTIONS.IS_SOLUTION" | translate }}'
                                           styleClass='p-button-success'></p-button>
                                 <p-button (click)='removeAnswer(ans)' *ngIf='question.type === "choose"' icon='pi pi-trash'
-                                          styleClass='p-button-primary'></p-button>
-                            </span>
+                                          styleClass='p-button-danger'></p-button>
                         </td>
                     </tr>
                 </ng-template>

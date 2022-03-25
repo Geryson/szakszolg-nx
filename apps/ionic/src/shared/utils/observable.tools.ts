@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs'
 import { ConfirmationService, MessageService } from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
-import { LoadingController } from '@ionic/angular'
+import { AlertController, LoadingController } from '@ionic/angular'
 import { APP_INJECTOR } from '../../app/app.module'
+import { translate } from './translation.tools'
 
 export function confirmThenDelete(
     id: string,
@@ -10,6 +11,7 @@ export function confirmThenDelete(
     queryRef: { refetch: () => any },
     translationKey: string,
 ) {
+    translationKey = translationKey.toUpperCase()
     const confirmation = APP_INJECTOR.get(ConfirmationService)
     const translate = APP_INJECTOR.get(TranslatePipe)
     const loadingController = APP_INJECTOR.get(LoadingController)
@@ -34,14 +36,45 @@ export function confirmThenDelete(
     })
 }
 
-export async function showLoading(translationKey = '') {
+export async function presentConfirmation(message: string, header: string = ''): Promise<boolean> {
+    const confirmation = APP_INJECTOR.get(ConfirmationService)
+    message = await translate(message)
+    header = header === '' ? '' : await translate(header)
+
+    return new Promise((resolve) => {
+        confirmation.confirm({
+            message,
+            header,
+            closeOnEscape: false,
+            accept: () => resolve(true),
+            reject: () => resolve(false),
+        })
+    })
+}
+
+export async function presentAlert(message: string, header: string = ''): Promise<void> {
+    const alert = APP_INJECTOR.get(AlertController)
+    message = await translate(message)
+    header = header === '' ? '' : await translate(header)
+
+    return new Promise((resolve) => {
+        alert
+            .create({
+                header,
+                message,
+                buttons: ['OK'],
+            })
+            .then((d) => d.present().then(() => resolve()))
+    })
+}
+
+export async function presentLoading(translationKey = '') {
     const loadingController = APP_INJECTOR.get(LoadingController)
-    const translate = APP_INJECTOR.get(TranslatePipe)
 
     const l = await loadingController.create(
         translationKey
             ? {
-                  message: translate.transform(`${translationKey}.LOADING`),
+                  message: await translate(`${translationKey}.LOADING`),
               }
             : {},
     )
