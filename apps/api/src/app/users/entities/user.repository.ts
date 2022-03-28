@@ -60,9 +60,9 @@ export class UserRepository {
         delete data.id
         ;(data as any).updatedAt = new Date()
 
-        if (data.roles?.length) user.roles = data?.roles?.map((roleId) => new Types.ObjectId(roleId))
+        //if (data.roles?.length) user.roles = data?.roles?.map((roleId) => new Types.ObjectId(roleId))
         for (const key in data) {
-            if (key === 'newPassword' || key === 'newPasswordConfirm') continue
+            if (key === 'newPassword' || key === 'newPasswordConfirm' || key === 'roles') continue
             user[key] = data[key]
         }
         user.save()
