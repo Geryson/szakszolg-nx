@@ -14,6 +14,7 @@ import { omit } from '../../../../shared/utils/object.tools'
 import { Log } from '../../../../shared/utils/log.tools'
 import {STORAGE_KEY} from "../../../../shared/utils/constants";
 import {StorageService} from "../../../../shared/services/storage.service";
+import { translate } from 'apps/ionic/src/shared/utils/translation.tools'
 
 @Component({
     selector: 'nx12-single-user',
@@ -34,6 +35,7 @@ export class SingleUserPage implements OnInit {
     private queryRef?: QueryRef<any>
     private loading = false
     activeUser = ''
+    newPasswordConfirm = ''
 
 
     constructor(
@@ -70,6 +72,13 @@ export class SingleUserPage implements OnInit {
     }
 
     async save(props: string[]) {
+        console.log(this.user['newPassword'])
+        console.log(this.newPasswordConfirm)
+        if(this.user['newPassword'] !== this.newPasswordConfirm && this.newPasswordConfirm.length > 0){
+            this.validationErrors['newPasswordConfirm'] = await translate(`USER_EDIT.ERROR.newPasswordConfirm`)
+            return
+        }
+        this.validationErrors['newPasswordConfirm'] = ''
         for (const prop in props){
             this.loading = true
             if (this.user.password) {
@@ -86,6 +95,7 @@ export class SingleUserPage implements OnInit {
     saveLogic(prop: string) {
         this.editing[prop] = false
         this.validationErrors[prop] = ''
+        this.user['newPasswordConfirm'] = this.newPasswordConfirm
         this.userService.edit(this.user!._id, omit(this.user!, '_id')).subscribe(() => {
             Log.debug('SingleUserPage::save->subscribe', 'User updated', this.user)
             this.originalUser = { ...this.user }
@@ -135,6 +145,5 @@ const validations: { [key: string]: (value: string, attribute: string) => boolea
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             ),
     newPassword: (value, __) => value.length > 3 && !!value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
-    //newPasswordConfirm: (value, __) => this.newPassword().length > 0 ? value === this.newPassword() : false,
     om: (value, __) => !!value.match(/^7[0-9]{10}$/),
 }

@@ -13,10 +13,14 @@
                         <div *ngIf="prop !== '_id'" class="mb-2 mt-5 align-items-center">
                             <div  class='field md:col-4 '>
                                 <span  class='p-float-label'>
-                                    <input (input)='check(prop)' [(ngModel)]='user[prop]'
+                                    <input *ngIf=" prop !== 'newPasswordConfirm' " (input)='check(prop)' [(ngModel)]="user[prop]"
                                            id='input-text-{{ prop }}' pInputText
                                            type="{{prop === 'newPassword' || prop === 'newPasswordConfirm' ? 'password' : 'text'}}"
                                            maxlength="80" />
+                                     <input *ngIf=" prop === 'newPasswordConfirm' " (input)='check(prop)' [(ngModel)]="newPasswordConfirm"
+                                            id='input-text-{{ prop }}' pInputText
+                                            type="password"
+                                            maxlength="80" />
                                     <label for='input-text-{{ prop }}'>{{ ('USER_EDIT.' + prop) | translate }}</label>
                                 </span>
                                 <div *ngIf='!!validationErrors[prop]'>
@@ -53,7 +57,7 @@
                     </ion-item>
                 </div>
                 <div class="mt-3">
-                    <p-button (click)="save(['_id', 'username', 'email', 'om'])" styleClass='p-button-success' icon='pi pi-check' type='button' label="Mentés"></p-button>
+                    <p-button (click)="save(['_id', 'username', 'email', 'om', 'newPassword', 'newPasswordConfirm'])" styleClass='p-button-success' icon='pi pi-check' type='button' label="Mentés"></p-button>
                 </div>
             </ion-list>
         </ion-card-content>
