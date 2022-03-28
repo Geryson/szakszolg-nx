@@ -45,6 +45,7 @@ export class UserRepository {
 
     public async update(data: UpdateUserInput): Promise<IUser> {
         const user = await this.userModel.findById(data.id)
+        let hasNewPassword = false
 
         if (!user) throw new Error('User not found')
         if (!(await bcrypt.compare(data.password, user.password)))
@@ -54,6 +55,7 @@ export class UserRepository {
             throw new Error('New passwords do not match')
 
         if (data.newPassword) {
+            hasNewPassword = true
             data.password = await bcrypt.hash(data.newPassword, 10)
         }
         // const id = data.id
@@ -62,7 +64,13 @@ export class UserRepository {
 
         //if (data.roles?.length) user.roles = data?.roles?.map((roleId) => new Types.ObjectId(roleId))
         for (const key in data) {
-            if (key === 'newPassword' || key === 'newPasswordConfirm' || key === 'roles' || key === 'password') continue
+            if (
+                key === 'newPassword' ||
+                key === 'newPasswordConfirm' ||
+                key === 'roles' ||
+                (!hasNewPassword && key === 'password')
+            )
+                continue
             user[key] = data[key]
         }
         user.save()
