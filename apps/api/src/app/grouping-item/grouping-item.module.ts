@@ -4,6 +4,7 @@ import { GroupingItemResolver } from './grouping-item.resolver'
 import { MongooseModule } from '@nestjs/mongoose'
 import { GroupingItem, GroupingItemSchema } from './entities/grouping-item.entity'
 import { GroupingItemRepository } from './entities/grouping-item.repository'
+import { GroupingItemController } from './grouping-item.controller'
 
 @Module({
     imports: [
@@ -14,6 +15,7 @@ import { GroupingItemRepository } from './entities/grouping-item.repository'
             },
         ]),
     ],
+    controllers: [GroupingItemController],
     providers: [GroupingItemResolver, GroupingItemService, GroupingItemRepository],
     exports: [GroupingItemService, GroupingItemRepository],
 })
