@@ -11,7 +11,7 @@ import { AlertService } from '../../../shared/services/alert.service'
     styleUrls: ['./play-mirror-words.page.scss'],
 })
 export class PlayMirrorWordsPage {
-    inputValue?: string
+    inputValue = ''
     word!: string
     counter = 5
     correctAnswers = 0
@@ -38,17 +38,21 @@ export class PlayMirrorWordsPage {
     }
 
     async check() {
+        if (this.inputValue === '')
+            return
         if (this.inputValue?.toLowerCase() === this.word?.toLowerCase()) {
             this.found = true
             this.inputValue = ''
             this.correctAnswers++
         } else if (this.counter !== 1) {
             this.counter--
+            this.inputValue = ''
             this.mistake = true
         } else {
             this.end = true
             this.mistake = false
             this.answer = this.word
+            this.inputValue = ''
         }
     }
     async nextWord() {
