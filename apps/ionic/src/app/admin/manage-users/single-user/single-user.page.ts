@@ -5,7 +5,7 @@ import { IUser } from '@szakszolg-nx/api-interfaces'
 import { UserService } from '../../../../shared/services/user.service'
 import { QueryRef } from 'apollo-angular'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
-import { ConfirmationService } from 'primeng/api'
+import {ConfirmationService, MessageService} from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { link, pages } from '../../../../shared/utils/pages.const'
 import { firstValueFrom } from 'rxjs'
@@ -15,6 +15,8 @@ import { Log } from '../../../../shared/utils/log.tools'
 import {STORAGE_KEY} from "../../../../shared/utils/constants";
 import {StorageService} from "../../../../shared/services/storage.service";
 import { translate } from 'apps/ionic/src/shared/utils/translation.tools'
+import {RedirectService} from "../../../../shared/services/redirect.service";
+import {Toast} from "primeng/toast";
 
 @Component({
     selector: 'nx12-single-user',
@@ -37,17 +39,19 @@ export class SingleUserPage implements OnInit {
     activeUser = ''
     newPasswordConfirm = ''
 
-
     constructor(
         private readonly authService: AuthService,
         private readonly activatedRoute: ActivatedRoute,
         private readonly userService: UserService,
         private readonly confirmation: ConfirmationService,
         private readonly translate: TranslatePipe,
+        private readonly redirect: RedirectService,
+        private readonly toast: MessageService,
     ) {}
 
     async enter(){
         this.loading = true
+        this.newPasswordConfirm = ''
         const params = await firstValueFrom(this.activatedRoute.params)
         this.activeUser = params.id
         this.queryRef = params.id === 'me' ? this.userService.profile() : this.userService.read(params.id)
@@ -72,8 +76,6 @@ export class SingleUserPage implements OnInit {
     }
 
     async save(props: string[]) {
-        console.log(this.user['newPassword'])
-        console.log(this.newPasswordConfirm)
         if(this.user['newPassword'] !== this.newPasswordConfirm && this.newPasswordConfirm.length > 0){
             this.validationErrors['newPasswordConfirm'] = await translate(`USER_EDIT.ERROR.newPasswordConfirm`)
             return
@@ -114,9 +116,8 @@ export class SingleUserPage implements OnInit {
 
     check(prop: string) {
         if (prop === 'newPasswordConfirm')
-        {
             return
-        }
+
         const validation = validations[prop](this.user![prop], prop)
         setTimeout(() => {
             if (!validation) this.validationErrors[prop] = this.translate.transform(`USER_EDIT.ERROR.${prop}`)
@@ -131,9 +132,14 @@ export class SingleUserPage implements OnInit {
         this.dialogCallback = null
     }
 
-    onClickLogOut() {
+    async onClickLogout() {
+        await this.savePassword()
+
         this.authService.logout()
+        this.redirect.to(pages.admin.login)
+        this.toast.add({summary: 'Sikeres adatmódosítás, kérlek jelentkezz be újra!', severity: 'success'})
     }
+
 }
 
 const validations: { [key: string]: (value: string, attribute: string) => boolean } = {
