@@ -52,12 +52,19 @@ export class UserRepository {
 
         if (data.newPassword && data.newPassword !== data.newPasswordConfirm)
             throw new Error('New passwords do not match')
+
+        if (data.newPassword) {
+            data.password = await bcrypt.hash(data.newPassword, 10)
+        }
         // const id = data.id
         delete data.id
         ;(data as any).updatedAt = new Date()
 
-        user.roles = data?.roles?.map((roleId) => new Types.ObjectId(roleId))
-
+        if (data.roles?.length) user.roles = data?.roles?.map((roleId) => new Types.ObjectId(roleId))
+        for (const key in data) {
+            if (key === 'newPassword' || key === 'newPasswordConfirm') continue
+            user[key] = data[key]
+        }
         user.save()
         return user
     }
