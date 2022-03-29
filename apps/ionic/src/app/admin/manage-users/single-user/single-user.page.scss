@@ -2,3 +2,7 @@
     display: inline;
     position: relative;
 }
+
+.validation-error {
+    color: var(--ion-color-danger);
+}

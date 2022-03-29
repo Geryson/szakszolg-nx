@@ -268,6 +268,7 @@
         "roles": "Szerepkör",
         "ERROR": {
             "username" : "A felhasználónévnek legálább 3 karakter hosszúnak kell lennie",
+            "email" : "Érvénytelen email cím",
             "newPassword": "A jelszónak tartalmaznia kell egy kisbetűt, egy nagybetűt és egy számot, valamint legalább 8 karakter hosszúnak kell lennie.",
             "newPasswordConfirm": "A két jelszó nem egyezik",
             "om": "Érvénytelen oktatási azonosító"
