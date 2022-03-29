@@ -135,9 +135,16 @@ export class SingleUserPage implements OnInit {
     async onClickLogout() {
         await this.savePassword()
 
-        this.authService.logout()
-        this.redirect.to(pages.admin.login)
-        this.toast.add({summary: 'Sikeres adatmódosítás, kérlek jelentkezz be újra!', severity: 'success'})
+        const params = await firstValueFrom(this.activatedRoute.params)
+        if (params.id === 'me') {
+            this.authService.logout()
+            this.redirect.to(pages.admin.login)
+            this.toast.add({summary: 'Sikeres adatmódosítás, kérlek jelentkezz be újra!', severity: 'success'})
+        }
+        else {
+            this.redirect.to(pages.admin.users)
+            this.toast.add({summary: 'Sikeres adatmódosítás!', severity: 'success'})
+        }
     }
 
 }
