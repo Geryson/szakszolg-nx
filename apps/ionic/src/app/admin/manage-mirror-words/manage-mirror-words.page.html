@@ -20,7 +20,7 @@
             <tr>
                 <td>{{word.word}}</td>
                 <td>
-                    <p-button *ngIf="canEditWord" (click)='openEditDialogue(word)' styleClass='p-button-primary'
+                    <p-button *ngIf="canEditWord" (click)='openEditDialogue(word)' styleClass='p-button-primary mr-2'
                             icon='pi pi-{{ NG_ICON.pencil }}' label=''></p-button>
                     <p-button *ngIf="canDeleteWord" (click)='deleteWord(word)' styleClass='p-button-danger'
                             icon='pi pi-{{ NG_ICON.trash }}' label=''></p-button>

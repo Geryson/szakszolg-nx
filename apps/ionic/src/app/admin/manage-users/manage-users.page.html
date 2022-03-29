@@ -50,7 +50,7 @@
                     <td>
                         <span class='p-column-title'>{{ 'MANAGE_USERS.TABLE.ACTIONS' | translate }}</span>
                         <span class='p-buttonset'>
-                            <p-button (click)='editClick(user)' *ngIf='userCanEditUsers' styleClass='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                            <p-button (click)='editClick(user)' *ngIf='userCanEditUsers' styleClass='p-button-primary mr-2' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
                             <p-button (click)='deleteClick(user)' *ngIf='userCanDeleteUsers' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                         </span>
                     </td>
