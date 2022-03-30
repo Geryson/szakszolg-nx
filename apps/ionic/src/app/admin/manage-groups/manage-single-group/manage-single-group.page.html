@@ -2,25 +2,36 @@
 <ion-content>
     <div *ngIf='!!item' class='p-fluid grid'>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
-        <span class='p-float-label'>
-            <input [(ngModel)]='item.item' id='item' maxlength="80" pInputText type='text' />
-            <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
-        </span>
+            <span class='p-float-label'>
+                <input [(ngModel)]='item.item' id='item' maxlength="80" pInputText type='text' />
+                <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
+            </span>
         </div>
-        <div class='field col-12 md:col-4 mt-4 mb-4'>
+
+        <p-dropdown [(ngModel)]="selectedFormat" [options]="options" placeholder="Válasszon formátumot!"></p-dropdown>
+
+        <div *ngIf="selectedFormat === 'Szöveg'" class='field col-12 md:col-4 mt-4 mb-4'>
              <span class='p-float-label'>
                 <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' pInputText type='text' maxlength="255" />
                 <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
             </span>
-            <span>
-                <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || !item?.groups?.includes(newGroup.value)' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.plus }}' type='button'></p-button>
-                <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' maxlength="255" pInputText type='text' />
-                <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
-            </span>
+
             <span>
                 <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || !item?.groups?.includes(newGroup.value)' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success' type='button'></p-button>
             </span>
         </div>
+
+        <div  *ngIf="selectedFormat === 'Kép'" class='p-3 bg-white'>
+            <div class='mb-3'>
+                <p-fileUpload (onSelect)='onSelect($event)' [customUpload]='true' [maxFileSize]="10000000" [multiple]='true' [showUploadButton]='false' accept="image/*" name="data[]">
+                </p-fileUpload>
+            </div>
+            <div>
+                <p-button (click)='addImage()' [disabled]='!uploadedFiles.length' icon='pi pi-save'
+                          label='{{ "FORM_OPERATION.UPLOAD" | translate }}' styleClass='p-button-success {{ !!uploadedFiles.length ? "mt-2" : "" }}'></p-button>
+            </div>
+        </div>
+
         <div class='field col-12 md:col-4 mt-4 mb-4'>
             <p-table [value]='item.groups ?? []' id='groups' responsiveLayout="stack">
                 <ng-template pTemplate='header'>

@@ -11,6 +11,8 @@ import { QueryRef } from 'apollo-angular'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { Log } from '../../../../shared/utils/log.tools'
 import { omit } from '../../../../shared/utils/object.tools'
+import {presentLoading} from "../../../../shared/utils/observable.tools";
+import {PuzzleService} from "../../../../shared/services/puzzle.service";
 
 @Component({
     selector: 'nx12-manage-single-group',
@@ -24,6 +26,9 @@ export class ManageSingleGroupPage {
     private readonly sub = new Subscription()
     private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }>
     private validationErrors: { [key: string]: string } = {}
+    selectedFormat: any
+    options = ['Szöveg', 'Kép']
+    uploadedFiles: any[] = []
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -31,6 +36,7 @@ export class ManageSingleGroupPage {
         private readonly translate: TranslatePipe,
         private readonly nav: NavController,
         private readonly toast: MessageService,
+        private readonly service: GroupingItemService,
     ) {}
 
     ionViewDidEnter() {
@@ -51,7 +57,11 @@ export class ManageSingleGroupPage {
         return !validation
     }
 
-    save() {
+    onSelect($event: any) {
+        this.uploadedFiles = $event.currentFiles
+    }
+
+    async save() {
         if (this.item?._id) {
             this.update()
             return
@@ -70,6 +80,26 @@ export class ManageSingleGroupPage {
         this.item!.groups.push(inputElement.value)
         inputElement.value = ''
         inputElement.focus()
+    }
+
+    async addImage() {
+        const loading = await presentLoading()
+        try {
+            const res = await this.service.addImage(this.uploadedFiles)
+            for (const image of res) {
+                this.item!.groups!.push(image.filename)
+                console.log(image.filename)
+            }
+
+            Log.debug('ManageGroupPage::save', 'res', res)
+        } catch (e: any) {
+            Log.error('ManageGroupPage::save', e)
+            this.toast.add({ severity: 'error', summary: 'Error', detail: e.message })
+        } finally {
+            loading.dismiss().then()
+        }
+
+
     }
 
     markCorrect(group: string) {
