@@ -12,7 +12,6 @@ import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { Log } from '../../../../shared/utils/log.tools'
 import { omit } from '../../../../shared/utils/object.tools'
 import {presentLoading} from "../../../../shared/utils/observable.tools";
-import {PuzzleService} from "../../../../shared/services/puzzle.service";
 
 @Component({
     selector: 'nx12-manage-single-group',
@@ -26,7 +25,8 @@ export class ManageSingleGroupPage {
     private readonly sub = new Subscription()
     private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }>
     private validationErrors: { [key: string]: string } = {}
-    selectedFormat: any
+    selectedAnswerFormat: any
+    selectedItemFormat: any;
     options = ['Szöveg', 'Kép']
     uploadedFiles: any[] = []
 
@@ -82,19 +82,25 @@ export class ManageSingleGroupPage {
         inputElement.focus()
     }
 
-    async addImage() {
+    async addImage(fileUpload: any) {
+        if (this.item!.groups!.length >= 4) {
+            return
+        }
         const loading = await presentLoading()
         try {
             const res = await this.service.addImage(this.uploadedFiles)
             for (const image of res) {
                 this.item!.groups!.push(image.filename)
-                console.log(image.filename)
+                fileUpload.clear()
             }
-
             Log.debug('ManageGroupPage::save', 'res', res)
         } catch (e: any) {
             Log.error('ManageGroupPage::save', e)
-            this.toast.add({ severity: 'error', summary: 'Error', detail: e.message })
+            if (e.status == 0) {
+                this.toast.add({ severity: 'error', summary: 'Error', detail: 'Túl nagy a kép(ek) mérete, összesen 1Mb lehet!' })
+            }else {
+                this.toast.add({ severity: 'error', summary: 'Error', detail: e.message })
+            }
         } finally {
             loading.dismiss().then()
         }
