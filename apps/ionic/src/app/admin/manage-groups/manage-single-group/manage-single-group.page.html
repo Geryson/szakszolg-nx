@@ -2,7 +2,7 @@
 <ion-content>
     <div *ngIf='!!item' class='p-fluid grid'>
 
-        <p-dropdown [(ngModel)]="selectedItemFormat" [options]="options" placeholder="Válasszon tárgy formátumot!" class='field col-12 md:col-4 mt-4'></p-dropdown>
+        <p-dropdown *ngIf="activeGrouping === 'new'" [(ngModel)]="selectedItemFormat" [options]="options" placeholder="Válasszon tárgy formátumot!" class='field col-12 md:col-4 mt-4'></p-dropdown>
 
         <div *ngIf="selectedItemFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
             <span class='p-float-label'>
@@ -11,7 +11,18 @@
             </span>
         </div>
 
-        <p-dropdown [(ngModel)]="selectedAnswerFormat" [options]="options" placeholder="Válasszon válasz formátumot!" class='field col-12 md:col-4  mb-4'></p-dropdown>
+        <div  *ngIf="selectedItemFormat === 'Kép'" class='p-3 bg-white'>
+            <div class='mb-3'>
+                <p-fileUpload #fileUpload (onSelect)="onSelect($event)" [customUpload]='true' [maxFileSize]="10000000" [multiple]='false' [showUploadButton]='false' accept="image/*" name="data[]">
+                </p-fileUpload>
+            </div>
+            <div>
+                <p-button (click)='addImage(fileUpload, "item")' [disabled]='!uploadedFiles.length || item!.groups!.length >= 4' icon='pi pi-save'
+                          label='{{ "FORM_OPERATION.UPLOAD" | translate }}' styleClass='p-button-success {{ !!uploadedFiles.length ? "mt-2" : "" }}'></p-button>
+            </div>
+        </div>
+
+        <p-dropdown *ngIf="activeGrouping === 'new'" [(ngModel)]="selectedAnswerFormat" [options]="options" placeholder="Válasszon válasz formátumot!" class='field col-12 md:col-4  mb-4'></p-dropdown>
 
         <div *ngIf="selectedAnswerFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
              <span class='p-float-label'>
@@ -30,7 +41,7 @@
                 </p-fileUpload>
             </div>
             <div>
-                <p-button (click)='addImage(fileUpload)' [disabled]='!uploadedFiles.length || item!.groups!.length >= 4' icon='pi pi-save'
+                <p-button (click)='addImage(fileUpload, "group")' [disabled]='!uploadedFiles.length || item!.groups!.length >= 4' icon='pi pi-save'
                           label='{{ "FORM_OPERATION.UPLOAD" | translate }}' styleClass='p-button-success {{ !!uploadedFiles.length ? "mt-2" : "" }}'></p-button>
             </div>
         </div>

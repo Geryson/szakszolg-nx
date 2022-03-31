@@ -6,7 +6,7 @@ import { GroupingItemService } from '../../../../shared/services/grouping-item.s
 import { TranslatePipe } from '@ngx-translate/core'
 import { MessageService } from 'primeng/api'
 import { NavController } from '@ionic/angular'
-import { first, Subscription } from 'rxjs'
+import {first, firstValueFrom, Subscription} from 'rxjs'
 import { QueryRef } from 'apollo-angular'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { Log } from '../../../../shared/utils/log.tools'
@@ -29,6 +29,7 @@ export class ManageSingleGroupPage {
     selectedItemFormat: any;
     options = ['Szöveg', 'Kép']
     uploadedFiles: any[] = []
+    activeGrouping = ''
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -82,16 +83,21 @@ export class ManageSingleGroupPage {
         inputElement.focus()
     }
 
-    async addImage(fileUpload: any) {
-        if (this.item!.groups!.length >= 4) {
+    async addImage(fileUpload: any, type: string) {
+        if (type === 'group' && this.item!.groups!.length >= 4) {
             return
         }
         const loading = await presentLoading()
         try {
             const res = await this.service.addImage(this.uploadedFiles)
             for (const image of res) {
-                this.item!.groups!.push(image.filename)
-                fileUpload.clear()
+                if (type === 'group')
+                {
+                    this.item!.groups!.push(image.filename)
+                    fileUpload.clear()
+                }
+                else
+                    this.item!.item = image.filename
             }
             Log.debug('ManageGroupPage::save', 'res', res)
         } catch (e: any) {
@@ -118,6 +124,11 @@ export class ManageSingleGroupPage {
     }
 
     private async init() {
+        const params = await firstValueFrom(this.activatedRoute.params)
+        this.activeGrouping = params.id
+
+        if (params.id !== 'new')
+            this.selectedItemFormat = 'Szöveg'
         this.sub.add(
             this.activatedRoute.params.subscribe((params) => {
                 if (params.id === 'new') {
