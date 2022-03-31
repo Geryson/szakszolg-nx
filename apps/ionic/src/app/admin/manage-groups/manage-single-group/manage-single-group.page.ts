@@ -63,6 +63,8 @@ export class ManageSingleGroupPage {
     }
 
     async save() {
+        if (!this.item?.item?.length || !this.item?.groups?.length || !this.item?.correct?.length)
+            return
         if (this.item?._id) {
             this.update()
             return
@@ -75,6 +77,9 @@ export class ManageSingleGroupPage {
     }
 
     add(inputElement: HTMLInputElement) {
+        if (!inputElement?.value?.length || this.item?.groups?.includes(inputElement.value) || this.item!.groups!.length >= 4)
+            return
+
         if (!inputElement?.value.length) return
         if (!this.item?.groups) this.item!.groups = []
         if (this.item!.groups.includes(inputElement.value)) return

@@ -31,7 +31,7 @@
             </span>
 
             <span>
-                <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || !item?.groups?.includes(newGroup.value) || item!.groups!.length >= 4' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success' type='button'></p-button>
+                <p-button (click)='add(newGroup)' [disabled]='!newGroup?.value?.length || item?.groups?.includes(newGroup.value) || item!.groups!.length >= 4' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success ml-2 mt-2' type='button'></p-button>
             </span>
         </div>
 
@@ -64,7 +64,7 @@
                                 {{group}}
                             </div>
                             <div class='float-end'>
-                                <p-button (click)='markCorrect(group)' *ngIf='item?.correct !== group' styleClass='p-button-success' icon='pi pi-{{ NG_ICON.check }}' type='button'></p-button>
+                                <p-button (click)='markCorrect(group)' *ngIf='item?.correct !== group' styleClass='p-button-success mr-2' icon='pi pi-{{ NG_ICON.check }}' type='button'></p-button>
                                 <p-button *ngIf='item?.correct === group' [disabled]='true' styleClass='p-button-primary' label='{{ "MANAGE_GROUPINGS.CORRECT_BUTTON" | translate }}' type='button'></p-button>
                                 <p-button (click)='remove(group)' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                             </div>
@@ -75,7 +75,7 @@
         </div>
         <div class='field col-12 md:col-4 mt-4 mb-4'>
             <span>
-                <p-button (click)='save()' [disabled]='!item?.item?.length || !item?.groups?.length || !item?.correct?.length' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
+                <p-button (click)='save()' [disabled]='!item?.item?.length || item?.groups?.length !== 4 || !item?.correct?.length' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
             </span>
         </div>
     </div>
