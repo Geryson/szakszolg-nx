@@ -6,11 +6,12 @@ import { GroupingItemService } from '../../../../shared/services/grouping-item.s
 import { TranslatePipe } from '@ngx-translate/core'
 import { MessageService } from 'primeng/api'
 import { NavController } from '@ionic/angular'
-import { first, Subscription } from 'rxjs'
+import {first, firstValueFrom, Subscription} from 'rxjs'
 import { QueryRef } from 'apollo-angular'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { Log } from '../../../../shared/utils/log.tools'
 import { omit } from '../../../../shared/utils/object.tools'
+import {presentLoading} from "../../../../shared/utils/observable.tools";
 
 @Component({
     selector: 'nx12-manage-single-group',
@@ -24,6 +25,11 @@ export class ManageSingleGroupPage {
     private readonly sub = new Subscription()
     private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem> }>
     private validationErrors: { [key: string]: string } = {}
+    selectedAnswerFormat: any
+    selectedItemFormat: any;
+    options = ['Szöveg', 'Kép']
+    uploadedFiles: any[] = []
+    activeGrouping = ''
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -31,6 +37,7 @@ export class ManageSingleGroupPage {
         private readonly translate: TranslatePipe,
         private readonly nav: NavController,
         private readonly toast: MessageService,
+        private readonly service: GroupingItemService,
     ) {}
 
     ionViewDidEnter() {
@@ -51,7 +58,13 @@ export class ManageSingleGroupPage {
         return !validation
     }
 
-    save() {
+    onSelect($event: any) {
+        this.uploadedFiles = $event.currentFiles
+    }
+
+    async save() {
+        if (!this.item?.item?.length || !this.item?.groups?.length || !this.item?.correct?.length)
+            return
         if (this.item?._id) {
             this.update()
             return
@@ -64,12 +77,46 @@ export class ManageSingleGroupPage {
     }
 
     add(inputElement: HTMLInputElement) {
+        if (!inputElement?.value?.length || this.item?.groups?.includes(inputElement.value) || this.item!.groups!.length >= 4)
+            return
+
         if (!inputElement?.value.length) return
         if (!this.item?.groups) this.item!.groups = []
         if (this.item!.groups.includes(inputElement.value)) return
         this.item!.groups.push(inputElement.value)
         inputElement.value = ''
         inputElement.focus()
+    }
+
+    async addImage(fileUpload: any, type: string) {
+        if (type === 'group' && this.item!.groups!.length >= 4) {
+            return
+        }
+        const loading = await presentLoading()
+        try {
+            const res = await this.service.addImage(this.uploadedFiles)
+            for (const image of res) {
+                if (type === 'group')
+                {
+                    this.item!.groups!.push(image.filename)
+                    fileUpload.clear()
+                }
+                else
+                    this.item!.item = image.filename
+            }
+            Log.debug('ManageGroupPage::save', 'res', res)
+        } catch (e: any) {
+            Log.error('ManageGroupPage::save', e)
+            if (e.status == 0) {
+                this.toast.add({ severity: 'error', summary: 'Error', detail: 'Túl nagy a kép(ek) mérete, összesen 1Mb lehet!' })
+            }else {
+                this.toast.add({ severity: 'error', summary: 'Error', detail: e.message })
+            }
+        } finally {
+            loading.dismiss().then()
+        }
+
+
     }
 
     markCorrect(group: string) {
@@ -82,6 +129,11 @@ export class ManageSingleGroupPage {
     }
 
     private async init() {
+        const params = await firstValueFrom(this.activatedRoute.params)
+        this.activeGrouping = params.id
+
+        if (params.id !== 'new')
+            this.selectedItemFormat = 'Szöveg'
         this.sub.add(
             this.activatedRoute.params.subscribe((params) => {
                 if (params.id === 'new') {

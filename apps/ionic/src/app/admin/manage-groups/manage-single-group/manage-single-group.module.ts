@@ -12,6 +12,9 @@ import { InputTextModule } from 'primeng/inputtext'
 import { TranslateModule } from '@ngx-translate/core'
 import { TableModule } from 'primeng/table'
 import { ButtonModule } from 'primeng/button'
+import {TreeSelectModule} from "primeng/treeselect";
+import {DropdownModule} from "primeng/dropdown";
+import {FileUploadModule} from "primeng/fileupload";
 
 @NgModule({
     imports: [
@@ -24,6 +27,9 @@ import { ButtonModule } from 'primeng/button'
         TranslateModule,
         TableModule,
         ButtonModule,
+        TreeSelectModule,
+        DropdownModule,
+        FileUploadModule,
     ],
     declarations: [ManageSingleGroupPage],
 })
