@@ -29,7 +29,7 @@
                 <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.CORRECT' | translate }}</span> {{ itemObject.correct }}</td>
                 <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.ACTIONS' | translate }}</span>
                     <span class='p-buttonset'>
-                        <p-button (click)='editClick(itemObject)' *ngIf='userCanEdit' styleClass='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                        <p-button (click)='editClick(itemObject)' *ngIf='userCanEdit' styleClass='p-button-primary mr-2' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
                         <p-button (click)='deleteClick(itemObject)' *ngIf='userCanDelete' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                     </span>
                 </td>

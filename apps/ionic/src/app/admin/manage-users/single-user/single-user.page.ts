@@ -5,7 +5,7 @@ import { IUser } from '@szakszolg-nx/api-interfaces'
 import { UserService } from '../../../../shared/services/user.service'
 import { QueryRef } from 'apollo-angular'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
-import { ConfirmationService } from 'primeng/api'
+import {ConfirmationService, MessageService} from 'primeng/api'
 import { TranslatePipe } from '@ngx-translate/core'
 import { link, pages } from '../../../../shared/utils/pages.const'
 import { firstValueFrom } from 'rxjs'
@@ -14,6 +14,9 @@ import { omit } from '../../../../shared/utils/object.tools'
 import { Log } from '../../../../shared/utils/log.tools'
 import {STORAGE_KEY} from "../../../../shared/utils/constants";
 import {StorageService} from "../../../../shared/services/storage.service";
+import { translate } from 'apps/ionic/src/shared/utils/translation.tools'
+import {RedirectService} from "../../../../shared/services/redirect.service";
+import {Toast} from "primeng/toast";
 
 @Component({
     selector: 'nx12-single-user',
@@ -34,7 +37,7 @@ export class SingleUserPage implements OnInit {
     private queryRef?: QueryRef<any>
     private loading = false
     activeUser = ''
-
+    newPasswordConfirm = ''
 
     constructor(
         private readonly authService: AuthService,
@@ -42,10 +45,13 @@ export class SingleUserPage implements OnInit {
         private readonly userService: UserService,
         private readonly confirmation: ConfirmationService,
         private readonly translate: TranslatePipe,
+        private readonly redirect: RedirectService,
+        private readonly toast: MessageService,
     ) {}
 
     async enter(){
         this.loading = true
+        this.newPasswordConfirm = ''
         const params = await firstValueFrom(this.activatedRoute.params)
         this.activeUser = params.id
         this.queryRef = params.id === 'me' ? this.userService.profile() : this.userService.read(params.id)
@@ -70,6 +76,11 @@ export class SingleUserPage implements OnInit {
     }
 
     async save(props: string[]) {
+        if(this.user['newPassword'] !== this.newPasswordConfirm && this.newPasswordConfirm.length > 0){
+            this.validationErrors['newPasswordConfirm'] = await translate(`USER_EDIT.ERROR.newPasswordConfirm`)
+            return
+        }
+        this.validationErrors['newPasswordConfirm'] = ''
         for (const prop in props){
             this.loading = true
             if (this.user.password) {
@@ -86,6 +97,7 @@ export class SingleUserPage implements OnInit {
     saveLogic(prop: string) {
         this.editing[prop] = false
         this.validationErrors[prop] = ''
+        this.user['newPasswordConfirm'] = this.newPasswordConfirm
         this.userService.edit(this.user!._id, omit(this.user!, '_id')).subscribe(() => {
             Log.debug('SingleUserPage::save->subscribe', 'User updated', this.user)
             this.originalUser = { ...this.user }
@@ -104,9 +116,8 @@ export class SingleUserPage implements OnInit {
 
     check(prop: string) {
         if (prop === 'newPasswordConfirm')
-        {
             return
-        }
+
         const validation = validations[prop](this.user![prop], prop)
         setTimeout(() => {
             if (!validation) this.validationErrors[prop] = this.translate.transform(`USER_EDIT.ERROR.${prop}`)
@@ -121,9 +132,21 @@ export class SingleUserPage implements OnInit {
         this.dialogCallback = null
     }
 
-    onClickLogOut() {
-        this.authService.logout()
+    async onClickLogout() {
+        await this.savePassword()
+
+        const params = await firstValueFrom(this.activatedRoute.params)
+        if (params.id === 'me') {
+            this.authService.logout()
+            this.redirect.to(pages.admin.login)
+            this.toast.add({summary: 'Sikeres adatmódosítás, kérlek jelentkezz be újra!', severity: 'success'})
+        }
+        else {
+            this.redirect.to(pages.admin.users)
+            this.toast.add({summary: 'Sikeres adatmódosítás!', severity: 'success'})
+        }
     }
+
 }
 
 const validations: { [key: string]: (value: string, attribute: string) => boolean } = {
@@ -135,6 +158,5 @@ const validations: { [key: string]: (value: string, attribute: string) => boolea
                 /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
             ),
     newPassword: (value, __) => value.length > 3 && !!value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
-    //newPasswordConfirm: (value, __) => this.newPassword().length > 0 ? value === this.newPassword() : false,
     om: (value, __) => !!value.match(/^7[0-9]{10}$/),
 }
