@@ -7,4 +7,7 @@ export class GetGroupingItems2Args extends IdArrayArg {
     @Field(() => [String], { nullable: true })
     @IsArray()
     ids?: string[]
+
+    @Field(() => String, { nullable: true })
+    category?: string
 }

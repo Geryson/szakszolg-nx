@@ -5,4 +5,7 @@ import { ArgsType, Field } from '@nestjs/graphql'
 export class GetGroupingItem2Args extends IdArg {
     @Field({ nullable: true })
     id: string
+
+    @Field({ nullable: true })
+    category?: string
 }

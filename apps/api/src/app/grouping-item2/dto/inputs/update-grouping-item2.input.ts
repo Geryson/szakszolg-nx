@@ -9,14 +9,17 @@ export class UpdateGroupingItem2Input extends IdInput implements IUpdatedAt {
     @IsNotEmpty()
     id: string
 
-    @Field({ nullable: true })
-    item?: string
+    @Field({nullable: true})
+    category?: string
+
+    @Field(() => [String],{ nullable: true })
+    items?: string[]
 
     @Field(() => [String], { nullable: 'itemsAndList' })
     groups?: string[]
 
-    @Field({ nullable: true })
-    correct?: string
+    @Field(() => [String],{ nullable: true })
+    correct?: string[]
 
     updatedAt?: Date
 }
