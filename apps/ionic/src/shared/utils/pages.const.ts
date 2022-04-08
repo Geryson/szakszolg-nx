@@ -13,6 +13,7 @@ export const pages = {
         hangmanWords: 'admin/hangman-words',
         puzzleImages: 'admin/puzzle-images',
         groupingItems: 'admin/grouping-items',
+        groupingItems2: 'admin/grouping-items2',
     },
     guest: {
         _path: 'guest',
@@ -22,6 +23,7 @@ export const pages = {
         hangman: 'guest/hangman',
         mirrorWords: 'guest/mirror',
         groupingItems: 'guest/grouping-items',
+        groupingItems2: 'guest/grouping-items2',
         puzzle: 'guest/puzzle',
         schoolFinder: 'guest/school-finder',
     },
