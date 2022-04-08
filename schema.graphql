@@ -15,6 +15,17 @@ type GroupingItem {
     updatedAt: DateTime!
 }
 
+type GroupingItem2 {
+    _id: String!
+    correct: [String!]!
+    createdAt: DateTime!
+    deletedAt: DateTime
+    groups: [String!]!
+    item: [String!]!
+    category: String!
+    updatedAt: DateTime!
+}
+
 type HangmanWord {
     _id: String!
     category: String!
@@ -34,6 +45,7 @@ type MirrorWord {
 
 type Mutation {
     createGroupingItem(createGroupingItemData: CreateGroupingItemInput!): GroupingItem!
+    createGroupingItem2(createGroupingItem2Data: CreateGroupingItem2Input!): GroupingItem2!
     createHangmanWord(createHangmanWordData: CreateHangmanWordInput!): HangmanWord!
     createManyPuzzles(data: PuzzleUrlInput!): [Puzzle]!
     createManyQuizAnswers(createQuizAnswerData: CreateManyQuizAnswersInput!): [QuizAnswer!]
@@ -47,6 +59,7 @@ type Mutation {
     createToken(createTokenData: CreateTokenInput!): Token!
     createUser(createUserData: CreateUserInput!): User!
     deleteGroupingItem(deleteGroupingItemData: DeleteGroupingItemInput!): GroupingItem!
+    deleteGroupingItem2(deleteGroupingItem2Data: DeleteGroupingItem2Input!): GroupingItem2!
     deleteHangmanWord(deleteHangmanWordData: DeleteHangmanWordInput!): HangmanWord!
     deleteMirrorWord(deleteMirrorWordData: DeleteMirrorWordInput!): MirrorWord!
     deletePuzzle(deletePuzzleData: DeletePuzzleInput!): Puzzle!
@@ -58,6 +71,7 @@ type Mutation {
     deleteToken(deleteTokenData: DeleteTokenInput!): Token!
     deleteUser(deleteUserData: DeleteUserInput!): User!
     updateGroupingItem(updateGroupingItemData: UpdateGroupingItemInput!): GroupingItem!
+    updateGroupingItem2(updateGroupingItem2Data: UpdateGroupingItem2Input!): GroupingItem2!
     updateHangmanWord(updateHangmanWordData: UpdateHangmanWordInput!): HangmanWord!
     updateMirrorWord(updateMirrorWordData: UpdateMirrorWordInput!): MirrorWord!
     updatePuzzle(updatePuzzleData: UpdatePuzzleInput!): Puzzle!
@@ -86,6 +100,8 @@ type Puzzle {
 type Query {
     groupingItem(id: String): GroupingItem
     groupingItems(ids: [String!]): [GroupingItem]!
+    groupingItem2(category: String, id: String): GroupingItem2
+    groupingItems2(category: String, ids: [String!]): [GroupingItem2]!
     "Get a hangman word randomly"
     hangmanWord(category: String, id: String): HangmanWord
     hangmanWords(category: String, ids: [String!]): [HangmanWord]!
@@ -211,6 +227,13 @@ input CreateGroupingItemInput {
     item: String!
 }
 
+input CreateGroupingItem2Input {
+    correct: [String!]!
+    groups: [String!]!
+    item: [String!]!
+    category: String!
+}
+
 input CreateHangmanWordInput {
     category: String!
     word: String!
@@ -299,6 +322,10 @@ input DeleteGroupingItemInput {
     id: String!
 }
 
+input DeleteGroupingItem2Input {
+    id: String!
+}
+
 input DeleteHangmanWordInput {
     id: String!
 }
@@ -348,6 +375,14 @@ input UpdateGroupingItemInput {
     groups: [String]
     id: String!
     item: String
+}
+
+input UpdateGroupingItem2Input {
+    correct: [String]
+    groups: [String]
+    id: String!
+    item: [String]
+    category: String
 }
 
 input UpdateHangmanWordInput {

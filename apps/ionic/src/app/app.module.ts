@@ -33,6 +33,7 @@ import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/n
 import { PuzzleService } from '../shared/services/puzzle.service'
 import { AlertService } from '../shared/services/alert.service'
 import { GroupingItemService } from '../shared/services/grouping-item.service'
+import { GroupingItem2Service } from '../shared/services/grouping-item2.service'
 import { HangmanWordService } from '../shared/services/hangman-word.service'
 import { MirrorWordService } from '../shared/services/mirror-word.service'
 import { SchoolService } from '../shared/services/school.service'
@@ -103,6 +104,7 @@ import { Clipboard } from '@awesome-cordova-plugins/clipboard/ngx'
         Clipboard,
         File,
         GroupingItemService,
+        GroupingItem2Service,
         HangmanWordService,
         MirrorWordService,
         RedirectService,
