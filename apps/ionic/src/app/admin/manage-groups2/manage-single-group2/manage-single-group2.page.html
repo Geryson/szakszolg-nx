@@ -20,13 +20,13 @@
             </span>
 
             <span>
-                <p-button (click)='add(newGroup, "group")' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success ml-2 mt-2' type='button'></p-button>
+                <p-button [disabled]="item!.groups!.length >= 4 " (click)='add(newGroup, "group")' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success ml-2 mt-2' type='button'></p-button>
            </span>
         </div>
 
         <div  *ngIf="selectedAnswerFormat === 'Kép'" class='p-3 bg-white'>
             <div class='mb-3'>
-                <p-fileUpload #fileUpload [customUpload]='true' [maxFileSize]="10000000" [multiple]='false' [showUploadButton]='false' accept="image/*" name="data[]">
+                <p-fileUpload #fileUpload (onSelect)="onSelect($event)" [customUpload]='true' [maxFileSize]="10000000" [multiple]='false' [showUploadButton]='false' accept="image/*" name="data[]">
                 </p-fileUpload>
             </div>
             <div>
@@ -75,7 +75,7 @@
             <span><p-dropdown [(ngModel)]="correct" [options]="correctOptions" placeholder="Helyes válasz"></p-dropdown></span>
 
            <span>
-                <p-button (click)='add(newItem, "item")' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success ml-2 mt-2' type='button'></p-button>
+                <p-button [disabled]="item!.groups!.length < 4" (click)='add(newItem, "item")' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success ml-2 mt-2' type='button'></p-button>
            </span>
 
         </div>
@@ -124,7 +124,7 @@
 
         <div class='field col-12 md:col-4 mt-4 mb-4'>
             <span>
-                <p-button icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
+                <p-button (click)='save()' [disabled]='!item?.items?.length || saveable()' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
             </span>
         </div>
 

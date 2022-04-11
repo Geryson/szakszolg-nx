@@ -65,7 +65,7 @@ export class ManageSingleGroup2Page {
     }
 
     async save() {
-        if (!this.item?.items?.length || !this.item?.groups?.length || !this.item?.correct?.length)
+        if (!this.item?.items?.length || this.saveable())
             return
         if (this.item?._id) {
             this.update()
@@ -80,7 +80,10 @@ export class ManageSingleGroup2Page {
     }
 
     removeItem(item: string) {
+        const index = this.item!.items!.indexOf(item)
         this.item!.items = this.item!.items?.filter((i) => i !== item)
+        this.item!.correct!.splice(index, 1)
+        console.log(this.item!.correct)
     }
 
     add(inputElement: HTMLInputElement, type: string) {
@@ -94,12 +97,15 @@ export class ManageSingleGroup2Page {
         if (!inputElement?.value.length) return
 
         if (type === 'group'){
+            if (this.item!.groups!.length >= 4) return
             if (!this.item?.groups) this.item!.groups = []
             if (this.item!.groups.includes(inputElement.value)) return
             this.item!.groups.push(inputElement.value)
             this.correctOptions.push(inputElement.value)
+            console.log(this.correctOptions)
         }
         else {
+            if (this.item!.groups!.length < 4) return
             if (!this.item?.items) this.item!.items = []
             if (this.item!.items.includes(inputElement.value)) return
             if (this.correct.trim() === '') return;
@@ -112,9 +118,7 @@ export class ManageSingleGroup2Page {
     }
 
     async addImage(fileUpload: any, type: string) {
-        if (type === 'group' && this.item!.groups!.length >= 4) {
-            return
-        }
+        if (type === 'group' && this.item!.groups!.length >= 4) return
         const loading = await presentLoading()
         try {
             const res = await this.service.addImage(this.uploadedFiles)
@@ -127,9 +131,10 @@ export class ManageSingleGroup2Page {
                 }
                 else {
                     this.item!.items!.push(image.filename)
-                    console.log(this.item?.items)
+                    this.item!.correct?.push(this.correct)
                     fileUpload.clear()
                 }
+                this.correct = ''
             }
             Log.debug('ManageGroupPage::save', 'res', res)
         } catch (e: any) {
@@ -198,6 +203,13 @@ export class ManageSingleGroup2Page {
             detail: this.translate.transform('FORM_OPERATION.SUCCESS_DETAIL'),
         })
         this.nav.back()
+    }
+
+    saveable() {
+        for (const element of this.item!.correct!) {
+            if (!this.correctOptions.includes(element)) return true
+        }
+        return false
     }
 
 }
