@@ -4,9 +4,9 @@ import { IResourceService } from '@szakszolg-nx/ng-interfaces'
 import { Apollo } from 'apollo-angular'
 import { APOLLO_CLIENT } from '../injector.tokens'
 import {GROUPING_ITEMS2} from '../graphql/grouping-items2.graphql'
-import {firstValueFrom} from "rxjs";
-import {api} from "../utils/uri.tools";
-import {HttpClient} from "@angular/common/http";
+import {firstValueFrom} from "rxjs"
+import {api} from "../utils/uri.tools"
+import {HttpClient} from "@angular/common/http"
 
 @Injectable({
     providedIn: 'root',
@@ -24,6 +24,13 @@ export class GroupingItem2Service
     browse() {
         return this.apolloClient.watchQuery<{ groupingItems2: Partial<IGroupingItem2>[] }>({
             query: GROUPING_ITEMS2.BROWSE,
+        })
+    }
+
+    browseByCategory(category: string){
+        return this.apolloClient.watchQuery<{ groupingItem2: Partial<IGroupingItem2> }>({
+            query: GROUPING_ITEMS2.BROWSE_BY_CATEGORY,
+            variables: { category },
         })
     }
 

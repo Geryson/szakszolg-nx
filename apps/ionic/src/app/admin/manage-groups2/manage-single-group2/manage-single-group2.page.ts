@@ -2,7 +2,7 @@
 import { Component } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import {IGroupingItem2} from '@szakszolg-nx/api-interfaces'
-import { GroupingItemService } from '../../../../shared/services/grouping-item.service'
+import { GroupingItem2Service } from '../../../../shared/services/grouping-item2.service'
 import { TranslatePipe } from '@ngx-translate/core'
 import { MessageService } from 'primeng/api'
 import { NavController } from '@ionic/angular'
@@ -23,174 +23,189 @@ export class ManageSingleGroup2Page {
     originalItem?: Partial<IGroupingItem2>
     NG_ICON = NG_ICON
     private readonly sub = new Subscription()
-    private queryRef?: QueryRef<{ groupingItem: Partial<IGroupingItem2> }>
+    private queryRef?: QueryRef<{ groupingItem2: Partial<IGroupingItem2> }>
     private validationErrors: { [key: string]: string } = {}
     selectedAnswerFormat: any
     selectedItemFormat: any;
     options = ['Szöveg', 'Kép']
+    correctOptions: string[] = []
     uploadedFiles: any[] = []
     activeGrouping = ''
+    category?: string
+    correct = ''
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
-        private readonly groupingItemService: GroupingItemService,
         private readonly translate: TranslatePipe,
         private readonly nav: NavController,
         private readonly toast: MessageService,
-        private readonly service: GroupingItemService,
+        private readonly service: GroupingItem2Service,
     ) {}
 
-    /*
-
-ionViewDidEnter() {
-    this.init().then()
-}
-
-ionViewDidLeave() {
-    this.sub.unsubscribe()
-}
-
-check(prop: keyof IGroupingItem2, obj: IGroupingItem2) {
-    const validation = validations[prop](obj, prop)
-    setTimeout(() => {
-        if (!validation) this.validationErrors[prop] = this.translate.transform(`USER_EDIT.ERROR.${prop}`)
-        // TODO: translate and show on UI
-        else this.validationErrors[prop] = ''
-    }, 50)
-    return !validation
-}
-
-onSelect($event: any) {
-    this.uploadedFiles = $event.currentFiles
-}
-
-async save() {
-    if (!this.item?.items?.length || !this.item?.groups?.length || !this.item?.correct?.length)
-        return
-    if (this.item?._id) {
-        this.update()
-        return
+    ionViewDidEnter() {
+        this.init().then()
     }
-    this.create()
-}
 
-remove(group: string) {
-    this.item!.groups = this.item!.groups?.filter((g) => g !== group)
-}
-
-add(inputElement: HTMLInputElement) {
-    if (!inputElement?.value?.length || this.item?.groups?.includes(inputElement.value) || this.item!.groups!.length >= 4)
-        return
-
-    if (!inputElement?.value.length) return
-    if (!this.item?.groups) this.item!.groups = []
-    if (this.item!.groups.includes(inputElement.value)) return
-    this.item!.groups.push(inputElement.value)
-    inputElement.value = ''
-    inputElement.focus()
-}
-
-async addImage(fileUpload: any, type: string) {
-    if (type === 'group' && this.item!.groups!.length >= 4) {
-        return
+    ionViewDidLeave() {
+        this.sub.unsubscribe()
     }
-    const loading = await presentLoading()
-    try {
-        const res = await this.service.addImage(this.uploadedFiles)
-        for (const image of res) {
-            if (type === 'group')
-            {
-                this.item!.groups!.push(image.filename)
-                fileUpload.clear()
-            }
-            else
-                this.item!.item = image.filename
+
+    check(prop: keyof IGroupingItem2, obj: IGroupingItem2) {
+        const validation = validations[prop](obj, prop)
+        setTimeout(() => {
+            if (!validation) this.validationErrors[prop] = this.translate.transform(`USER_EDIT.ERROR.${prop}`)
+            // TODO: translate and show on UI
+            else this.validationErrors[prop] = ''
+        }, 50)
+        return !validation
+    }
+
+    onSelect($event: any) {
+        this.uploadedFiles = $event.currentFiles
+    }
+
+    async save() {
+        if (!this.item?.items?.length || !this.item?.groups?.length || !this.item?.correct?.length)
+            return
+        if (this.item?._id) {
+            this.update()
+            return
         }
-        Log.debug('ManageGroupPage::save', 'res', res)
-    } catch (e: any) {
-        Log.error('ManageGroupPage::save', e)
-        if (e.status == 0) {
-            this.toast.add({ severity: 'error', summary: 'Error', detail: 'Túl nagy a kép(ek) mérete, összesen 1Mb lehet!' })
-        }else {
-            this.toast.add({ severity: 'error', summary: 'Error', detail: e.message })
-        }
-    } finally {
-        loading.dismiss().then()
+        this.create()
     }
 
+    removeGroup(group: string) {
+        this.item!.groups = this.item!.groups?.filter((g) => g !== group)
+        this.correctOptions = this.correctOptions.filter((g) => g !== group)
+    }
 
-}
+    removeItem(item: string) {
+        this.item!.items = this.item!.items?.filter((i) => i !== item)
+    }
 
-markCorrect(group: string) {
-    this.item!.correct = group
-    this.toast.add({
-        severity: 'success',
-        summary: group,
-        detail: this.translate.transform('MANAGE_GROUPINGS.MARKED_CORRECT'),
-    })
-}
+    add(inputElement: HTMLInputElement, type: string) {
 
-private async init() {
-    const params = await firstValueFrom(this.activatedRoute.params)
-    this.activeGrouping = params.id
-
-    if (params.id !== 'new')
-        this.selectedItemFormat = 'Szöveg'
-    this.sub.add(
-        this.activatedRoute.params.subscribe((params) => {
-            if (params.id === 'new') {
-                this.item = {
-                    item: '',
-                    groups: [],
-                    correct: '',
-                }
-                this.originalItem = { ...this.item }
+        if (!inputElement?.value?.length || this.item?.groups?.includes(inputElement.value)) {
+            if (type === 'group' && this.item!.groups!.length >= 4)
                 return
+            return
+        }
+
+        if (!inputElement?.value.length) return
+
+        if (type === 'group'){
+            if (!this.item?.groups) this.item!.groups = []
+            if (this.item!.groups.includes(inputElement.value)) return
+            this.item!.groups.push(inputElement.value)
+            this.correctOptions.push(inputElement.value)
+        }
+        else {
+            if (!this.item?.items) this.item!.items = []
+            if (this.item!.items.includes(inputElement.value)) return
+            if (this.correct.trim() === '') return;
+            this.item!.items.push(inputElement.value)
+            this.item!.correct?.push(this.correct)
+            console.log(this.item?.items)
+        }
+        this.correct = ''
+        inputElement.value = ''
+    }
+
+    async addImage(fileUpload: any, type: string) {
+        if (type === 'group' && this.item!.groups!.length >= 4) {
+            return
+        }
+        const loading = await presentLoading()
+        try {
+            const res = await this.service.addImage(this.uploadedFiles)
+            for (const image of res) {
+                if (type === 'group')
+                {
+                    this.item!.groups!.push(image.filename)
+                    this.correctOptions.push(image.filename)
+                    fileUpload.clear()
+                }
+                else {
+                    this.item!.items!.push(image.filename)
+                    console.log(this.item?.items)
+                    fileUpload.clear()
+                }
             }
+            Log.debug('ManageGroupPage::save', 'res', res)
+        } catch (e: any) {
+            Log.error('ManageGroupPage::save', e)
+            if (e.status == 0) {
+                this.toast.add({ severity: 'error', summary: 'Error', detail: 'Túl nagy a kép(ek) mérete, összesen 1Mb lehet!' })
+            }else {
+                this.toast.add({ severity: 'error', summary: 'Error', detail: e.message })
+            }
+        } finally {
+            loading.dismiss().then()
+        }
+    }
 
-            this.queryRef = this.groupingItemService.read(params.id)
-            this.sub.add(
-                this.queryRef.valueChanges.subscribe(async ({ data }) => {
-                    this.item = { ...data.groupingItem }
+    private async init() {
+        const params = await firstValueFrom(this.activatedRoute.params)
+        this.activeGrouping = params.id
+
+        if (params.id !== 'new')
+            this.selectedItemFormat = 'Szöveg'
+        this.sub.add(
+            this.activatedRoute.params.subscribe((params) => {
+                if (params.id === 'new') {
+                    this.item = {
+                        items: [],
+                        groups: [],
+                        correct: [],
+                    }
                     this.originalItem = { ...this.item }
-                }),
-            )
-        }),
-    )
-}
+                    return
+                }
 
-private create() {
-    Log.debug('ManageSingleGroupPage::Create', 'Saving item:', this.item)
-    this.groupingItemService
-        .add({
-            ...this.item,
+                this.queryRef = this.service.read(params.id)
+                this.sub.add(
+                    this.queryRef.valueChanges.subscribe(async ({ data }) => {
+                        this.item = { ...data.groupingItem2 }
+                        this.originalItem = { ...this.item }
+                    }),
+                )
+            }),
+        )
+    }
+
+    private create() {
+        Log.debug('ManageSingleGroupPage::Create', 'Saving item:', this.item)
+        this.service
+            .add({
+                ...this.item,
+            })
+            .pipe(first())
+            .subscribe(() => this.saveCallback())
+    }
+
+    private update() {
+        this.service
+            .edit(this.item!._id, omit(this.item!, '_id'))
+            .pipe(first())
+            .subscribe(() => this.saveCallback())
+    }
+
+    private saveCallback() {
+        this.originalItem = { ...this.item }
+        this.toast.add({
+            severity: 'success',
+            summary: this.translate.transform('FORM_OPERATION.SUCCESS'),
+            detail: this.translate.transform('FORM_OPERATION.SUCCESS_DETAIL'),
         })
-        .pipe(first())
-        .subscribe(() => this.saveCallback())
+        this.nav.back()
+    }
+
 }
 
-private update() {
-    this.groupingItemService
-        .edit(this.item!._id, omit(this.item!, '_id'))
-        .pipe(first())
-        .subscribe(() => this.saveCallback())
-}
-
-private saveCallback() {
-    this.originalItem = { ...this.item }
-    this.toast.add({
-        severity: 'success',
-        summary: this.translate.transform('FORM_OPERATION.SUCCESS'),
-        detail: this.translate.transform('FORM_OPERATION.SUCCESS_DETAIL'),
-    })
-    this.nav.back()
-}
-*/
-}
-
-/*
 const validations: { [key: string]: (value: any, attribute: string) => boolean } = {
-    item: (value: IGroupingItem2) => value.item.length > 0,
+    category: (value: IGroupingItem2) => value.category.length > 0,
+    item: (value: IGroupingItem2) => value.items.length > 0 && value.items.every((item) => item.length > 0),
     groups: (value: IGroupingItem2) => value.groups.length > 0 && value.groups.every((group) => group.length > 0),
-    correct: (value: IGroupingItem2) => value.correct.length > 0 && value.groups.includes(value.correct),
-}*/
+    correct: (value: IGroupingItem2) => value.correct.length > 0 && value.correct.every((correct) =>value.groups.includes(correct)),
+}
+
