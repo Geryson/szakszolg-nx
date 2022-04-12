@@ -87,11 +87,11 @@ export const GROUPING_ITEMS2 = {
         }
     `,
     ADD: gql`
-        mutation ($item: [String!]!, $category: String! $groups: [String!]!, $correct: [String!]!) {
-            createGroupingItem2(createGroupingItem2Data: { item: $item, category: $category, groups: $groups, correct: $correct }) {
+        mutation ($items: [String!]!, $category: String! $groups: [String!]!, $correct: [String!]!) {
+            createGroupingItem2(createGroupingItem2Data: { items: $items, category: $category, groups: $groups, correct: $correct }) {
                 _id
                 category
-                item
+                items
                 groups
                 correct
                 createdAt

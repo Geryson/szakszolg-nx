@@ -230,7 +230,7 @@ input CreateGroupingItemInput {
 input CreateGroupingItem2Input {
     correct: [String!]!
     groups: [String!]!
-    item: [String!]!
+    items: [String!]!
     category: String!
 }
 
