@@ -33,6 +33,7 @@ export class ManageSingleGroup2Page {
     activeGrouping = ''
     category?: string
     correct = ''
+    prefix = 'https://justnop.xyz/api/grouping-items/'
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -65,12 +66,14 @@ export class ManageSingleGroup2Page {
     }
 
     async save() {
-        if (!this.item?.items?.length || this.saveable())
+        if (!this.item?.items?.length || this.saveable() || !this.category?.length)
             return
         if (this.item?._id) {
             this.update()
             return
         }
+        this.item!.category = this.category
+        console.log(this.item!.category)
         this.create()
     }
 
@@ -87,7 +90,6 @@ export class ManageSingleGroup2Page {
     }
 
     add(inputElement: HTMLInputElement, type: string) {
-
         if (!inputElement?.value?.length || this.item?.groups?.includes(inputElement.value)) {
             if (type === 'group' && this.item!.groups!.length >= 4)
                 return
@@ -109,8 +111,20 @@ export class ManageSingleGroup2Page {
             if (!this.item?.items) this.item!.items = []
             if (this.item!.items.includes(inputElement.value)) return
             if (this.correct.trim() === '') return;
+
+            let picture = false
             this.item!.items.push(inputElement.value)
-            this.item!.correct?.push(this.correct)
+            for (const group of this.item!.groups!)
+                if (group.length >= this.prefix.length && group.substring(this.prefix.length) === this.correct) {
+                    picture = true
+                    break
+                }
+            if (picture){
+                this.item!.correct!.push(this.prefix+this.correct)
+                picture = false
+            }
+            else this.item!.correct!.push(this.correct)
+
             console.log(this.item?.items)
         }
         this.correct = ''
@@ -125,13 +139,31 @@ export class ManageSingleGroup2Page {
             for (const image of res) {
                 if (type === 'group')
                 {
-                    this.item!.groups!.push(image.filename)
+                    this.item!.groups!.push(this.prefix+image.filename)
                     this.correctOptions.push(image.filename)
                     fileUpload.clear()
                 }
                 else {
-                    this.item!.items!.push(image.filename)
-                    this.item!.correct?.push(this.correct)
+                    let picture = false
+                    console.log("Fájl neve")
+                    console.log(image.filename)
+                    this.item!.items!.push(this.prefix+image.filename) // a group feltöltését adja hozzá valamiért ?!?!?!?!?!?!
+                    for (const group of this.item!.groups!)
+                        if (group.length >= this.prefix.length && group.substring(this.prefix.length) === this.correct) {
+                            picture = true
+                            break
+                        }
+
+                    if (picture) {
+                        this.item!.correct!.push(this.prefix+this.correct)
+                        picture = false
+                    }
+                    else this.item!.correct!.push(this.correct)
+
+                    console.log("Items")
+                    console.log(this.item?.items)
+                    console.log("Correct")
+                    console.log(this.item?.correct)
                     fileUpload.clear()
                 }
                 this.correct = ''
@@ -159,6 +191,7 @@ export class ManageSingleGroup2Page {
             this.activatedRoute.params.subscribe((params) => {
                 if (params.id === 'new') {
                     this.item = {
+                        category: '',
                         items: [],
                         groups: [],
                         correct: [],

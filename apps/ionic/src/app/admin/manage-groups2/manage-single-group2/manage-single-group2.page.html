@@ -4,7 +4,7 @@
 
         <div class='field col-12 md:col-4 mt-5 mb-2'>
             <span class='p-float-label'>
-                <input [ngModel]="category" id="category" type="text" maxlength="80" pInputText>
+                <input [(ngModel)]="category" id="category" type="text" maxlength="80" pInputText>
                 <label for="category">Kategória</label>
             </span>
         </div>
@@ -49,7 +49,13 @@
                 <ng-template let-group pTemplate='body'>
                     <tr>
                         <td>
-                            <div>
+                            <div *ngIf="group.substring(0, prefix.length) === prefix">
+                                <img height="70px" src="{{group}}">
+                                <div class='float-end'>
+                                    <p-button (click)='removeGroup(group)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
+                                </div>
+                            </div>
+                            <div *ngIf="!(group.substring(0, prefix.length) === prefix)">
                                 {{group}}
                                 <div class='float-end'>
                                     <p-button (click)='removeGroup(group)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
@@ -69,7 +75,7 @@
 
         <div *ngIf="selectedItemFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
             <span class='p-float-label'>
-                <input #newItem id="item" (keydown.enter)='add(newItem, "item")' maxlength="80" pInputText type='text' />
+                <input #newItem id="item"  (keydown.enter)='add(newItem, "item")' maxlength="80" pInputText type='text' />
                 <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
             </span>
             <span><p-dropdown [(ngModel)]="correct" [options]="correctOptions" placeholder="Helyes válasz"></p-dropdown></span>
@@ -82,13 +88,13 @@
 
         <div  *ngIf="selectedItemFormat === 'Kép'" class='p-3 bg-white'>
             <div class='mb-3'>
-                <p-fileUpload #fileUpload [customUpload]='true' [maxFileSize]="10000000" [multiple]='false' [showUploadButton]='false' accept="image/*" name="data[]">
+                <p-fileUpload #itemUpload (onSelect)="onSelect($event)" [customUpload]='true' [maxFileSize]="10000000" [multiple]='false' [showUploadButton]='false' accept="image/*" name="data[]">
                 </p-fileUpload>
             </div>
             <div><p-dropdown [(ngModel)]="correct" [options]="correctOptions" placeholder="Helyes válasz"></p-dropdown></div>
 
             <div>
-                <p-button (click)='addImage(fileUpload, "item")' icon='pi pi-save'
+                <p-button (click)='addImage(itemUpload, "item")' icon='pi pi-save'
                           label='{{ "FORM_OPERATION.UPLOAD" | translate }}' styleClass='p-button-success {{ !!uploadedFiles.length ? "mt-2" : "" }}'></p-button>
             </div>
         </div>
@@ -106,13 +112,17 @@
                 </ng-template>
                 <ng-template let-singleItem pTemplate='body'>
                     <tr>
-                        <td class="{{!correctOptions.includes(item!.correct![item!.items!.indexOf(singleItem)]) ? 'bad' : ''}}">
+                        <td class="{{!correctOptions.includes(item!.correct![item!.items!.indexOf(singleItem)]) ? !correctOptions.includes(item!.correct![item!.items!.indexOf(singleItem)].substring(prefix.length)) ? 'bad' : '' : ''}}">
                             <div>
-                                {{singleItem}}
-                                {{item!.correct![item!.items!.indexOf(singleItem)]}}
-                                <div class='float-end'>
+                                <img *ngIf="singleItem.substring(0, prefix.length) === prefix" height="70px" src="{{singleItem}}">
+                                <span *ngIf="!(singleItem.substring(0, prefix.length) === prefix)">{{singleItem}}</span>
+
+                                <span *ngIf="!(item!.correct![item!.items!.indexOf(singleItem)].substring(0, prefix.length) === prefix)">{{item!.correct![item!.items!.indexOf(singleItem)]}}</span>
+                                <img height="70px" *ngIf="item!.correct![item!.items!.indexOf(singleItem)].substring(0, prefix.length) === prefix" src="{{item!.correct![item!.items!.indexOf(singleItem)]}}">
+
+                                <span class='float-end'>
                                     <p-button (click)='removeItem(singleItem)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
-                                </div>
+                                </span>
                             </div>
                         </td>
                     </tr>
@@ -124,7 +134,7 @@
 
         <div class='field col-12 md:col-4 mt-4 mb-4'>
             <span>
-                <p-button (click)='save()' [disabled]='!item?.items?.length || saveable()' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
+                <p-button (click)='save()' [disabled]='!item?.items?.length || saveable() || !this.category?.length' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
             </span>
         </div>
 
