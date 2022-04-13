@@ -14,6 +14,10 @@ export function getImageUrl(file: string, thumbnail = true) {
     return api(`api/puzzle/${getImageID(file)}?${thumbnail ? 'size=thumbnail' : ''}`)
 }
 
+export function getGroupImageUrl(file: string){
+    return api(`api/grouping-items/${getImageID(file)}`)
+}
+
 export function getImageName(file: string) {
     return file
         .replace(/uploads/g, '')
