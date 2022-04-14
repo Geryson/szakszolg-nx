@@ -6,7 +6,7 @@ import { UpdateGroupingItem2Input } from '../dto/inputs/update-grouping-item2.in
 import { CreateGroupingItem2Input } from '../dto/inputs/create-grouping-item2.input'
 import { GetGroupingItems2Args } from '../dto/args/get-grouping-items2.args'
 import { GetGroupingItem2Args } from '../dto/args/get-grouping-item2.args'
-import {IGroupingItem2, IHangmanWord} from '@szakszolg-nx/api-interfaces'
+import {IGroupingItem2} from '@szakszolg-nx/api-interfaces'
 import { DeleteGroupingItem2Input } from '../dto/inputs/delete-grouping-item2.input'
 import { SimpleRepository } from '../../../shared/proxies/simple.repository'
 

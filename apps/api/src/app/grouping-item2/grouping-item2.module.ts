@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { GroupingItem2Service } from './grouping-item2.service'
 import { GroupingItem2Resolver } from './grouping-item2.resolver'
 import { MongooseModule } from '@nestjs/mongoose'
-import { GroupingItem2, GroupingItemSchema2 } from './entities/grouping-item2.entity'
+import { GroupingItem2, GroupingItem2Schema } from './entities/grouping-item2.entity'
 import { GroupingItem2Repository } from './entities/grouping-item2.repository'
 import { GroupingItem2Controller } from './grouping-item2.controller'
 
@@ -11,7 +11,7 @@ import { GroupingItem2Controller } from './grouping-item2.controller'
         MongooseModule.forFeature([
             {
                 name: GroupingItem2.name,
-                schema: GroupingItemSchema2,
+                schema: GroupingItem2Schema,
             },
         ]),
     ],

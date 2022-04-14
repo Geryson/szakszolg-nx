@@ -10,6 +10,7 @@ import { MirrorWordModule } from './mirror-word/mirror-word.module'
 import { HangmanWordModule } from './hangman-word/hangman-word.module'
 import { GroupingItemModule } from './grouping-item/grouping-item.module'
 import { GroupingItem2Module } from './grouping-item2/grouping-item2.module'
+import { GroupingItem2DetailsModule } from './grouping-item2-details/grouping-item2-details.module'
 import { SchoolModule } from './school/school.module'
 import { QuizModule } from './quiz/quiz.module'
 import { QuizAnswerModule } from './quiz-answer/quiz-answer.module'
@@ -27,6 +28,7 @@ import { QuizAnswerOptionModule } from './quiz-answer-option/quiz-answer-option.
         HangmanWordModule,
         GroupingItemModule,
         GroupingItem2Module,
+        GroupingItem2DetailsModule,
         SchoolModule,
         QuizModule,
         QuizAnswerModule,
