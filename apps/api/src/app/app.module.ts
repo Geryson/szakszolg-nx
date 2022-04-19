@@ -28,7 +28,6 @@ import { QuizAnswerOptionModule } from './quiz-answer-option/quiz-answer-option.
         HangmanWordModule,
         GroupingItemModule,
         GroupingItem2Module,
-        GroupingItem2DetailsModule,
         SchoolModule,
         QuizModule,
         QuizAnswerModule,

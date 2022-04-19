@@ -1,10 +1,7 @@
 import { IdInput } from '../../../../shared/gql-inputs/id.input'
 import { Field, InputType } from '@nestjs/graphql'
 import { IsNotEmpty } from 'class-validator'
-import {IGroupingItem2Details, IUpdatedAt} from '@szakszolg-nx/api-interfaces'
-import {
-    UpdateGroupingItem2DetailsInput
-} from "../../../grouping-item2-details/dto/inputs/update-grouping-item2-details.input";
+import { IUpdatedAt} from '@szakszolg-nx/api-interfaces'
 
 @InputType()
 export class UpdateGroupingItem2Input extends IdInput implements IUpdatedAt {
@@ -15,24 +12,28 @@ export class UpdateGroupingItem2Input extends IdInput implements IUpdatedAt {
     @Field({nullable: true})
     category?: string
 
-    @Field(() => [UpdateGroupingItem2DetailsInput],{ nullable: true })
-    items?: IGroupingItem2Details[]
+    @Field(() => [String],{ nullable: true })
+    items?: string[]
 
-    /*
+
     @Field(() => [Boolean],{ nullable: true })
     itemIsPicture?: boolean[]
-     */
 
-    @Field(() => [UpdateGroupingItem2DetailsInput], { nullable: 'itemsAndList' })
-    groups?: IGroupingItem2Details[]
 
-    /*
+    @Field(() => [String], { nullable: 'itemsAndList' })
+    groups?: string[]
+
+
     @Field(() => [Boolean], { nullable: 'itemsAndList' })
     groupIsPicture?: boolean[]
-     */
+
 
     @Field(() => [String],{ nullable: true })
     correct?: string[]
+
+
+    @Field(() => [Boolean], { nullable: 'itemsAndList' })
+    correctIsPicture?: boolean[]
 
     updatedAt?: Date
 }
