@@ -49,13 +49,13 @@
                 <ng-template let-group pTemplate='body'>
                     <tr>
                         <td>
-                            <div *ngIf="group.substring(0, prefix.length) === prefix">
-                                <img height="70px" src="{{group}}">
+                            <div *ngIf="item!.groupIsPicture![item!.groups!.indexOf(group)]">
+                                <img height="70px" [src]="getGroupImageUrl(group)">
                                 <div class='float-end'>
                                     <p-button (click)='removeGroup(group)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                                 </div>
                             </div>
-                            <div *ngIf="!(group.substring(0, prefix.length) === prefix)">
+                            <div *ngIf="!(item!.groupIsPicture![item!.groups!.indexOf(group)])">
                                 {{group}}
                                 <div class='float-end'>
                                     <p-button (click)='removeGroup(group)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
@@ -112,13 +112,13 @@
                 </ng-template>
                 <ng-template let-singleItem pTemplate='body'>
                     <tr>
-                        <td class="{{!correctOptions.includes(item!.correct![item!.items!.indexOf(singleItem)]) ? !correctOptions.includes(item!.correct![item!.items!.indexOf(singleItem)].substring(prefix.length)) ? 'bad' : '' : ''}}">
+                        <td class="{{!correctOptions.includes(item!.correct![item!.items!.indexOf(singleItem)]) ? 'bad' : ''}}">
                             <div>
-                                <img *ngIf="singleItem.substring(0, prefix.length) === prefix" height="70px" src="{{singleItem}}">
-                                <span *ngIf="!(singleItem.substring(0, prefix.length) === prefix)">{{singleItem}}</span>
+                                <img *ngIf="item!.itemIsPicture![item!.items!.indexOf(singleItem)]" height="70px" [src]="getGroupImageUrl(singleItem)">
+                                <span *ngIf="!(item!.itemIsPicture![item!.items!.indexOf(singleItem)])">{{singleItem}}</span>
 
-                                <span *ngIf="!(item!.correct![item!.items!.indexOf(singleItem)].substring(0, prefix.length) === prefix)">{{item!.correct![item!.items!.indexOf(singleItem)]}}</span>
-                                <img height="70px" *ngIf="item!.correct![item!.items!.indexOf(singleItem)].substring(0, prefix.length) === prefix" src="{{item!.correct![item!.items!.indexOf(singleItem)]}}">
+                                <span *ngIf="!(item!.correctIsPicture![item!.items!.indexOf(singleItem)])">{{item!.correct![item!.items!.indexOf(singleItem)]}}</span>
+                                <img height="70px" *ngIf="item!.correctIsPicture![item!.items!.indexOf(singleItem)]" [src]="getGroupImageUrl(item!.correct![item!.items!.indexOf(singleItem)])">
 
                                 <span class='float-end'>
                                     <p-button (click)='removeItem(singleItem)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>

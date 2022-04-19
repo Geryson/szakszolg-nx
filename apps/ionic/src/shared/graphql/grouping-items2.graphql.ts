@@ -6,9 +6,12 @@ export const GROUPING_ITEMS2 = {
             groupingItem2 {
                 _id
                 category
-                item
+                items
+                itemIsPicture
                 groups
+                groupIsPicture
                 correct
+                correctIsPicture
                 createdAt
                 updatedAt
                 deletedAt
@@ -20,9 +23,12 @@ export const GROUPING_ITEMS2 = {
         query ($category: String!) {
             groupingItem2 (category: $category) {
                 category
-                item
+                items
+                itemIsPicture
                 groups
+                groupIsPicture
                 correct
+                correctIsPicture
             }
         }
     `,
@@ -32,9 +38,12 @@ export const GROUPING_ITEMS2 = {
             groupingItem2(id: $id) {
                 _id
                 category
-                item
+                items
+                itemIsPicture
                 groups
+                groupIsPicture
                 correct
+                correctIsPicture
                 createdAt
                 updatedAt
                 deletedAt
@@ -47,9 +56,12 @@ export const GROUPING_ITEMS2 = {
             groupingItem2 {
                 _id
                 category
-                item
+                items
+                itemIsPicture
                 groups
+                groupIsPicture
                 correct
+                correctIsPicture
                 createdAt
                 updatedAt
                 deletedAt
@@ -58,13 +70,16 @@ export const GROUPING_ITEMS2 = {
     `,
 
     EDIT: gql`
-        mutation ($id: String!, $item: String, $groups: [String], $correct: String) {
-            updateGroupingItem2(updateGroupingItem2Data: { id: $id, category: $category, item: $item, groups: $groups, correct: $correct }) {
+        mutation ($id: String!, $category: String, $items: [String], $itemIsPicture: [Boolean], $groups: [String], $groupIsPicture: [Boolean], $correct: [String], $correctIsPicture: [Boolean]) {
+            updateGroupingItem2(updateGroupingItem2Data: { id: $id, category: $category, items: $items, itemIsPicture: $itemIsPicture, groups: $groups, groupIsPicture: $groupIsPicture, correct: $correct, correctIsPicture: $correctIsPicture }) {
                 _id
                 category
-                item
+                items
+                itemIsPicture
                 groups
+                groupIsPicture
                 correct
+                correctIsPicture
                 createdAt
                 updatedAt
                 deletedAt
@@ -77,7 +92,7 @@ export const GROUPING_ITEMS2 = {
             deleteGroupingItem2(deleteGroupingItem2Data: { id: $id }) {
                 _id
                 category
-                item
+                items
                 groups
                 correct
                 createdAt
@@ -87,13 +102,16 @@ export const GROUPING_ITEMS2 = {
         }
     `,
     ADD: gql`
-        mutation ($items: [String!]!, $category: String! $groups: [String!]!, $correct: [String!]!) {
-            createGroupingItem2(createGroupingItem2Data: { items: $items, category: $category, groups: $groups, correct: $correct }) {
+        mutation ($items: [String!]!, $itemIsPicture: [Boolean!]!, $category: String! $groups: [String!]!, $groupIsPicture: [Boolean!]!, $correct: [String!]!, $correctIsPicture: [Boolean!]!,) {
+            createGroupingItem2(createGroupingItem2Data: { items: $items, itemIsPicture: $itemIsPicture, category: $category, groups: $groups, groupIsPicture: $groupIsPicture, correct: $correct, correctIsPicture: $correctIsPicture }) {
                 _id
                 category
                 items
+                itemIsPicture
                 groups
+                groupIsPicture
                 correct
+                correctIsPicture
                 createdAt
                 updatedAt
                 deletedAt

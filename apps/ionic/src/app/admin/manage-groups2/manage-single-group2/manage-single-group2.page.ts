@@ -12,6 +12,7 @@ import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { Log } from '../../../../shared/utils/log.tools'
 import { omit } from '../../../../shared/utils/object.tools'
 import {presentLoading} from "../../../../shared/utils/observable.tools";
+import { getGroupImageUrl } from "../../../../shared/utils/uri.tools";
 
 @Component({
     selector: 'nx12-manage-single-group2',
@@ -19,6 +20,8 @@ import {presentLoading} from "../../../../shared/utils/observable.tools";
     styleUrls: ['./manage-single-group2.page.scss'],
 })
 export class ManageSingleGroup2Page {
+    getGroupImageUrl = getGroupImageUrl
+
     item?: Partial<IGroupingItem2>
     originalItem?: Partial<IGroupingItem2>
     NG_ICON = NG_ICON
@@ -33,7 +36,6 @@ export class ManageSingleGroup2Page {
     activeGrouping = ''
     category?: string
     correct = ''
-    prefix = 'https://justnop.xyz/api/grouping-items/'
 
     constructor(
         private readonly activatedRoute: ActivatedRoute,
@@ -78,19 +80,23 @@ export class ManageSingleGroup2Page {
     }
 
     removeGroup(group: string) {
+        const index = this.item!.groups!.indexOf(group)
         this.item!.groups = this.item!.groups?.filter((g) => g !== group)
+        this.item!.groupIsPicture!.splice(index, 1)
         this.correctOptions = this.correctOptions.filter((g) => g !== group)
     }
 
     removeItem(item: string) {
         const index = this.item!.items!.indexOf(item)
         this.item!.items = this.item!.items?.filter((i) => i !== item)
+        this.item!.itemIsPicture!.splice(index, 1)
         this.item!.correct!.splice(index, 1)
+        this.item!.correctIsPicture!.splice(index, 1)
         console.log(this.item!.correct)
     }
 
     add(inputElement: HTMLInputElement, type: string) {
-        if (!inputElement?.value?.length || this.item?.groups?.includes(inputElement.value)) {
+        if (!inputElement?.value?.length) {
             if (type === 'group' && this.item!.groups!.length >= 4)
                 return
             return
@@ -99,31 +105,41 @@ export class ManageSingleGroup2Page {
         if (!inputElement?.value.length) return
 
         if (type === 'group'){
+            if (this.item?.groups?.includes(inputElement.value)) return
             if (this.item!.groups!.length >= 4) return
             if (!this.item?.groups) this.item!.groups = []
+            if (!this.item?.groupIsPicture) this.item!.groupIsPicture = []
             if (this.item!.groups.includes(inputElement.value)) return
+
             this.item!.groups.push(inputElement.value)
+            this.item!.groupIsPicture.push(false)
             this.correctOptions.push(inputElement.value)
-            console.log(this.correctOptions)
         }
         else {
             if (this.item!.groups!.length < 4) return
             if (!this.item?.items) this.item!.items = []
+            if (!this.item?.itemIsPicture) this.item!.itemIsPicture = []
+            if (!this.item?.correctIsPicture) this.item!.correctIsPicture = []
             if (this.item!.items.includes(inputElement.value)) return
             if (this.correct.trim() === '') return;
 
             let picture = false
             this.item!.items.push(inputElement.value)
+            this.item!.itemIsPicture.push(false)
             for (const group of this.item!.groups!)
-                if (group.length >= this.prefix.length && group.substring(this.prefix.length) === this.correct) {
-                    picture = true
+                if (group === this.correct) {
+                    picture = this.item!.groupIsPicture![this.item!.groups!.indexOf(group)]
                     break
                 }
             if (picture){
-                this.item!.correct!.push(this.prefix+this.correct)
-                picture = false
+                this.item!.correct!.push(this.correct)
+                this.item!.correctIsPicture.push(true)
             }
-            else this.item!.correct!.push(this.correct)
+            else{
+                this.item!.correct!.push(this.correct)
+                this.item!.correctIsPicture.push(false)
+            }
+
 
             console.log(this.item?.items)
         }
@@ -139,26 +155,35 @@ export class ManageSingleGroup2Page {
             for (const image of res) {
                 if (type === 'group')
                 {
-                    this.item!.groups!.push(this.prefix+image.filename)
+                    if (!this.item?.groupIsPicture) this.item!.groupIsPicture = []
+                    this.item!.groups!.push(image.filename)
+                    this.item!.groupIsPicture.push(true)
                     this.correctOptions.push(image.filename)
                     fileUpload.clear()
                 }
                 else {
+                    if (!this.item?.itemIsPicture) this.item!.itemIsPicture = []
+                    if (!this.item?.correctIsPicture) this.item!.correctIsPicture = []
+
                     let picture = false
                     console.log("Fájl neve")
                     console.log(image.filename)
-                    this.item!.items!.push(this.prefix+image.filename) // a group feltöltését adja hozzá valamiért ?!?!?!?!?!?!
+                    this.item!.items!.push(image.filename)
+                    this.item!.itemIsPicture.push(true)
                     for (const group of this.item!.groups!)
-                        if (group.length >= this.prefix.length && group.substring(this.prefix.length) === this.correct) {
-                            picture = true
+                        if (group === this.correct) {
+                            picture = this.item!.groupIsPicture![this.item!.groups!.indexOf(group)]
                             break
                         }
 
-                    if (picture) {
-                        this.item!.correct!.push(this.prefix+this.correct)
-                        picture = false
+                    if (picture){
+                        this.item!.correct!.push(this.correct)
+                        this.item!.correctIsPicture.push(true)
                     }
-                    else this.item!.correct!.push(this.correct)
+                    else{
+                        this.item!.correct!.push(this.correct)
+                        this.item!.correctIsPicture.push(false)
+                    }
 
                     console.log("Items")
                     console.log(this.item?.items)

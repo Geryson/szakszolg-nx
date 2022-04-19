@@ -17,11 +17,14 @@ type GroupingItem {
 
 type GroupingItem2 {
     _id: String!
+    correctIsPicture: [Boolean!]!
     correct: [String!]!
     createdAt: DateTime!
     deletedAt: DateTime
+    groupIsPicture: [Boolean!]!
     groups: [String!]!
-    item: [String!]!
+    itemIsPicture: [Boolean!]!
+    items: [String!]!
     category: String!
     updatedAt: DateTime!
 }
@@ -228,8 +231,11 @@ input CreateGroupingItemInput {
 }
 
 input CreateGroupingItem2Input {
+    correctIsPicture: [Boolean!]!
     correct: [String!]!
+    groupIsPicture: [Boolean!]!
     groups: [String!]!
+    itemIsPicture: [Boolean!]!
     items: [String!]!
     category: String!
 }
@@ -378,10 +384,13 @@ input UpdateGroupingItemInput {
 }
 
 input UpdateGroupingItem2Input {
+    correctIsPicture: [Boolean]
     correct: [String]
+    groupIsPicture: [Boolean]
     groups: [String]
     id: String!
-    item: [String]
+    itemIsPicture: [Boolean]
+    items: [String]
     category: String
 }
 
