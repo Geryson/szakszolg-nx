@@ -1,7 +1,7 @@
 <nx12-header [logoutButton]='true' title='ADMIN_NAV.GROUPING_MANAGEMENT'></nx12-header>
 
 <ion-content>
-    <p-table #dt [globalFilterFields]="['item', 'groups', 'correct']" [value]='values' responsiveLayout='stack' styleClass='p-table-stripped'>
+    <p-table #dt [globalFilterFields]="['category', 'items', 'groups']" [value]='values' responsiveLayout='stack' styleClass='p-table-stripped'>
         <ng-template pTemplate='caption'>
             <div class='flex align-items-center justify-content-between'>
                 <span class='p-input-icon-left'>
@@ -16,17 +16,17 @@
         </ng-template>
         <ng-template pTemplate='header'>
             <tr>
-                <th pSortableColumn='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}<p-sortIcon field='item'></p-sortIcon></th>
+                <th pSortableColumn='category'>{{ 'MANAGE_GROUPINGS.CATEGORY' | translate }}<p-sortIcon field='category'></p-sortIcon></th>
+                <th pSortableColumn='items'>{{ 'MANAGE_GROUPINGS.ITEMS' | translate }}<p-sortIcon field='item'></p-sortIcon></th>
                 <th pSortableColumn='groups'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}<p-sortIcon field='groups'></p-sortIcon></th>
-                <th pSortableColumn='correct'>{{ 'MANAGE_GROUPINGS.CORRECT' | translate }}<p-sortIcon field='correct'></p-sortIcon></th>
                 <th>{{ 'MANAGE_GROUPINGS.ACTIONS' | translate }}</th>
             </tr>
         </ng-template>
         <ng-template let-itemObject pTemplate='body'>
             <tr>
-                <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</span> {{ itemObject.item }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.CATEGORY' | translate }}</span> {{ itemObject.category }}</td>
+                <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.ITEMS' | translate }}</span> {{ itemObject.items | join:', ' }}</td>
                 <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}</span> {{ itemObject.groups | join:', ' }}</td>
-                <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.CORRECT' | translate }}</span> {{ itemObject.correct }}</td>
                 <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.ACTIONS' | translate }}</span>
                     <span class='p-buttonset'>
                         <p-button (click)='editClick(itemObject)' *ngIf='userCanEdit' styleClass='p-button-primary mr-2' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
