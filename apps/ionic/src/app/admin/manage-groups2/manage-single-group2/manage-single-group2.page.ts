@@ -196,10 +196,8 @@ export class ManageSingleGroup2Page {
 
     private async init() {
         const params = await firstValueFrom(this.activatedRoute.params)
-        this.activeGrouping = params.id
 
-        if (params.id !== 'new')
-            this.selectedItemFormat = 'Szöveg'
+        this.activeGrouping = params.id
         this.sub.add(
             this.activatedRoute.params.subscribe((params) => {
                 if (params.id === 'new') {
@@ -218,6 +216,7 @@ export class ManageSingleGroup2Page {
                     this.queryRef.valueChanges.subscribe(async ({ data }) => {
                         this.item = { ...data.groupingItem2 }
                         this.originalItem = { ...this.item }
+                        this.correctOptions = this.item!.groups!
                     }),
                 )
             }),
