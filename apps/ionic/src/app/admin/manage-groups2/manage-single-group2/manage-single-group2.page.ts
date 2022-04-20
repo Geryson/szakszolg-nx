@@ -75,7 +75,6 @@ export class ManageSingleGroup2Page {
             return
         }
         this.item!.category = this.category
-        console.log(this.item!.category)
         this.create()
     }
 
@@ -92,7 +91,6 @@ export class ManageSingleGroup2Page {
         this.item!.itemIsPicture!.splice(index, 1)
         this.item!.correct!.splice(index, 1)
         this.item!.correctIsPicture!.splice(index, 1)
-        console.log(this.item!.correct)
     }
 
     add(inputElement: HTMLInputElement, type: string) {
@@ -139,9 +137,6 @@ export class ManageSingleGroup2Page {
                 this.item!.correct!.push(this.correct)
                 this.item!.correctIsPicture.push(false)
             }
-
-
-            console.log(this.item?.items)
         }
         this.correct = ''
         inputElement.value = ''
@@ -166,8 +161,6 @@ export class ManageSingleGroup2Page {
                     if (!this.item?.correctIsPicture) this.item!.correctIsPicture = []
 
                     let picture = false
-                    console.log("Fájl neve")
-                    console.log(image.filename)
                     this.item!.items!.push(image.filename)
                     this.item!.itemIsPicture.push(true)
                     for (const group of this.item!.groups!)
@@ -184,11 +177,6 @@ export class ManageSingleGroup2Page {
                         this.item!.correct!.push(this.correct)
                         this.item!.correctIsPicture.push(false)
                     }
-
-                    console.log("Items")
-                    console.log(this.item?.items)
-                    console.log("Correct")
-                    console.log(this.item?.correct)
                     fileUpload.clear()
                 }
                 this.correct = ''
@@ -197,7 +185,7 @@ export class ManageSingleGroup2Page {
         } catch (e: any) {
             Log.error('ManageGroupPage::save', e)
             if (e.status == 0) {
-                this.toast.add({ severity: 'error', summary: 'Error', detail: 'Túl nagy a kép(ek) mérete, összesen 1Mb lehet!' })
+                this.toast.add({ severity: 'error', summary: 'Error', detail: this.translate.transform('MANAGE_GROUPINGS.ERRORv'), })
             }else {
                 this.toast.add({ severity: 'error', summary: 'Error', detail: e.message })
             }

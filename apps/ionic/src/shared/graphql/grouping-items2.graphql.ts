@@ -3,7 +3,7 @@ import { gql } from 'apollo-angular'
 export const GROUPING_ITEMS2 = {
     BROWSE: gql`
         query {
-            groupingItem2 {
+            groupingItems2 {
                 _id
                 category
                 items
