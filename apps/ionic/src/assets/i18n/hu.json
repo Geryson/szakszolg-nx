@@ -356,7 +356,9 @@
     "MANAGE_GROUPINGS": {
         "SEARCH": "Keresés szó alapján",
         "SAVE": "Mentés",
+        "CATEGORY": "Kategória",
         "ITEM": "Tárgy",
+        "ITEMS": "Tárgyak",
         "GROUPS": "Csoportok",
         "CORRECT": "Helyes",
         "ACTIONS": "Műveletek",
@@ -364,7 +366,13 @@
         "NO_GROUPS": "Még nincsenek csoportok felvéve",
         "NO_ITEMS": "Még nincsenek tárgyak felvéve",
         "CORRECT_BUTTON": "Megoldás",
-        "MARKED_CORRECT": "Megjelölve megoldásnak"
+        "MARKED_CORRECT": "Megjelölve megoldásnak",
+        "OPTIONS": {
+            "text": "Szöveg",
+            "picture": "Kép"
+        },
+        "ERROR": "Túl nagy a kép mérete, összesen 1Mb lehet!",
+        "CHOOSE_ANSWER_FORMAT": "Válasszon válasz formátumot!"
     },
 
     "FORM_OPERATION":  {

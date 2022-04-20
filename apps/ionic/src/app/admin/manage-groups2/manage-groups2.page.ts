@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { CrudPageClass } from '../../../shared/utils/crud-page.class'
-import { IGroupingItem2, RESOURCES } from '@szakszolg-nx/api-interfaces'
+import { IGroupingItem2, IGroupingItem, RESOURCES } from '@szakszolg-nx/api-interfaces'
 import { pages } from '../../../shared/utils/pages.const'
 import { GroupingItem2Service } from '../../../shared/services/grouping-item2.service'
+import { GroupingItemService } from '../../../shared/services/grouping-item.service'
 
 @Component({
     selector: 'nx12-manage-groups2',
@@ -14,7 +15,7 @@ export class ManageGroups2Page
     implements OnInit
 {
     protected editPage = pages.admin.groupingItems2
-    protected resourceName = RESOURCES.GROUPING_WORDS
+    protected resourceName = RESOURCES.GROUPING_WORDS2
 
     constructor(protected readonly resourceService: GroupingItem2Service) {
         super()

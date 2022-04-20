@@ -19,6 +19,7 @@ export const RESOURCES = {
     SCHOOL_CATEGORIES: 'school-categories',
     HANGMAN_WORDS: 'hangman-words',
     GROUPING_WORDS: 'grouping-words',
+    GROUPING_WORDS2: 'grouping-words2',
     SURVEYS: 'surveys',
     SURVEY_QUESTIONS: 'survey-questions',
     SURVEY_QUESTION_CATEGORIES: 'survey-question-categories',
