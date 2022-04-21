@@ -10,7 +10,7 @@ import {first, firstValueFrom, Subscription} from 'rxjs'
 import { QueryRef } from 'apollo-angular'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { Log } from '../../../../shared/utils/log.tools'
-import { omit } from '../../../../shared/utils/object.tools'
+import {deepCopy, omit} from '../../../../shared/utils/object.tools'
 import {presentLoading} from "../../../../shared/utils/observable.tools";
 import { getGroupImageUrl } from "../../../../shared/utils/uri.tools";
 
@@ -68,26 +68,30 @@ export class ManageSingleGroup2Page {
     }
 
     async save() {
+        this.item!.category = this.category
         if (!this.item?.items?.length || this.saveable() || !this.category?.length)
             return
         if (this.item?._id) {
             this.update()
             return
         }
-        this.item!.category = this.category
         this.create()
     }
 
     removeGroup(group: string) {
         const index = this.item!.groups!.indexOf(group)
+
         this.item!.groups = this.item!.groups?.filter((g) => g !== group)
+        this.correctOptions = this.item!.groups!
+
         this.item!.groupIsPicture!.splice(index, 1)
-        this.correctOptions = this.correctOptions.filter((g) => g !== group)
     }
 
     removeItem(item: string) {
         const index = this.item!.items!.indexOf(item)
+
         this.item!.items = this.item!.items?.filter((i) => i !== item)
+
         this.item!.itemIsPicture!.splice(index, 1)
         this.item!.correct!.splice(index, 1)
         this.item!.correctIsPicture!.splice(index, 1)
@@ -111,7 +115,9 @@ export class ManageSingleGroup2Page {
 
             this.item!.groups.push(inputElement.value)
             this.item!.groupIsPicture.push(false)
-            this.correctOptions.push(inputElement.value)
+            this.correctOptions = this.item!.groups!
+
+            console.log(this.item!.groups)
         }
         else {
             if (this.item!.groups!.length < 4) return
@@ -122,6 +128,7 @@ export class ManageSingleGroup2Page {
             if (this.correct.trim() === '') return;
 
             let picture = false
+
             this.item!.items.push(inputElement.value)
             this.item!.itemIsPicture.push(false)
             for (const group of this.item!.groups!)
@@ -214,9 +221,10 @@ export class ManageSingleGroup2Page {
                 this.queryRef = this.service.read(params.id)
                 this.sub.add(
                     this.queryRef.valueChanges.subscribe(async ({ data }) => {
-                        this.item = { ...data.groupingItem2 }
-                        this.originalItem = { ...this.item }
+                        this.item = deepCopy(data.groupingItem2)
+                        this.originalItem = deepCopy(this.item)
                         this.correctOptions = this.item!.groups!
+                        this.category = this.item!.category!
                     }),
                 )
             }),

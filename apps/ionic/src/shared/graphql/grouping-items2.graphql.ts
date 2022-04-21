@@ -70,7 +70,7 @@ export const GROUPING_ITEMS2 = {
     `,
 
     EDIT: gql`
-        mutation ($id: String!, $category: String, $items: [String], $itemIsPicture: [Boolean], $groups: [String], $groupIsPicture: [Boolean], $correct: [String], $correctIsPicture: [Boolean]) {
+        mutation ($id: String!, $category: String, $items: [String!], $itemIsPicture: [Boolean!], $groups: [String], $groupIsPicture: [Boolean!], $correct: [String!], $correctIsPicture: [Boolean!]) {
             updateGroupingItem2(updateGroupingItem2Data: { id: $id, category: $category, items: $items, itemIsPicture: $itemIsPicture, groups: $groups, groupIsPicture: $groupIsPicture, correct: $correct, correctIsPicture: $correctIsPicture }) {
                 _id
                 category
