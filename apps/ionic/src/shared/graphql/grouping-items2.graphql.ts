@@ -33,6 +33,14 @@ export const GROUPING_ITEMS2 = {
         }
     `,
 
+    BROWSE_CATEGORIES: gql`
+        query {
+            groupingItem2 {
+                category
+            }
+        }
+    `,
+
     READ: gql`
         query ($id: String!) {
             groupingItem2(id: $id) {

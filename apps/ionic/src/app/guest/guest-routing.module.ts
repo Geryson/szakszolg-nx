@@ -16,6 +16,10 @@ const routes: Routes = [
         loadChildren: () => import('./play-groups/play-groups.module').then((m) => m.PlayGroupsPageModule),
     },
     {
+        path: lastPartOf(pages.guest.groupingItems2),
+        loadChildren: () => import('./play-groups2/play-groups2.module').then((m) => m.PlayGroupsPageModule),
+    },
+    {
         path: lastPartOf(pages.guest.hangman),
         loadChildren: () => import('./play-hangman/play-hangman.module').then((m) => m.PlayHangmanPageModule),
     },
