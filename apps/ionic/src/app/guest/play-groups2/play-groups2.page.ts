@@ -6,7 +6,7 @@ import { QueryRef } from 'apollo-angular'
 import { IGroupingItem2 } from '@szakszolg-nx/api-interfaces'
 import { Subscription } from 'rxjs'
 import { GroupingItem2Service } from '../../../shared/services/grouping-item2.service'
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {RedirectService} from "../../../shared/services/redirect.service";
 import {pages} from "../../../shared/utils/pages.const";
 import {ConfirmationService} from "primeng/api";
@@ -48,15 +48,12 @@ export class PlayGroups2Page {
 
     counter = 0
 
-    private readonly prefix = 'http'
-
     constructor(private readonly service: GroupingItem2Service, private readonly alert: AlertService,
                 private readonly redirect: RedirectService, private confirmationService: ConfirmationService) {}
 
     async init() {
         const loading = await this.alert.loading('MESSAGE.LOADING')
         this.queryRef = this.service.browseCategories()
-        console.log("asd")
         this.sub = this.queryRef.valueChanges.subscribe(
             (res) => {
                 const result =  res.data.groupingItems2.map(x => x.category!) ?? []

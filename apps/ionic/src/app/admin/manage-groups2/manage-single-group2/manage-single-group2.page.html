@@ -49,18 +49,11 @@
                 <ng-template let-group pTemplate='body'>
                     <tr>
                         <td>
-                            <div *ngIf="item!.groupIsPicture![item!.groups!.indexOf(group)]">
-                                <img height="70px" [src]="getGroupImageUrl(group)">
-                                <div class='float-end'>
-                                    <p-button (click)='removeGroup(group)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
-                                </div>
-                            </div>
-                            <div *ngIf="!(item!.groupIsPicture![item!.groups!.indexOf(group)])">
-                                {{group}}
-                                <div class='float-end'>
-                                    <p-button (click)='removeGroup(group)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
-                                </div>
-                            </div>
+                            <img *ngIf="item!.groupIsPicture![item!.groups!.indexOf(group)]" height="70px" [src]="getGroupImageUrl(group)">
+                            <span *ngIf="!(item!.groupIsPicture![item!.groups!.indexOf(group)])">{{group}}</span>
+                            <span class='float-end'>
+                                <p-button (click)='removeGroup(group)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
+                            </span>
                         </td>
                     </tr>
                 </ng-template>
@@ -113,17 +106,15 @@
                 <ng-template let-singleItem pTemplate='body'>
                     <tr>
                         <td class="{{!correctOptions.includes(item!.correct![item!.items!.indexOf(singleItem)]) ? 'bad' : ''}}">
-                            <div>
-                                <img *ngIf="item!.itemIsPicture![item!.items!.indexOf(singleItem)]" height="70px" [src]="getGroupImageUrl(singleItem)">
-                                <span *ngIf="!(item!.itemIsPicture![item!.items!.indexOf(singleItem)])">{{singleItem}}</span>
+                            <img *ngIf="item!.itemIsPicture![item!.items!.indexOf(singleItem)]" height="70px" [src]="getGroupImageUrl(singleItem)">
+                            <span *ngIf="!(item!.itemIsPicture![item!.items!.indexOf(singleItem)])">{{singleItem}}</span>
 
-                                <span *ngIf="!(item!.correctIsPicture![item!.items!.indexOf(singleItem)])">{{item!.correct![item!.items!.indexOf(singleItem)]}}</span>
-                                <img height="70px" *ngIf="item!.correctIsPicture![item!.items!.indexOf(singleItem)]" [src]="getGroupImageUrl(item!.correct![item!.items!.indexOf(singleItem)])">
+                            <span *ngIf="!(item!.correctIsPicture![item!.items!.indexOf(singleItem)])">{{item!.correct![item!.items!.indexOf(singleItem)]}}</span>
+                            <img height="70px" *ngIf="item!.correctIsPicture![item!.items!.indexOf(singleItem)]" [src]="getGroupImageUrl(item!.correct![item!.items!.indexOf(singleItem)])">
 
-                                <span class='float-end'>
-                                    <p-button (click)='removeItem(singleItem)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
-                                </span>
-                            </div>
+                            <span class='float-end'>
+                                <p-button (click)='removeItem(singleItem)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
+                            </span>
                         </td>
                     </tr>
                 </ng-template>
