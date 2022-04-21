@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import { Component } from '@angular/core'
 import { AlertService } from '../../../shared/services/alert.service'
 import { QueryRef } from 'apollo-angular'
@@ -8,6 +10,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag
 import {RedirectService} from "../../../shared/services/redirect.service";
 import {pages} from "../../../shared/utils/pages.const";
 import {ConfirmationService} from "primeng/api";
+import {getGroupImageUrl} from "../../../shared/utils/uri.tools";
 
 @Component({
     selector: 'nx12-play-groups2',
@@ -15,15 +18,26 @@ import {ConfirmationService} from "primeng/api";
     styleUrls: ['./play-groups2.page.scss'],
 })
 export class PlayGroups2Page {
+    getGroupImageUrl = getGroupImageUrl
+
+    corrects?: string[]
     correct?: string | undefined
     groups!: string[]
+    words!: string[]
     word!: string
     loading = false
+    categories?: string[]
+    selectedCategory: any
+
+    itemIsPicture: boolean[] = []
+    groupIsPicture: boolean[] = []
 
     guessedAnswer?: boolean
     notCorrect?: boolean
-    private queryRef?: QueryRef<{ groupingItem2: Partial<IGroupingItem2> }>
+    private queryRef?: QueryRef<{ groupingItems2: Partial<IGroupingItem2>[] }>
+    private queryRef2?: QueryRef<{ groupingItem2: Partial<IGroupingItem2> }>
     private sub?: Subscription
+    private sub2?: Subscription
     previousWords: string[] = []
     noMoreWords = false
 
@@ -45,17 +59,31 @@ export class PlayGroups2Page {
         console.log("asd")
         this.sub = this.queryRef.valueChanges.subscribe(
             (res) => {
-                console.log(res.data.groupingItem2)
-                /*const result =  res.data.groupingItems2.
-                this.wArray = []
-                this.word = res.data.groupingItems2.items ?? '!'
-                this.wArray.push(this.word)
-                this.correct = res.data.groupingItems2.correct ?? '!'
-                this.groups = res.data.groupingItems2.groups ?? []*/
+                const result =  res.data.groupingItems2.map(x => x.category!) ?? []
+                this.categories = [...(new Set(result))]
             }
         )
-
         loading.dismiss().then()
+    }
+
+    getWords() {
+        this.queryRef2 = this.service.browseByCategory(this.selectedCategory)
+        this.sub2 = this.queryRef2.valueChanges
+            .subscribe((res) => {
+                this.words = res.data.groupingItem2.items ?? []
+                this.corrects = res.data.groupingItem2.correct ?? []
+                this.groups = res.data.groupingItem2.groups ?? []
+                this.itemIsPicture = res.data.groupingItem2.itemIsPicture ?? []
+                this.groupIsPicture = res.data.groupingItem2.groupIsPicture ?? []
+                this.showWord()
+            }
+        )
+    }
+
+    showWord() {
+        const randomIndex = Math.floor(Math.random() * this.words.length)
+        this.word = this.words[randomIndex]
+        this.correct = this.corrects![randomIndex]
     }
 
     ionViewDidEnter(): void {
@@ -87,11 +115,11 @@ export class PlayGroups2Page {
         this.previousWords.push(this.word)
 
         const loading = await this.alert.loading('MESSAGE.LOADING')
-        await this.queryRef?.refetch()
+        await this.showWord()
 
         while (this.previousWords.includes(this.word)){
             if (tries < 5){
-                await this.queryRef?.refetch()
+                await this.showWord()
                 tries++
             }
             else
@@ -144,13 +172,15 @@ export class PlayGroups2Page {
 
     async refresh() {
         this.duplicates()
-        await this.queryRef?.refetch().then()
+        await this.showWord()
     }
 
-    check(word: string): boolean {
-        if (word.substring(0, this.prefix.length) === this.prefix){
-            return true
-        }
-        return false
+    checkItem(word: string): boolean {
+        return this.itemIsPicture[this.words.indexOf(word)]
+    }
+
+    checkGroup(group: string): boolean {
+        return this.groupIsPicture[this.groups.indexOf(group)]
+
     }
 }

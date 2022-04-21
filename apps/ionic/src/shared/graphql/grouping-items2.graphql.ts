@@ -35,7 +35,7 @@ export const GROUPING_ITEMS2 = {
 
     BROWSE_CATEGORIES: gql`
         query {
-            groupingItem2 {
+            groupingItems2 {
                 category
             }
         }

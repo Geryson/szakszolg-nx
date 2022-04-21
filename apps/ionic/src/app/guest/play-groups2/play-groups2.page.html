@@ -1,16 +1,16 @@
 <nx12-header title="NAVIGATION.GROUPING_ITEMS"></nx12-header>
 
 <ion-content>
-    <div class="container" [hidden]="loading">
+    <div *ngIf="selectedCategory" class="container" [hidden]="loading">
         <div class="groups" *ngIf="groups" cdkDropListGroup>
             <div class="example-container word visible">
                 <div>
                     <div class="example-item" >
-                        <div *ngIf="check(wArray[0])">
-                            <img src='{{wArray[0]}}'>
+                        <div *ngIf="checkItem(word)">
+                            <img [src]='getGroupImageUrl(word)'>
                         </div>
-                        <div *ngIf="!check(wArray[0])">
-                            {{wArray[0]}}
+                        <div *ngIf="!checkItem(word)">
+                            {{word}}
                         </div>
                     </div>
                 </div>
@@ -22,11 +22,11 @@
                     [cdkDropListData]="wArray"
                     (cdkDropListDropped)="drop($event)">
                     <div  cdkDragBoundary=".example-boundary" class="example-item" cdkDrag>
-                        <div *ngIf="check(wArray[0])">
-                            <img src='{{wArray[0]}}'>
+                        <div *ngIf="checkItem(word)">
+                            <img [src]='getGroupImageUrl(word)'>
                         </div>
-                        <div *ngIf="!check(wArray[0])">
-                            {{wArray[0]}}
+                        <div *ngIf="!checkItem(word)">
+                            {{word}}
                         </div>
                     </div>
                 </div>
@@ -40,10 +40,10 @@
                         class="example-list {{ answerId === 0 ? correctId === 0 ? 'green' : 'red' : 'example-list' }}"
                         (cdkDropListDropped)="drop($event)">
                         <div class="example-box">
-                            <div *ngIf="check(groups[0])">
-                                <img src='{{groups[0]}}'>
+                            <div *ngIf="checkGroup(groups[0])">
+                                <img [src]='getGroupImageUrl(groups[0])'>
                             </div>
-                            <div *ngIf="!check(groups[0])">
+                            <div *ngIf="!checkGroup(groups[0])">
                                 <p>{{ groups[0] }}</p>
                             </div>
                         </div>
@@ -58,10 +58,10 @@
                         (cdkDropListDropped)="drop($event)">
 
                         <div class="example-box">
-                            <div *ngIf="check(groups[1])">
-                                <img src='{{groups[1]}}'>
+                            <div *ngIf="checkGroup(groups[1])">
+                                <img [src]='getGroupImageUrl(groups[1])'>
                             </div>
-                            <div *ngIf="!check(groups[1])">
+                            <div *ngIf="!checkGroup(groups[1])">
                                 <p>{{ groups[1] }}</p>
                             </div>
                         </div>
@@ -79,10 +79,10 @@
                         (cdkDropListDropped)="drop($event)">
 
                         <div class="example-box" >
-                            <div *ngIf="check(groups[2])">
-                                <img src='{{groups[2]}}'>
+                            <div *ngIf="checkGroup(groups[2])">
+                                <img [src]='getGroupImageUrl(groups[2])'>
                             </div>
-                            <div *ngIf="!check(groups[2])">
+                            <div *ngIf="!checkGroup(groups[2])">
                                 <p>{{ groups[2] }}</p>
                             </div>
                         </div>
@@ -98,10 +98,10 @@
                         (cdkDropListDropped)="drop($event)">
 
                         <div class="example-box" >
-                            <div *ngIf="check(groups[3])">
-                                <img src='{{groups[3]}}'>
+                            <div *ngIf="checkGroup(groups[3])">
+                                <img [src]='getGroupImageUrl(groups[3])'>
                             </div>
-                            <div *ngIf="!check(groups[3])">
+                            <div *ngIf="!checkGroup(groups[3])">
                                 <p>{{ groups[3] }}</p>
                             </div>
                         </div>
@@ -120,6 +120,11 @@
             </div>
         </div>
     </div>
+
+    <p-dialog [closable]="false" [visible]="!selectedCategory">
+        <p *ngIf="noMoreWords">Elfogytak a szavak, válassz új kategóriát!</p>
+        <p-listbox (onClick)="getWords()" [(ngModel)]="selectedCategory" [options]="categories ?? []"></p-listbox>
+    </p-dialog>
 
     <p-dialog [visible]="noMoreWords" [closable]="false" [modal]="true">
         <p>Elfogytak a szavak, szeretnél újat kezdeni?</p>

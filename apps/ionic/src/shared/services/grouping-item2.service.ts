@@ -36,7 +36,7 @@ export class GroupingItem2Service
     }
 
     browseCategories() {
-        return this.apolloClient.watchQuery<{ groupingItem2: Partial<IGroupingItem2> }>({
+        return this.apolloClient.watchQuery<{ groupingItems2: Partial<IGroupingItem2>[] }>({
             query: GROUPING_ITEMS2.BROWSE_CATEGORIES,
         })
     }
