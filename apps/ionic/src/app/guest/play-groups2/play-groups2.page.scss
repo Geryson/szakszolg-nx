@@ -7,7 +7,7 @@
         'bottom'
     ;
     grid-area: groups;
-    width: 100%;
+
 }
 
 .container {
@@ -29,7 +29,8 @@
     grid-template-areas:
         'one two'
     ;
-    margin-top: 8%;
+    margin: 8% 5vw;
+    column-gap: 8vw;
 }
 
 .bottom{
@@ -38,6 +39,8 @@
     grid-template-areas:
         'three four'
     ;
+    margin: 8% 5vw 0;
+    column-gap: 8vw;
 }
 
 .components{
@@ -50,23 +53,28 @@
 
 .one {
     grid-area: one;
+    min-width: 40vw;
 }
 
 .two {
     grid-area: two;
+    min-width: 40vw;
 }
 
 .three {
     grid-area: three;
+    min-width: 40vw;
 }
 
 .four {
     grid-area: four;
+    min-width: 40vw;
 }
 
 .word {
     grid-area: word;
-    min-height: 5rem;
+    min-height: 20vw;
+    min-width: 20vw;
 }
 
 .visible {
@@ -91,7 +99,7 @@
 }
 
 .example-container {
-    width: 70%;
+    width: 50%;
     display: block;
     margin: 0 auto;
 }
@@ -118,15 +126,16 @@
 }
 
 .example-item {
-    width: 70%;
-    margin: 10% auto 10%;
+    min-width: 20vw;
+    min-height: 20vw;
+
+    margin: auto;
     border: solid 1px #ccc;
     background: white;
     border-radius: 4px;
     overflow: hidden;
     display: flex;
     justify-content: center;
-    padding: 2% 0;
     cursor: move;
 
 }
@@ -134,4 +143,8 @@
 ion-content {
     height: 100%;
     overflow: hidden;
+}
+
+.p-item {
+    margin: auto;
 }
