@@ -1,0 +1,133 @@
+<nx12-header [logoutButton]='true' title='ADMIN_NAV.GROUPING_MANAGEMENT'></nx12-header>
+<ion-content>
+    <div class='p-fluid grid'>
+
+        <div class='field col-12 md:col-4 mt-5 mb-2'>
+            <span class='p-float-label'>
+                <input [(ngModel)]="category" id="category" type="text" maxlength="80" pInputText>
+                <label for="category">Kategória</label>
+            </span>
+        </div>
+
+        <!--GROUP-->
+
+        <p-dropdown [(ngModel)]="selectedAnswerFormat" [options]="options" placeholder='Válasszon válasz formátumot!' class='field col-12 md:col-4 mt-2'></p-dropdown>
+
+        <div *ngIf="selectedAnswerFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
+            <span class='p-float-label'>
+                <input #newGroup id="group" (keydown.enter)='add(newGroup, "group")' maxlength="80" pInputText type='text' />
+                <label for='group'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}</label>
+            </span>
+
+            <span>
+                <p-button [disabled]="item!.groups!.length >= 4 " (click)='add(newGroup, "group")' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success ml-2 mt-2' type='button'></p-button>
+           </span>
+        </div>
+
+        <div  *ngIf="selectedAnswerFormat === 'Kép'" class='p-3 bg-white'>
+            <div class='mb-3'>
+                <p-fileUpload #fileUpload (onSelect)="onSelect($event)" [customUpload]='true' [maxFileSize]="10000000" [multiple]='false' [showUploadButton]='false' accept="image/*" name="data[]">
+                </p-fileUpload>
+            </div>
+            <div>
+                <p-button (click)='addImage(fileUpload, "group")' [disabled]='!uploadedFiles.length || item!.groups!.length >= 4' icon='pi pi-save'
+                          label='{{ "FORM_OPERATION.UPLOAD" | translate }}' styleClass='p-button-success {{ !!uploadedFiles.length ? "mt-2" : "" }}'></p-button>
+            </div>
+        </div>
+
+        <!--GROUP END-->
+
+        <!--GROUP LIST-->
+
+        <div class='field col-12 md:col-4 mt-4 mb-4'>
+            <p-table [value]='item?.groups ?? []' id='groups' responsiveLayout="stack">
+                <ng-template pTemplate='emptymessage'>
+                    <tr>
+                        <td>{{ 'MANAGE_GROUPINGS.NO_GROUPS' | translate }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template let-group pTemplate='body'>
+                    <tr>
+                        <td>
+                            <img *ngIf="item!.groupIsPicture![item!.groups!.indexOf(group)]" height="70px" [src]="getGroupImageUrl(group)">
+                            <span *ngIf="!(item!.groupIsPicture![item!.groups!.indexOf(group)])">{{group}}</span>
+                            <span class='float-end'>
+                                <p-button (click)='removeGroup(group)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <!--GROUP LIST END-->
+
+        <!--ITEM-->
+
+        <p-dropdown [(ngModel)]="selectedItemFormat" [options]="options" placeholder="Válasszon tárgy formátumot!" class='field col-12 md:col-4 mt-2'></p-dropdown>
+
+        <div *ngIf="selectedItemFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
+            <span class='p-float-label'>
+                <input #newItem id="item"  (keydown.enter)='add(newItem, "item")' maxlength="80" pInputText type='text' />
+                <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
+            </span>
+            <span><p-dropdown [(ngModel)]="correct" [options]="correctOptions" placeholder="Helyes válasz"></p-dropdown></span>
+
+           <span>
+                <p-button [disabled]="item!.groups!.length < 4" (click)='add(newItem, "item")' icon='pi pi-{{ NG_ICON.plus }}' styleClass='p-button-success ml-2 mt-2' type='button'></p-button>
+           </span>
+
+        </div>
+
+        <div  *ngIf="selectedItemFormat === 'Kép'" class='p-3 bg-white'>
+            <div class='mb-3'>
+                <p-fileUpload #itemUpload (onSelect)="onSelect($event)" [customUpload]='true' [maxFileSize]="10000000" [multiple]='false' [showUploadButton]='false' accept="image/*" name="data[]">
+                </p-fileUpload>
+            </div>
+            <div><p-dropdown [(ngModel)]="correct" [options]="correctOptions" placeholder="Helyes válasz"></p-dropdown></div>
+
+            <div>
+                <p-button (click)='addImage(itemUpload, "item")' icon='pi pi-save'
+                          label='{{ "FORM_OPERATION.UPLOAD" | translate }}' styleClass='p-button-success {{ !!uploadedFiles.length ? "mt-2" : "" }}'></p-button>
+            </div>
+        </div>
+
+        <!--ITEM END-->
+
+        <!--ITEM LIST-->
+
+        <div class='field col-12 md:col-4 mt-4 mb-4'>
+            <p-table [value]='item?.items ?? []' id='items' responsiveLayout="stack">
+                <ng-template pTemplate='emptymessage'>
+                    <tr>
+                        <td>{{ 'MANAGE_GROUPINGS.NO_ITEMS' | translate }}</td>
+                    </tr>
+                </ng-template>
+                <ng-template let-singleItem pTemplate='body'>
+                    <tr>
+                        <td class="{{!correctOptions.includes(item!.correct![item!.items!.indexOf(singleItem)]) ? 'bad' : ''}}">
+                            <img *ngIf="item!.itemIsPicture![item!.items!.indexOf(singleItem)]" height="70px" [src]="getGroupImageUrl(singleItem)">
+                            <span *ngIf="!(item!.itemIsPicture![item!.items!.indexOf(singleItem)])">{{singleItem}}</span>
+
+                            <span *ngIf="!(item!.correctIsPicture![item!.items!.indexOf(singleItem)])">{{item!.correct![item!.items!.indexOf(singleItem)]}}</span>
+                            <img height="70px" *ngIf="item!.correctIsPicture![item!.items!.indexOf(singleItem)]" [src]="getGroupImageUrl(item!.correct![item!.items!.indexOf(singleItem)])">
+
+                            <span class='float-end'>
+                                <p-button (click)='removeItem(singleItem)' styleClass='p-button-danger ml-3' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <!--ITEM LIST END-->
+
+        <div class='field col-12 md:col-4 mt-4 mb-4'>
+            <span>
+                <p-button (click)='save()' [disabled]='!item?.items?.length || saveable() || !this.category?.length' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
+            </span>
+        </div>
+
+    </div>
+</ion-content>

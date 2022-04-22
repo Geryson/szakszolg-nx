@@ -41,6 +41,10 @@ const routes: Routes = [
         path: lastPartOf(pages.admin.groupingItems),
         loadChildren: () => import('./manage-groups/manage-groups.module').then((m) => m.ManageGroupsPageModule),
     },
+    {
+        path: lastPartOf(pages.admin.groupingItems2),
+        loadChildren: () => import('./manage-groups2/manage-groups2.module').then((m) => m.ManageGroupsPage2Module),
+    },
 ]
 
 @NgModule({

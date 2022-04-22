@@ -1,0 +1,150 @@
+.groups{
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas:
+        'top'
+        'word'
+        'bottom'
+    ;
+    grid-area: groups;
+
+}
+
+.container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-areas:
+        'groups'
+        'components'
+    ;
+}
+
+.cdk-drag-placeholder {
+    display: none !important;
+}
+
+.top {
+    display: grid;
+    grid-area: top;
+    grid-template-areas:
+        'one two'
+    ;
+    margin: 8% 5vw;
+    column-gap: 8vw;
+}
+
+.bottom{
+    display: grid;
+    grid-area: bottom;
+    grid-template-areas:
+        'three four'
+    ;
+    margin: 8% 5vw 0;
+    column-gap: 8vw;
+}
+
+.components{
+    display: grid;
+    grid-area: components;
+    grid-template-areas:
+        'quit answers'
+    ;
+}
+
+.one {
+    grid-area: one;
+    min-width: 40vw;
+}
+
+.two {
+    grid-area: two;
+    min-width: 40vw;
+}
+
+.three {
+    grid-area: three;
+    min-width: 40vw;
+}
+
+.four {
+    grid-area: four;
+    min-width: 40vw;
+}
+
+.word {
+    grid-area: word;
+    min-height: 20vw;
+    min-width: 20vw;
+}
+
+.visible {
+    visibility: hidden;
+}
+
+.quit {
+    grid-area: quit;
+    margin: 8% auto;
+}
+
+.answers {
+    grid-area: answers;
+    margin: 8% auto;
+}
+
+.red{
+    background: tomato !important;
+}
+.green{
+    background: lawngreen !important;
+}
+
+.example-container {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.example-list {
+    border: solid 1px #ccc;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
+}
+
+.example-box {
+    width: 70%;
+    margin: 10% auto 10%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 2% 0;
+    cursor: move;
+}
+
+.example-item {
+    min-width: 20vw;
+    min-height: 20vw;
+
+    margin: auto;
+    border: solid 1px #ccc;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    cursor: move;
+
+}
+
+ion-content {
+    height: 100%;
+    overflow: hidden;
+}
+
+.p-item {
+    margin: auto;
+}

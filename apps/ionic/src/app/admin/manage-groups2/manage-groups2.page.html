@@ -1,0 +1,39 @@
+<nx12-header [logoutButton]='true' title='ADMIN_NAV.GROUPING_MANAGEMENT'></nx12-header>
+
+<ion-content>
+    <p-table #dt [globalFilterFields]="['category', 'items', 'groups']" [value]='values' responsiveLayout='stack' styleClass='p-table-stripped'>
+        <ng-template pTemplate='caption'>
+            <div class='flex align-items-center justify-content-between'>
+                <span class='p-input-icon-left'>
+                    <i class='pi pi-search'></i>
+                    <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
+                           placeholder="{{ 'MANAGE_GROUPINGS.SEARCH' | translate }}" type='text' maxlength="80" />
+                </span>
+                <span>
+                    <p-button *ngIf="userCanAdd" (click)='addClick()' styleClass='p-button-success' icon='pi pi-plus' type='button'></p-button>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate='header'>
+            <tr>
+                <th pSortableColumn='category'>{{ 'MANAGE_GROUPINGS.CATEGORY' | translate }}<p-sortIcon field='category'></p-sortIcon></th>
+                <th pSortableColumn='items'>{{ 'MANAGE_GROUPINGS.ITEMS' | translate }}<p-sortIcon field='items'></p-sortIcon></th>
+                <th pSortableColumn='groups'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}<p-sortIcon field='groups'></p-sortIcon></th>
+                <th>{{ 'MANAGE_GROUPINGS.ACTIONS' | translate }}</th>
+            </tr>
+        </ng-template>
+        <ng-template let-itemObject pTemplate='body'>
+            <tr>
+                <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.CATEGORY' | translate }}</span> {{ itemObject.category }}</td>
+                <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.ITEMS' | translate }}</span> {{ itemObject.items | join:', ' }}</td>
+                <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}</span> {{ itemObject.groups | join:', ' }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.ACTIONS' | translate }}</span>
+                    <span class='p-buttonset'>
+                        <p-button (click)='editClick(itemObject)' *ngIf='userCanEdit' styleClass='p-button-primary mr-2' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                        <p-button (click)='deleteClick(itemObject)' *ngIf='userCanDelete' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</ion-content>

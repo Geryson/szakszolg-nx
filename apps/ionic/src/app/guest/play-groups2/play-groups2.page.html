@@ -1,0 +1,120 @@
+<nx12-header title="NAVIGATION.GROUPING_ITEMS"></nx12-header>
+
+<ion-content>
+    <div *ngIf="selectedCategory" class="container" [hidden]="loading">
+        <div class="groups" *ngIf="groups" cdkDropListGroup>
+            <div class="example-container word visible">
+                <div>
+                    <div class="example-item" >
+                        <img *ngIf="checkItem(word)" [src]='getGroupImageUrl(word)'>
+                        <p class="p-item" *ngIf="!checkItem(word)">{{word}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example-container word ">
+                <div
+                    cdkDropList
+                    [cdkDropListData]="wArray"
+                    (cdkDropListDropped)="drop($event)">
+                    <div  cdkDragBoundary=".example-boundary" class="example-item" cdkDrag>
+                        <img *ngIf="checkItem(word)" [src]='getGroupImageUrl(word)'>
+                        <p class="p-item" *ngIf="!checkItem(word)">{{word}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="top">
+                <div class="example-container one ">
+                    <div
+                        cdkDropList
+
+                        class="example-list {{ answerId === 0 ? correctId === 0 ? 'green' : 'red' : 'example-list' }}"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="example-box">
+                            <img *ngIf="checkGroup(groups[0])" [src]='getGroupImageUrl(groups[0])'>
+                            <p *ngIf="!checkGroup(groups[0])">{{ groups[0] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-container two">
+                    <div
+                        cdkDropList
+
+                        class="example-list {{ answerId === 1 ? correctId === 1 ? 'green' : 'red' : 'example-list' }}"
+                        (cdkDropListDropped)="drop($event)">
+
+                        <div class="example-box">
+                            <img *ngIf="checkGroup(groups[1])" [src]='getGroupImageUrl(groups[1])'>
+                            <p *ngIf="!checkGroup(groups[1])">{{ groups[1] }}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div class="example-container three">
+                    <div
+                        cdkDropList
+
+                        class="example-list {{ answerId === 2 ? correctId === 2 ? 'green' : 'red' : 'example-list' }}"
+                        (cdkDropListDropped)="drop($event)">
+
+                        <div class="example-box" >
+                            <img *ngIf="checkGroup(groups[2])" [src]='getGroupImageUrl(groups[2])'>
+                            <p *ngIf="!checkGroup(groups[2])">{{ groups[2] }}</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="example-container four">
+                    <div
+                        cdkDropList
+
+                        class="example-list {{ answerId === 3 ? correctId === 3 ? 'green' : 'red' : 'example-list' }}"
+                        (cdkDropListDropped)="drop($event)">
+
+                        <div class="example-box" >
+                            <img *ngIf="checkGroup(groups[3])" [src]='getGroupImageUrl(groups[3])'>
+                            <p *ngIf="!checkGroup(groups[3])">{{ groups[3] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="components">
+            <div class="quit">
+                <p-button (click)="quitConfirm()" label="Kilépés"></p-button>
+            </div>
+            <div class="answers">
+                Helyes válaszok száma: <p>{{ counter }}</p>
+            </div>
+        </div>
+    </div>
+
+    <p-dialog [closable]="false" [visible]="!selectedCategory">
+        <p *ngIf="noMoreWords">Elfogytak a szavak, válassz új kategóriát!</p>
+        <p-listbox (onClick)="getWords()" [(ngModel)]="selectedCategory" [options]="categories ?? []"></p-listbox>
+    </p-dialog>
+
+    <p-dialog [visible]="noMoreWords" [closable]="false" [modal]="true">
+        <p>Elfogytak a szavak, szeretnél újat kezdeni?</p>
+        <p>A jó válaszaid száma: {{counter}}</p>
+        <button pButton type="button" label="Igen" icon="pi pi-check" class="p-button-lg" (click)="refresh()"></button>
+        <button pButton type="button" label="Nem" icon="pi pi-times" class="p-button-lg" (click)="quit()"></button>
+    </p-dialog>
+
+    <p-dialog [(visible)]="guessedAnswer" [closable]="false" [modal]="true">
+        <p>Talált!</p>
+        <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
+    </p-dialog>
+    <p-dialog [(visible)]="notCorrect" [closable]="false" [modal]="true">
+        <p>Nem talált</p>
+        <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
+    </p-dialog>
+</ion-content>
