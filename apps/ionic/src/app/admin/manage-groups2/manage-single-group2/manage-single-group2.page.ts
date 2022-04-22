@@ -160,8 +160,9 @@ export class ManageSingleGroup2Page {
                     if (!this.item?.groupIsPicture) this.item!.groupIsPicture = []
                     this.item!.groups!.push(image.filename)
                     this.item!.groupIsPicture.push(true)
-                    this.correctOptions.push(image.filename)
+                    this.correctOptions = this.item!.groups!
                     fileUpload.clear()
+                    this.uploadedFiles = []
                 }
                 else {
                     if (!this.item?.itemIsPicture) this.item!.itemIsPicture = []
@@ -185,6 +186,7 @@ export class ManageSingleGroup2Page {
                         this.item!.correctIsPicture.push(false)
                     }
                     fileUpload.clear()
+                    this.uploadedFiles = []
                 }
                 this.correct = ''
             }
