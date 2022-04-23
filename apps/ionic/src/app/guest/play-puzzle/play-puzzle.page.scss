@@ -1,0 +1,107 @@
+.custom-puzzle {
+    --background: #ededed;
+}
+
+.move_count_container{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.fondo {
+    opacity: 0.3;
+}
+
+.movil{
+    width: 100;
+    height: 100;
+}
+
+.mirroredRotate{
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+@media screen and (orientation: landscape){
+    .toolbar{
+        width: 25%;
+        height: 100%;
+        border: solid 1px black;
+        border-right-style: none;
+        border-top-style: none;
+        border-bottom-style: none;
+        float: right;
+    }
+
+    .entorno {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+    }
+
+    .container{
+        width: 59%;
+        height: 100%;
+        float: left;
+        padding-left: 10vh;
+        padding-right: 10vh;
+    }
+
+    .crop-container canvas {
+        max-height: 90%;
+    }
+
+    .rotate{
+        margin:5% 0;
+        padding: 0 5%;
+        height: 20%;
+    }
+
+    .leftRotate{
+        width: 40%;
+        float:left;
+    }
+
+    .rightRotate{
+        width: 40%;
+        float:right;
+    }
+
+    .operations{
+        padding: 0 5%;
+        height: 60%;
+        bottom: 0;
+    }
+
+    .start{
+        width: 80%;
+        margin-bottom: 5%;
+        margin-left: 10%;
+    }
+
+    .reset{
+        width: 80%;
+        margin-bottom: 5%;
+        margin-left: 10%;
+    }
+
+    .giveUp{
+        width: 80%;
+        margin-bottom: 5%;
+        margin-left: 10%;
+    }
+
+    .finished{
+        width: 50%;
+        margin-left: 25%;
+    }
+
+    .time_counter{
+        text-align: center;
+        margin: 10px 0;
+        font-size: xx-large;
+    }
+}
