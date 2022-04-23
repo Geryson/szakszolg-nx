@@ -1,5 +1,22 @@
 <nx12-header [logoutButton]='false' title='NAVIGATION.PUZZLE'></nx12-header>
 
-<ion-content>
-
+<ion-content class="custom-puzzle" [scrollY]="false">
+    <div class="container">
+        <div id="crop-container"></div>
+        <angular-cropper #puzzleCropper id="invisible-cropper" [imageUrl]="imgSource"></angular-cropper>
+        <!--    [src]="imgSource" [style.width]="imgWidth" [style.height]="imgHeight"-->
+    </div>
+    <div class="toolbar">
+        <div class="time_counter">{{ puzzleTime }}</div>
+        <h1 class="move_count_container">{{ 'JIGSAW.MOVEMENT' | translate }} <span class="movement_counter">0</span></h1>
+        <div class="operations">
+            <ion-button [class.button-disabled]="startDisabled" class="start" shape="round" (click)="start()">{{ 'BUTTONS.START' | translate }}</ion-button>
+            <ion-button [class.button-disabled]="resetDisabled" class="reset" shape="round" (click)="resetPieces()">{{ 'BUTTONS.RESTART' | translate }}</ion-button>
+            <ion-button [class.button-disabled]="giveUpDisabled" class="giveUp" shape="round" (click)="presentAlertConfirm()">{{ 'BUTTONS.REJECT' | translate }}</ion-button>
+            <!-- <ion-button [class.button-disabled]="finishedDisabled" class="finished" shape="round" (click)="navigateToResult()">Kész</ion-button> -->
+        </div>
+    </div>
 </ion-content>
+
+<script></script>
+
