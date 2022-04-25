@@ -4,6 +4,7 @@ import {RedirectService} from "../../../shared/services/redirect.service";
 import {pages} from "../../../shared/utils/pages.const";
 import {STORAGE_KEY} from "../../../shared/utils/constants";
 import {StorageService} from "../../../shared/services/storage.service";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
     selector: 'nx12-survey-details',
@@ -13,7 +14,10 @@ import {StorageService} from "../../../shared/services/storage.service";
 export class SurveyDetailsPage implements OnInit {
     pages=pages
 
-    constructor(public readonly service: TokenService, public readonly redirect: RedirectService, private readonly storage: StorageService) {
+    constructor(public readonly service: TokenService,
+                public readonly redirect: RedirectService,
+                private readonly storage: StorageService,
+                public readonly translate: TranslatePipe) {
     }
 
     ngOnInit() {

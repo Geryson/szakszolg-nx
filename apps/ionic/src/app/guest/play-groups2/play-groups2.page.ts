@@ -11,6 +11,7 @@ import {RedirectService} from "../../../shared/services/redirect.service";
 import {pages} from "../../../shared/utils/pages.const";
 import {ConfirmationService} from "primeng/api";
 import {getGroupImageUrl} from "../../../shared/utils/uri.tools";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
     selector: 'nx12-play-groups2',
@@ -48,8 +49,11 @@ export class PlayGroups2Page {
 
     counter = 0
 
-    constructor(private readonly service: GroupingItem2Service, private readonly alert: AlertService,
-                private readonly redirect: RedirectService, private confirmationService: ConfirmationService) {}
+    constructor(private readonly service: GroupingItem2Service,
+                private readonly alert: AlertService,
+                private readonly redirect: RedirectService,
+                private confirmationService: ConfirmationService,
+                private readonly translate: TranslatePipe) {}
 
     async init() {
         const loading = await this.alert.loading('MESSAGE.LOADING')
@@ -87,7 +91,7 @@ export class PlayGroups2Page {
         this.init().then()
     }
 
-    drop(event: CdkDragDrop<string[]>/*group: string*/) {
+    drop(event: CdkDragDrop<string[]>) {
         if (event.container.id !== 'cdk-drop-list-0'){
 
             const length = event.container.id.length
@@ -154,8 +158,8 @@ export class PlayGroups2Page {
 
     quitConfirm() {
         this.confirmationService.confirm({
-            message: 'Biztos hogy ki akarsz lépni?',
-            header: 'Kilépés',
+            message: this.translate.transform(`MESSAGE.QUIT`),
+            header: this.translate.transform(`HEADER.EXIT`),
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.quit()

@@ -12,6 +12,7 @@ import {MessageService} from "primeng/api";
 import {StorageService} from "../../../shared/services/storage.service";
 import {STORAGE_KEY} from "../../../shared/utils/constants";
 import {Log} from "../../../shared/utils/log.tools";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
     selector: 'nx12-enter-token',
@@ -24,18 +25,19 @@ export class EnterTokenPage{
     private queryRef?: QueryRef<{ token: Partial<IToken> }, EmptyObject>;
 
     constructor(protected readonly service: TokenService, private readonly redirect: RedirectService,
-                private readonly toast: MessageService, private readonly storage: StorageService) {
+                private readonly toast: MessageService, private readonly storage: StorageService,
+                private readonly translate: TranslatePipe) {
     }
 
     send() {
         this.queryRef = this.service.read(this.token)
         this.sub = this.queryRef?.valueChanges.pipe(
             catchError((err, caught) => {
-                this.toast.add({summary: 'Ez a token már lejárt!', severity: 'error'})
+                this.toast.add({summary: this.translate.transform(`TOKEN.EXPIRED`), severity: 'error'})
                 throw "Expired token"
         })).subscribe((res) => {
             if(!res.data.token){
-                this.toast.add({summary: 'Ez a token nem létezik!', severity: 'error'})
+                this.toast.add({summary: this.translate.transform(`TOKEN.NOT_EXISTS`), severity: 'error'})
                 return
             }
 

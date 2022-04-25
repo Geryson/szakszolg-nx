@@ -190,7 +190,15 @@
         "FORM_CSV_EXPORT_CONFIRM": "Biztosan szeretné a kérdőív eredményeit elmenteni az eszköztárhelyre CSV-fájlként? A művelethez tárhely elérési engedélyre lesz szükség.",
         "FORM_CSV_EXPORT_DONE": "A kérdőív eredményeinek CSV-fájlba mentése sikeresen megtörtént!",
         "FORM_CSV_EXPORT_FAILED": "A fájl mentése nem sikerült!",
-        "FORM_CSV_EXPORT_UNAUTHORIZED": "A fájl mentéséhez eszköztárhely elérési engedélyre van szükség!"
+        "FORM_CSV_EXPORT_UNAUTHORIZED": "A fájl mentéséhez eszköztárhely elérési engedélyre van szükség!",
+        "QUIT": "Biztos hogy ki akarsz lépni?",
+        "NEW_CAT": "Elfogytak a szavak, válassz új kategóriát!",
+        "NEW": "Elfogytak a szavak, szeretnél újat kezdeni?",
+        "SUCCESS": "Siker!",
+        "NO_SUCCESS": "Nem sikerült!",
+        "CORRECT": "A helyes válasz: ",
+        "CORRECT_ANSWERS": "Jó válaszok száma: ",
+        "SURVEY_QUIT": "Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni"
     },
 
     "QUESTION_STRING":{
@@ -214,7 +222,9 @@
         "SEND_QF": "Biztosan beküldi a kérdőívet?",
         "PASSWORD": "Jelszó",
         "NOT_SUPPORTED_ACTION": "Nem támogatott művelet",
-        "CHOOSE_TYPE":"Válasszon típust"
+        "CHOOSE_TYPE":"Válasszon típust",
+        "EXIT": "Kilépés",
+        "GAME_OVER": "Játék vége!"
     },
 
     "HOME": {
@@ -421,7 +431,8 @@
     "ADD_FORM_DESCRIPTION":{
         "QUESTIONNAIRE_TITLE": "Kérdőív címe:",
         "QUESTIONNAIRE_QUESTION": "Kérdés:",
-        "QUESTIONNAIRE_DESCRIPTION": "Kérdőív leírása:"
+        "QUESTIONNAIRE_DESCRIPTION": "Kérdőív leírása:",
+        "QUESTIONNAIRE_ANSWERS": "Eddig megválaszolt kérdések: "
     },
 
     "ADD_HANGMAN_WORDS":{
@@ -473,7 +484,8 @@
         "YES": "Igen",
         "NO": "Nem",
         "ANSWER_OPTION": "Válaszlehetőség",
-        "YES_PERCENTAGE": "Igen %"
+        "YES_PERCENTAGE": "Igen %",
+        "END": "A kérdések végére értél, elküldöd a válaszaidat?"
     },
 
     "FORM_DESCRIPTION":{
@@ -495,7 +507,9 @@
     },
 
     "TOKEN":{
-        "ADD_IDENTIFICATION":"Kérem adja meg az azonosítót:"
+        "ADD_IDENTIFICATION":"Kérem adja meg az azonosítót:",
+        "EXPIRED": "Ez a token már lejárt!",
+        "NOT_EXISTS": "Ez a token nem létezik!"
     },
 
     "MANAGE_HANGMAN_WORDS":{
@@ -530,9 +544,20 @@
         "NUMBER_OF_MATCHES":"Találatok száma:"
     },
 
+    "GROUPING": {
+        "CORRECT_ANSWERS": "Helyes válaszok száma:",
+        "CORRECT": "Talált!",
+        "NOT_CORRECT": "Nem talált!"
+    },
+
     "MIRROR":{
         "TEXT_DOES_NOT_MATCH_REMAINING_TRIES":"A beírt szöveg nem egyezik a kért szöveggel. Újra próbálások száma",
-        "WRITTEN_TEXT_PLACE":"Beírt szöveg helye"
+        "WRITTEN_TEXT_PLACE":"Beírt szöveg helye",
+        "CORRECT": "Talált!",
+        "NOT_CORRECT": "Nem talált!",
+        "TRIES": "Próbálkozások száma: ",
+        "CORRECT_ANSWERS": "Jó válaszok száma: ",
+        "CHECK": "Ellenőrzés"
     },
 
     "MIRROR_LIST":{

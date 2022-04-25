@@ -3,16 +3,17 @@
 <ion-content>
     <div class="container">
         <div class="content">
-            <h4>Kérdőív címe:</h4>
+            <h4>{{'ADD_FORM_DESCRIPTION.QUESTIONNAIRE_TITLE' | translate}}</h4>
             <h5>{{service.activeQuiz?.title}}</h5>
-            <h4>Kérdőív leírása:</h4>
+            <h4>{{'ADD_FORM_DESCRIPTION.QUESTIONNAIRE_DESCRIPTION' | translate}}</h4>
             <h5>{{service.activeQuiz?.description}}</h5>
-            <p *ngIf="service.index > 0">Eddig megválaszolt kérdések:{{service.index}}
+            <p *ngIf="service.index > 0">{{'ADD_FORM_DESCRIPTION.QUESTIONNAIRE_ANSWERS' | translate}}{{service.index}}
                 /{{service.activeQuiz!.questions.length}}</p>
-            <p-button [style]="{'margin': '2%'}" label="Tovább" (click)="redirectTo()"></p-button>
+            <p-button [style]="{'margin': '2%'}" label="{{'BUTTONS.NEXT' | translate}}" (click)="redirectTo()"></p-button>
             <p-button [style]="{'margin': '2%'}"
-                (click)="service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')">
-                Mégse
+                (click)="service.confirm(this.translate.transform('MESSAGE.SURVEY_QUIT'),
+                this.translate.transform('HEADER.CONFIRM'))">
+                {{'BUTTONS.CANCEL' | translate}}
             </p-button>
         </div>
     </div>

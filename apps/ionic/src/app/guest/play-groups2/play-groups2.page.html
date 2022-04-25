@@ -89,32 +89,32 @@
         </div>
         <div class="components">
             <div class="quit">
-                <p-button (click)="quitConfirm()" label="Kilépés"></p-button>
+                <p-button (click)="quitConfirm()" label="{{'BUTTONS.EXIT' | translate}}"></p-button>
             </div>
             <div class="answers">
-                Helyes válaszok száma: <p>{{ counter }}</p>
+                {{'GROUPING.CORRECT_ANSWERS' | translate}}<p>{{ counter }}</p>
             </div>
         </div>
     </div>
 
     <p-dialog [closable]="false" [visible]="!selectedCategory">
-        <p *ngIf="noMoreWords">Elfogytak a szavak, válassz új kategóriát!</p>
+        <p *ngIf="noMoreWords">{{'GROUPING.NEW_CAT' | translate}}</p>
         <p-listbox (onClick)="getWords()" [(ngModel)]="selectedCategory" [options]="categories ?? []"></p-listbox>
     </p-dialog>
 
     <p-dialog [visible]="noMoreWords" [closable]="false" [modal]="true">
-        <p>Elfogytak a szavak, szeretnél újat kezdeni?</p>
-        <p>A jó válaszaid száma: {{counter}}</p>
-        <button pButton type="button" label="Igen" icon="pi pi-check" class="p-button-lg" (click)="refresh()"></button>
-        <button pButton type="button" label="Nem" icon="pi pi-times" class="p-button-lg" (click)="quit()"></button>
+        <p>{{'MESSAGE.NEW' | translate}}</p>
+        <p>{{'MESSAGE.CORRECT_ANSWERS' | translate}} {{counter}}</p>
+        <button pButton type="button" label="{{'BUTTONS.YES' | translate}}" icon="pi pi-check" class="p-button-lg" (click)="refresh()"></button>
+        <button pButton type="button" label="{{'BUTTONS.NO' | translate}}" icon="pi pi-times" class="p-button-lg" (click)="quit()"></button>
     </p-dialog>
 
     <p-dialog [(visible)]="guessedAnswer" [closable]="false" [modal]="true">
-        <p>Talált!</p>
+        <p>{{'GROUPING.CORRECT' | translate}}</p>
         <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
     <p-dialog [(visible)]="notCorrect" [closable]="false" [modal]="true">
-        <p>Nem talált</p>
+        <p>{{'GROUPING.NOT_CORRECT' | translate}}</p>
         <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
 </ion-content>
