@@ -192,7 +192,8 @@
         "FORM_CSV_EXPORT_FAILED": "A fájl mentése nem sikerült!",
         "FORM_CSV_EXPORT_UNAUTHORIZED": "A fájl mentéséhez eszköztárhely elérési engedélyre van szükség!",
         "QUIT": "Biztos hogy ki akarsz lépni?",
-        "EXIT": "Kilépés"
+        "NEW_CAT": "Elfogytak a szavak, válassz új kategóriát!",
+        "NEW": "Elfogytak a szavak, szeretnél újat kezdeni?"
     },
 
     "QUESTION_STRING":{
@@ -216,7 +217,8 @@
         "SEND_QF": "Biztosan beküldi a kérdőívet?",
         "PASSWORD": "Jelszó",
         "NOT_SUPPORTED_ACTION": "Nem támogatott művelet",
-        "CHOOSE_TYPE":"Válasszon típust"
+        "CHOOSE_TYPE":"Válasszon típust",
+        "EXIT": "Kilépés"
     },
 
     "HOME": {
@@ -534,8 +536,6 @@
 
     "GROUPING": {
         "CORRECT_ANSWERS": "Helyes válaszok száma:",
-        "NEW_CAT": "Elfogytak a szavak, válassz új kategóriát!",
-        "NEW": "Elfogytak a szavak, szeretnél újat kezdeni?",
         "CORRECT": "Talált!",
         "NOT_CORRECT": "Nem talált!"
     },

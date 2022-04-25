@@ -159,7 +159,7 @@ export class PlayGroups2Page {
     quitConfirm() {
         this.confirmationService.confirm({
             message: this.translate.transform(`MESSAGE.QUIT`),
-            header: this.translate.transform(`MESSAGE.EXIT`),
+            header: this.translate.transform(`HEADER.EXIT`),
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.quit()
