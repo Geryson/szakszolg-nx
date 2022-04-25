@@ -196,7 +196,9 @@
         "NEW": "Elfogytak a szavak, szeretnél újat kezdeni?",
         "SUCCESS": "Siker!",
         "NO_SUCCESS": "Nem sikerült!",
-        "CORRECT": "A helyes válasz: "
+        "CORRECT": "A helyes válasz: ",
+        "CORRECT_ANSWERS": "Jó válaszok száma: ",
+        "SURVEY_QUIT": "Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni"
     },
 
     "QUESTION_STRING":{
@@ -429,7 +431,8 @@
     "ADD_FORM_DESCRIPTION":{
         "QUESTIONNAIRE_TITLE": "Kérdőív címe:",
         "QUESTIONNAIRE_QUESTION": "Kérdés:",
-        "QUESTIONNAIRE_DESCRIPTION": "Kérdőív leírása:"
+        "QUESTIONNAIRE_DESCRIPTION": "Kérdőív leírása:",
+        "QUESTIONNAIRE_ANSWERS": "Eddig megválaszolt kérdések: "
     },
 
     "ADD_HANGMAN_WORDS":{
@@ -481,7 +484,8 @@
         "YES": "Igen",
         "NO": "Nem",
         "ANSWER_OPTION": "Válaszlehetőség",
-        "YES_PERCENTAGE": "Igen %"
+        "YES_PERCENTAGE": "Igen %",
+        "END": "A kérdések végére értél, elküldöd a válaszaidat?"
     },
 
     "FORM_DESCRIPTION":{

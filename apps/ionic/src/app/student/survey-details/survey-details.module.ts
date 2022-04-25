@@ -9,6 +9,7 @@ import { SurveyDetailsPageRoutingModule } from './survey-details-routing.module'
 import { SurveyDetailsPage } from './survey-details.page';
 import {NxSharedModule} from "../../../shared/nx-shared.module";
 import {ButtonModule} from "primeng/button";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import {ButtonModule} from "primeng/button";
         IonicModule,
         SurveyDetailsPageRoutingModule,
         NxSharedModule,
-        ButtonModule
+        ButtonModule,
+        TranslateModule
     ],
   declarations: [SurveyDetailsPage]
 })

@@ -3,10 +3,10 @@
         {{service.questions[service.index].question}}
     </h4>
     <div>
-        <p-button (click)="next('true')" label="Igaz"></p-button>
+        <p-button (click)="next('true')" label="{{'QUESTION_STRING.TRUE' | translate}}"></p-button>
     </div>
     <div>
-        <p-button (click)="next('false')" label="Hamis"></p-button>
+        <p-button (click)="next('false')" label="{{'QUESTION_STRING.FALSE' | translate}}"></p-button>
     </div>
 </div>
 

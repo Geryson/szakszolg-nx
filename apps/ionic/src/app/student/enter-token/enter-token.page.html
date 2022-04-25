@@ -2,7 +2,7 @@
 
 <ion-content>
     <div class="token-page">
-        <h3>Adj meg egy token-t</h3>
+        <h3>{{'NAVIGATION.ENTER_TOKEN' | translate}}</h3>
         <input type="text" [(ngModel)]="token" [maxLength]="6" (keydown.enter)="send()">
         <div class="button">
             <p-button label="{{'BUTTONS.SEND' | translate}}" (click)="send()"></p-button>
