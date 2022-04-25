@@ -503,7 +503,9 @@
     },
 
     "TOKEN":{
-        "ADD_IDENTIFICATION":"Kérem adja meg az azonosítót:"
+        "ADD_IDENTIFICATION":"Kérem adja meg az azonosítót:",
+        "EXPIRED": "Ez a token már lejárt!",
+        "NOT_EXISTS": "Ez a token nem létezik!"
     },
 
     "MANAGE_HANGMAN_WORDS":{
