@@ -17,7 +17,7 @@ export class SurveyDetailsPage implements OnInit {
     constructor(public readonly service: TokenService,
                 public readonly redirect: RedirectService,
                 private readonly storage: StorageService,
-                private readonly translate: TranslatePipe) {
+                public readonly translate: TranslatePipe) {
     }
 
     ngOnInit() {
