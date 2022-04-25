@@ -16,6 +16,7 @@ import {ButtonModule} from "primeng/button";
 import {ListboxModule} from "primeng/listbox";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
         ButtonModule,
         ListboxModule,
         DragDropModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        TranslateModule
     ],
   declarations: [PlayGroups2Page]
 })

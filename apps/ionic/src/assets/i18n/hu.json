@@ -190,7 +190,9 @@
         "FORM_CSV_EXPORT_CONFIRM": "Biztosan szeretné a kérdőív eredményeit elmenteni az eszköztárhelyre CSV-fájlként? A művelethez tárhely elérési engedélyre lesz szükség.",
         "FORM_CSV_EXPORT_DONE": "A kérdőív eredményeinek CSV-fájlba mentése sikeresen megtörtént!",
         "FORM_CSV_EXPORT_FAILED": "A fájl mentése nem sikerült!",
-        "FORM_CSV_EXPORT_UNAUTHORIZED": "A fájl mentéséhez eszköztárhely elérési engedélyre van szükség!"
+        "FORM_CSV_EXPORT_UNAUTHORIZED": "A fájl mentéséhez eszköztárhely elérési engedélyre van szükség!",
+        "QUIT": "Biztos hogy ki akarsz lépni?",
+        "EXIT": "Kilépés"
     },
 
     "QUESTION_STRING":{
@@ -528,6 +530,14 @@
 
     "MAP":{
         "NUMBER_OF_MATCHES":"Találatok száma:"
+    },
+
+    "GROUPING": {
+        "CORRECT_ANSWERS": "Helyes válaszok száma:",
+        "NEW_CAT": "Elfogytak a szavak, válassz új kategóriát!",
+        "NEW": "Elfogytak a szavak, szeretnél újat kezdeni?",
+        "CORRECT": "Talált!",
+        "NOT_CORRECT": "Nem talált!"
     },
 
     "MIRROR":{
