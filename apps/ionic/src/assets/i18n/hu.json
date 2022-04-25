@@ -193,7 +193,9 @@
         "FORM_CSV_EXPORT_UNAUTHORIZED": "A fájl mentéséhez eszköztárhely elérési engedélyre van szükség!",
         "QUIT": "Biztos hogy ki akarsz lépni?",
         "NEW_CAT": "Elfogytak a szavak, válassz új kategóriát!",
-        "NEW": "Elfogytak a szavak, szeretnél újat kezdeni?"
+        "NEW": "Elfogytak a szavak, szeretnél újat kezdeni?",
+        "SUCCESS": "Siker!",
+        "NO_SUCCESS": "Nem sikerült!"
     },
 
     "QUESTION_STRING":{
@@ -218,7 +220,8 @@
         "PASSWORD": "Jelszó",
         "NOT_SUPPORTED_ACTION": "Nem támogatott művelet",
         "CHOOSE_TYPE":"Válasszon típust",
-        "EXIT": "Kilépés"
+        "EXIT": "Kilépés",
+        "GAME_OVER": "Játék vége!"
     },
 
     "HOME": {

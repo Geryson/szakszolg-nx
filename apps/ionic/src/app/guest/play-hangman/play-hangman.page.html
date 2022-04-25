@@ -14,15 +14,15 @@
         </div>
     </div>
     <p-dialog [closable]="false" [visible]="!selectedCategory">
-        <p *ngIf="noMoreWords">Elfogytak a szavak, válassz új kategóriát!</p>
+        <p *ngIf="noMoreWords">{{'MESSAGE.NEW_CAT' | translate}}</p>
         <p-listbox (onClick)="showWord()" [(ngModel)]="selectedCategory" [options]="categories ?? []"></p-listbox>
     </p-dialog>
-    <p-dialog header="Játék vége!" [(visible)]="failed" [closable]="false" [modal]="true">
-        <p>Nem sikerült!</p>
+    <p-dialog header="{{'HEADER.GAME_OVER' | translate}}" [(visible)]="failed" [closable]="false" [modal]="true">
+        <p>{{'MESSAGE.NO_SUCCESS' | translate}}</p>
         <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
-    <p-dialog header="Játék vége!" [(visible)]="success" [closable]="false" [modal]="true">
-        <p>Siker!</p>
+    <p-dialog header="{{'HEADER.GAME_OVER' | translate}}" [(visible)]="success" [closable]="false" [modal]="true">
+        <p>{{'MESSAGE.SUCCESS' | translate}}</p>
         <button pButton type="button" label="Ok" icon="pi pi-check" class="p-button-lg" (click)="nextWord()"></button>
     </p-dialog>
 
