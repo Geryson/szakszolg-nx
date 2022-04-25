@@ -195,7 +195,8 @@
         "NEW_CAT": "Elfogytak a szavak, válassz új kategóriát!",
         "NEW": "Elfogytak a szavak, szeretnél újat kezdeni?",
         "SUCCESS": "Siker!",
-        "NO_SUCCESS": "Nem sikerült!"
+        "NO_SUCCESS": "Nem sikerült!",
+        "CORRECT": "A helyes válasz: "
     },
 
     "QUESTION_STRING":{
@@ -545,7 +546,12 @@
 
     "MIRROR":{
         "TEXT_DOES_NOT_MATCH_REMAINING_TRIES":"A beírt szöveg nem egyezik a kért szöveggel. Újra próbálások száma",
-        "WRITTEN_TEXT_PLACE":"Beírt szöveg helye"
+        "WRITTEN_TEXT_PLACE":"Beírt szöveg helye",
+        "CORRECT": "Talált!",
+        "NOT_CORRECT": "Nem talált!",
+        "TRIES": "Próbálkozások száma: ",
+        "CORRECT_ANSWERS": "Jó válaszok száma: ",
+        "CHECK": "Ellenőrzés"
     },
 
     "MIRROR_LIST":{
