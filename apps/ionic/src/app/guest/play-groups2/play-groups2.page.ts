@@ -182,6 +182,5 @@ export class PlayGroups2Page {
 
     checkGroup(group: string): boolean {
         return this.groupIsPicture[this.groups.indexOf(group)]
-
     }
 }
