@@ -14,6 +14,18 @@ export class SchoolFinderPage extends CrudPageClass<ISchool, { schools: Partial<
     protected editPage = pages.guest.schoolFinder
     protected resourceName = RESOURCES.SCHOOLS
 
+    button1 = {
+        name: '',
+        url: ''
+    }
+
+    button2 = {
+        name: '',
+        url: ''
+    }
+
+
+
   constructor(protected readonly resourceService: SchoolService) {
       super()
   }
