@@ -227,6 +227,13 @@
         "GAME_OVER": "Játék vége!"
     },
 
+    "RULES": {
+        "RULE": "Játékszabály",
+        "PLAY_GROUPS": "Válassz egy kategóriát, majd a középső elemet húzd ahhoz, amit helyesnek gondolsz!",
+        "HANGMAN": "A játék akkor ér véget, ha az akasztófa (és a benne lévő emberalak) teljes egészében megformálásra kerül, vagy a játékos az összes betűt kitalálja",
+        "MIRROR": "Lényege, hogy kitaláld a tükrözött szót (kisbetű-nagybetű nem számít)"
+    },
+
     "HOME": {
         "OM": "Oktatási azonosító"
     },

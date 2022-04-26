@@ -1,21 +1,29 @@
 <nx12-header title="NAVIGATION.MIRROR_WORDS"></nx12-header>
 
 <ion-content fullscreen="true">
-    <div [hidden]="loading" class="mainContainer">
+    <div [hidden]="loading" class="mainContainer" *ngIf="!rule">
         <label [ngClass]="{'flipV': value===1, 'flipH': value===0}" class="noselect label margins">{{ word }}</label>
         <input (keydown.enter)="check()" [(ngModel)]="inputValue" [maxLength]="80" class="p-inputtext-lg margins" pInputText type="text" />
         <button (click)="check()" class="p-button-lg margins" icon="pi pi-check" label="{{'MIRROR.CHECK' | translate}}" pButton type="button"></button>
         <label>{{'MIRROR.TRIES' | translate}} {{ counter }}</label>
         <label>{{'MIRROR.CORRECT_ANSWERS' | translate}} {{ correctAnswers }}</label>
     </div>
+
+    <p-dialog [visible]="rule" [closable]="false" [modal]="true" header="{{'RULES.RULE' | translate}}">
+        <p>{{ 'RULES.MIRROR' | translate }}</p>
+        <button (click)="rule = false" pButton type="button" class="p-button-lg">OK</button>
+    </p-dialog>
+
     <p-dialog header="{{'MESSAGE.SUCCESS' | translate}}" [(visible)]="found" [closable]="false" [modal]="true">
         <p>{{'MIRROR.CORRECT' | translate}}</p>
         <button (click)="nextWord()" autofocus icon="pi pi-check" label="Ok" pButton styleClass="p-button-text" type="button"></button>
     </p-dialog>
+
     <p-dialog header="{{'MESSAGE.NO_SUCCESS' | translate}}" [(visible)]="mistake" [closable]="false" [modal]="true">
         <p>{{'MIRROR.NOT_CORRECT' | translate}}</p>
         <button (click)="mistake = false" autofocus class="p-button-lg" icon="pi pi-check" label="Ok" pButton type="button"></button>
     </p-dialog>
+
     <p-dialog header="{{'HEADER.GAME_OVER' | translate}}" [(visible)]="end" [closable]="false" [modal]="true">
         <p>{{'MESSAGE.CORRECT' | translate}} {{answer}}</p>
         <button (click)="newGame()" autofocus class="p-button-lg" icon="pi pi-check" label="Ok" pButton type="button"></button>

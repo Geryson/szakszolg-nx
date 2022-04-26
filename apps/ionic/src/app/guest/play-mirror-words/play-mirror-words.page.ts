@@ -26,6 +26,7 @@ export class PlayMirrorWordsPage {
     noMoreWords = false
 
     loading = false
+    rule = true;
 
     constructor(private readonly service: MirrorWordService, private readonly alert: AlertService) {}
 
