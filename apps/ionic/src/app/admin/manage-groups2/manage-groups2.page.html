@@ -24,9 +24,9 @@
         </ng-template>
         <ng-template let-itemObject pTemplate='body'>
             <tr>
-                <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.CATEGORY' | translate }}</span> {{ itemObject.category }}</td>
-                <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.ITEMS' | translate }}</span> {{ itemObject.items | join:', ' }}</td>
-                <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}</span> {{ itemObject.groups | join:', ' }}</td>
+                <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.CATEGORY' | translate }}</span> <span style="max-width: 60vw">{{ itemObject.category }}</span></td>
+                <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.ITEMS' | translate }}</span> <span style="max-width: 60vw">{{ itemObject.items | join:', ' }}</span></td>
+                <td><span class='p-column-title mr-5'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}</span><span style="max-width: 60vw"> {{ itemObject.groups | join:', ' }}</span></td>
                 <td><span class='p-column-title'>{{ 'MANAGE_GROUPINGS.ACTIONS' | translate }}</span>
                     <span class='p-buttonset'>
                         <p-button (click)='editClick(itemObject)' *ngIf='userCanEdit' styleClass='p-button-primary mr-2' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>

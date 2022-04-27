@@ -370,6 +370,12 @@
         "DELETED_DETAIL": "A törlés sikeresen megtörtént."
     },
 
+    "MANAGE_GROUPING_WORDS2": {
+        "DELETE_CONFIRM": "Biztosan törölni szeretné ezt az elemet?",
+        "DELETED": "Siker",
+        "DELETED_DETAIL": "A törlés sikeresen megtörtént."
+    },
+
     "MANAGE_GROUPINGS": {
         "SEARCH": "Keresés szó alapján",
         "SAVE": "Mentés",

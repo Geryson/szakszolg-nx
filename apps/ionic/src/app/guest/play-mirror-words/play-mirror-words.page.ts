@@ -60,6 +60,8 @@ export class PlayMirrorWordsPage {
         this.loading = true
         let tries = 0
 
+        this.value = Math.floor(Math.random() * 2)
+
         this.previousWords.push(this.word)
         const loading = await this.alert.loading('MESSAGE.LOADING')
 
