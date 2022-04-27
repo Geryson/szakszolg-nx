@@ -222,6 +222,13 @@
         "GAME_OVER": "Game over!"
     },
 
+    "RULES": {
+        "RULE": "Rule",
+        "PLAY_GROUPS": "Choose a category and then drag the middle item to what you think is correct!",
+        "HANGMAN": "The game ends when the gallows (and the human figure in it) are completely formed or the player guesses all the letters",
+        "MIRROR": "The point is to guess the mirrored word"
+    },
+
     "HOME": {
         "OM": "Student identification number"
     },

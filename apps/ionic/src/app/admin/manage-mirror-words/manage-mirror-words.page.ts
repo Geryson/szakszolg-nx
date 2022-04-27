@@ -105,8 +105,8 @@ export class ManageMirrorWordsPage implements OnInit, OnDestroy {
         if (!this.user) {
             return
         }
-        this.canAddWord= check(this.user as IUser, { resource: RESOURCES.GROUPING_WORDS, ability: ABILITIES.ADD })
-        this.canDeleteWord= check(this.user as IUser, { resource: RESOURCES.GROUPING_WORDS, ability: ABILITIES.DELETE })
-        this.canEditWord= check(this.user as IUser, { resource: RESOURCES.GROUPING_WORDS, ability: ABILITIES.EDIT })
+        this.canAddWord= check(this.user as IUser, { resource: RESOURCES.MIRROR_WORDS, ability: ABILITIES.ADD })
+        this.canDeleteWord= check(this.user as IUser, { resource: RESOURCES.MIRROR_WORDS, ability: ABILITIES.DELETE })
+        this.canEditWord= check(this.user as IUser, { resource: RESOURCES.MIRROR_WORDS, ability: ABILITIES.EDIT })
     }
 }

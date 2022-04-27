@@ -31,6 +31,7 @@ export class PlayHangmanPage {
     selectedLetters: string[] = []
     previousWords: string[] = []
     noMoreWords = false
+    rule = true;
 
     constructor(private readonly service: HangmanWordService, private readonly alert: AlertService) {
     }

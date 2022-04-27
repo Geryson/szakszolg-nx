@@ -48,6 +48,7 @@ export class PlayGroups2Page {
     correctId = -1
 
     counter = 0
+    rule = true;
 
     constructor(private readonly service: GroupingItem2Service,
                 private readonly alert: AlertService,
@@ -182,6 +183,5 @@ export class PlayGroups2Page {
 
     checkGroup(group: string): boolean {
         return this.groupIsPicture[this.groups.indexOf(group)]
-
     }
 }

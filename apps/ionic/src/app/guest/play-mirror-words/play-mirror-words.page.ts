@@ -26,6 +26,7 @@ export class PlayMirrorWordsPage {
     noMoreWords = false
 
     loading = false
+    rule = true;
 
     constructor(private readonly service: MirrorWordService, private readonly alert: AlertService) {}
 
@@ -58,6 +59,8 @@ export class PlayMirrorWordsPage {
     async nextWord() {
         this.loading = true
         let tries = 0
+
+        this.value = Math.floor(Math.random() * 2)
 
         this.previousWords.push(this.word)
         const loading = await this.alert.loading('MESSAGE.LOADING')

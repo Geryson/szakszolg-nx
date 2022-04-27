@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core'
-import {IGroupingItem2, IHangmanWord} from '@szakszolg-nx/api-interfaces'
+import {IGroupingItem2} from '@szakszolg-nx/api-interfaces'
 import { IResourceService } from '@szakszolg-nx/ng-interfaces'
 import { Apollo } from 'apollo-angular'
 import { APOLLO_CLIENT } from '../injector.tokens'
@@ -7,7 +7,6 @@ import {GROUPING_ITEMS2} from '../graphql/grouping-items2.graphql'
 import {firstValueFrom} from "rxjs"
 import {api} from "../utils/uri.tools"
 import {HttpClient} from "@angular/common/http"
-import {HANGMAN_WORDS} from "../graphql/hangman-words.graphql";
 
 @Injectable({
     providedIn: 'root',

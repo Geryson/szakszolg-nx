@@ -1,33 +1,8 @@
 <nx12-header title="NAVIGATION.SCHOOL_FINDER"></nx12-header>
 
 <ion-content>
-    <p-table #dt [globalFilterFields]="['name', 'om', 'address', 'county', 'types']" [value]='values' responsiveLayout='stack' styleClass='p-table-stripped'>
-        <ng-template pTemplate='caption'>
-            <div class='flex align-items-center justify-content-between'>
-                <span class='p-input-icon-left'>
-                    <i class='pi pi-search'></i>
-                    <input #searchInput (input)="dt.filterGlobal(searchInput.value, 'contains')" pInputText
-                           placeholder="{{ 'SCHOOL_FINDER.BROWSE_ALL' | translate }}" [maxLength]="80" type='text' />
-                </span>
-            </div>
-        </ng-template>
-        <ng-template pTemplate='header'>
-            <tr>
-                <th pSortableColumn='name'>{{ 'SCHOOL_FINDER.INSTITUTE_NAME' | translate }}<p-sortIcon field='name'></p-sortIcon></th>
-                <th pSortableColumn='om'>{{ 'SCHOOL_FINDER.OM' | translate }}<p-sortIcon field='om'></p-sortIcon></th>
-                <th pSortableColumn='address'>{{ 'SCHOOL_FINDER.ADDRESS' | translate }}<p-sortIcon field='address'></p-sortIcon></th>
-                <th pSortableColumn='county'>{{ 'SCHOOL_FINDER.COUNTY' | translate }}<p-sortIcon field='county'></p-sortIcon></th>
-                <th pSortableColumn='types'>{{ 'SCHOOL_FINDER.TYPES' | translate }}<p-sortIcon field='types'></p-sortIcon></th>
-            </tr>
-        </ng-template>
-        <ng-template let-schoolObject pTemplate='body'>
-            <tr>
-                <td><span class='p-column-title mr-5'>{{ 'SCHOOL_FINDER.INSTITUTE_NAME' | translate }}</span> {{ schoolObject.name }}</td>
-                <td><span class='p-column-title'>{{ 'SCHOOL_FINDER.OM' | translate }}</span> {{ schoolObject.om }}</td>
-                <td><span class='p-column-title'>{{ 'SCHOOL_FINDER.ADDRESS' | translate }}</span> {{ schoolObject.address }}</td>
-                <td><span class='p-column-title'>{{ 'SCHOOL_FINDER.COUNTY' | translate }}</span> {{ schoolObject.county }}</td>
-                <td><span class='p-column-title'>{{ 'SCHOOL_FINDER.TYPES' | translate }}</span> {{ schoolObject.types | join:', ' }}</td>
-            </tr>
-        </ng-template>
-    </p-table>
+    <div class="mainContainer">
+        <ion-button href="{{button1.url}}" shape="round navBtn">{{button1.name}}</ion-button>
+        <ion-button href="{{button2.url}}" shape="round navBtn">{{button2.name}}</ion-button>
+    </div>
 </ion-content>
