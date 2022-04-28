@@ -28,6 +28,8 @@ export class PlayMirrorWordsPage {
     loading = false
     rule = true;
 
+    myScreenOrientation = window.screen.orientation;
+
     constructor(private readonly service: MirrorWordService, private readonly alert: AlertService) {}
 
     async init() {
@@ -90,10 +92,12 @@ export class PlayMirrorWordsPage {
         this.correctAnswers = 0
     }
     ionViewDidEnter(): void {
+        this.myScreenOrientation.lock("portrait");
         this.init().then()
     }
 
     ionViewDidLeave() {
+        this.myScreenOrientation.unlock();
         this.sub?.unsubscribe()
     }
 }

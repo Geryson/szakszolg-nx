@@ -50,6 +50,8 @@ export class PlayGroups2Page {
     counter = 0
     rule = true;
 
+    myScreenOrientation = window.screen.orientation;
+
     constructor(private readonly service: GroupingItem2Service,
                 private readonly alert: AlertService,
                 private readonly redirect: RedirectService,
@@ -89,7 +91,13 @@ export class PlayGroups2Page {
     }
 
     ionViewDidEnter(): void {
+        this.myScreenOrientation.lock("portrait");
         this.init().then()
+    }
+
+    ionViewDidLeave(): void
+    {
+        this.myScreenOrientation.unlock();
     }
 
     drop(event: CdkDragDrop<string[]>) {
