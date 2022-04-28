@@ -24,12 +24,19 @@ export class SchoolFinderPage extends CrudPageClass<ISchool, { schools: Partial<
         url: ''
     }
 
+    myScreenOrientation = window.screen.orientation;
 
 
   constructor(protected readonly resourceService: SchoolService) {
       super()
   }
 
+  ionViewDidEnter() {
+      this.myScreenOrientation.lock("portrait");
+  }
 
+    ionViewDidLeave() {
+        this.myScreenOrientation.unlock();
+    }
 
 }

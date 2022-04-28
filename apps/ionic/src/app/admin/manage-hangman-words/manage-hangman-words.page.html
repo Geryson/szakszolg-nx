@@ -27,7 +27,7 @@
                 <td><span class='p-column-title'>{{ 'MANAGE_HANGMAN_WORDS.WORD' | translate }}</span> {{ wordObject.word }}</td>
                 <td><span class='p-column-title'>{{ 'MANAGE_HANGMAN_WORDS.ACTIONS' | translate }}</span>
                     <span class='p-buttonset'>
-                        <p-button (click)='editClick(wordObject)' *ngIf='userCanEdit' styleClass='p-button-primary' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
+                        <p-button (click)='editClick(wordObject)' *ngIf='userCanEdit' styleClass='p-button-primary mr-2' icon='pi pi-{{ NG_ICON.pencil }}' type='button'></p-button>
                         <p-button (click)='deleteClick(wordObject)' *ngIf='userCanDelete' styleClass='p-button-danger' icon='pi pi-{{ NG_ICON.trash }}' type='button'></p-button>
                     </span>
                 </td>
