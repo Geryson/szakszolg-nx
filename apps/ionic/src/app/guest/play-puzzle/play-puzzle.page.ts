@@ -3,10 +3,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import * as Hammer from 'hammerjs';
 import {IPuzzle} from "@szakszolg-nx/api-interfaces";
 import {CropperComponent} from "angular-cropperjs";
-import {LoadingController, NavController, Platform, ViewDidEnter} from "@ionic/angular";
+import {AlertController, LoadingController, NavController, Platform, ViewDidEnter} from "@ionic/angular";
 import {PuzzleService} from "../../../shared/services/puzzle.service";
 
 import * as $ from "jquery";
+import {NavigationExtras} from "@angular/router";
 
 export let jigsawInstance: any;
 export let hammerPieces: any;
@@ -23,7 +24,8 @@ export let canvasBottomBorder: any;
 
 export let puzzleScreenOrientation: any;
 
-export let remotePuzzle: any;
+export let remotePuzzle: IPuzzle;
+export let remotePuzzleColumns: number;
 
 @Component({
   selector: 'nx12-play-puzzle',
@@ -60,7 +62,7 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     loadingDialog: any;
 
     constructor(private loadingController: LoadingController, public navController: NavController,
-                private service: PuzzleService, private platform: Platform) {
+                private service: PuzzleService, private platform: Platform, private alertController: AlertController) {
 
     }
 
@@ -69,7 +71,6 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     }
 
     ionViewDidEnter(): void {
-        console.log("ITT1");
         jigsawInstance = new JqJigsawPuzzle(this.navigateToResult, this.navController);
         hammerPieces = null;
 
@@ -80,17 +81,11 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
 
         this.puzzleTime = jigsawInstance.puzzleTime;
 
-        // this.service.getPuzzleById(3).subscribe((response) => {
-        //   this.imgSource = response[0].url;
-        // });
-
-
         this.imgSource = this.service.activePuzzle?.url !== undefined && this.service.activePuzzle?.url !== ''
             ? this.service.activePuzzle?.url : 'https://justnop.xyz/api/puzzle/670871--72105.jpg';
 
         this.imgWidth = '250px';
         this.imgHeight = '375px';
-        console.log("ITT2");
 
         this.puzzleCropper.cropperOptions.viewMode = 0;
         this.puzzleCropper.cropperOptions.guides = false;
@@ -100,10 +95,7 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
         this.puzzleCropper.cropperOptions.zoomable = false;
         this.puzzleCropper.cropperOptions.crossOrigin = false;
 
-        this.puzzleCropper
-
         this.puzzleCropper.ready.subscribe(() => {
-            console.log("ITT3");
             if (this.puzzleCropper.cropper.getCanvasData().height > Math.floor(this.platform.height() * 0.9)){
                 this.puzzleCropper.cropper.setCanvasData({height: Math.floor(this.platform.height() * 0.9), left: 0, top: 0})
             }
@@ -125,16 +117,14 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
             cropperModal.style.background = '#ededed';
 
             this.cropperFace.style.backgroundClip = 'content-box';
-            console.log("ITT4");
 
             //TODO: KISZEDNI! CSAK TESZTHEZ!
             const puzzleQueryRef = this.service.read("622874f72951483fd7a691e0");
             puzzleQueryRef.valueChanges.subscribe((queriedPuzzle) => {
-                console.log("ITT5");
 
-                remotePuzzle = queriedPuzzle;
-
-                this.puzzleCropper.cropper.setCropBoxData({height: remotePuzzle.cropHeight, width: remotePuzzle.cropWidth, top: remotePuzzle.cropTop, left: remotePuzzle.cropLeft});
+                this.puzzleCropper.cropper.setCropBoxData({height: queriedPuzzle.data.puzzle.cropHeight, width: queriedPuzzle.data.puzzle.cropWidth, top: queriedPuzzle.data.puzzle.cropTop, left: queriedPuzzle.data.puzzle.cropLeft});
+                // @ts-ignore
+                remotePuzzleColumns = queriedPuzzle.data.puzzle.columns;
 
                 this.croppedCanvas = this.puzzleCropper.cropper.getCroppedCanvas({maxHeight: Math.floor(this.platform.height() * 0.9)});
                 const cropContainer = $('#crop-container');
@@ -145,7 +135,6 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
                 if (invisibleCropper !== undefined && invisibleCropper !== null) {
                     invisibleCropper.style.display = 'none';
                 }
-                console.log("ITT6");
 
                 this.loadingDialog.dismiss();
             })
@@ -160,49 +149,49 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     }
 
     navigateToResult() {
-        // const piecesContainer = $('#' + jigsawInstance.puzzleId);
-        //
-        // const timerLastState = $('.time_counter').html();
-        // const splitTimer = timerLastState.split(':');
-        //
-        // // Points for the hours (36000 for each, will happen rarely)
-        // let pointsForSeconds = +splitTimer[0] * 60 * 60 * 10;
-        //
-        // // For one minute (60 seconds) the multiplier is getting bigger in each minute
-        // for (let i = 1; i < +splitTimer[1]; i++) {
-        //     pointsForSeconds = pointsForSeconds + (60 * i);
-        // }
-        //
-        // // Adding the remaining "displayed" seconds
-        // pointsForSeconds = pointsForSeconds + (+splitTimer[2]);
-        //
-        // // The bigger number means less points after game over
-        // pointsForSeconds = pointsForSeconds * 60;
-        //
-        // const totalMovements = parseInt(jQuery('.movement_counter').html(), 10);
-        //
-        // const numberOfPieces = parseInt(piecesContainer.data('pieces-number'), 10);
-        //
-        // // Max is always the square of the puzzle pieces scaled up
-        // const maxResult = Math.pow(numberOfPieces, 2) * 100;
-        //
-        // // In case of too much time / steps (but completed) the score will be this value
-        // const minResult = 100;
-        //
-        // // We do not count movement for placed pieces; this result is also scaled up
-        // const pointsForMovements = (totalMovements - numberOfPieces) * 25;
-        //
-        // const calculatedResult = maxResult - pointsForSeconds - pointsForMovements;
-        //
-        // // We will display the minimum result, if the calculation is equal or less
-        // const navigationExtras: NavigationExtras = {
-        //     queryParams: {
-        //         result: calculatedResult > minResult ? calculatedResult : minResult,
-        //         resultMax: maxResult
-        //     }
-        // };
-        // this.navController.navigateForward(['result'], navigationExtras);
-        // jigsawInstance.refreshTimerBeforeQuit();
+        const piecesContainer = $('#' + jigsawInstance.puzzleId);
+
+        const timerLastState = $('.time_counter').html();
+        const splitTimer = timerLastState.split(':');
+
+        // Points for the hours (36000 for each, will happen rarely)
+        let pointsForSeconds = +splitTimer[0] * 60 * 60 * 10;
+
+        // For one minute (60 seconds) the multiplier is getting bigger in each minute
+        for (let i = 1; i < +splitTimer[1]; i++) {
+            pointsForSeconds = pointsForSeconds + (60 * i);
+        }
+
+        // Adding the remaining "displayed" seconds
+        pointsForSeconds = pointsForSeconds + (+splitTimer[2]);
+
+        // The bigger number means less points after game over
+        pointsForSeconds = pointsForSeconds * 60;
+
+        const totalMovements = parseInt(jQuery('.movement_counter').html(), 10);
+
+        const numberOfPieces = parseInt(piecesContainer.data('pieces-number'), 10);
+
+        // Max is always the square of the puzzle pieces scaled up
+        const maxResult = Math.pow(numberOfPieces, 2) * 100;
+
+        // In case of too much time / steps (but completed) the score will be this value
+        const minResult = 100;
+
+        // We do not count movement for placed pieces; this result is also scaled up
+        const pointsForMovements = (totalMovements - numberOfPieces) * 25;
+
+        const calculatedResult = maxResult - pointsForSeconds - pointsForMovements;
+
+        // We will display the minimum result, if the calculation is equal or less
+        const navigationExtras: NavigationExtras = {
+            queryParams: {
+                result: calculatedResult > minResult ? calculatedResult : minResult,
+                resultMax: maxResult
+            }
+        };
+        this.navController.navigateForward(['result'], navigationExtras);
+        jigsawInstance.refreshTimerBeforeQuit();
 
         console.log('Puzzle kész!')
     }
@@ -241,38 +230,39 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     }
 
     async presentAlertConfirm() {
-        // const alert = await this.alertController.create({
-        //     header: await this.getTranslate('HEADER.ALERT'),
-        //     message: '<strong>'+await this.getTranslate('MESSAGE.ABANDON')+'</strong>',
-        //     buttons: [
-        //         {
-        //             text: await this.getTranslate('BUTTONS.NO'),
-        //             role: 'cancel',
-        //             cssClass: 'secondary',
-        //             handler: () => {
-        //             }
-        //         }, {
-        //             text: await this.getTranslate('BUTTONS.YES'),
-        //             handler: () => {
-        //                 const piecesContainer = jQuery('#' + jigsawInstance.puzzleId);
-        //                 const numberOfPieces = parseInt(piecesContainer.data('pieces-number'), 10);
-        //                 // No points if the player gives up
-        //                 const navigationExtras: NavigationExtras = {
-        //                     queryParams: {
-        //                         result: 0,
-        //                         resultMax: Math.pow(numberOfPieces, 2) * 100
-        //                     }
-        //                 };
-        //                 puzzleScreenOrientation.unlock();
-        //                 puzzleScreenOrientation.lock('portrait');
-        //                 puzzleScreenOrientation = null;
-        //                 this.navController.navigateForward(['result'], navigationExtras);
-        //                 jigsawInstance.refreshTimerBeforeQuit();
-        //             }
-        //         }
-        //     ]
-        // });
-        // await alert.present();
+        //TODO: KISZEDNI A BEÉGETETT SZÖVEGEKET
+        const alert = await this.alertController.create({
+            header: 'header',
+            message: '<strong>'+'leave?'+'</strong>',
+            buttons: [
+                {
+                    text: 'no',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                    }
+                }, {
+                    text: 'yes',
+                    handler: () => {
+                        const piecesContainer = jQuery('#' + jigsawInstance.puzzleId);
+                        const numberOfPieces = parseInt(piecesContainer.data('pieces-number'), 10);
+                        // No points if the player gives up
+                        const navigationExtras: NavigationExtras = {
+                            queryParams: {
+                                result: 0,
+                                resultMax: Math.pow(numberOfPieces, 2) * 100
+                            }
+                        };
+                        puzzleScreenOrientation.unlock();
+                        puzzleScreenOrientation.lock('portrait');
+                        puzzleScreenOrientation = null;
+                        this.navController.navigateForward(['result'], navigationExtras);
+                        jigsawInstance.refreshTimerBeforeQuit();
+                    }
+                }
+            ]
+        });
+        await alert.present();
         console.log('alert');
     }
 }
@@ -420,13 +410,15 @@ class JqJigsawPuzzle {
 
         // Move the pieces.
         $(containerSelector).find('div.piece').each((index: any, piece: any) => {
-            const pieceWidth = $(this).width();
-            const pieceHeight = $(this).height();
+            const pieceWidth = parseInt(piece.style.width.replace('px', ''));
+            const pieceHeight = parseInt(piece.style.height.replace('px', ''));
 
             // @ts-ignore
-            $(this).css('left', Math.floor(Math.random() * (puzzleWidth - pieceWidth)) - leftLimit);
+            const newLeftNumber = Math.floor(Math.random() * (puzzleWidth - pieceWidth)) - leftLimit;
+            const newTopNumber = Math.floor(Math.random() * (puzzleHeight - pieceHeight)) - topLimit;
+            piece.style.left = newLeftNumber + 'px';
             // @ts-ignore
-            $(this).css('top', Math.floor(Math.random() * (puzzleHeight - pieceHeight)) - topLimit);
+            piece.style.top = newTopNumber + 'px';
         });
     }
 
@@ -443,7 +435,6 @@ class JqJigsawPuzzle {
         const imgId = 'img_' + new Date().getTime();
         $(containerSelector).attr('src', imageUrl);
         // jQuery(containerSelector).append('<img src="' + imageUrl + '" id="' + imgId + '" alt=""/>');
-
         // Create puzzle from the image.
         jigsawInstance.createPuzzleFromImage('#my_puzzle', options, appendLocation);
     }
@@ -564,7 +555,7 @@ class JqJigsawPuzzle {
 
         // Get the size of the pieces.
         const ratio = 0.588235294117647;
-        const columnOptimalNumber = remotePuzzle.columns;
+        const columnOptimalNumber = remotePuzzleColumns;
         // @ts-ignore
         let logicalSize = Math.round(imgWidth / columnOptimalNumber);
         // If there would be pixel(s) missing, we manually increase the value
