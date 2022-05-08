@@ -1,0 +1,17 @@
+.img-wrapper {
+    min-height: 256px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+ion-grid {
+    @supports (-webkit-touch-callout: none) {
+        @media screen and (orientation: landscape){
+            @supports(padding:max(0vw)) {
+                padding-right: env(safe-area-inset-right);
+                padding-left: env(safe-area-inset-left);
+            }
+        }
+    }
+}

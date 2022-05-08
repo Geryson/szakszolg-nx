@@ -36,6 +36,10 @@ const routes: Routes = [
         path: lastPartOf(pages.guest.schoolFinder),
         loadChildren: () => import('./school-finder/school-finder.module').then((m) => m.SchoolFinderPageModule),
     },
+    {
+        path: lastPartOf(pages.guest.puzzlePicker),
+        loadChildren: () => import('./puzzle-picker/puzzle-picker.module').then( (m) => m.PuzzlePickerPageModule)
+    },
 ]
 
 @NgModule({

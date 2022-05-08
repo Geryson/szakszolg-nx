@@ -5,6 +5,7 @@ import {IPuzzle} from "@szakszolg-nx/api-interfaces";
 import {CropperComponent} from "angular-cropperjs";
 import {AlertController, LoadingController, NavController, Platform, ViewDidEnter} from "@ionic/angular";
 import {PuzzleService} from "../../../shared/services/puzzle.service";
+import { getImageUrl } from '../../../shared/utils/uri.tools';
 
 import * as $ from "jquery";
 import {NavigationExtras} from "@angular/router";
@@ -33,6 +34,7 @@ export let remotePuzzleColumns: number;
   styleUrls: ['./play-puzzle.page.scss'],
 })
 export class PlayPuzzlePage implements OnInit, ViewDidEnter {
+    getImageUrl = getImageUrl;
     startDisabled: boolean = false;
     resetDisabled: boolean = false;
     giveUpDisabled: boolean = false;
@@ -82,7 +84,7 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
         this.puzzleTime = jigsawInstance.puzzleTime;
 
         this.imgSource = this.service.activePuzzle?.url !== undefined && this.service.activePuzzle?.url !== ''
-            ? this.service.activePuzzle?.url : 'https://justnop.xyz/api/puzzle/670871--72105.jpg';
+            ? getImageUrl(this.service.activePuzzle?.url!) : 'https://justnop.xyz/api/puzzle/670871--72105.jpg';
 
         this.imgWidth = '250px';
         this.imgHeight = '375px';
@@ -101,9 +103,7 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
             }
             const currentCanvasData = this.puzzleCropper.cropper.getCanvasData();
             this.currentCanvasHeight = currentCanvasData.height;
-            console.log(this.currentCanvasHeight);
             this.currentCanvasWidth = currentCanvasData.width;
-            console.log(this.currentCanvasWidth);
             this.puzzleCropper.cropper.setCropBoxData({height: currentCanvasData.height, width: currentCanvasData.width, top: 0, left: 0});
 
             // Androidon a Cropper beállítható legmagasabb y-pozíciójához (0-nak kéne lennie) hozzáadódhat az értesítési sáv magassága.

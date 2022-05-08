@@ -1,0 +1,21 @@
+<ion-header translucent="true" mode="ios">
+    <div id="yellowLine"></div>
+    <ion-toolbar color="secondary">
+        <ion-buttons class="nav-buttons-container" slot="start">
+            <ion-button class="nav-button" slot="start" routerLink="/menu">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="nav-title" text-center>{{ 'NAVIGATION.SELECT_PUZZLE' | translate }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+    <ion-grid>
+        <ion-row>
+            <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let image of puzzles">
+                <div class="img-wrapper" [ngStyle]="{'background-image':'url(' + getImageUrl(image.url!) + ')', 'background-position': 'center'}" (click)="puzzleSelected(image)"></div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
