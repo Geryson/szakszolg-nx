@@ -112,6 +112,7 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+    max-height: 30vw;
     padding: 2% 0;
 }
 
@@ -128,6 +129,8 @@
 .example-item {
     min-width: 20vw;
     min-height: 20vw;
+
+    max-height: 30vw;
 
     margin: auto;
     border: solid 1px #ccc;

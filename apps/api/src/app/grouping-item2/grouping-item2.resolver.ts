@@ -23,8 +23,6 @@ export class GroupingItem2Resolver {
     }
 
     @Query(() => [GroupingItem2], { nullable: 'items' })
-    @Permission('browse')
-    @UseGuards(GqlAuthGuard, PermissionGuard)
     groupingItems2(@Args({ nullable: true }) data: GetGroupingItems2Args | null): Promise<IGroupingItem2[]> {
         return this.service.findAll(data)
     }

@@ -173,8 +173,8 @@
         "LOADING_USERS": "Loading users...",
         "LOADING_FORMS": "Loading forms...",
         "LOADING_DATA": "Loading data...",
-        "WHAT_TYPE_OF_QF": "WHat type of questionaire do you want to create?",
-        "WHAT_TYPE_OF_EVALUATE_QF": "WHat type of evaluation questionaire do you want to create?",
+        "WHAT_TYPE_OF_QF": "What type of questionaire do you want to create?",
+        "WHAT_TYPE_OF_EVALUATE_QF": "What type of evaluation questionaire do you want to create?",
         "EVALUATE_QF":"Evaluate form",
         "ONE_TO_FIVE_EVALUATE_QF":"One-Five",
         "TRUE_FALSE_EVALUATE_QF":"True-False",
@@ -185,7 +185,15 @@
         "FORM_CSV_EXPORT_CONFIRM": "Are you sure you want to save results for this form to the device storage as a CSV file? Storage access permission is needed for this task.",
         "FORM_CSV_EXPORT_DONE": "Successfully saved form results as a CSV file!",
         "FORM_CSV_EXPORT_FAILED": "Saving file was unsuccessful!",
-        "FORM_CSV_EXPORT_UNAUTHORIZED": "Storage access permission is needed to save the file!"
+        "FORM_CSV_EXPORT_UNAUTHORIZED": "Storage access permission is needed to save the file!",
+        "QUIT": "Are you sure you want to quit?",
+        "NEW_CAT": "There are no more words, choose another category!",
+        "NEW": "There are no more words, do you want to start a new one?",
+        "SUCCESS": "Success!",
+        "NO_SUCCESS": "Failed!",
+        "CORRECT": "The correct answer: ",
+        "CORRECT_ANSWERS": "Number of correct answers: ",
+        "SURVEY_QUIT": "Are you sure you want to quit? All of your answers will be lost!"
     },
 
     "QUESTION_STRING":{
@@ -209,7 +217,16 @@
         "SEND_QF": "Are you sure you want to submit the questionnaire?",
         "PASSWORD": "Password",
         "NOT_SUPPORTED_ACTION": "Not supported action",
-        "CHOOSE_TYPE":"Choose a type"
+        "CHOOSE_TYPE":"Choose a type",
+        "EXIT": "Exit",
+        "GAME_OVER": "Game over!"
+    },
+
+    "RULES": {
+        "RULE": "Rule",
+        "PLAY_GROUPS": "Choose a category and then drag the middle item to what you think is correct!",
+        "HANGMAN": "The game ends when the gallows (and the human figure in it) are completely formed or the player guesses all the letters",
+        "MIRROR": "The point is to guess the mirrored word"
     },
 
     "HOME": {
@@ -256,7 +273,8 @@
     "ADD_FORM_DESCRIPTION":{
         "QUESTIONNAIRE_TITLE": "Title of the questionnaire:",
         "QUESTIONNAIRE_QUESTION": "Question:",
-        "QUESTIONNAIRE_DESCRIPTION": "Description of the questionnaire:"
+        "QUESTIONNAIRE_DESCRIPTION": "Description of the questionnaire:",
+        "QUESTIONNAIRE_ANSWERS": "The questions answered so far: "
     },
 
     "ADD_HANGMANS":{
@@ -313,7 +331,8 @@
 
     "FORM_DESCRIPTION":{
         "QF_TITLE": "Title of the questionnaire:",
-        "QF_DESCRIPTION": "Description of the questionnaire:"
+        "QF_DESCRIPTION": "Description of the questionnaire:",
+        "END": "You have reached the end of the questions, would you like to submit your answers?"
     },
 
     "FORM_LIST":{
@@ -330,7 +349,9 @@
     },
 
     "TOKEN":{
-        "ADD_IDENTIFICATION":"Please add token:"
+        "ADD_IDENTIFICATION":"Please add token:",
+        "EXPIRED": "This token has expired!",
+        "NOT_EXISTS": "This token does not exist!"
     },
 
     "HANGMAN_LIST":{
@@ -361,9 +382,21 @@
         "NUMBER_OF_MATCHES":"Number of matches:"
     },
 
+    "GROUPING": {
+        "CORRECT_ANSWERS": "Number of the correct answers:",
+
+        "CORRECT": "Correct!",
+        "NOT_CORRECT": "Not correct!"
+    },
+
     "MIRROR":{
         "TEXT_DOES_NOT_MATCH_REMAINING_TRIES":"The input text does not match the with the solution, retry count",
-        "WRITTEN_TEXT_PLACE":"Place of written text"
+        "WRITTEN_TEXT_PLACE":"Place of written text",
+        "CORRECT": "Correct!",
+        "NOT_CORRECT": "Not correct!",
+        "TRIES": "Number of tries: ",
+        "CORRECT_ANSWERS": "Number of correct answers: ",
+        "CHECK": "Check"
     },
 
     "MIRROR_LIST":{

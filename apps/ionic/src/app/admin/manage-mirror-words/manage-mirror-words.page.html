@@ -5,15 +5,14 @@
     <p-table #dt1 [value]='(filteredMirrorWords$ | async)!' responsiveLayout='scroll' styleClass='p-datatable-striped'>
         <ng-template pTemplate='caption'>
             <div class='flex'>
-                <span class='p-input-icon-left ml-auto mr-2'>
+                <span class='p-input-icon-left mr-2'>
                     <i class='pi pi-search'></i>
                     <input #searchInput (input)='filter(searchInput)' maxlength="80"
                            pInputText placeholder="{{ 'MIRROR_LIST.SEARCH_BY_TEXT' | translate}}" type='text' />
                 </span>
-                <p-button (click)='clear(searchInput)' [disabled]='!searchInput.value' styleClass='p-button-primary'
-                        icon='pi pi-{{ NG_ICON.filterSlash }}' label="{{ 'MIRROR_LIST.CLEAR' | translate}}"></p-button>
+
                 <p-button *ngIf="canAddWord" (click)='openAddDialogue()' styleClass='p-button-success'
-                        icon='pi pi-{{ NG_ICON.plusCircle }}' label=''></p-button>
+                        icon='pi pi-plus' label=''></p-button>
             </div>
         </ng-template>
         <ng-template let-word pTemplate='body'>
@@ -40,7 +39,7 @@
     </div>
     <ng-template pTemplate='footer'>
         <p-button (click)='save()' [disabled]='!wordUnderEdit' icon='pi pi-check'
-                  label="{{ 'MIRROR_LIST.SAVE' | translate}}" styleClass='p-button-success'></p-button>
+                  label="{{ 'MIRROR_LIST.SAVE' | translate}}" styleClass='p-button-primary'></p-button>
         <p-button (click)='closeDialogue()' icon='pi pi-{{NG_ICON.times}}' label="{{ 'primeng.cancel' | translate }}"
                   styleClass='p-button-danger'></p-button>
     </ng-template>

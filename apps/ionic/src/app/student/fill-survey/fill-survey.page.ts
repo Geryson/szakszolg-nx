@@ -5,6 +5,7 @@ import {pages} from "../../../shared/utils/pages.const";
 import {StorageService} from "../../../shared/services/storage.service";
 import {STORAGE_KEY} from "../../../shared/utils/constants";
 import {IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
     selector: 'nx12-fill-survey',
@@ -15,7 +16,7 @@ import {IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
 export class FillSurveyPage implements OnInit{
 
     constructor(public readonly service: TokenService, private readonly redirect: RedirectService,
-                private readonly storage: StorageService) {
+                private readonly storage: StorageService, private readonly translate: TranslatePipe) {
     }
 
     ionViewDidEnter() {
@@ -96,7 +97,7 @@ export class FillSurveyPage implements OnInit{
         this.storage.set(STORAGE_KEY.SURVEY_ANSWER, this.service.answers).then()
     }
     confirmation(){
-        this.service.confirm('Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni', 'Megerősítés')
+        this.service.confirm(this.translate.transform(`MESSAGE.SURVEY_QUIT`), this.translate.transform(`HEADER.CONFIRM`))
     }
 
     ngOnInit() {

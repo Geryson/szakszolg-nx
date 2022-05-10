@@ -26,6 +26,9 @@ export class PlayMirrorWordsPage {
     noMoreWords = false
 
     loading = false
+    rule = true;
+
+    myScreenOrientation = window.screen.orientation;
 
     constructor(private readonly service: MirrorWordService, private readonly alert: AlertService) {}
 
@@ -59,6 +62,8 @@ export class PlayMirrorWordsPage {
         this.loading = true
         let tries = 0
 
+        this.value = Math.floor(Math.random() * 2)
+
         this.previousWords.push(this.word)
         const loading = await this.alert.loading('MESSAGE.LOADING')
 
@@ -87,10 +92,12 @@ export class PlayMirrorWordsPage {
         this.correctAnswers = 0
     }
     ionViewDidEnter(): void {
+        this.myScreenOrientation.lock("portrait");
         this.init().then()
     }
 
     ionViewDidLeave() {
+        this.myScreenOrientation.unlock();
         this.sub?.unsubscribe()
     }
 }

@@ -31,6 +31,9 @@ export class PlayHangmanPage {
     selectedLetters: string[] = []
     previousWords: string[] = []
     noMoreWords = false
+    rule = true;
+
+    myScreenOrientation = window.screen.orientation;
 
     constructor(private readonly service: HangmanWordService, private readonly alert: AlertService) {
     }
@@ -49,10 +52,12 @@ export class PlayHangmanPage {
     }
 
     ionViewDidEnter() {
+        this.myScreenOrientation.lock("portrait");
         this.init().then()
     }
 
     ionViewDidLeave() {
+        this.myScreenOrientation.unlock();
         this.sub?.unsubscribe()
         this.sub2?.unsubscribe()
     }

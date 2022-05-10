@@ -14,10 +14,29 @@ export class SchoolFinderPage extends CrudPageClass<ISchool, { schools: Partial<
     protected editPage = pages.guest.schoolFinder
     protected resourceName = RESOURCES.SCHOOLS
 
+    button1 = {
+        name: '',
+        url: ''
+    }
+
+    button2 = {
+        name: '',
+        url: ''
+    }
+
+    myScreenOrientation = window.screen.orientation;
+
+
   constructor(protected readonly resourceService: SchoolService) {
       super()
   }
 
+  ionViewDidEnter() {
+      this.myScreenOrientation.lock("portrait");
+  }
 
+    ionViewDidLeave() {
+        this.myScreenOrientation.unlock();
+    }
 
 }

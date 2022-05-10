@@ -11,6 +11,7 @@ import {NxSharedModule} from "../../../shared/nx-shared.module";
 import {ListboxModule} from "primeng/listbox";
 import {DialogModule} from "primeng/dialog";
 import {ButtonModule} from "primeng/button";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import {ButtonModule} from "primeng/button";
         NxSharedModule,
         ListboxModule,
         DialogModule,
-        ButtonModule
+        ButtonModule,
+        TranslateModule
     ],
   declarations: [PlayHangmanPage]
 })

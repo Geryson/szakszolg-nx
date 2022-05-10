@@ -9,6 +9,7 @@ import { EnterTokenPageRoutingModule } from './enter-token-routing.module';
 import { EnterTokenPage } from './enter-token.page';
 import {ButtonModule} from "primeng/button";
 import {NxSharedModule} from "../../../shared/nx-shared.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import {NxSharedModule} from "../../../shared/nx-shared.module";
         IonicModule,
         EnterTokenPageRoutingModule,
         ButtonModule,
-        NxSharedModule
+        NxSharedModule,
+        TranslateModule
     ],
   declarations: [EnterTokenPage]
 })

@@ -3,7 +3,7 @@
         {{service.questions[service.index].question}}
     </h3>
     <h4 *ngIf="service.activeQuiz!.template==='quiz'">
-        Jó válaszok száma: {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
+        {{'MESSAGE.CORRECT_ANSWERS' | translate}} {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
     </h4>
 
     <div *ngIf="service.activeQuiz!.template !== 'quiz'" class="buttons">
@@ -30,13 +30,13 @@
 
     <p-dialog *ngIf="service.activeQuiz!.template==='quiz'" [visible]="finish" [style]="{width: '50vw'}" [closable]="false" [modal]="true">
         <div>
-            <h1>Játék vége!</h1>
+            <h1>{{'HEADER.GAME_OVER' | translate}}</h1>
         </div>
         <h4>
-            Jó válaszok száma: {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
+            {{'MESSAGE.CORRECT_ANSWERS' | translate}} {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
         </h4>
         <div class="vegeBtn">
-            <button type="button" pButton icon="pi pi-home" label="Kilépés" (click)="exit()"></button>
+            <button type="button" pButton icon="pi pi-home" label="{{'BUTTONS.EXIT' | translate}}" (click)="exit()"></button>
         </div>
     </p-dialog>
 </div>
