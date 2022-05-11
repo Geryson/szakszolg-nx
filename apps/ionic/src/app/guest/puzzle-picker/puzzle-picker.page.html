@@ -1,14 +1,4 @@
-<ion-header translucent="true" mode="ios">
-    <div id="yellowLine"></div>
-    <ion-toolbar color="secondary">
-        <ion-buttons class="nav-buttons-container" slot="start">
-            <ion-button class="nav-button" slot="start" routerLink="/menu">
-                <ion-icon name="arrow-back"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-        <ion-title class="nav-title" text-center>{{ 'NAVIGATION.SELECT_PUZZLE' | translate }}</ion-title>
-    </ion-toolbar>
-</ion-header>
+<nx12-header [logoutButton]='false' title='NAVIGATION.SELECT_PUZZLE'></nx12-header>
 
 <ion-content fullscreen="true">
     <ion-grid>

@@ -8,15 +8,17 @@ import { PuzzlePickerPageRoutingModule } from './puzzle-picker-routing.module';
 
 import { PuzzlePickerPage } from './puzzle-picker.page';
 import {TranslateModule} from "@ngx-translate/core";
+import {NxSharedModule} from "../../../shared/nx-shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    PuzzlePickerPageRoutingModule,
-    TranslateModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        PuzzlePickerPageRoutingModule,
+        TranslateModule,
+        NxSharedModule
+    ],
   declarations: [PuzzlePickerPage]
 })
 export class PuzzlePickerPageModule {}

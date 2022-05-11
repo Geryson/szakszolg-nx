@@ -8,7 +8,11 @@ import {PuzzleService} from "../../../shared/services/puzzle.service";
 import { getImageUrl } from '../../../shared/utils/uri.tools';
 
 import * as $ from "jquery";
-import {NavigationExtras} from "@angular/router";
+import {StaticService} from "../../../shared/services/static.service";
+import {pages} from "../../../shared/utils/pages.const";
+import {RedirectService} from "../../../shared/services/redirect.service";
+import {ScreenOrientation} from "@awesome-cordova-plugins/screen-orientation/ngx";
+import {Log} from "../../../shared/utils/log.tools";
 
 export let jigsawInstance: any;
 export let hammerPieces: any;
@@ -28,6 +32,9 @@ export let puzzleScreenOrientation: any;
 export let remotePuzzle: IPuzzle;
 export let remotePuzzleColumns: number;
 
+export let externalAlertController: AlertController;
+export let externalRedirect: RedirectService;
+
 @Component({
   selector: 'nx12-play-puzzle',
   templateUrl: './play-puzzle.page.html',
@@ -39,6 +46,9 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     resetDisabled: boolean = false;
     giveUpDisabled: boolean = false;
     finishedDisabled: boolean = false;
+
+    failedOrientationLock = false;
+
     imgSource: string = '';
 
     puzzleEntity: IPuzzle | undefined;
@@ -64,8 +74,11 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     loadingDialog: any;
 
     constructor(private loadingController: LoadingController, public navController: NavController,
-                private service: PuzzleService, private platform: Platform, private alertController: AlertController) {
-
+                private service: PuzzleService, private platform: Platform, public alertController: AlertController,
+                private readonly redirect: RedirectService,
+                private readonly screenOrientation: ScreenOrientation) {
+        externalAlertController = this.alertController;
+        externalRedirect = this.redirect;
     }
 
     ngOnInit() {
@@ -73,6 +86,9 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     }
 
     ionViewDidEnter(): void {
+        this.lockLandscape().then()
+        this.platform.backButton.subscribeWithPriority(0, () => this.presentAlertConfirm());
+
         jigsawInstance = new JqJigsawPuzzle(this.navigateToResult, this.navController);
         hammerPieces = null;
 
@@ -118,80 +134,93 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
 
             this.cropperFace.style.backgroundClip = 'content-box';
 
-            //TODO: KISZEDNI! CSAK TESZTHEZ!
-            const puzzleQueryRef = this.service.read("622874f72951483fd7a691e0");
-            puzzleQueryRef.valueChanges.subscribe((queriedPuzzle) => {
+            this.puzzleCropper.cropper.setCropBoxData({height: this.service.activePuzzle?.cropHeight, width: this.service.activePuzzle?.cropWidth, top: this.service.activePuzzle?.cropTop, left: this.service.activePuzzle?.cropLeft});
+            // @ts-ignore
+            remotePuzzleColumns = this.service.activePuzzle?.columns;
 
-                this.puzzleCropper.cropper.setCropBoxData({height: queriedPuzzle.data.puzzle.cropHeight, width: queriedPuzzle.data.puzzle.cropWidth, top: queriedPuzzle.data.puzzle.cropTop, left: queriedPuzzle.data.puzzle.cropLeft});
-                // @ts-ignore
-                remotePuzzleColumns = queriedPuzzle.data.puzzle.columns;
+            this.croppedCanvas = this.puzzleCropper.cropper.getCroppedCanvas({maxHeight: Math.floor(this.platform.height() * 0.9)});
+            const cropContainer = $('#crop-container');
+            cropContainer.html(this.croppedCanvas);
+            cropContainer.children()[0].id = 'my_puzzle';
 
-                this.croppedCanvas = this.puzzleCropper.cropper.getCroppedCanvas({maxHeight: Math.floor(this.platform.height() * 0.9)});
-                const cropContainer = $('#crop-container');
-                cropContainer.html(this.croppedCanvas);
-                cropContainer.children()[0].id = 'my_puzzle';
+            const invisibleCropper = document.getElementById('invisible-cropper');
+            if (invisibleCropper !== undefined && invisibleCropper !== null) {
+                invisibleCropper.style.display = 'none';
+            }
 
-                const invisibleCropper = document.getElementById('invisible-cropper');
-                if (invisibleCropper !== undefined && invisibleCropper !== null) {
-                    invisibleCropper.style.display = 'none';
-                }
-
-                this.loadingDialog.dismiss();
-            })
+            this.loadingDialog.dismiss();
         });
+    }
+
+    private lockLandscape() {
+        return this.screenOrientation
+            .lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)
+            .then(() => (this.failedOrientationLock = false))
+            .catch((e) => {
+                console.error('Failed to lock orientation', e)
+                this.failedOrientationLock = true
+            })
     }
 
     async showLoadingDialog() {
         this.loadingDialog = await this.loadingController.create({
-            message: /*await this.getTranslate('MESSAGE.LOADING')*/ 'loading'
+            message: StaticService.translatePipe.transform('MESSAGE.LOADING')
         });
         await this.loadingDialog.present();
     }
 
-    navigateToResult() {
+    async navigateToResult() {
         const piecesContainer = $('#' + jigsawInstance.puzzleId);
 
         const timerLastState = $('.time_counter').html();
-        const splitTimer = timerLastState.split(':');
 
-        // Points for the hours (36000 for each, will happen rarely)
-        let pointsForSeconds = +splitTimer[0] * 60 * 60 * 10;
+        const totalMovements = parseInt($('.movement_counter').html(), 10);
 
-        // For one minute (60 seconds) the multiplier is getting bigger in each minute
-        for (let i = 1; i < +splitTimer[1]; i++) {
-            pointsForSeconds = pointsForSeconds + (60 * i);
-        }
-
-        // Adding the remaining "displayed" seconds
-        pointsForSeconds = pointsForSeconds + (+splitTimer[2]);
-
-        // The bigger number means less points after game over
-        pointsForSeconds = pointsForSeconds * 60;
-
-        const totalMovements = parseInt(jQuery('.movement_counter').html(), 10);
-
-        const numberOfPieces = parseInt(piecesContainer.data('pieces-number'), 10);
-
-        // Max is always the square of the puzzle pieces scaled up
-        const maxResult = Math.pow(numberOfPieces, 2) * 100;
-
-        // In case of too much time / steps (but completed) the score will be this value
-        const minResult = 100;
-
-        // We do not count movement for placed pieces; this result is also scaled up
-        const pointsForMovements = (totalMovements - numberOfPieces) * 25;
-
-        const calculatedResult = maxResult - pointsForSeconds - pointsForMovements;
-
-        // We will display the minimum result, if the calculation is equal or less
-        const navigationExtras: NavigationExtras = {
-            queryParams: {
-                result: calculatedResult > minResult ? calculatedResult : minResult,
-                resultMax: maxResult
-            }
-        };
-        this.navController.navigateForward(['result'], navigationExtras);
         jigsawInstance.refreshTimerBeforeQuit();
+
+        const finishedAlert = await externalAlertController.create({
+            header: StaticService.translatePipe.transform('HEADER.EUREKA'),
+            message: '<p>'+'Ennyi idő alatt: '+ timerLastState +'</p>'
+            +'<p>'+'Lépések száma: '+ totalMovements +'</p>'
+            +'<p></p>'
+            +'<p>'+'Szeretnél új játékot kezdeni?'+'</p>',
+            buttons: [
+                {
+                    text: StaticService.translatePipe.transform('BUTTONS.NO'),
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                        try {
+                            this.screenOrientation.unlock()
+                        } catch (e: any) {
+                            Log.info(
+                                'PuzzleScalerPage::unlockOrientation',
+                                'Failed to unlock orientation. Ignored the following error:',
+                                e,
+                            )
+                        }
+
+                        externalRedirect.to(`${pages.guest.guestRoom}`);
+                    }
+                }, {
+                    text: StaticService.translatePipe.transform('BUTTONS.YES'),
+                    handler: () => {
+                        try {
+                            this.screenOrientation.unlock()
+                        } catch (e: any) {
+                            Log.info(
+                                'PuzzleScalerPage::unlockOrientation',
+                                'Failed to unlock orientation. Ignored the following error:',
+                                e,
+                            )
+                        }
+
+                        externalRedirect.to(`${pages.guest.puzzlePicker}`);
+                    }
+                }
+            ]
+        });
+        await finishedAlert.present();
 
         console.log('Puzzle kész!')
     }
@@ -199,7 +228,6 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     start() {
         this.saveCanvasSize();
 
-        // jigsawInstance.createPuzzleFromImage('#my_puzzle', null, '.custom-puzzle');
         if (this.croppedCanvas) {
 
             jigsawInstance.createPuzzleFromURL('#my_puzzle', this.croppedCanvas.toDataURL(), null, '.custom-puzzle');
@@ -230,33 +258,30 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     }
 
     async presentAlertConfirm() {
-        //TODO: KISZEDNI A BEÉGETETT SZÖVEGEKET
-        const alert = await this.alertController.create({
-            header: 'header',
-            message: '<strong>'+'leave?'+'</strong>',
+        const alert = await externalAlertController.create({
+            header: StaticService.translatePipe.transform('HEADER.EXIT'),
+            message: '<strong>'+StaticService.translatePipe.transform('MESSAGE.ABANDON')+'</strong>',
             buttons: [
                 {
-                    text: 'no',
+                    text: StaticService.translatePipe.transform('BUTTONS.NO'),
                     role: 'cancel',
                     cssClass: 'secondary',
                     handler: () => {
                     }
                 }, {
-                    text: 'yes',
+                    text: StaticService.translatePipe.transform('BUTTONS.YES'),
                     handler: () => {
-                        const piecesContainer = jQuery('#' + jigsawInstance.puzzleId);
-                        const numberOfPieces = parseInt(piecesContainer.data('pieces-number'), 10);
-                        // No points if the player gives up
-                        const navigationExtras: NavigationExtras = {
-                            queryParams: {
-                                result: 0,
-                                resultMax: Math.pow(numberOfPieces, 2) * 100
-                            }
-                        };
-                        puzzleScreenOrientation.unlock();
-                        puzzleScreenOrientation.lock('portrait');
-                        puzzleScreenOrientation = null;
-                        this.navController.navigateForward(['result'], navigationExtras);
+                        try {
+                            this.screenOrientation.unlock()
+                        } catch (e: any) {
+                            Log.info(
+                                'PuzzleScalerPage::unlockOrientation',
+                                'Failed to unlock orientation. Ignored the following error:',
+                                e.getMessage(),
+                            )
+                        }
+
+                        externalRedirect.to(`${pages.guest.guestRoom}`);
                         jigsawInstance.refreshTimerBeforeQuit();
                     }
                 }
@@ -264,6 +289,18 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
         });
         await alert.present();
         console.log('alert');
+    }
+
+    getFinalMoveCount() {
+        return $('.movement_counter').html();
+    }
+
+    selectNewPuzzle() {
+        externalRedirect.to(`${pages.guest.puzzlePicker}`);
+    }
+
+    quitToMenu() {
+        externalRedirect.to(`${pages.guest.guestRoom}`);
     }
 }
 
@@ -702,9 +739,7 @@ class JqJigsawPuzzle {
                                 if (jigsawInstance.finishSound != null) {
                                     jigsawInstance.finishSound.play();
                                 }
-                                puzzleScreenOrientation.unlock();
-                                puzzleScreenOrientation.lock('portrait');
-                                puzzleScreenOrientation = null;
+
                                 this.endMethod();
                             }
                         } else if ((currOrigPosX + difX) < canvasLeftBorder || (currOrigPosX + difX) > canvasRightBorder ||

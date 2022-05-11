@@ -68,6 +68,16 @@ export class PuzzlePickerPage implements OnInit, OnDestroy {
         this.queryRef = this.puzzleService.browse();
         this.sub = this.queryRef.valueChanges.subscribe((res) => {
             this.puzzles = deepCopy(res.data.puzzles);
+
+            //Eltávolítjuk azokat a puzzle-képeket, amik még nem lettek megvágva...
+            for (let i = 0; i < this.puzzles.length; i++) {
+                if (this.puzzles[i].columns === null) {
+                    console.log("ITT");
+                    this.puzzles.splice(i, 1);
+                    i--;
+                }
+            }
+
             this.showLoadingDialog();
         });
     }
