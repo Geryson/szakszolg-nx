@@ -54,7 +54,6 @@
         "NEXT_TO_WRITE_QF": "Fill the questionnaire",
         "ADD_QF": "Add questionnaire",
         "NEXT_TO_ADD_QF": "Add questions",
-        "REJECT": "Give up",
         "ADD_HANGMAN": "Add hangmans",
         "COPY_TOKEN": "Copy token",
         "START": "Start",
@@ -226,7 +225,8 @@
         "RULE": "Rule",
         "PLAY_GROUPS": "Choose a category and then drag the middle item to what you think is correct!",
         "HANGMAN": "The game ends when the gallows (and the human figure in it) are completely formed or the player guesses all the letters",
-        "MIRROR": "The point is to guess the mirrored word"
+        "MIRROR": "The point is to guess the mirrored word",
+        "PUZZLE": "The chosen image will be cut to random puzzle pieces and shuffled. Your goal is to complete the original image, in as few steps and as short time as you can."
     },
 
     "HOME": {
@@ -303,7 +303,8 @@
         "SELECT_NEW_PICTURE":"Select new picture",
         "UPLOAD_SELECTED_IMAGE":"Selected pictures",
         "NO_IMAGE_SELECTED":"(No image selected!)",
-        "NO_UPLOADED_IMAGE": "No image uploaded yet!"
+        "NO_UPLOADED_IMAGE": "No image uploaded yet!",
+        "PIECE_WARNING": "Sizing properties should be set for this picture in order to show up in the list of playable images. You can do this by pressing the Scale button, and later it can be repeatable anytime."
     },
 
     "ADMIN":{

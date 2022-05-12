@@ -25,6 +25,7 @@ export const pages = {
         groupingItems: 'guest/grouping-items',
         groupingItems2: 'guest/grouping-items2',
         puzzle: 'guest/puzzle',
+        puzzlePicker: 'guest/puzzle-picker',
         schoolFinder: 'guest/school-finder',
     },
     student: {

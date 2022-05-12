@@ -1,0 +1,11 @@
+<nx12-header [logoutButton]='false' title='NAVIGATION.SELECT_PUZZLE'></nx12-header>
+
+<ion-content fullscreen="true">
+    <ion-grid>
+        <ion-row>
+            <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let image of puzzles">
+                <div class="img-wrapper" [ngStyle]="{'background-image':'url(' + getImageUrl(image.url!) + ')', 'background-position': 'center'}" (click)="puzzleSelected(image)"></div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

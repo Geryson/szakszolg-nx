@@ -21,8 +21,9 @@
 
                         <img [alt]="item.url" [src]="getImageUrl(item.url)"/>
                         <div class="product-list-detail">
-                            <div class="product-name">{{getImageName(item.url)}}<br><i *ngIf='!item.columns' class="pi pi-exclamation-triangle text-warning" style="font-size: 1.25rem"></i></div>
-                            <div class="product-description">{{item.createdAt | date:(('SHARED.DATE_FORMAT' | translate))}}</div>
+                            <div class="product-name">{{getImageName(item.url)}}<br>
+                                <p-button *ngIf="!item.columns" (onClick)="showPieceWarning()" icon="pi pi-exclamation-circle" styleClass='p-button-warning'></p-button>
+                            </div>
                         </div>
                         <div class="product-list-action align-content-end">
                             <div>
@@ -44,9 +45,8 @@
                             <img [alt]="item.url" [src]="getImageUrl(item.url)"/>
                             <div class="product-name">
                                 {{getImageName(item.url)}}
-                                <i *ngIf='!item.columns' class="pi pi-exclamation-triangle text-warning" style="font-size: 1.25rem"></i>
+                                <p-button *ngIf="!item.columns" (onClick)="showPieceWarning()" icon="pi pi-exclamation-circle" styleClass='p-button-warning'></p-button>
                             </div>
-                            <div class="product-description">{{item.createdAt | date:(('SHARED.DATE_FORMAT' | translate))}}</div>
                         </div>
                         <div class="product-grid-item-bottom">
 <!--                            <span class="product-price">{{item.size/1000}}KB</span>-->

@@ -12,6 +12,8 @@ import { firstValueFrom, Subscription } from 'rxjs'
 import { presentLoading } from '../../../shared/utils/observable.tools'
 import { RedirectService } from '../../../shared/services/redirect.service'
 import {AuthService} from "../../../shared/services/auth.service";
+import {AlertController} from "@ionic/angular";
+import {StaticService} from "../../../shared/services/static.service";
 
 @Component({
     selector: 'nx12-manage-puzzles',
@@ -43,7 +45,8 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
         private readonly translate: TranslatePipe,
         private readonly redirect: RedirectService,
         private readonly confirm: ConfirmationService,
-        private readonly authService: AuthService
+        private readonly authService: AuthService,
+        private alertController: AlertController
     ) {
         setTimeout(() => {
             ;[
@@ -106,5 +109,16 @@ export class ManagePuzzlesPage implements OnInit, OnDestroy {
         this.canAddPuzzle = check(this.user as IUser, { resource: RESOURCES.PUZZLES, ability: ABILITIES.ADD })
         this.canEditPuzzle = check(this.user as IUser, { resource: RESOURCES.PUZZLES, ability: ABILITIES.EDIT })
         this.canDeletePuzzle = check(this.user as IUser, { resource: RESOURCES.PUZZLES, ability: ABILITIES.DELETE })
+    }
+
+    async showPieceWarning() {
+        const alert = await this.alertController.create({
+            message: StaticService.translatePipe.transform('ADD_PUZZLE.PIECE_WARNING'),
+            buttons: [
+                {
+                    text: await StaticService.translatePipe.transform('BUTTONS.OKE')
+                }]
+        });
+        await alert.present();
     }
 }
