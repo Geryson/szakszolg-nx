@@ -1,4 +1,9 @@
 <ion-content class="custom-puzzle" [scrollY]="false">
+    <p-dialog [visible]="rule" [closable]="false" [modal]="true" header="{{'RULES.RULE' | translate}}">
+        <p>{{ 'RULES.PUZZLE' | translate }}</p>
+        <button (click)="rule = false" pButton type="button" class="p-button-lg">OK</button>
+    </p-dialog>
+
     <div class="container">
         <div id="crop-container"></div>
         <angular-cropper #puzzleCropper id="invisible-cropper" [imageUrl]="imgSource"></angular-cropper>

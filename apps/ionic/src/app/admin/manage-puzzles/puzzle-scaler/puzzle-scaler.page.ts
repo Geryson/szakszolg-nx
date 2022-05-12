@@ -81,7 +81,7 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
         }
 
         this.puzzleCropper?.ready.subscribe(() => {
-            if (this.puzzleCropper?.cropper.getCanvasData().height ?? 0 > Math.floor(this.platform.height() * 0.9)) {
+            if (this.puzzleCropper?.cropper.getCanvasData().height && this.puzzleCropper?.cropper.getCanvasData().height > Math.floor(this.platform.height() * 0.9)) {
                 this.puzzleCropper?.cropper.setCanvasData({
                     height: Math.floor(this.platform.height() * 0.9),
                     left: 0,
@@ -218,9 +218,9 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
      */
     save() {
         const currentCropBoxData = this.puzzleCropper?.cropper.getCropBoxData()
-        if (!currentCropBoxData) throw 'No cropbox data'
-        if (!this.currentXRemainder) throw 'No currentXRemainder'
-        if (!this.currentYRemainder) throw 'No currentYRemainder'
+        if (currentCropBoxData === undefined) throw 'No cropbox data'
+        if (this.currentXRemainder === undefined) throw 'No currentXRemainder'
+        if (this.currentYRemainder === undefined) throw 'No currentYRemainder'
 
         currentCropBoxData.width = currentCropBoxData.width - this.currentXRemainder
         currentCropBoxData.height = currentCropBoxData.height - this.currentYRemainder

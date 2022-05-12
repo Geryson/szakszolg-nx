@@ -230,7 +230,8 @@
         "RULE": "Játékszabály",
         "PLAY_GROUPS": "Válassz egy kategóriát, majd a középső elemet húzd ahhoz, amit helyesnek gondolsz!",
         "HANGMAN": "A játék akkor ér véget, ha az akasztófa (és a benne lévő emberalak) teljes egészében megformálásra kerül, vagy a játékos az összes betűt kitalálja",
-        "MIRROR": "Lényege, hogy kitaláld a tükrözött szót (kisbetű-nagybetű nem számít)"
+        "MIRROR": "Lényege, hogy kitaláld a tükrözött szót (kisbetű-nagybetű nem számít)",
+        "PUZZLE": "A kiválasztott kép véletlenszerű puzzle-darabokra lesz vágva és össze lesz keverve. A célod összerakni az eredeti képet, minél kevesebb lépésből, minél rövidebb idő alatt."
     },
 
     "HOME": {
@@ -473,7 +474,8 @@
         "SELECT_NEW_PICTURE":"Új kép kiválasztása",
         "UPLOAD_SELECTED_IMAGE":"Feltöltésre kijelölt képek",
         "NO_IMAGE_SELECTED":"(Nincs kiválasztott kép)",
-        "NO_UPLOADED_IMAGE": "Még nincs feltöltött kép!"
+        "NO_UPLOADED_IMAGE": "Még nincs feltöltött kép!",
+        "PIECE_WARNING": "Ehhez a képhez még be kell állítani a méretezést, csak ezután jelenhet meg a játszható képek között. Ez a Vágás gomb megnyomásával tehető meg, és később bármikor megismételhető."
     },
 
     "ADMIN":{

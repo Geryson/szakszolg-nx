@@ -73,6 +73,8 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
 
     loadingDialog: any;
 
+    rule = true;
+
     constructor(private loadingController: LoadingController, public navController: NavController,
                 private service: PuzzleService, private platform: Platform, public alertController: AlertController,
                 private readonly redirect: RedirectService,
@@ -138,7 +140,7 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
             // @ts-ignore
             remotePuzzleColumns = this.service.activePuzzle?.columns;
 
-            this.croppedCanvas = this.puzzleCropper.cropper.getCroppedCanvas({maxHeight: Math.floor(this.platform.height() * 0.9)});
+            this.croppedCanvas = this.puzzleCropper.cropper.getCroppedCanvas({maxHeight: Math.floor(this.platform.height() * 0.9), maxWidth: Math.floor(this.platform.width() * 0.7)});
             const cropContainer = $('#crop-container');
             cropContainer.html(this.croppedCanvas);
             cropContainer.children()[0].id = 'my_puzzle';
