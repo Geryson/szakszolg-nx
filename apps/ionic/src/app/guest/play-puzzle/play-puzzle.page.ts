@@ -193,7 +193,12 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
                     cssClass: 'secondary',
                     handler: () => {
                         try {
-                            this.screenOrientation.unlock()
+                            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                                this.screenOrientation.unlock()
+                            }
+                            // If PC
+                            return new Promise(() => {})
+
                         } catch (e: any) {
                             Log.info(
                                 'PuzzleScalerPage::unlockOrientation',
@@ -208,7 +213,12 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
                     text: StaticService.translatePipe.transform('BUTTONS.YES'),
                     handler: () => {
                         try {
-                            this.screenOrientation.unlock()
+                            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                                this.screenOrientation.unlock()
+                                return
+                            }
+                            // If PC
+                            return new Promise(() => {})
                         } catch (e: any) {
                             Log.info(
                                 'PuzzleScalerPage::unlockOrientation',
