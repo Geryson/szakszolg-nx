@@ -155,13 +155,17 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
     }
 
     private lockLandscape() {
-        return this.screenOrientation
-            .lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)
-            .then(() => (this.failedOrientationLock = false))
-            .catch((e) => {
-                console.error('Failed to lock orientation', e)
-                this.failedOrientationLock = true
-            })
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            return this.screenOrientation
+                .lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)
+                .then(() => (this.failedOrientationLock = false))
+                .catch((e) => {
+                    console.error('Failed to lock orientation', e)
+                    this.failedOrientationLock = true
+                })
+        }
+        // If PC
+        return new Promise(() => {})
     }
 
     async showLoadingDialog() {
@@ -196,9 +200,6 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
                             if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
                                 this.screenOrientation.unlock()
                             }
-                            // If PC
-                            return new Promise(() => {})
-
                         } catch (e: any) {
                             Log.info(
                                 'PuzzleScalerPage::unlockOrientation',
@@ -215,10 +216,7 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
                         try {
                             if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
                                 this.screenOrientation.unlock()
-                                return
                             }
-                            // If PC
-                            return new Promise(() => {})
                         } catch (e: any) {
                             Log.info(
                                 'PuzzleScalerPage::unlockOrientation',
@@ -284,7 +282,9 @@ export class PlayPuzzlePage implements OnInit, ViewDidEnter {
                     text: StaticService.translatePipe.transform('BUTTONS.YES'),
                     handler: () => {
                         try {
-                            this.screenOrientation.unlock()
+                            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                                this.screenOrientation.unlock()
+                            }
                         } catch (e: any) {
                             Log.info(
                                 'PuzzleScalerPage::unlockOrientation',
