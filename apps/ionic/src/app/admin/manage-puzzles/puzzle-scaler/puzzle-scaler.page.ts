@@ -247,7 +247,9 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
     }
 
     ionViewDidLeave() {
-        this.unlockOrientation()
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            this.unlockOrientation()
+        }
     }
 
     async presentAlertConfirm() {
@@ -264,7 +266,9 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
                 {
                     text: await this.translatePipe.transform('BUTTONS.YES'),
                     handler: () => {
-                        this.unlockOrientation()
+                        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                            this.unlockOrientation()
+                        }
                         this.redirect.to(pages.admin.puzzleImages)
                     },
                 },
@@ -280,23 +284,30 @@ export class PuzzleScalerPage implements AfterViewInit, OnInit {
     }
 
     exit() {
-        this.unlockOrientation()
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            this.unlockOrientation()
+        }
         this.redirect.to(pages.admin.puzzleImages)
     }
 
     private lockLandscape() {
-        return this.screenOrientation
-            .lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)
-            .then(() => (this.failedOrientationLock = false))
-            .catch((e) => {
-                console.error('Failed to lock orientation', e)
-                this.failedOrientationLock = true
-            })
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+            return this.screenOrientation
+                .lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE)
+                .then(() => (this.failedOrientationLock = false))
+                .catch((e) => {
+                    console.error('Failed to lock orientation', e)
+                    this.failedOrientationLock = true
+                })
+        }
+        return new Promise(() => {})
     }
 
     private unlockOrientation() {
         try {
-            this.screenOrientation.unlock()
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                this.screenOrientation.unlock()
+            }
         } catch (e: any) {
             Log.info(
                 'PuzzleScalerPage::unlockOrientation',
