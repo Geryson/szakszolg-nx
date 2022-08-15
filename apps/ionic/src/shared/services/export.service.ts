@@ -102,7 +102,7 @@ export class ExportService {
 
     private csvEscape(value: string | number): string {
         if (typeof value === 'number') {
-            return value.toString()
+            return Buffer.from(value.toString(), 'utf8').toString()
         }
         value = value.replace(/"/g, '""').replace(/'/g, '""')
         return value.includes(this.csvDelimiter) ? `"${value}"` : value
