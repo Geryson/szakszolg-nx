@@ -8,6 +8,7 @@ import { ANSWERS } from '../graphql/answers.graphql'
 import { presentAlert, presentConfirmation, presentLoading } from '../utils/observable.tools'
 import { firstValueFrom } from 'rxjs'
 import { Log } from '../utils/log.tools'
+import { Buffer } from 'buffer'
 
 @Injectable({
     providedIn: 'root',
