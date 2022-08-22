@@ -103,9 +103,9 @@ export class ExportService {
 
     private csvEscape(value: string | number): string {
         if (typeof value === 'number') {
-            return Buffer.from(value.toString(), 'utf8').toString()
+            return Buffer.from(value.toString(), 'utf-8').toString()
         }
         value = value.replace(/"/g, '""').replace(/'/g, '""')
-        return value.includes(this.csvDelimiter) ? `"${value}"` : value
+        return Buffer.from(value.includes(this.csvDelimiter) ? `"${value}"` : value, 'utf-8').toString()
     }
 }
