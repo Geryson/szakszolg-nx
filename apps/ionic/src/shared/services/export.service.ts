@@ -19,6 +19,7 @@ export class ExportService {
         { key: 'questionId', label: 'kerdes_sorszam' },
         { key: 'answer', label: 'valasz' },
     ]
+    private readonly BOM = "\uFEFF";
     private readonly csvDelimiter = ','
     private readonly csvNewLine = '\n'
 
@@ -73,7 +74,7 @@ export class ExportService {
         //         : this.file.externalApplicationStorageDirectory.split('/Android')[0]
         try {
             const writeResult = await this.file.writeFile(
-                'file:///storage/emulated/0',
+                '/storage/emulated/0',
                 ExportService.generateFileName(queryResult.quiz.title),
                 new Blob([this.generateCsv(queryResult.quizAnswers)]),
                 {
@@ -83,7 +84,7 @@ export class ExportService {
             Log.debug('ExportService.exportFormToFile', 'Write OK', writeResult)
             presentAlert('MESSAGE.FORM_CSV_EXPORT_DONE', 'HEADER.EUREKA').then()
         } catch (e) {
-            Log.error('ExportService::exportFormToFile', 'Export failed:', e)
+            Log.error('ExportService::exportFormToFile', 'Export failed:', JSON.stringify(e) ,e)
             presentAlert('MESSAGE.FORM_CSV_EXPORT_FAILED', 'HEADER.ERROR').then()
         } finally {
             this.loadingDialog?.dismiss().then()
@@ -94,6 +95,7 @@ export class ExportService {
         let result = `${this.headers.map((h) => h.label).join(this.csvDelimiter)}${this.csvNewLine}`
         for (const answer of answers) {
             result +=
+                this.BOM +
                 this.headers.map((header) => this.csvEscape(answer[header.key])).join(this.csvDelimiter) +
                 this.csvNewLine
         }
@@ -103,9 +105,9 @@ export class ExportService {
 
     private csvEscape(value: string | number): string {
         if (typeof value === 'number') {
-            return Buffer.from(value.toString(), 'utf-8').toString()
+            return value.toString()
         }
         value = value.replace(/"/g, '""').replace(/'/g, '""')
-        return Buffer.from(value.includes(this.csvDelimiter) ? `"${value}"` : value, 'utf-8').toString()
+        return value.includes(this.csvDelimiter) ? `"${value}"` : value
     }
 }
