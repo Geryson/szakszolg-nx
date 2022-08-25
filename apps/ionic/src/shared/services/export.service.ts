@@ -19,7 +19,6 @@ export class ExportService {
         { key: 'questionId', label: 'kerdes_sorszam' },
         { key: 'answer', label: 'valasz' },
     ]
-    private readonly BOM = "\uFEFF";
     private readonly csvDelimiter = ','
     private readonly csvNewLine = '\n'
 
@@ -29,16 +28,32 @@ export class ExportService {
         private readonly diagnostic: Diagnostic,
         private readonly file: File,
     ) {}
+    
+    checkIfBrowser() {
+        if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+            return true
+        } else if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+            return true
+        } else if(navigator.userAgent.indexOf("Safari") != -1) {
+            return true
+        } else if(navigator.userAgent.indexOf("Firefox") != -1 ){
+            return true
+        } else if((navigator.userAgent.indexOf("MSIE") != -1 )) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     private static generateFileName(title: string) {
         const now = new Date()
-        return `${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}_${now
+        return Buffer.from(`${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}_${now
             .getHours()
             .toString()
             .padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}${now
             .getSeconds()
             .toString()
-            .padStart(2, '0')}_${title}.csv`
+            .padStart(2, '0')}_${title}.csv`, 'utf-8').toString()
     }
 
     getAnswers(quizId: string) {
@@ -74,7 +89,7 @@ export class ExportService {
         //         : this.file.externalApplicationStorageDirectory.split('/Android')[0]
         try {
             const writeResult = await this.file.writeFile(
-                '/storage/emulated/0',
+                'file:///storage/emulated/0',
                 ExportService.generateFileName(queryResult.quiz.title),
                 new Blob([this.generateCsv(queryResult.quizAnswers)]),
                 {
@@ -95,11 +110,11 @@ export class ExportService {
         let result = `${this.headers.map((h) => h.label).join(this.csvDelimiter)}${this.csvNewLine}`
         for (const answer of answers) {
             result +=
-                this.BOM +
                 this.headers.map((header) => this.csvEscape(answer[header.key])).join(this.csvDelimiter) +
                 this.csvNewLine
         }
-
+        result = Buffer.from(result, 'utf-8').toString()
+        //console.log('Result is = ' + result)
         return result
     }
 
