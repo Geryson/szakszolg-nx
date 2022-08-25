@@ -8,6 +8,7 @@ import { ANSWERS } from '../graphql/answers.graphql'
 import { presentAlert, presentConfirmation, presentLoading } from '../utils/observable.tools'
 import { firstValueFrom } from 'rxjs'
 import { Log } from '../utils/log.tools'
+import { Buffer } from 'buffer'
 
 @Injectable({
     providedIn: 'root',
@@ -27,16 +28,32 @@ export class ExportService {
         private readonly diagnostic: Diagnostic,
         private readonly file: File,
     ) {}
+    
+    checkIfBrowser() {
+        if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+            return true
+        } else if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+            return true
+        } else if(navigator.userAgent.indexOf("Safari") != -1) {
+            return true
+        } else if(navigator.userAgent.indexOf("Firefox") != -1 ){
+            return true
+        } else if((navigator.userAgent.indexOf("MSIE") != -1 )) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     private static generateFileName(title: string) {
         const now = new Date()
-        return `${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}_${now
+        return Buffer.from(`${now.getFullYear()}${now.getMonth() + 1}${now.getDate()}_${now
             .getHours()
             .toString()
             .padStart(2, '0')}${now.getMinutes().toString().padStart(2, '0')}${now
             .getSeconds()
             .toString()
-            .padStart(2, '0')}_${title}.csv`
+            .padStart(2, '0')}_${title}.csv`, 'utf-8').toString()
     }
 
     getAnswers(quizId: string) {
@@ -82,7 +99,7 @@ export class ExportService {
             Log.debug('ExportService.exportFormToFile', 'Write OK', writeResult)
             presentAlert('MESSAGE.FORM_CSV_EXPORT_DONE', 'HEADER.EUREKA').then()
         } catch (e) {
-            Log.error('ExportService::exportFormToFile', 'Export failed:', e)
+            Log.error('ExportService::exportFormToFile', 'Export failed:', JSON.stringify(e) ,e)
             presentAlert('MESSAGE.FORM_CSV_EXPORT_FAILED', 'HEADER.ERROR').then()
         } finally {
             this.loadingDialog?.dismiss().then()
@@ -96,7 +113,8 @@ export class ExportService {
                 this.headers.map((header) => this.csvEscape(answer[header.key])).join(this.csvDelimiter) +
                 this.csvNewLine
         }
-
+        result = Buffer.from(result, 'utf-8').toString()
+        //console.log('Result is = ' + result)
         return result
     }
 

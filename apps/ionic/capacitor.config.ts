@@ -12,6 +12,10 @@ const config: CapacitorConfig = {
         'cordova-plugin-file',
         'cordova-clipboard',
     ],
+    server: {
+        url: "http://192.168.99.34:4200", // Ide a saját IP-d, port amin az ionic fut
+        cleartext: true
+    },
 }
 
 export default config

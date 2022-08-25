@@ -7,7 +7,7 @@
     <div class="toolbar">
         <div class="operations-edit">
             <p class="ranger-title">{{ 'PUZZLE_SCALER.RANGER_TITLE' | translate }}</p>
-            <input #ranger (input)="onRangeInput(ranger.value)" max="{{rangerMax}}" min="{{rangerMin}}" step="1" style="transform: rotate(270deg); margin-top: 90px; margin-bottom: 90px" type="range" value="{{rangerValue}}">
+            <input #ranger (input)="onRangeInput(ranger.value)" max="{{rangerMax}}" min="{{rangerMin}}" step="1" style="transform: rotate(0deg); margin-top: 90px; margin-bottom: 90px" type="range" value="{{rangerValue}}">
             <ion-button (click)="preview()" [class.button-disabled]="previewDisabled" class="preview" shape="round">{{ 'BUTTONS.PREVIEW' | translate }}</ion-button>
             <ion-button (click)="exit()" class="preview" shape="round">{{ 'BUTTONS.EXIT' | translate }}</ion-button>
         </div>
