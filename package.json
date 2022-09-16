@@ -19,7 +19,6 @@
     "prod": "yarn run env:generate --environment=prod && ng build ionic"
   },
   "engines": {
-    "node": "16.x",
     "yarn": ">= 1.19.1"
   },
   "private": true,
