@@ -16,6 +16,8 @@
                     "options": {
                         "outputPath": "dist/apps/api",
                         "main": "apps/api/src/main.ts",
+                        "externalDependencies": "all",
+                        "generatePackageJson": true,
                         "tsConfig": "apps/api/tsconfig.app.json",
                         "assets": ["apps/api/src/assets"]
                     },
