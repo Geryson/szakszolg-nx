@@ -5,7 +5,7 @@
         <div class='field col-12'>
             <div class='my-4'>
                 <span class='p-float-label'>
-                    <input (input)='validator.check("title")' [(ngModel)]='survey!.title' id='title' maxlength="80" pInputText type='text'>
+                    <input (input)='validator.check("title")' [(ngModel)]='survey!.title' id='title' pInputText type='text'>
                     <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.TITLE' | translate }}</label>
                 </span>
                 <div class='text-invalid my-1'>{{ validator.validationErrors['title'] }}</div>
@@ -13,7 +13,7 @@
             <div class='mb-4'>
                 <span class='p-float-label'>
                     <textarea (input)='validator.check("description")' [(ngModel)]='survey!.description' cols='50'
-                              id='description' maxlength="255"
+                              id='description'
                               pInputTextarea rows='3'></textarea>
                     <label for='description'>{{ 'MANAGE_SURVEYS.SINGLE.DESCRIPTION' | translate }}</label>
                 </span>
@@ -21,7 +21,7 @@
             </div>
                 <div *ngIf='survey?.template === "skill"' class='mb-4'>
                     <span class='p-float-label'>
-                        <input (input)='skillQuestionChanged()' [(ngModel)]='skillQuestion' [maxLength]='255' id='questionText' pInputText
+                        <input (input)='skillQuestionChanged()' [(ngModel)]='skillQuestion' id='questionText' pInputText
                                type='text'>
                         <label for='title'>{{ 'MANAGE_SURVEYS.SINGLE.QUESTION' | translate }}</label>
                     </span>

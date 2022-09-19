@@ -6,7 +6,7 @@
 
         <div *ngIf="selectedItemFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
             <span class='p-float-label'>
-                <input [(ngModel)]='item.item' id='item' maxlength="80" pInputText type='text' />
+                <input [(ngModel)]='item.item' id='item' pInputText type='text' />
                 <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
             </span>
         </div>
@@ -26,7 +26,7 @@
 
         <div *ngIf="selectedAnswerFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
              <span class='p-float-label'>
-                <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' pInputText type='text' maxlength="255" />
+                <input #newGroup (keydown.enter)='add(newGroup)' id='newGroup' pInputText type='text'/>
                 <label for='newGroup'>{{ 'MANAGE_GROUPINGS.NEW_GROUP' | translate }}</label>
             </span>
 

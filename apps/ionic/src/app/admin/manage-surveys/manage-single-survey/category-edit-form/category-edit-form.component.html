@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class='mb-4'>
-            <input #newCategory (keydown.enter)='add(newCategory)' pInputText type='text' maxlength="80" />
+            <input #newCategory (keydown.enter)='add(newCategory)' pInputText type='text'/>
             <p-button (click)='add(newCategory)' [disabled]='!newCategory.value' icon='pi pi-plus' styleClass='p-button-success'></p-button>
         </div>
         <div class='mb-4'>

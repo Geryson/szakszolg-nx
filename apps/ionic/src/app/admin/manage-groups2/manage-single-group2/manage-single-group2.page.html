@@ -4,7 +4,7 @@
 
         <div class='field col-12 md:col-4 mt-5 mb-2'>
             <span class='p-float-label'>
-                <input [(ngModel)]="category" id="category" type="text" maxlength="80" pInputText>
+                <input [(ngModel)]="category" id="category" type="text" pInputText>
                 <label for="category">Kategória</label>
             </span>
         </div>
@@ -15,7 +15,7 @@
 
         <div *ngIf="selectedAnswerFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
             <span class='p-float-label'>
-                <input #newGroup id="group" (keydown.enter)='add(newGroup, "group")' maxlength="80" pInputText type='text' />
+                <input #newGroup id="group" (keydown.enter)='add(newGroup, "group")' pInputText type='text' />
                 <label for='group'>{{ 'MANAGE_GROUPINGS.GROUPS' | translate }}</label>
             </span>
 
@@ -68,7 +68,7 @@
 
         <div *ngIf="selectedItemFormat === 'Szöveg'" class='field col-12 md:col-4 mt-2 mb-4'>
             <span class='p-float-label'>
-                <input #newItem id="item"  (keydown.enter)='add(newItem, "item")' maxlength="80" pInputText type='text' />
+                <input #newItem id="item"  (keydown.enter)='add(newItem, "item")' pInputText type='text' />
                 <label for='item'>{{ 'MANAGE_GROUPINGS.ITEM' | translate }}</label>
             </span>
             <span><p-dropdown [(ngModel)]="correct" [options]="correctOptions" placeholder="Helyes válasz"></p-dropdown></span>

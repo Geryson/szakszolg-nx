@@ -3,7 +3,7 @@
         <!-- region Question Title input -->
         <div *ngIf='template !== "skill"' class='mb-4'>
             <span class='p-float-label'>
-                <input [(ngModel)]='question.question' [disabled]='template === "skill"' [maxLength]='80' id='title'
+                <input [(ngModel)]='question.question' [disabled]='template === "skill"' id='title'
                        pInputText type='text'>
                 <label for='title'>{{ 'MANAGE_QUESTIONS.QUESTION' | translate }}</label>
             </span>
@@ -74,7 +74,7 @@
             <!-- region Answer input -->
             <div *ngIf='question.type !== "true-false" && !(question.type === "skill" && (question.answers?.length ?? 0) > 1)' class='my-4'>
                 <span class='p-float-label'>
-                    <input #newAnswer (keydown.enter)='addAnswer(newAnswer)' [maxLength]='255' id='newAnswer' pInputText type='text'>
+                    <input #newAnswer (keydown.enter)='addAnswer(newAnswer)' id='newAnswer' pInputText type='text'>
                     <label for='newAnswer'>{{ 'MANAGE_QUESTIONS.NEW_ANSWER' | translate }}</label>
                 </span>
                 <p-button (click)='addAnswer(newAnswer)' [disabled]='question.type === "skill" && (question.answers?.length ?? 0) > 1' icon='pi pi-plus'
