@@ -17,6 +17,7 @@
 
 
     <style name="AppTheme.NoActionBarLaunch" parent="AppTheme.NoActionBar">
-        <item name="android:background">@drawable/splash</item>
+        <!-- Jelenleg nem szeretnénk splash icon-t indításkor -->
+        <!-- <item name="android:background">@drawable/splash</item> -->
     </style>
 </resources>

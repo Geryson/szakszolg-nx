@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">ionic</string>
-    <string name="title_activity_main">ionic</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="app_name">PÁVA</string>
+    <string name="title_activity_main">PÁVA</string>
+    <string name="package_name">hu.hmpedszakszolgalat.pava</string>
+    <string name="custom_url_scheme">hu.hmpedszakszolgalat.pava</string>
 </resources>

@@ -15,13 +15,13 @@ export class SchoolFinderPage extends CrudPageClass<ISchool, { schools: Partial<
     protected resourceName = RESOURCES.SCHOOLS
 
     button1 = {
-        name: '',
-        url: ''
+        name: 'Gimnázium kereső',
+        url: 'https://dari.oktatas.hu/kirint.search'
     }
 
     button2 = {
-        name: '',
-        url: ''
+        name: 'Szakképző kereső',
+        url: 'https://szir.nive.hu/publikus/intezmeny-kereso'
     }
 
     myScreenOrientation = window.screen.orientation;
