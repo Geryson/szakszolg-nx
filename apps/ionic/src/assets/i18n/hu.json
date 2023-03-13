@@ -395,7 +395,8 @@
             "picture": "Kép"
         },
         "ERROR": "Túl nagy a kép mérete, összesen 1Mb lehet!",
-        "CHOOSE_ANSWER_FORMAT": "Válasszon válasz formátumot!"
+        "CHOOSE_ANSWER_FORMAT": "Válasszon válasz formátumot!",
+        "INVALID_CATEGORY_NAME": "Nem tartalmazhatja a következő speciális karaktereket: + * ^ $ { } | \\"
     },
 
     "FORM_OPERATION":  {

@@ -267,6 +267,9 @@ export class ManageSingleGroup2Page {
         return false
     }
 
+    categoryHasSpecialChars() {
+        return /[$^*+{}|\\]/.test(this.category!)
+    }
 }
 
 const validations: { [key: string]: (value: any, attribute: string) => boolean } = {

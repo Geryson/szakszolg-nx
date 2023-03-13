@@ -260,6 +260,29 @@
         "EMAIL": "e-mail"
     },
 
+    "MANAGE_GROUPINGS": {
+        "SEARCH": "Search by word",
+        "SAVE": "Save",
+        "CATEGORY": "Category",
+        "ITEM": "Item",
+        "ITEMS": "Items",
+        "GROUPS": "Groups",
+        "CORRECT": "Correct",
+        "ACTIONS": "Actions",
+        "NEW_GROUP": "New optional answer",
+        "NO_GROUPS": "No groups created yet",
+        "NO_ITEMS": "No items created yet",
+        "CORRECT_BUTTON": "Correct answer",
+        "MARKED_CORRECT": "Marked as correct",
+        "OPTIONS": {
+            "text": "Text",
+            "picture": "Picture"
+        },
+        "ERROR": "Picture size is too big, it has to be a total of 1MB!",
+        "CHOOSE_ANSWER_FORMAT": "Please choose an answer format!",
+        "INVALID_CATEGORY_NAME": "Cannot contain the following special characters: + * ^ $ { } | \\"
+    },
+
     "ADD_FORM":{
         "DELETE_QUESTIONS": "Delete question",
         "ADD_QUESTIONS": "Add question:",

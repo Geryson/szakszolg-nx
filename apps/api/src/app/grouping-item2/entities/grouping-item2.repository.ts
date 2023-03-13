@@ -38,7 +38,12 @@ export class GroupingItem2Repository extends SimpleRepository<
         if (data.id) return super.findOne(data)
 
         if (data?.category) {
-            const res = await this.model.find({ category: { $regex: data.category, $options: 'i' } })
+            const rawCategory = data.category
+            const formattedCategory = rawCategory.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
+                .replace(/\[/g, "\\[").replace(/]/g, "\\]").replace(/\?/g, "\\?")
+                .replace(/\./g, "\\.")
+            const regexName = new RegExp('\\' + formattedCategory, "i")
+            const res = await this.model.find({ category: { $regex: regexName } })
             return res[Math.floor(Math.random() * res.length)]
         }
 
