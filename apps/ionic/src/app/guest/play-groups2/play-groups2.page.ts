@@ -113,7 +113,7 @@ export class PlayGroups2Page {
                 this.guessedAnswer = true
                 this.counter += 1
             }
-            else{
+            else if (this.answerId !== -1) {
                 this.notCorrect = true
             }
         }
