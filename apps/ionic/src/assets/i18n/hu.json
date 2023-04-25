@@ -28,7 +28,8 @@
         "SKILL_FORM": "Képesség eldöntő kérdőív",
         "ANSWER_CHOOSE":"Tevékenység választó",
         "CATEGORY_EDITING":"Kategóriák szerkesztése",
-        "SURVEY_DETAILS": "Kérdőív részletei"
+        "SURVEY_DETAILS": "Kérdőív részletei",
+        "SURVEY_RESULTS": "Kérdőív eredmények"
     },
 
     "BUTTONS":{

@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'survey-details',
     loadChildren: () => import('./survey-details/survey-details.module').then( m => m.SurveyDetailsPageModule)
   },
+  {
+    path: 'survey-results',
+    loadChildren: () => import('./survey-results/survey-results.module').then( m => m.SurveyResultsPageModule)
+  },
+
 ]
 
 @NgModule({

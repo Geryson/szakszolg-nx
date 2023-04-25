@@ -1,0 +1,35 @@
+.survey-results {
+    text-align: -webkit-center;
+}
+
+.grid-container {
+    margin-top: 50px;
+    width: 66%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.grid-body ion-row:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.grid-body ion-row:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.grid-row:nth-child(2n),
+.grid-row:nth-of-type(2n) {
+    background: rgba(129, 73, 179, 0.25);
+}
+
+.grid-row:nth-child(2n+1),
+.grid-row:nth-child(2n+1) {
+    background: rgba(129, 73, 179, 0.5);
+}
+
+.home-button {
+    width: 50%;
+    margin-top: 50px;
+}

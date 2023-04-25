@@ -25,7 +25,8 @@
         "TRUE_FALSE_FORM": "True-False form",
         "SKILL_FORM": "Skill form",
         "ANSWER_CHOOSE":"Answer choose",
-        "CATEGORY_EDITING":"Category editing"
+        "CATEGORY_EDITING":"Category editing",
+        "SURVEY_RESULTS": "Survey results"
     },
 
     "BUTTONS":{

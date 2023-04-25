@@ -22,9 +22,11 @@ export const TOKENS = {
                         _id
                         question
                         type
+                        categoryIndex
                         answers {
                             text
                             isCorrect
+                            categoryIndex
                         }
                     }
                 }

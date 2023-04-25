@@ -1,9 +1,9 @@
-import { Inject, Injectable, OnDestroy } from '@angular/core'
+import { Inject, Injectable } from '@angular/core'
 import { Apollo, MutationResult } from 'apollo-angular'
 import { firstValueFrom, Observable } from 'rxjs'
 import { APOLLO_CLIENT } from '../injector.tokens'
 import { TOKENS } from '../graphql/tokens.graphql'
-import { ICreateQuizAnswerInput, IQuiz, IQuizAnswer, IQuizQuestion, IToken } from '@szakszolg-nx/api-interfaces'
+import { IQuiz, IQuizAnswer, IQuizQuestion, IToken } from '@szakszolg-nx/api-interfaces'
 import { STORAGE_KEY } from '../utils/constants'
 import { pages } from '../utils/pages.const'
 import { StorageService } from './storage.service'
@@ -94,10 +94,17 @@ export class TokenService {
         this.storage.remove(STORAGE_KEY.EDU_ID).then()
     }
     async accept() {
+        const quizToResultsPage = this.activeQuiz
+        const answersToResultsPage = this.answers;
+
         this.save = true
         this.end = false
         await this.cancel().then()
-        this.redirect.to(pages.home)
+        this.redirect.to(pages.student.surveyResults,
+            {
+                activeQuiz: quizToResultsPage,
+                answers: answersToResultsPage
+            })
     }
 
     reject() {
