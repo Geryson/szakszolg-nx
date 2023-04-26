@@ -15,7 +15,7 @@ import {IQuiz, IQuizAnswer} from "@szakszolg-nx/api-interfaces";
 export class SurveyResultsPage implements OnInit {
     quizType = ''
 
-    skillPoints: Array<number> = new Array<number>()
+    points: Array<number> = new Array<number>()
 
     activeQuiz: IQuiz | undefined = undefined
     answers: IQuizAnswer[] | undefined = undefined
@@ -32,22 +32,7 @@ export class SurveyResultsPage implements OnInit {
     }
 
     ngOnInit() {
-        if (this.activeQuiz?.template) {
-            this.quizType = this.activeQuiz.template
-            switch (this.quizType) {
-                case 'skill': {
-                    this.calculateSkillResults();
-                    break;
-                }
-                default: {
-                    console.log('No template')
-                }
-            }
-        }
-    }
-
-    private calculateSkillResults() {
-        const points = this.skillPoints
+        const points = this.points
 
         const categoryCount = this.activeQuiz?.categories?.length
         if (categoryCount) {
@@ -56,19 +41,45 @@ export class SurveyResultsPage implements OnInit {
             }
 
             const questionCount = this.activeQuiz?.questions?.length
-            if (questionCount && this.answers) {
+            if (questionCount && this.answers && this.activeQuiz?.template) {
+                this.quizType = this.activeQuiz.template
                 for (let j = 0; j < questionCount; j++) {
-                    const selectedAnswerText = this.answers[j].answer
-                    this.activeQuiz?.questions[j].answers?.forEach(function (answer) {
-                        if (answer.categoryIndex != null && answer.text == selectedAnswerText) {
-                            points[answer.categoryIndex] += 1
+                    switch (this.quizType) {
+                        case 'skill': {
+                            this.calculateSkillAnswers(j, points, this.answers);
+                            break;
                         }
-                    })
+                        case 'rating': {
+                            this.calculateRatingAnswers(j, points, this.answers);
+                            break;
+                        }
+                        default: {
+                            console.log('No template')
+                        }
+                    }
                 }
             }
         }
     }
 
+    private calculateSkillAnswers(j: number, points: Array<number>, answers: IQuizAnswer[]) {
+        const selectedAnswer = answers[j].answer
+        this.activeQuiz?.questions[j].answers?.forEach(function (answer) {
+            if (answer.categoryIndex != null && answer.text == selectedAnswer) {
+                points[answer.categoryIndex] += 1
+            }
+        })
+    }
+
+    private calculateRatingAnswers(j: number, points: Array<number>, answers: IQuizAnswer[]) {
+        const selectedAnswer = parseInt(answers[j].answer)
+        if (this.activeQuiz?.questions[j] != null && this.activeQuiz?.questions[j]?.categoryIndex != null) {
+            const currentCategory = this.activeQuiz?.questions[j]?.categoryIndex;
+            if (currentCategory != null) {
+                points[currentCategory] += selectedAnswer
+            }
+        }
+    }
     async backToHome() {
         this.redirect.to(pages.home)
     }

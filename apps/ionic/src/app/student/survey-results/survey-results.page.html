@@ -1,10 +1,10 @@
 <nx12-header title="NAVIGATION.SURVEY_RESULTS"></nx12-header>
 <ion-content class="survey-results">
-    <div class="grid-container" *ngIf="activeQuiz?.template === 'skill'">
+    <div class="grid-container" *ngIf="activeQuiz?.template === 'skill' || activeQuiz?.template === 'rating'">
         <ion-grid class="grid-body">
             <ion-row class="grid-row" *ngFor="let category of activeQuiz?.categories; index as i">
                 <ion-col size="10">{{category}}</ion-col>
-                <ion-col>{{skillPoints[i]}}</ion-col>
+                <ion-col>{{points[i]}}</ion-col>
             </ion-row>
         </ion-grid>
     </div>
