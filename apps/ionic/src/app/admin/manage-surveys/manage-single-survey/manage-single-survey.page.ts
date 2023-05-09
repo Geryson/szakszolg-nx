@@ -9,7 +9,6 @@ import { ConfirmationService, MessageService } from 'primeng/api'
 import { NavController } from '@ionic/angular'
 import { SurveyService } from '../../../../shared/services/survey.service'
 import { areEqual, deepCopy, omit } from '../../../../shared/utils/object.tools'
-import { Log } from '../../../../shared/utils/log.tools'
 import { presentLoading } from '../../../../shared/utils/observable.tools'
 import { translate, Validator } from '../../../../shared/utils/translation.tools'
 
@@ -107,6 +106,7 @@ export class ManageSingleSurveyPage {
             this.survey.questions.push($event)
         }
         this.validator?.check('questions')
+        this.validator?.check('moreNeutralCategories')
     }
 
     async templateChosen(template: string) {
@@ -238,7 +238,7 @@ export class ManageSingleSurveyPage {
             attributeFactory: (prop) =>
                 prop === 'skillQuestion' ? this.skillQuestion : this.survey?.[prop as keyof IQuiz],
             translationKey: 'MANAGE_SURVEYS.SINGLE',
-            properties: ['title', 'description', 'categories', 'questions', 'skillQuestion'],
+            properties: ['title', 'description', 'categories', 'questions', 'skillQuestion', 'moreNeutralCategories'],
             rules: {
                 title: (survey, title) => !!title,
                 description: (survey, description) => !!description,
@@ -246,6 +246,26 @@ export class ManageSingleSurveyPage {
                 categories: (survey, categories) =>
                     survey.template === 'quiz' || (!!categories && (categories as string[]).length > 0),
                 skillQuestion: (survey, skillQuestion) => survey.template !== 'skill' || !!skillQuestion,
+                moreNeutralCategories: (survey) => {
+                    if (survey.template !== 'true-false') {
+                        return true
+                    }
+                    let neutralCategoryId:number | undefined = -1
+                    if (survey.questions && survey.questions.length > 0) {
+                        for (const question of survey.questions) {
+                            if (question.answers && question.answers[1].categoryIndex != -1 && neutralCategoryId == -1) {
+                                neutralCategoryId = question.answers[1].categoryIndex
+                            }
+
+                            if (question.answers && neutralCategoryId != question.answers[1].categoryIndex) {
+                                return false
+                            }
+                        }
+                        return true
+                    }
+
+                    return false
+                }
             },
         })
     }

@@ -24,7 +24,7 @@
         "SCHOOL_FINDER": "Iskolakereső",
         "TYPED_FORM": "Kiértékelendő kérdőív",
         "ROLE_RIGHTS": "Szerepkör-jogkör",
-        "TRUE_FALSE_FORM": "Igaz-Hamis kérdőív",
+        "TRUE_FALSE_FORM": "Igen-Nem kérdőív",
         "SKILL_FORM": "Képesség eldöntő kérdőív",
         "ANSWER_CHOOSE":"Tevékenység választó",
         "CATEGORY_EDITING":"Kategóriák szerkesztése",
@@ -182,7 +182,7 @@
         "WHAT_TYPE_OF_EVALUATE_QF": "Milyen kiértékelendő kérdőívet szeretne létrehozni?",
         "EVALUATE_QF":"Kiértékelendő kérdőív",
         "ONE_TO_FIVE_EVALUATE_QF":"Egytől-ötig",
-        "TRUE_FALSE_EVALUATE_QF":"Igaz-Hamis",
+        "TRUE_FALSE_EVALUATE_QF":"Igen-Nem",
         "SKILL_EVALUATE_QF":"Képesség eldöntő",
         "CUSTOM_QF":"Egyedi Kérdőív",
         "PAIRS_INSTRUCTIONS": "Párosítsa egymáshoz a következő 3 pár megfelelő elemeit!",
@@ -207,8 +207,8 @@
         "Q_THREE":"Közepes mértékben",
         "Q_FOUR":"Jelentős mértékben",
         "Q_FIVE":"Teljes mértékben",
-        "TRUE":"Igaz",
-        "FALSE":"Hamis"
+        "TRUE":"Igen",
+        "FALSE":"Nem"
     },
 
     "HEADER":{
@@ -318,7 +318,8 @@
                 "DESCRIPTION": "A leírás kitöltése kötelező",
                 "QUESTIONS": "Nincsenek elemek megadva",
                 "SKILLQUESTION": "Nincs megadva kérdés",
-                "CATEGORIES": "Nincs kategória megadva"
+                "CATEGORIES": "Nincs kategória megadva",
+                "MORENEUTRALCATEGORIES": "A kérdések nemleges válaszaihoz többféle kategória van megadva. A helyes kiértékeléshez szükséges minden nemleges válaszhoz ugyanazt a kategóriát beállítani."
             }
         }
     },
@@ -347,7 +348,7 @@
             "CHOOSE": "Felelet választós",
             "RATING": "Egytől Ötig",
             "CHOOSE-MANY": "Több lehetőséges",
-            "TRUE-FALSE": "Igaz-Hamis"
+            "TRUE-FALSE": "Igen-Nem"
         },
         "TEMPLATE1": {
             "HEADER": "Kérdőív típus",
@@ -359,7 +360,7 @@
             "HEADER": "Sablon típus",
             "DESCRIPTION": "Milyen típusú kiértékelendő kérdőívet szeretne létrehozni?",
             "RATING": "Egytől-Ötig",
-            "TRUE-FALSE": "Igaz-Hamis",
+            "TRUE-FALSE": "Igen-Nem",
             "SKILL": "Képesség eldöntő",
             "QUIZ": "Kvíz"
         }
@@ -401,8 +402,8 @@
     },
 
     "FORM_OPERATION":  {
-        "TRUE": "Igaz",
-        "FALSE": "Hamis",
+        "TRUE": "Igen",
+        "FALSE": "Nem",
         "NA": "Nincs",
         "NOTHING": "semleges",
         "COPY": "Másolás",
@@ -438,7 +439,7 @@
         "ADD_QUESTIONS": "Kérdések hozzáadása:",
         "UNIQUE_ANSWERS": "Egyedi válaszok",
         "ONE_TO_FIVE": "Egytől-Ötig",
-        "WHAT_IS_TRUE": "Melyik igaz?",
+        "WHAT_IS_TRUE": "Igen vagy nem?",
         "QUESTION": "kérdés...",
         "ANSWER": "válasz..."
     },

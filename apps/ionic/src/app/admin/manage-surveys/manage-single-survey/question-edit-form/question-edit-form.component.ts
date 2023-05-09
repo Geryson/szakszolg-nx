@@ -18,8 +18,6 @@ export class QuestionEditFormComponent {
     questionTypes = ['free', 'choose', 'rating', 'true-false']
     @Input() options: { name: string; value: number }[] = []
     validator = new Validator<IQuizQuestion>()
-    trueFalseAnswer: any
-
     constructor(private readonly translate: TranslatePipe) {
         setTimeout(() => {
             Log.debug('QuestionEditFormComponent::constructor()', 'template', this.template)
@@ -41,7 +39,7 @@ export class QuestionEditFormComponent {
         if (this.question.answers.length < 1) {
             this.question.answers.push({
                 _id: this.question.answers.length,
-                text: 'Igaz',
+                text: 'Igen',
                 categoryIndex: 0,
                 isCorrect: false,
                 createdAt: new Date(),
@@ -49,7 +47,7 @@ export class QuestionEditFormComponent {
 
             this.question.answers.push({
                 _id: this.question.answers.length,
-                text: 'Hamis',
+                text: 'Nem',
                 categoryIndex: 0,
                 isCorrect: false,
                 createdAt: new Date(),

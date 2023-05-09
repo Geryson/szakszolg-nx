@@ -37,6 +37,7 @@
                 <p-button (click)='save()' [disabled]="!validator.valid || isValid()" icon='pi pi-{{ NG_ICON.save }}'
                           label='{{"FORM_OPERATION.SAVE" | translate}}' styleClass='p-button-primary'></p-button>
             </div>
+            <div class='text-invalid my-1'>{{ validator.validationErrors['moreNeutralCategories'] }}</div>
         </div>
         <div class='field col-12'>
             <p-table [globalFilterFields]='["question"]' [value]='survey?.questions ?? []' responsiveLayout='stack'>
