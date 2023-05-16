@@ -18,6 +18,7 @@ export class QuestionEditFormComponent {
     questionTypes = ['free', 'choose', 'rating', 'true-false']
     @Input() options: { name: string; value: number }[] = []
     validator = new Validator<IQuizQuestion>()
+    reversedRating = false
     constructor(private readonly translate: TranslatePipe) {
         setTimeout(() => {
             Log.debug('QuestionEditFormComponent::constructor()', 'template', this.template)
@@ -28,6 +29,9 @@ export class QuestionEditFormComponent {
                     break
                 case 'quiz':
                     this.question.type = 'choose'
+                    break
+                case 'rating':
+                    this.reversedRating = this.question.type == 'rating-reversed'
                     break
             }
         }, 100)
@@ -125,12 +129,17 @@ export class QuestionEditFormComponent {
         if (
             !this.question?.question ||
             !this.question.type ||
-            (this.question.type !== 'rating' && this.question.type !== 'free' && !this.question.answers?.length) ||
+            (this.question.type !== 'rating' && this.question.type !== 'rating-reversed' && this.question.type !== 'free' && !this.question.answers?.length) ||
             (this.question.type === 'skill' && this.question.answers?.length !== 2)
         ) {
             this.validator.check()
             return
         }
+
+        if (this.template === 'rating') {
+            this.question.type = this.reversedRating ? 'rating-reversed' : 'rating'
+        }
+
         this.submitted.emit(this.question)
     }
 
@@ -141,6 +150,7 @@ export class QuestionEditFormComponent {
     questionTypeChanged($event: { originalEvent?: Event; value: string }) {
         switch ($event.value) {
             case 'rating':
+            case 'rating-reversed':
             case 'free':
                 this.question.answers = []
                 break

@@ -336,6 +336,7 @@
         "NO_ITEMS": "Nincsenek megjeleníthető elemek",
         "NEW_ANSWER": "Új válasz...",
         "CATEGORIES": "Kategóriák",
+        "REVERSED_SCORING": "Fordított pontozás",
         "ERRORS": {
             "QUESTION_EMPTY": "A kérdés szövegét kötelező kitölteni",
             "ANSWER_EMPTY": "A válasz szövegét kötelező kitölteni",
