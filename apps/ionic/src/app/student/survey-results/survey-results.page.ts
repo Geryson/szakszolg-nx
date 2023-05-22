@@ -6,6 +6,7 @@ import {TranslatePipe} from "@ngx-translate/core";
 import {pages} from "../../../shared/utils/pages.const";
 import {ActivatedRoute, Router} from "@angular/router";
 import {IQuiz, IQuizAnswer, IQuizQuestion} from "@szakszolg-nx/api-interfaces";
+import {deepCopy} from "../../../shared/utils/object.tools";
 
 @Component({
     selector: 'nx12-survey-results',
@@ -24,6 +25,9 @@ export class SurveyResultsPage implements OnInit {
     answeredCategoryPoints: number[] = []
 
     quizCategories: string[] | undefined = []
+
+    categoryAverageCalculation = false
+    questionsPerCategory: number[] = []
 
     constructor(public readonly service: TokenService, private readonly redirect: RedirectService,
                 private readonly storage: StorageService, private readonly translate: TranslatePipe,
@@ -74,6 +78,11 @@ export class SurveyResultsPage implements OnInit {
                     points.push(0)
                 }
 
+                if (this.quizType == 'rating' && this.activeQuiz.useCategoryAverage) {
+                    this.categoryAverageCalculation = this.activeQuiz.useCategoryAverage
+                    this.questionsPerCategory = deepCopy(points)
+                }
+
                 const questionCount = this.activeQuiz?.questions?.length
                 if (questionCount && this.answers) {
                     for (let j = 0; j < questionCount; j++) {
@@ -102,6 +111,13 @@ export class SurveyResultsPage implements OnInit {
                                 + ' (' + (this.answeredCategoryPoints[i] / this.totalCategoryPoints[i]) * 100 + '%)'
                             this.points.push(categoryResult)
                         }
+                    } else if (this.questionsPerCategory.length > 0) {
+                        for (let i = 0; i < this.questionsPerCategory.length; i++) {
+                            const originalScore = points[i]
+                            const questionsInCategory = this.questionsPerCategory[i]
+                            points[i] = originalScore / questionsInCategory
+                        }
+                        this.convertNumbersToStrings(points)
                     } else {
                         this.convertNumbersToStrings(points)
                     }
@@ -123,9 +139,13 @@ export class SurveyResultsPage implements OnInit {
         const selectedAnswer = parseInt(answers[j].answer)
         if (this.activeQuiz?.questions[j] != null && this.activeQuiz?.questions[j]?.categoryIndex != null
             && this.activeQuiz?.questions[j]?.type != null) {
-            const currentCategory = this.activeQuiz?.questions[j]?.categoryIndex;
+            const currentCategory = this.activeQuiz?.questions[j]?.categoryIndex
             const questionType = this.activeQuiz?.questions[j]?.type
             if (currentCategory != null) {
+                if (this.questionsPerCategory.length > 0) {
+                    this.questionsPerCategory[currentCategory] += 1
+                }
+
                 const calculatedAnswer = questionType === 'rating-reversed' ? selectedAnswer - 6 : selectedAnswer
                 points[currentCategory] += Math.abs(calculatedAnswer)
             }
@@ -154,7 +174,8 @@ export class SurveyResultsPage implements OnInit {
 
     private convertNumbersToStrings(points: Array<number>) {
         points.forEach(point => {
-            this.points.push(point.toString())
+            const formattedNumber = Math.round(point * 10000) / 10000
+            this.points.push(formattedNumber.toString())
         })
     }
 

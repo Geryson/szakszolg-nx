@@ -8,4 +8,5 @@ export interface IQuiz extends IApiResource {
     questions: IQuizQuestion[]
     template: string
     tokens: string[]
+    useCategoryAverage: boolean
 }

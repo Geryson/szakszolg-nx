@@ -18,6 +18,7 @@ export const TOKENS = {
                     template
                     description
                     categories
+                    useCategoryAverage
                     questions{
                         _id
                         question

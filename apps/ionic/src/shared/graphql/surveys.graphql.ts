@@ -9,6 +9,7 @@ export const SURVEYS = {
                 description
                 categories
                 createdAt
+                useCategoryAverage
             }
         }
     `,
@@ -28,6 +29,7 @@ export const SURVEYS = {
             $categories: [String!]!
             $questions: [CreateQuizQuestionInput!]!
             $template: String!
+            $useCategoryAverage: Boolean!
         ) {
             createQuiz(
                 createQuizData: {
@@ -36,6 +38,7 @@ export const SURVEYS = {
                     categories: $categories
                     questions: $questions
                     template: $template
+                    useCategoryAverage: $useCategoryAverage
                 }
             ) {
                 _id
@@ -50,6 +53,7 @@ export const SURVEYS = {
                 description
                 template
                 categories
+                useCategoryAverage
                 questions {
                     _id
                     question
@@ -82,6 +86,7 @@ export const SURVEYS = {
             $description: String!
             $categories: [String!]
             $questions: [UpdateQuizQuestionInput!]
+            $useCategoryAverage: Boolean!
         ) {
             updateQuiz(
                 updateQuizData: {
@@ -90,6 +95,7 @@ export const SURVEYS = {
                     description: $description
                     categories: $categories
                     questions: $questions
+                    useCategoryAverage: $useCategoryAverage
                 }
             ) {
                 _id

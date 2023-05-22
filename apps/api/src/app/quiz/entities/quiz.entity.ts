@@ -39,6 +39,10 @@ export class Quiz implements IQuiz {
 
     @Field()
     @Prop()
+    useCategoryAverage: boolean
+
+    @Field()
+    @Prop()
     createdAt: Date
 
     @Field()

@@ -23,4 +23,7 @@ export class UpdateQuizInput extends IdInput implements IUpdatedAt {
     questions: IQuizQuestion[]
 
     updatedAt?: Date
+
+    @Field()
+    useCategoryAverage: boolean
 }

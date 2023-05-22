@@ -19,4 +19,7 @@ export class CreateQuizInput extends GqlInput {
 
     @Field()
     template: string
+
+    @Field()
+    useCategoryAverage: boolean
 }

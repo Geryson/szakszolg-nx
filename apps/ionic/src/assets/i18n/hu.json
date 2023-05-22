@@ -305,6 +305,7 @@
         "DELETE_CONFIRM": "Biztosan törölni szeretnél?",
         "DELETED": "Siker",
         "DELETED_DETAIL": "A törlés sikeresen megtörtént.",
+        "CATEGORY_AVERAGE_INFO": "Ha ez az opció be van kapcsolva, kiértékeléskor az egyes kategóriákon belüli kérdések átlagos pontszáma lesz az eredmény. (Pl. ha egy kategóriában 3 kérdés van, amik 5, 3 és 1 pontot kapnak, az eredmény ezek átlaga lesz, azaz 3.)",
         "SINGLE": {
             "QUESTION": "A kérdés",
             "NEW_QUESTION": "Új kérdés felvétele",
