@@ -108,7 +108,7 @@ export class SurveyResultsPage implements OnInit {
                     if (this.quizType == 'true-false') {
                         for (let i = 0; i < categoryCount; i++) {
                             const categoryResult = this.answeredCategoryPoints[i] + '/' + this.totalCategoryPoints[i]
-                                + ' (' + (this.answeredCategoryPoints[i] / this.totalCategoryPoints[i]) * 100 + '%)'
+                                + ' (' + Math.round((this.answeredCategoryPoints[i] / this.totalCategoryPoints[i]) * 100) + '%)'
                             this.points.push(categoryResult)
                         }
                     } else if (this.questionsPerCategory.length > 0) {
