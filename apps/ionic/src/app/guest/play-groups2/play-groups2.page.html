@@ -104,7 +104,11 @@
 
     <p-dialog [closable]="false" [visible]="!selectedCategory && !rule">
         <p *ngIf="noMoreWords">{{'GROUPING.NEW_CAT' | translate}}</p>
-        <p-listbox (onClick)="getWords()" [(ngModel)]="selectedCategory" [options]="categories ?? []"></p-listbox>
+        <ion-list class="categoryList">
+            <ion-item button *ngFor="let category of categories ?? []; index as i" class="categoryItem" (click)="setCategory(category)">
+                <ion-label class="ion-text-wrap">{{category}}</ion-label>
+            </ion-item>
+        </ion-list>
     </p-dialog>
 
     <p-dialog [visible]="noMoreWords" [closable]="false" [modal]="true">
