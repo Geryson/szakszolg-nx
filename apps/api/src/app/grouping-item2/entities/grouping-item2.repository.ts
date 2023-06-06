@@ -42,7 +42,7 @@ export class GroupingItem2Repository extends SimpleRepository<
             const formattedCategory = rawCategory.replace(/\(/g, "\\(").replace(/\)/g, "\\)")
                 .replace(/\[/g, "\\[").replace(/]/g, "\\]").replace(/\?/g, "\\?")
                 .replace(/\./g, "\\.")
-            const regexName = new RegExp('\\' + formattedCategory, "i")
+            const regexName = new RegExp(formattedCategory, "i")
             const res = await this.model.find({ category: { $regex: regexName } })
             return res[Math.floor(Math.random() * res.length)]
         }
