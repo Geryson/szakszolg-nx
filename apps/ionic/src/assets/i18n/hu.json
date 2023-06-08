@@ -198,7 +198,8 @@
         "NO_SUCCESS": "Nem sikerült!",
         "CORRECT": "A helyes válasz: ",
         "CORRECT_ANSWERS": "Jó válaszok száma: ",
-        "SURVEY_QUIT": "Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni"
+        "SURVEY_QUIT": "Biztos hogy ki akarsz lépni? Minden válaszod el fog veszni",
+        "CUSTOM_SURVEY_FINISHED": "A kérdőív végére értél, köszönjük a kitöltést!"
     },
 
     "QUESTION_STRING":{

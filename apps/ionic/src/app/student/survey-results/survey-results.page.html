@@ -8,5 +8,6 @@
             </ion-row>
         </ion-grid>
     </div>
+    <p *ngIf="activeQuiz?.template === 'custom'" class="custom-finish-message">{{ 'MESSAGE.CUSTOM_SURVEY_FINISHED' | translate }}</p>
     <ion-button class="home-button" (click)="backToHome()">{{ 'BUTTONS.BACK_HOME' | translate }}</ion-button>
 </ion-content>

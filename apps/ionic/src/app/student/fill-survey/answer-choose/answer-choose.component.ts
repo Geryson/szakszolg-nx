@@ -56,6 +56,7 @@ export class AnswerChooseComponent implements OnInit {
     }
 
     async exit() {
+        this.service.end = false
         await this.service.cancel()
         this.redirect.to(pages.home)
     }

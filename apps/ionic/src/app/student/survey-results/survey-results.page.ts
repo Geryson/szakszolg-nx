@@ -137,7 +137,7 @@ export class SurveyResultsPage implements OnInit {
 
     private calculateRatingAnswers(j: number, points: Array<number>, answers: IQuizAnswer[]) {
         const selectedAnswer = parseInt(answers[j].answer)
-        if (this.activeQuiz?.questions[j] != null && this.activeQuiz?.questions[j]?.categoryIndex != null
+        if (!Number.isNaN(selectedAnswer) && this.activeQuiz?.questions[j] != null && this.activeQuiz?.questions[j]?.categoryIndex != null
             && this.activeQuiz?.questions[j]?.type != null) {
             const currentCategory = this.activeQuiz?.questions[j]?.categoryIndex
             const questionType = this.activeQuiz?.questions[j]?.type
