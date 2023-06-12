@@ -48,6 +48,10 @@
         </div>
         <!-- endregion Question category input -->
 
+        <div *ngIf='template === "rating"' class="mb-4">
+            <p-checkbox [(ngModel)]="reversedRating" [binary]="true" label='{{ "MANAGE_QUESTIONS.REVERSED_SCORING" | translate }}'></p-checkbox>
+        </div>
+
 
         <!-- region Operation Buttons -->
         <div class='mb-4'>
@@ -56,6 +60,7 @@
                     !this.question?.question ||
                     !this.question.type ||
                     (this.question.type !== "rating"
+                        && this.question.type !== "rating-reversed"
                         && this.question.type !== "free"
                         && !this.question.answers?.length
                     ) ||
@@ -70,14 +75,18 @@
 
 
         <!-- region Answer block -->
-        <div *ngIf='question.type && !["free", "rating"].includes(question.type)' class='mb-4'>
+        <div *ngIf='question.type && !["free", "rating", "rating-reversed"].includes(question.type)' class='mb-4'>
             <!-- region Answer input -->
-            <div *ngIf='question.type !== "true-false" && !(question.type === "skill" && (question.answers?.length ?? 0) > 1)' class='my-4'>
+            <div
+                *ngIf='question.type !== "true-false" && !(question.type === "skill" && (question.answers?.length ?? 0) > 1)'
+                class='my-4'>
                 <span class='p-float-label'>
                     <input #newAnswer (keydown.enter)='addAnswer(newAnswer)' id='newAnswer' pInputText type='text'>
                     <label for='newAnswer'>{{ 'MANAGE_QUESTIONS.NEW_ANSWER' | translate }}</label>
                 </span>
-                <p-button (click)='addAnswer(newAnswer)' [disabled]='question.type === "skill" && (question.answers?.length ?? 0) > 1' icon='pi pi-plus'
+                <p-button (click)='addAnswer(newAnswer)'
+                          [disabled]='question.type === "skill" && (question.answers?.length ?? 0) > 1'
+                          icon='pi pi-plus'
                           styleClass='p-button-success' type='button'></p-button>
             </div>
             <!-- endregion Answer input -->
@@ -95,28 +104,30 @@
                     <tr>
                         <td class='d-flex-row'>
                             {{ ans.text }}
-                                <ion-select [(ngModel)]='ans.categoryIndex' placeholder="Kérem válasszon">
-                                    <ion-select-option *ngFor='let option of options' [value]="option.value">{{ option.name }}</ion-select-option>
-                                </ion-select>
+                            <ion-select [(ngModel)]='ans.categoryIndex' placeholder="Kérem válasszon">
+                                <ion-select-option *ngFor='let option of options'
+                                                   [value]="option.value">{{ option.name }}</ion-select-option>
+                            </ion-select>
                         </td>
                         <td>
-                                <p-button (click)='markAsCorrect(ans)'
-                                          *ngIf='template === "quiz" && !ans.isCorrect'
-                                          label='{{ "MANAGE_QUESTIONS.NOT_SOLUTION" | translate }}'
-                                          styleClass='p-button-primary'></p-button>
-                                <p-button (click)='unMarkAsCorrect(ans)'
-                                          *ngIf='template === "quiz" && ans.isCorrect'
-                                          label='{{ "MANAGE_QUESTIONS.IS_SOLUTION" | translate }}'
-                                          styleClass='p-button-success'></p-button>
-                                <p-button (click)='removeAnswer(ans)' *ngIf='question.type === "choose"' icon='pi pi-trash'
-                                          styleClass='p-button-danger'></p-button>
+                            <p-button (click)='markAsCorrect(ans)'
+                                      *ngIf='template === "quiz" && !ans.isCorrect'
+                                      label='{{ "MANAGE_QUESTIONS.NOT_SOLUTION" | translate }}'
+                                      styleClass='p-button-primary'></p-button>
+                            <p-button (click)='unMarkAsCorrect(ans)'
+                                      *ngIf='template === "quiz" && ans.isCorrect'
+                                      label='{{ "MANAGE_QUESTIONS.IS_SOLUTION" | translate }}'
+                                      styleClass='p-button-success'></p-button>
+                            <p-button (click)='removeAnswer(ans)' *ngIf='question.type === "choose"' icon='pi pi-trash'
+                                      styleClass='p-button-danger'></p-button>
                         </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate='emptymessage'>
                     <tr>
                         <td [colSpan]='2'>
-                            <p-message severity='info' text='{{ "MANAGE_QUESTIONS.NO_ANSWERS" | translate }}'></p-message>
+                            <p-message severity='info'
+                                       text='{{ "MANAGE_QUESTIONS.NO_ANSWERS" | translate }}'></p-message>
                         </td>
                     </tr>
                 </ng-template>

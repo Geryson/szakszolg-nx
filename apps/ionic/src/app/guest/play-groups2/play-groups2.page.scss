@@ -1,11 +1,10 @@
-.groups{
+.groups {
     display: grid;
     gap: 1.5rem;
     grid-template-areas:
         'top'
         'word'
-        'bottom'
-    ;
+        'bottom';
     grid-area: groups;
 
 }
@@ -15,8 +14,7 @@
     gap: 1.5rem;
     grid-template-areas:
         'groups'
-        'components'
-    ;
+        'components';
 }
 
 .cdk-drag-placeholder {
@@ -27,28 +25,25 @@
     display: grid;
     grid-area: top;
     grid-template-areas:
-        'one two'
-    ;
+        'one two';
     margin: 8% 5vw;
     column-gap: 8vw;
 }
 
-.bottom{
+.bottom {
     display: grid;
     grid-area: bottom;
     grid-template-areas:
-        'three four'
-    ;
+        'three four';
     margin: 8% 5vw 0;
     column-gap: 8vw;
 }
 
-.components{
+.components {
     display: grid;
     grid-area: components;
     grid-template-areas:
-        'quit answers'
-    ;
+        'quit answers';
 }
 
 .one {
@@ -91,10 +86,11 @@
     margin: 8% auto;
 }
 
-.red{
+.red {
     background: tomato !important;
 }
-.green{
+
+.green {
     background: lawngreen !important;
 }
 
@@ -150,4 +146,18 @@ ion-content {
 
 .p-item {
     margin: auto;
+}
+
+:host {
+    .categoryItem:nth-child(2n),
+    .categoryItem:nth-of-type(2n)
+    {
+        --background: rgba(129, 73, 179, 0.25) !important;
+    }
+
+    .categoryItem:nth-child(2n+1),
+    .categoryItem:nth-child(2n+1)
+    {
+        --background: rgba(129, 73, 179, 0.5);
+    }
 }

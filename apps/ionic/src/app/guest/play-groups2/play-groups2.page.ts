@@ -70,6 +70,11 @@ export class PlayGroups2Page {
         loading.dismiss().then()
     }
 
+    setCategory(category: string) {
+        this.selectedCategory = category
+        this.getWords()
+    }
+
     getWords() {
         this.queryRef2 = this.service.browseByCategory(this.selectedCategory)
         this.sub2 = this.queryRef2.valueChanges
@@ -113,7 +118,7 @@ export class PlayGroups2Page {
                 this.guessedAnswer = true
                 this.counter += 1
             }
-            else{
+            else if (this.answerId !== -1) {
                 this.notCorrect = true
             }
         }

@@ -18,13 +18,16 @@ export const TOKENS = {
                     template
                     description
                     categories
+                    useCategoryAverage
                     questions{
                         _id
                         question
                         type
+                        categoryIndex
                         answers {
                             text
                             isCorrect
+                            categoryIndex
                         }
                     }
                 }

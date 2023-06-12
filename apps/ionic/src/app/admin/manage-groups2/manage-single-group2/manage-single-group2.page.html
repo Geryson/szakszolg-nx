@@ -7,6 +7,7 @@
                 <input [(ngModel)]="category" id="category" type="text" pInputText>
                 <label for="category">Kategória</label>
             </span>
+            <div class="col-12 md:col-4 mb-2 p-component p-element ng-valid ng-touched p-filled ng-dirty">{{ 'MANAGE_GROUPINGS.INVALID_CATEGORY_NAME' | translate}}</div>
         </div>
 
         <!--GROUP-->
@@ -125,7 +126,7 @@
 
         <div class='field col-12 md:col-4 mt-4 mb-4'>
             <span>
-                <p-button (click)='save()' [disabled]='!item?.items?.length || saveable() || !this.category?.length' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
+                <p-button (click)='save()' [disabled]='!item?.items?.length || saveable() || !this.category?.length || categoryHasSpecialChars()' icon='pi pi-{{ NG_ICON.save }}' label='{{ "MANAGE_GROUPINGS.SAVE" | translate }}' styleClass='p-button-primary' type='button'></p-button>
             </span>
         </div>
 

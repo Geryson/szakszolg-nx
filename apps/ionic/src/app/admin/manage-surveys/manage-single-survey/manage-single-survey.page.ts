@@ -6,12 +6,12 @@ import { QueryRef } from 'apollo-angular'
 import { NG_ICON } from '../../../../shared/utils/prime-icons.class'
 import { first, Subscription } from 'rxjs'
 import { ConfirmationService, MessageService } from 'primeng/api'
-import { NavController } from '@ionic/angular'
+import {AlertController, NavController} from '@ionic/angular'
 import { SurveyService } from '../../../../shared/services/survey.service'
 import { areEqual, deepCopy, omit } from '../../../../shared/utils/object.tools'
-import { Log } from '../../../../shared/utils/log.tools'
 import { presentLoading } from '../../../../shared/utils/observable.tools'
 import { translate, Validator } from '../../../../shared/utils/translation.tools'
+import {StaticService} from "../../../../shared/services/static.service";
 
 @Component({
     selector: 'nx12-manage-single-survey',
@@ -39,6 +39,7 @@ export class ManageSingleSurveyPage {
         private readonly confirmation: ConfirmationService,
         private readonly nav: NavController,
         private readonly toast: MessageService,
+        private readonly alertController: AlertController,
     ) {}
 
     ionViewDidEnter() {
@@ -107,6 +108,7 @@ export class ManageSingleSurveyPage {
             this.survey.questions.push($event)
         }
         this.validator?.check('questions')
+        this.validator?.check('moreNeutralCategories')
     }
 
     async templateChosen(template: string) {
@@ -174,6 +176,7 @@ export class ManageSingleSurveyPage {
                         questions: [],
                         categories: [],
                         template: '',
+                        useCategoryAverage: false,
                     }
                     this.originalSurvey = deepCopy(this.survey)
                     this.templateDialog = 1
@@ -238,7 +241,7 @@ export class ManageSingleSurveyPage {
             attributeFactory: (prop) =>
                 prop === 'skillQuestion' ? this.skillQuestion : this.survey?.[prop as keyof IQuiz],
             translationKey: 'MANAGE_SURVEYS.SINGLE',
-            properties: ['title', 'description', 'categories', 'questions', 'skillQuestion'],
+            properties: ['title', 'description', 'categories', 'questions', 'skillQuestion', 'moreNeutralCategories'],
             rules: {
                 title: (survey, title) => !!title,
                 description: (survey, description) => !!description,
@@ -246,6 +249,26 @@ export class ManageSingleSurveyPage {
                 categories: (survey, categories) =>
                     survey.template === 'quiz' || (!!categories && (categories as string[]).length > 0),
                 skillQuestion: (survey, skillQuestion) => survey.template !== 'skill' || !!skillQuestion,
+                moreNeutralCategories: (survey) => {
+                    if (survey.template !== 'true-false') {
+                        return true
+                    }
+                    let neutralCategoryId:number | undefined = -1
+                    if (survey.questions && survey.questions.length > 0) {
+                        for (const question of survey.questions) {
+                            if (question.answers && question.answers[1].categoryIndex != -1 && neutralCategoryId == -1) {
+                                neutralCategoryId = question.answers[1].categoryIndex
+                            }
+
+                            if (question.answers && neutralCategoryId != question.answers[1].categoryIndex) {
+                                return false
+                            }
+                        }
+                        return true
+                    }
+
+                    return false
+                }
             },
         })
     }
@@ -254,5 +277,16 @@ export class ManageSingleSurveyPage {
         return (!this.survey!.title || !this.survey!.description
             || this.survey!.questions!.length<1 || this.survey!.template !== 'quiz'
             && this.survey!.categories!.length < 1)
+    }
+
+    async showCategoryAverageWarning() {
+        const alert = await this.alertController.create({
+            message: StaticService.translatePipe.transform('MANAGE_SURVEYS.CATEGORY_AVERAGE_INFO'),
+            buttons: [
+                {
+                    text: await StaticService.translatePipe.transform('BUTTONS.OKE')
+                }]
+        });
+        await alert.present();
     }
 }

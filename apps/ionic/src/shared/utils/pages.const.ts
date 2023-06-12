@@ -33,6 +33,7 @@ export const pages = {
         enterToken: 'student/enter-token',
         fillSurvey: 'student/fill-survey',
         surveyDetails: 'student/survey-details',
+        surveyResults: 'student/survey-results'
     },
 }
 

@@ -1,0 +1,13 @@
+<nx12-header title="NAVIGATION.SURVEY_RESULTS"></nx12-header>
+<ion-content class="survey-results">
+    <div class="grid-container" *ngIf="activeQuiz?.template === 'skill' || activeQuiz?.template === 'rating' || activeQuiz?.template === 'true-false'">
+        <ion-grid class="grid-body">
+            <ion-row class="grid-row" *ngFor="let category of quizCategories!; index as i">
+                <ion-col size="8">{{category}}</ion-col>
+                <ion-col>{{points[i]}}</ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <p *ngIf="activeQuiz?.template === 'custom'" class="custom-finish-message">{{ 'MESSAGE.CUSTOM_SURVEY_FINISHED' | translate }}</p>
+    <ion-button class="home-button" (click)="backToHome()">{{ 'BUTTONS.BACK_HOME' | translate }}</ion-button>
+</ion-content>

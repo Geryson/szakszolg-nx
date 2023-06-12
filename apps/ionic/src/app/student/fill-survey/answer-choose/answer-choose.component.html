@@ -2,9 +2,6 @@
     <h3>
         {{service.questions[service.index].question}}
     </h3>
-    <h4 *ngIf="service.activeQuiz!.template==='quiz'">
-        {{'MESSAGE.CORRECT_ANSWERS' | translate}} {{correctAnswers}} / {{service.activeQuiz!.questions!.length}}
-    </h4>
 
     <div *ngIf="service.activeQuiz!.template !== 'quiz'" class="buttons">
         <div *ngFor="let item of service.questions[service.index].answers"  class="button">

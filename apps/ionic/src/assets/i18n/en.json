@@ -22,10 +22,11 @@
         "QF":"Questionnaire",
         "SCHOOL_FINDER": "School finder",
         "ROLE_RIGHTS": "Role-Right",
-        "TRUE_FALSE_FORM": "True-False form",
+        "TRUE_FALSE_FORM": "Yes-No form",
         "SKILL_FORM": "Skill form",
         "ANSWER_CHOOSE":"Answer choose",
-        "CATEGORY_EDITING":"Category editing"
+        "CATEGORY_EDITING":"Category editing",
+        "SURVEY_RESULTS": "Survey results"
     },
 
     "BUTTONS":{
@@ -176,7 +177,7 @@
         "WHAT_TYPE_OF_EVALUATE_QF": "What type of evaluation questionaire do you want to create?",
         "EVALUATE_QF":"Evaluate form",
         "ONE_TO_FIVE_EVALUATE_QF":"One-Five",
-        "TRUE_FALSE_EVALUATE_QF":"True-False",
+        "TRUE_FALSE_EVALUATE_QF":"Yes-No",
         "SKILL_EVALUATE_QF":"Skill check",
         "CUSTOM_QF":"Custom form",
         "PAIRS_INSTRUCTIONS": "Match the correct pieces of the next 3 pairs to each other!",
@@ -201,8 +202,8 @@
         "Q_THREE":"Neutral",
         "Q_FOUR":"Rather yes",
         "Q_FIVE":"Totally",
-        "TRUE":"True",
-        "FALSE":"False"
+        "TRUE":"Yes",
+        "FALSE":"No"
     },
 
     "HEADER":{
@@ -260,12 +261,35 @@
         "EMAIL": "e-mail"
     },
 
+    "MANAGE_GROUPINGS": {
+        "SEARCH": "Search by word",
+        "SAVE": "Save",
+        "CATEGORY": "Category",
+        "ITEM": "Item",
+        "ITEMS": "Items",
+        "GROUPS": "Groups",
+        "CORRECT": "Correct",
+        "ACTIONS": "Actions",
+        "NEW_GROUP": "New optional answer",
+        "NO_GROUPS": "No groups created yet",
+        "NO_ITEMS": "No items created yet",
+        "CORRECT_BUTTON": "Correct answer",
+        "MARKED_CORRECT": "Marked as correct",
+        "OPTIONS": {
+            "text": "Text",
+            "picture": "Picture"
+        },
+        "ERROR": "Picture size is too big, it has to be a total of 1MB!",
+        "CHOOSE_ANSWER_FORMAT": "Please choose an answer format!",
+        "INVALID_CATEGORY_NAME": "Cannot contain the following special characters: + * ^ $ { } | \\"
+    },
+
     "ADD_FORM":{
         "DELETE_QUESTIONS": "Delete question",
         "ADD_QUESTIONS": "Add question:",
         "UNIQUE_ANSWERS": "Unique answer",
         "ONE_TO_FIVE": "One to five",
-        "WHAT_IS_TRUE": "Which one is true?",
+        "WHAT_IS_TRUE": "Yes or No?",
         "QUESTION": "Question...",
         "ANSWER": "Answer..."
     },
