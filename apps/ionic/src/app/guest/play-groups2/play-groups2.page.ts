@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-import { Component } from '@angular/core'
-import { AlertService } from '../../../shared/services/alert.service'
-import { QueryRef } from 'apollo-angular'
-import { IGroupingItem2 } from '@szakszolg-nx/api-interfaces'
-import { Subscription } from 'rxjs'
-import { GroupingItem2Service } from '../../../shared/services/grouping-item2.service'
+import {Component} from '@angular/core'
+import {AlertService} from '../../../shared/services/alert.service'
+import {QueryRef} from 'apollo-angular'
+import {IGroupingItem2} from '@szakszolg-nx/api-interfaces'
+import {Subscription} from 'rxjs'
+import {GroupingItem2Service} from '../../../shared/services/grouping-item2.service'
 import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {RedirectService} from "../../../shared/services/redirect.service";
 import {pages} from "../../../shared/utils/pages.const";
@@ -106,20 +106,28 @@ export class PlayGroups2Page {
     }
 
     drop(event: CdkDragDrop<string[]>) {
-        if (event.container.id !== 'cdk-drop-list-0'){
+        const wordContainerNodeList = document.querySelectorAll('.word:not(.visible)')
+        if (wordContainerNodeList.length > 0) {
+            const wordContainer = wordContainerNodeList[0]
+            if (wordContainer.firstElementChild != null) {
+                const wordContainerId = wordContainer.firstElementChild.id
 
-            const length = event.container.id.length
+                if (event.container.id !== wordContainerId){
 
-            this.answerId = +event.container.id.substring(length-1, length) - 1
-            this.correctId = this.groups.findIndex(x => x === this.correct)
+                    const length = event.container.id.length
 
-            if (this.correctId === this.answerId)
-            {
-                this.guessedAnswer = true
-                this.counter += 1
-            }
-            else if (this.answerId !== -1) {
-                this.notCorrect = true
+                    this.answerId = +event.container.id.substring(length-1, length) - 1
+                    this.correctId = this.groups.findIndex(x => x === this.correct)
+
+                    if (this.correctId === this.answerId)
+                    {
+                        this.guessedAnswer = true
+                        this.counter += 1
+                    }
+                    else if (this.answerId !== -1) {
+                        this.notCorrect = true
+                    }
+                }
             }
         }
     }
